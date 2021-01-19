@@ -11,7 +11,7 @@ a. Meeting schedule
 
 b. Roles
   - Dev-Ops: Arsen recommended as lead
-  - Fron-end (postponed for now)
+  - Front-end (postponed for now)
   - Back-end (optional/up to us)
   - Notetaker: Michael Brown
   - In the end, all of us are devs
