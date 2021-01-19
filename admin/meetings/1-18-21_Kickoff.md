@@ -1,11 +1,14 @@
+- Topic: Management- Group Kickoff, Repo and Meeting Prep
 - Date: 1/18/21
 - Time: 5:00pm (Monday)
+- Location: Zoom (Online)
+- Written by: Michael Brown
 - Attendance: 8/9 (missing William)
 
 
-### 1. Kickoff Meeting (Est. Time to Complete: 45min - 1hr 30min)
+### 1. Kickoff Meeting (Est. 30min)
 ```
-a. Meeting schedule
+a. Meeting schedule finalized
   - Weekly meetings on Thursday (2-3 PM PST)
   - Weekly meetings w/ Chad on Fridays (4 PM PST)
 
@@ -25,19 +28,18 @@ d. Group Contract (link to document below)
 
 ```
 
-
 [Link to Google Doc](https://docs.google.com/document/d/1t0L2jdQWFrMdXlEY5gUftuwtMraj6wd0nKiqotNwzfU/edit#heading=h.a23m216utj3b)
-### 2. Group Page and Video
+### 2. Group Page and Video (Est. 30min)
 
 ```
 a. TODO: Github Wiki
-  - Name, Theme/Brand (Bears!), Values
+  - Must include names, theme/brand (Bears!), values
   - Roster of members; each submit brief overview and personal GH Page link
 
 b. Group Video
   - Compile a group video of member introductions
-    * Teddy-bear theme! Introduce selves as bears then face reveal
-    * Name, college, crazy fact (15 second clip)
+    * Teddy-bear theme! Introduce selves as bears w/ face reveals
+    * Include name, college, crazy fact (15 second clip)
     * Open-ended; have fun!
   - Vedparkash - volunteer for editing/compiling
     * send clips directly to him
