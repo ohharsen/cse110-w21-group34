@@ -54,3 +54,19 @@ b. Sign the Group Contract Google Form
 c. GitHub wiki w/ team roster
 
 ```
+
+### Side Notes (as of 1/19/21 from Lab 3 Zoom Session)
+
+```
+- Ways to create Group Wiki Page:
+  1. someone applies for GitHub educational package (called the Student Dev. Pack, I believe)
+    * allows for Wiki Page
+    * would require someone to make personal repo
+  2. instructor applies for GitHub instructor license to enable wiki
+(Asked by Arsen, answered by Chad)
+
+link below for further detail
+```
+[About wikis](https://docs.github.com/en/github/building-a-strong-community/about-wikis#:~:text=Wikis%20are%20available%20in%20public,Cloud%20and%20GitHub%20Enterprise%20Server.&text=If%20you%20create%20a%20wiki,is%20available%20to%20the%20public.)
+
+[Adding/editing wikis](https://docs.github.com/en/github/building-a-strong-community/adding-or-editing-wiki-pages)
