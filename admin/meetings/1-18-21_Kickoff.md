@@ -10,8 +10,11 @@ a. Meeting schedule
   - Weekly meetings w/ Chad on Fridays (4 PM PST)
 
 b. Roles
-  - TBA; will determine further as more project info released
+  - Dev-Ops: Arsen recommended as lead
+  - Fron-end (postponed for now)
+  - Back-end (optional/up to us)
   - Notetaker: Michael Brown
+  - In the end, all of us are devs
   
 c. Create Repo (Complete!)
 
