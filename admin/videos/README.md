@@ -1,2 +1,2 @@
 
-# This folder contains groupd videos including the group intoduction video.
+# This folder contains group videos including the group intoduction video.
