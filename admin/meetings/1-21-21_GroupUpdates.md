@@ -24,7 +24,7 @@ b. iMessage
 c. Slack
   - Will continue to use
   - Additional channels recommended
-    * ie. videos, assignments, deadline reminders, discussions, etc.
+    * ie. for videos, assignments, deadline reminders, discussions, etc.
 ```
 
 ### 2. Meeting Time Updates (Est. 5min)
@@ -35,7 +35,7 @@ a. Mondays @ 5:00pm
   - Stay tuned on Slack for meeting notifications
 
 b. Thursdays @ 2:00pm
-  - Still reserved (will still be meeting on 1/28/21 for early design brainstorming)
+  - Still reserved (will be meeting on 1/28/21 for early design brainstorming)
   - Workloads may eventually accumulate; Thursdays hence give us more time to collaborate when necessary
 
 c. Fridays w/ Chad @ 4:00pm
