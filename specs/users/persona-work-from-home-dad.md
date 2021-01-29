@@ -3,7 +3,7 @@
 
 ## Name:
 
-##Background:
+## Background:
 **Age:** 30<br> 
 **Location:** New York<br> 
 **Marital Status:** Married<br> 
@@ -23,7 +23,7 @@
 
 
 
-##About
+## About
  
 
 
