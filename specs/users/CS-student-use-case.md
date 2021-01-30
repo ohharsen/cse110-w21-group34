@@ -4,7 +4,7 @@ As a user, I have noticed I can complete tasks without thinking about other assi
 ## Use Case
 
 #### Goal
-* To maximize producivity by focuing on one task at a time. 
+* To maximize producivity by focusing on one task at a time. 
 
 #### Steps in achieving that goal
 1. Be able to look back to track progress with the pomodoros.
