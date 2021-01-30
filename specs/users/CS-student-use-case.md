@@ -8,7 +8,7 @@ As a user, I have noticed I can complete tasks without thinking about other assi
 
 #### Steps in achieving that goal
 1. Be able to look back to track progress with the pomodoros.
-2. 
+2. User able to set pomodoro to set task to do without interruption. 
 
 
 
