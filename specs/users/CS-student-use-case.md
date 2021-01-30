@@ -7,6 +7,8 @@ As a user, I have noticed I can complete tasks without thinking about other assi
 * To maximize producivity by focuing on one task at a time. 
 
 #### Steps in achieving that goal
+1. Focus on doing one and only one task during the duration of the pomodoro. 
+2. 
 
 
 
