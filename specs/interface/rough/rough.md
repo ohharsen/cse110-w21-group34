@@ -14,6 +14,11 @@ We will initially capture "fat marker design" later extended with wireframes and
 - Stop/reset button 
 - After cycle completion, urge user to initiate next cycle
 
+[Version 1 - Pomo Timer w/ Day Theme](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FUA8A5plm4IQWTdACtaVdQl%2FPomo-PersonalVersion%3Fnode-id%3D13%253A19)
+
+[Version 1 - Rest Timer w/ Dark Theme](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FUA8A5plm4IQWTdACtaVdQl%2FPomo-PersonalVersion%3Fnode-id%3D0%253A1)
+
+
 ### Versions of page 1
 
 ## Page 2: Statistics
@@ -24,3 +29,4 @@ We will initially capture "fat marker design" later extended with wireframes and
 - Number of failed pomos
 - Number of times you gave into temptation (smh)
 
+[Version 1 - Stats](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FUA8A5plm4IQWTdACtaVdQl%2FPomo-PersonalVersion%3Fnode-id%3D10%253A1)
