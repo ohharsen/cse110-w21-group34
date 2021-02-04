@@ -20,6 +20,7 @@ We will initially capture "fat marker design" later extended with wireframes and
 
 [(Amy) Version 2 - Pomo Timer](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FfL077fJhNPs7OBx3aQGZQq%2FPomo-Timer-Rough%3Fnode-id%3D0%253A1)
 
+[(Vedparkash) Version 2- pomo timer](https://www.figma.com/file/ljL8kEJ7PbascYH1sdDVj8/pomodora2?node-id=0%3A1)
 ## Page 2: Statistics
 - Time spent on total
 - Average time
