@@ -7,4 +7,4 @@ Below is a link to the UI team's shared Figma document. This document contains a
 
 There exists a set of final images with designs that take inspiration from all original rough drafts as well as critique/input from earlier group meetings. The UI contains the background design as well as the colored appearance of the timer itself (in both the timing and rest stages) as well as layout and expectations of the statistics page.
 
-[Link to the sheet](https://www.figma.com/file/YKbr41HncoZibekWb9fcfD/Pomodoro?node-id=0%3A1)
+[Link to the sheet](https://www.figma.com/file/YKbr41HncoZibekWb9fcfD/Pomodoro?node-id=0%3A1)  
