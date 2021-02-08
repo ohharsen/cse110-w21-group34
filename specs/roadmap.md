@@ -1,7 +1,5 @@
 # Project Roadmap
 
-## Sprint 2 -- *Current Sprint*
-
 ## Sprint 1 -- Finished
 ### Finalize design
 ADRs
@@ -35,3 +33,43 @@ Build Pipeline
 - Will implement JSDocs for generating documentation
 - Setting up 2 reviewers for each PR
 - Brainstorm and explore options for unit tests and automated code review
+
+## Sprint 2 -- *Current Sprint*
+
+### Week 6
+Feature Planning (Tentative)
+- Timer
+  - Implement Pomodoro business logic (pomo, short break, long break)
+  - Clock front-end
+- Reset button
+  - Logic and frontend
+
+### Week 7
+Feature Planning (Tentative)
+- Timer
+  - Complete front-end design
+  - Local storage functionality
+- Full front-end for timer page
+- Stretch goal: start statistics page
+
+## Sprint 3
+
+### Week 8
+Feature Planning (Tentative)
+- Statistics
+  - Interaction with local storage
+  - Basic front-end complete
+- **Important decision:** Pursue basic task functionality or dive deeper into statistics
+
+### Week 9
+Feature Planning (Tentative)
+- Full front-end for statistics
+- Continue to implement importance decision from Week 8
+- QA and lots of testing: CI/CD pipeline implemented to perfection
+
+## Sprint 4
+
+### Week 10
+Demonstration
+- Test all edge cases of timer usage
+- Presentation of project and build pipeline
