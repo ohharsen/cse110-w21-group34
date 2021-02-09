@@ -4,7 +4,7 @@
 - Location: Zoom (Online)
 - Written by: Michael Brown
 - Attendance: 8/9 (Keshab excused)
-- Time: 
+- Time: 1 hr.
 
 
 
