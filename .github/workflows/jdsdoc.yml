@@ -13,5 +13,5 @@ jobs:
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir:  ${{ GITHUB_WORKSPACE }} + "/source"
-          output_dir:  ${{ GITHUB_WORKSPACE }} + "/docs-out"
+          source_dir:  ${{ GITHUB_WORKSPACE }}
+          output_dir:  ${{ GITHUB_WORKSPACE }}
