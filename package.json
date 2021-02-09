@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/4R53N/cse110-w21-group34/issues"
   },
-  "homepage": "https://github.com/4R53N/cse110-w21-group34#readme"
+  "homepage": "https://github.com/4R53N/cse110-w21-group34#readme",
+  "devDependencies": {
+    "eslint": "^7.19.0"
+  }
 }
