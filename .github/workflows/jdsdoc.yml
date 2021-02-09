@@ -9,8 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: /home/runner/work/cse110-w21-group34/cse110-w21-group34/source
-          output_dir: /home/runner/work/cse110-w21-group34/cse110-w21-group34/docs-out
+          source_dir:  ${{ GITHUB_WORKSPACE }} + "/source"
+          output_dir:  ${{ GITHUB_WORKSPACE }} + "/docs-out"
