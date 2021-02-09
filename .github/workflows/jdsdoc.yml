@@ -12,5 +12,5 @@ jobs:
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: ./source
-          output_dir: ./docs-out
+          source_dir: /home/runner/work/cse110-w21-group34/cse110-w21-group34/source
+          output_dir: /home/runner/work/cse110-w21-group34/cse110-w21-group34/docs-out
