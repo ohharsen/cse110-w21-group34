@@ -52,7 +52,7 @@ Feature Planning (Tentative)
 - Full front-end for timer page
 - Stretch goal: start statistics page
 
-## Sprint 3
+## Sprint 3 -- Future Sprint
 
 ### Week 8
 Feature Planning (Tentative)
