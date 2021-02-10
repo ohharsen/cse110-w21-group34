@@ -20,7 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Build
+      - name: JSDoc - Generate Documentation
         uses: andstor/jsdoc-action@v1
         with:
           source_dir:  ./source
