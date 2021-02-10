@@ -23,7 +23,7 @@ jobs:
       - name: JSDoc - Generate Documentation
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir:  ./source
+          source_dir:  ./source/scripts
           output_dir:  ./out
 
       - name: Set up Node.js
