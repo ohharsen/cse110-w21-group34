@@ -36,6 +36,9 @@ jobs:
 
       - name: Run linters
         run: npm run lint
+      
+      - name: Run JSDocs
+        run: jsdoc source/scripts
      
       - name: Run Tests
         run: npm run test
