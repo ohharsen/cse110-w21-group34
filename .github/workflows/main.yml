@@ -35,11 +35,7 @@ jobs:
         run: npm install
 
       - name: Run linters
-        uses: wearerequired/lint-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Enable linters
-          eslint: true 
+        run: npm run lint
      
       - name: Run Tests
         run: npm run test
