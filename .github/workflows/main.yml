@@ -28,11 +28,11 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install
 
-      - name: Run linters
+      - name: Run Linters
         run: npm run lint
       
       - name: Run JSDocs
-        run: node ./node_modules/.bin/jsdoc ./source/scripts/jsdoc-test.js 
+        run: ./node_modules/.bin/jsdoc ./source/scripts/
      
       - name: Run Tests
         run: npm run test
