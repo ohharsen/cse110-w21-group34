@@ -1,7 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 html{
     background: url('../images/background.png') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100%;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    margin: 0;
+}
+
+.stats-button{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    border-radius: 15px;
+}
+
+main{
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-container{
+    width: 25%;
+    min-width: 400px;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+}
+
+.timer-container{
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.timer{
+    width: 75%;
+    background: white;
+    height: 70%;
+}
+
+.start-stop-button{
+    width: 40%;
+    height: 60px;
+    border-radius: 40px;
+    font-family: Roboto;
+    color: white;
+    font-size: 18px;
+}
+
+.start-stop-button:focus{
+    outline: 0;
+}
+
+
+.pomodoro-button{
+    background: linear-gradient(180deg, #E95D31 0%, rgba(255, 255, 255, 0) 100%), #DB2E2E;
+}
+
+.pomodoro-button:active{
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%), #DB2E2E;
+}
+
+.break-button{
+    background: linear-gradient(180deg,  rgba(255, 255, 255, 0) 0%, #0D927A 100%), #34DBB3;
+    }
+
+.break-button:active{
+    background: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%), #34DBB3; 
+}
+
+.task-button{
+    background: linear-gradient(180deg, rgba(255, 0, 0, 0.21) 0%, #E8582B 100%), conic-gradient(from 1.14deg at 42.54% 1226.03%, #BDD915 -22.72deg, rgba(25, 21, 217, 0.887755) 160.22deg, rgba(189, 217, 21, 0) 163.43deg, #BDD915 337.28deg, rgba(25, 21, 217, 0.887755) 520.22deg);
+    border-radius: 5px;
+    height: 50px;
+    font-family: Roboto;
+    color: white;
+    font-size: 18px;
+}
+
+.task-button:active{
+    background: linear-gradient(180deg, rgba(255, 0, 0, 0.78) 0%, #E8582B 100%), #FFFFFF;
+    outline: 0;
+}
+
+.task-button:focus{
+    outline: 0;
 }
