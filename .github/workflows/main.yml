@@ -32,7 +32,7 @@ jobs:
         run: npm run lint
       
       - name: Run JSDocs
-        run: ./node_modules/.bin/jsdoc source/scripts -r
+        run: ./node_modules/.bin/jsdoc ./source/scripts/jsdoc-test.js 
      
       - name: Run Tests
         run: npm run test
