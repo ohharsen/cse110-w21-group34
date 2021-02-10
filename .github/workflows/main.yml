@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Build
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir:  ./source
+          output_dir:  ./out
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Enable linters
+          eslint: true 
+     
+      - name: Run Tests
+        run: npm run test
