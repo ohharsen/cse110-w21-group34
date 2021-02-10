@@ -36,3 +36,11 @@ jobs:
      
       - name: Run Tests
         run: npm run test
+      
+      - name: Create Coverage
+        run: node ./node_modules/jest/bin/jest.js --coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
