@@ -24,7 +24,7 @@ jobs:
         uses: andstor/jsdoc-action@v1
         with:
           source_dir:  ./source/scripts
-          output_dir:  ./out
+          output_dir:  ./docs
 
       - name: Set up Node.js
         uses: actions/setup-node@v1
@@ -48,9 +48,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: documentation
-          path: out/*
-
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: main
+          publish_dir: ./docs
