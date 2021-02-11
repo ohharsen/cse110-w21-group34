@@ -53,7 +53,7 @@ function startTimer() {
 
 /**
  * Resets timer upon button click
- * @todo timer-specific functionalitys
+ * @todo timer-specific functionality
  */
 function resetTimer() {
     pomoState = timerOptions.STOPPED;
