@@ -4,17 +4,18 @@
 
 let { togglePomoBreak, startTimer, resetTimer } = require("./index");
 
-window.onload = function () {
-  test('checks break toggle', () => {
+test('checks break toggle', () => {
+  window.onload = function() {
     expect(togglePomoBreak(true)).toBe(false);
     expect(togglePomoBreak(false)).toBe(true);
-  });
+  }
+});
   
-  test('checks start state', () => {
-    expect(startTimer().toBe(["pomo","✖ Reset"]));
-  });
+test('checks start state', () => {
+  expect(startTimer().toBe(["pomo","✖ Reset"]));
+});
   
-  test('checks reset state', () => {
-    expect(resetTimer().toBe(["stopped","▶ Begin"]));
-  });
-}
+test('checks reset state', () => {
+  expect(resetTimer().toBe(["stopped","▶ Begin"]));
+});
+
