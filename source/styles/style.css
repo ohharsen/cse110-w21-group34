@@ -76,9 +76,28 @@ main{
   .timer_path_elapsed {
     fill: none;
     stroke-width: 2px;
-    stroke: #DB2E2E;
+    /* stroke: #DB2E2E; */
+    /* transform: rotate(90deg);
+    transform-origin: center; */
+    transition: 1s linear all;
     stroke-linecap: round;
-    stroke-dasharray: 110 220;
+  }
+  
+  #countdownText {
+    /** Organization of text and positioning. **/
+    font-family: "Roboto";
+    font-size: 40px;
+    position: relative;
+    top: -75%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #makeshiftButton {
+    position: relative;
+    top: 40%;
   }
 
 .start-stop-button{
