@@ -20,15 +20,14 @@ let pomoState = timerOptions.STOPPED;
 
 if (startStopButton) {
     startStopButton.classList.toggle("break-button");
+    startStopButton.addEventListener("click", function() {
+        if (pomoState == timerOptions.STOPPED) {
+            startTimer();
+        } else {
+            resetTimer();
+        }
+    });
 }
-
-startStopButton.addEventListener("click", function() {
-    if (pomoState == timerOptions.STOPPED) {
-        startTimer();
-    } else {
-        resetTimer();
-    }
-});
 
 /**
  * Toggles break styling in start-stop-button
