@@ -12,10 +12,14 @@ test('checks break toggle', () => {
 });
   
 test('checks start state', () => {
-  expect(startTimer().toBe(["pomo","✖ Reset"]));
+  window.onload = function() {
+    expect(startTimer().toBe(["pomo","✖ Reset"]));
+  }
 });
   
 test('checks reset state', () => {
-  expect(resetTimer().toBe(["stopped","▶ Begin"]));
+  window.onload = function() {
+    expect(resetTimer().toBe(["stopped","▶ Begin"]));
+  }
 });
 
