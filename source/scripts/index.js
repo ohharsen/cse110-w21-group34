@@ -16,8 +16,11 @@ const timerOptions = {
 
 /* Start/Reset button */
 let startStopButton = document.getElementById(START_STOP_ID);
-startStopButton.classList.toggle("break-button");
 let pomoState = timerOptions.STOPPED;
+
+window.onload = function() {
+    startStopButton.classList.toggle("break-button");
+}
 
 startStopButton.addEventListener("click", function() {
     if (pomoState == timerOptions.STOPPED) {
