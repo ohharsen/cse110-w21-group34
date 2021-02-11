@@ -18,7 +18,7 @@ const timerOptions = {
 let startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 
-window.onload = function() {
+if (startStopButton) {
     startStopButton.classList.toggle("break-button");
     startStopButton.addEventListener("click", function() {
         if (pomoState == timerOptions.STOPPED) {
@@ -33,8 +33,10 @@ window.onload = function() {
  * Toggles break styling in start-stop-button
  */
 function togglePomoBreak(onBreak) {
-    startStopButton.classList.toggle("break-button");
-    return !onBreak;
+    if (startStopButton) {
+        startStopButton.classList.toggle("break-button");
+        return !onBreak;
+    }
 }
 
 /**
@@ -42,10 +44,12 @@ function togglePomoBreak(onBreak) {
  * @todo timer-specific functionality
  */
 function startTimer() {
-    pomoState = timerOptions.POMO;
-    startStopButton.innerHTML = RESET_BTN_TXT;
-    
-    return [pomoState, startStopButton.innerHTML];
+    if (startStopButton) { 
+        pomoState = timerOptions.POMO;
+        startStopButton.innerHTML = RESET_BTN_TXT;
+        
+        return [pomoState, startStopButton.innerHTML];
+    }
 }
 
 /**
@@ -53,10 +57,12 @@ function startTimer() {
  * @todo timer-specific functionalitys
  */
 function resetTimer() {
-    pomoState = timerOptions.STOPPED;
-    startStopButton.innerHTML = BEGIN_BTN_TXT;
+    if (startStopButton) {
+        pomoState = timerOptions.STOPPED;
+        startStopButton.innerHTML = BEGIN_BTN_TXT;
 
-    return [pomoState, startStopButton.innerHTML];
+        return [pomoState, startStopButton.innerHTML];
+    }
 }
 
 module.exports = { togglePomoBreak, startTimer, resetTimer };
