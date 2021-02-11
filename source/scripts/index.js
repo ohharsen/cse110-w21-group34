@@ -18,7 +18,7 @@ const timerOptions = {
 let startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 
-window.onload = function() {
+if (startStopButton) {
     startStopButton.classList.toggle("break-button");
 }
 
