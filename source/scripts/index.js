@@ -1,4 +1,4 @@
-/** Constants */
+/* Constants */
 const START_STOP_ID = "start-stop-button";
 const RESET_BTN_TXT = "✖ Reset";
 const BEGIN_BTN_TXT = "▶ Begin";
@@ -14,6 +14,7 @@ const timerOptions = {
     LONG: "long break"
 }
 
+/* Start/Reset button */
 let startStopButton = document.getElementById(START_STOP_ID);
 startStopButton.classList.toggle("break-button");
 let pomoState = timerOptions.STOPPED;
@@ -35,6 +36,7 @@ function togglePomoBreak() {
 
 /**
  * Starts timer upon button click
+ * @todo timer-specific functionality
  */
 function startTimer() {
     pomoState = timerOptions.POMO;
@@ -43,6 +45,7 @@ function startTimer() {
 
 /**
  * Resets timer upon button click
+ * @todo timer-specific functionalitys
  */
 function resetTimer() {
     pomoState = timerOptions.STOPPED;
