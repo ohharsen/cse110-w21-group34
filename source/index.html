@@ -13,7 +13,25 @@
     <main>
         <div class="center-container">
             <div class="timer-container">
-                <div class="timer"></div>
+                <div class="timer">
+                  <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50%" cy="43" r="35" style="fill:white" />
+                    <g class="timer_cirlce_container"> <!-- The containter for grouping multiple svg elements -->
+                      <!-- <text x="33" y="50" fill="red">25:00</text> -->
+                      <circle class="timer_basic" cx="50" cy="43" r="35" />
+                      <path
+                        id="base-timer-path-remaining"
+                        stroke-dasharray="283"
+                        class="timer_path_elapsed ${remainingPathColor}"
+                        d="
+                          M 15, 43
+                          a 35,35 0 1,0 70,0
+                          a 35,35 0 1,0 -70,0
+                        "
+                      />
+                    </g>
+                  </svg>
+                </div>
                 <button class="start-stop-button pomodoro-button">▶ Begin</button>
             </div>
             <button class="task-button">Complete Task</button>
