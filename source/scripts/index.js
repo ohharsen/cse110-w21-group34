@@ -35,8 +35,8 @@ if (startStopButton) {
 function togglePomoBreak(onBreak) {
     if (startStopButton) {
         startStopButton.classList.toggle("break-button");
-        return !onBreak;
     }
+    return !onBreak;
 }
 
 /**
@@ -44,12 +44,11 @@ function togglePomoBreak(onBreak) {
  * @todo timer-specific functionality
  */
 function startTimer() {
+    pomoState = timerOptions.POMO;
     if (startStopButton) { 
-        pomoState = timerOptions.POMO;
         startStopButton.innerHTML = RESET_BTN_TXT;
-        
-        return [pomoState, startStopButton.innerHTML];
     }
+    return [pomoState, RESET_BTN_TXT];
 }
 
 /**
@@ -57,12 +56,11 @@ function startTimer() {
  * @todo timer-specific functionalitys
  */
 function resetTimer() {
+    pomoState = timerOptions.STOPPED;
     if (startStopButton) {
-        pomoState = timerOptions.STOPPED;
         startStopButton.innerHTML = BEGIN_BTN_TXT;
-
-        return [pomoState, startStopButton.innerHTML];
     }
+    return [pomoState, BEGIN_BTN_TXT];
 }
 
 module.exports = { togglePomoBreak, startTimer, resetTimer };
