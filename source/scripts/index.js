@@ -1,9 +1,12 @@
-// Constants
+/** Constants */
 const START_STOP_ID = "start-stop-button";
 const RESET_BTN_TXT = "✖ Reset";
 const BEGIN_BTN_TXT = "▶ Begin";
 
-// Enum for storing pomo state -- feel free to change
+/**
+ * Enumerated timer states
+ * @enum {string}
+ */
 const timerOptions = {
     STOPPED: "stopped",
     POMO: "pomo",
@@ -23,15 +26,24 @@ startStopButton.addEventListener("click", function() {
     }
 });
 
+/**
+ * Toggles break styling in start-stop-button
+ */
 function togglePomoBreak() {
     startStopButton.classList.toggle("break-button");
 }
 
+/**
+ * Starts timer upon button click
+ */
 function startTimer() {
     pomoState = timerOptions.POMO;
     startStopButton.innerHTML = RESET_BTN_TXT;
 }
 
+/**
+ * Resets timer upon button click
+ */
 function resetTimer() {
     pomoState = timerOptions.STOPPED;
     startStopButton.innerHTML = BEGIN_BTN_TXT;
