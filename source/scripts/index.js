@@ -14,7 +14,7 @@ const timerOptions = {
     LONG: "long break"
 }
 
-/* Start/Reset button */
+/***********  Start/Reset button ***********/
 let startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 
@@ -32,8 +32,9 @@ if (startStopButton) {
 /**
  * Toggles break styling in start-stop-button
  */
-function togglePomoBreak() {
+function togglePomoBreak(onBreak) {
     startStopButton.classList.toggle("break-button");
+    return !onBreak;
 }
 
 /**
@@ -43,6 +44,8 @@ function togglePomoBreak() {
 function startTimer() {
     pomoState = timerOptions.POMO;
     startStopButton.innerHTML = RESET_BTN_TXT;
+    
+    return [pomoState, startStopButton.innerHTML];
 }
 
 /**
@@ -52,17 +55,8 @@ function startTimer() {
 function resetTimer() {
     pomoState = timerOptions.STOPPED;
     startStopButton.innerHTML = BEGIN_BTN_TXT;
+
+    return [pomoState, startStopButton.innerHTML];
 }
 
-// TEMPORARY: prevent tests from failing
-/**
- * Sum of two numbers
- * @param {int} a First operand
- * @param {int} b Second operand
- * @returns their sum
- */
-function sum(a, b) {
-    return a + b;
-}  
-
-module.exports = sum;
+module.exports = { togglePomoBreak, startTimer, resetTimer };

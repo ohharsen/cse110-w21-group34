@@ -2,8 +2,17 @@
  * @jest-environment jsdom
  */
 
-let sum = require("./index");
+let { togglePomoBreak, startTimer, resetTimer } = require("./index");
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+test('checks break toggle', () => {
+  expect(togglePomoBreak(true)).toBe(false);
+  expect(togglePomoBreak(false)).toBe(true);
+});
+
+test('checks start state', () => {
+  expect(startTimer().toBe(["pomo","✖ Reset"]));
+});
+
+test('checks reset state', () => {
+  expect(resetTimer().toBe(["stopped","▶ Begin"]));
 });
