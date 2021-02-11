@@ -57,9 +57,29 @@ main{
 
 .timer{
     width: 75%;
-    background: white;
     height: 70%;
 }
+
+ 
+  /* Removes SVG styling that would hide the time label */
+  .timer_circle_container {
+    background-color: white;
+    stroke: none;
+  }
+
+  .timer_basic {
+      fill : none;
+      stroke: none;
+  }
+
+  /*The SVG path that displays the timer's progress */
+  .timer_path_elapsed {
+    fill: none;
+    stroke-width: 2px;
+    stroke: #DB2E2E;
+    stroke-linecap: round;
+    stroke-dasharray: 110 220;
+  }
 
 .start-stop-button{
     width: 40%;
