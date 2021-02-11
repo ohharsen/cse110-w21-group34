@@ -10,10 +10,10 @@ test('checks break toggle', () => {
 });
   
 test('checks start state', () => {
-  expect(startTimer()).toBe(["pomo","✖ Reset"]);
+  expect(startTimer()).toStrictEqual(["pomo","✖ Reset"]);
 });
   
 test('checks reset state', () => {
-  expect(resetTimer()).toBe(["stopped","▶ Begin"]);
+  expect(resetTimer()).toStrictEqual(["stopped","▶ Begin"]);
 });
 
