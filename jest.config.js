@@ -199,5 +199,6 @@ module.exports = {
         lines: 20,
         statements: 20
       },
+  },
   
 };
