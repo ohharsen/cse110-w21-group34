@@ -61,7 +61,7 @@ main{
     height: 70%;
 }
 
-.start-stop-button{
+#start-stop-button{
     width: 40%;
     height: 60px;
     border-radius: 40px;
@@ -70,10 +70,9 @@ main{
     font-size: 18px;
 }
 
-.start-stop-button:focus{
+#start-stop-button:focus{
     outline: 0;
 }
-
 
 .pomodoro-button{
     background: linear-gradient(180deg, #E95D31 0%, rgba(255, 255, 255, 0) 100%), #DB2E2E;
@@ -85,7 +84,7 @@ main{
 
 .break-button{
     background: linear-gradient(180deg,  rgba(255, 255, 255, 0) 0%, #0D927A 100%), #34DBB3;
-    }
+}
 
 .break-button:active{
     background: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%), #34DBB3; 
