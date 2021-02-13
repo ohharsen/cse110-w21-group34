@@ -16,12 +16,26 @@ body {
     margin: 0;
 }
 
-.stats-button{
+.stats-button {
     position: fixed;
     right: 20px;
     top: 20px;
     width: 100px;
     height: 100px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    border-radius: 15px;
+}
+
+.stats-button:active {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 99.99%, rgba(255, 209, 209, 0.5) 100%, rgba(255, 209, 209, 0.5) 100%);
+}
+
+#stats-close-button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
     border-radius: 15px;
 }
@@ -108,8 +122,21 @@ main{
     outline: 0;
 }
 
+/* stats panel css start */
+#stats-container {
+    height: calc(100vh - 36px);
+    width: 25vw;
+    margin: 18px 18px 18px 18px;
+    position: fixed;
+    top: 0;
+    left: 100vw;
+    transition: left 0.5s ease-in;
+    font-family: Roboto;
+}
+
 #stats-pane {
-    width: 25%;
+    box-sizing: border-box;
+    height: 100%;
     border-radius: 8px;
     padding: 24px 48px 24px 72px;
     background: linear-gradient(0deg, #FFD1D1 0%, #EEEEEE 100%);
@@ -119,6 +146,16 @@ main{
     align-content: space-around;
     justify-items: flex-start;
     justify-content: space-around;
+}
+
+#stats-container h1 {
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+#stats-container h2 {
+    margin-top: 16px;
+    margin-bottom: 4px;
 }
 
 #stats-overview {
@@ -156,3 +193,6 @@ main{
     align-content:center;
     justify-content: space-between;
 }
+
+
+/*stats panel css end*/

@@ -63,4 +63,26 @@ function resetTimer() {
     return [pomoState, BEGIN_BTN_TXT];
 }
 
+/**************  Statistics Button ***************/
+const statsOpenButton = document.getElementById('stats-open-button');
+const statsCloseButton = document.getElementById('stats-close-button');
+const statsPane = document.getElementById('stats-container');
+
+statsOpenButton.onclick = openStatsPane;
+statsCloseButton.onclick = closeStatsPane;
+
+/**
+ * Opens the statistics pane.
+ */
+function openStatsPane() {
+    statsPane.setAttribute('style', 'left: calc(100vw - 25vw - 32px);');
+}
+
+/**
+ * Closes the statistics pane.
+ */
+function closeStatsPane() {
+    statsPane.setAttribute('style', 'left: 100vw;');
+}
+
 module.exports = { togglePomoBreak, startTimer, resetTimer };
