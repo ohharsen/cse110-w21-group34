@@ -1,71 +1,94 @@
+<!DOCTYPE html>
 <html>
-    <head>
-
-        <link rel="stylesheet" href="styles/style.css">
-    </head>
-    <body>
-       <!-- <-<div id="stats-button">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pomodoro by Teddy Bears</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    
+  </head>
+  <body>
+    <div class="stats-button-temp" id="stats-button">
+        <div id="stats-button">
             <div id="open-button">
                  <button type="button" id="stat-open-button"><img src = "./images/test.png"></button>
             </div>
-        </div> -->
-        <div id="stats-pane">
-            <h1>User Statistics</h1>
-            
-            <div id="stats-today" class="stats-box">
-                <div>
-                    <h2>Today</h2>
-                    <hr />
-                </div>
-                <div class="stats-flex">
-                    <div class='stats-row'>
-                        <div>Pomos cycles:</div>
-                        <div>____ po.</div>
-                    </div>
-                    <div class='stats-row'>
-                        <div>Time Focused:</div>
-                        <div>____ min.</div>
-                    </div>
-                    <div class='stats-row'>
-                        <div>Tasks completed:</div>
-                        <div>____ tasks</div>
-                    </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="center-container">
+            <div class="timer-container">
+                <div class="timer"></div>
+                <button id="start-stop-button" class="pomodoro-button break-button">▶ Begin</button>
+            </div>
+            <button class="task-button">Complete Task</button>
+            <div id="stats-button">
+                <div id="open-button">
+                     <button type="button" id="stat-open-button"><img src = "./images/test.png"></button>
                 </div>
             </div>
-            
-            <div id="stats-totals" class="stats-box">
-                <div>
-                    <h2>Totals</h2>
-                    <hr />
-                </div>
-                <div class="stats-flex">
-                    <div class='stats-row'>
-                        <div>Pomos cycles:</div>
-                        <div>____ po.</div>
+        </div>
+        <div class="stats-container">
+            <div id="stats-pane">
+                <h1>User Statistics</h1>
+                <div id="stats-today" class="stats-box">
+                    <div>
+                        <h2>Today</h2>
+                        <hr />
                     </div>
-                    <div class='stats-row'>
-                        <div>Best Day:</div>
-                        <div>____ po. | ____ min.</div>
-                    </div>
-                    <div class='stats-row'>
-                        <div>Total Tasks:</div>
-                        <div>____ tasks</div>
+                    <div class="stats-flex">
+                        <div class='stats-row'>
+                            <div>Pomos cycles:</div>
+                            <div>____ po.</div>
+                        </div>
+                        <div class='stats-row'>
+                            <div>Time Focused:</div>
+                            <div>____ min.</div>
+                        </div>
+                        <div class='stats-row'>
+                            <div>Tasks completed:</div>
+                            <div>____ tasks</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div id="stats-Overview" class="stats-box">
-                <div>
-                    <h2>Overview</h2>
-                    <hr />
+                <div id="stats-totals" class="stats-box">
+                    <div>
+                        <h2>Totals</h2>
+                        <hr />
+                    </div>
+                    <div class="stats-flex">
+                        <div class='stats-row'>
+                            <div>Pomos cycles:</div>
+                            <div>____ po.</div>
+                        </div>
+                        <div class='stats-row'>
+                            <div>Best Day:</div>
+                            <div>____ po. | ____ min.</div>
+                        </div>
+                        <div class='stats-row'>
+                            <div>Total Tasks:</div>
+                            <div>____ tasks</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stats-flex">
-                    <div class="graph">
-                        <div>graph</div>
-                        <div>--</div>
+                <div id="stats-overview" class="stats-box">
+                    <div>
+                        <h2>Overview</h2>
+                        <hr />
+                    </div>
+                    <div class="stats-flex">
+                        <div class="graph">
+                            <div>graph</div>
+                            <div>--</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </main>
+    
+    
+    <script src="scripts/index.js"></script>
+  </body>
+</html> 
