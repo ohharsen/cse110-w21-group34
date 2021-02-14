@@ -66,7 +66,7 @@ function resetTimer() {
     return [pomoState, BEGIN_BTN_TXT];
 }
 
-//module.exports = { togglePomoBreak, startTimer, resetTimer };
+module.exports = { togglePomoBreak, startTimer, resetTimer };
 
 /***********  Task Button ***********/
 let taskButton = document.getElementById(TASK_BTN_ID);
