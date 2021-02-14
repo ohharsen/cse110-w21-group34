@@ -78,7 +78,9 @@ let totalPomoCount; // NEEDS TO BE UPDATED BY TIMER --> TRACKS TOTAL POMOS DURIN
 
 
 
-taskButton.addEventListener("click", taskComplete); // upon click
+if (taskButton) {
+    taskButton.addEventListener("click", taskComplete); // upon click
+}
 
 /**
  * Task is completed upon button click
@@ -102,13 +104,13 @@ function displayTaskComplete() {
 function updateLocalStorage() {
     // date information
     let today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    let yyyy = today.getFullYear();
+    let dd = String(today.getDate()).padStart(2, "0"); // date
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); // month
+    let yyyy = today.getFullYear(); // year
     today = mm + "/" + dd + "/" + yyyy;
     
     // check if local storage is empty
-    if(localStorage.length == 0) {
+    if (localStorage.length == 0) {
         totalTaskCount = 0;
     } else {
         totalTaskCount = localStorage.getItem(TOTAL_TASK_ID);
