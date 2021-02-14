@@ -2,6 +2,9 @@
 const START_STOP_ID = "start-stop-button";
 const RESET_BTN_TXT = "✖ Reset";
 const BEGIN_BTN_TXT = "▶ Begin";
+const TASK_BTN_ID = "task";
+const TOTAL_TASK_ID = "total-task-count";
+const TASK_COMPLETE_TXT = "You've Completed a Task!!!";
 
 /**
  * Enumerated timer states
@@ -63,4 +66,56 @@ function resetTimer() {
     return [pomoState, BEGIN_BTN_TXT];
 }
 
-module.exports = { togglePomoBreak, startTimer, resetTimer };
+//module.exports = { togglePomoBreak, startTimer, resetTimer };
+
+/***********  Task Button ***********/
+let taskButton = document.getElementById(TASK_BTN_ID);
+let localStorage = window.localStorage;
+let totalTaskCount;
+let totalPomoCount; // NEEDS TO BE UPDATED BY TIMER --> TRACKS TOTAL POMOS DURING CURRENT TASK
+
+// localStorage.clear(); // for debugging
+
+
+
+taskButton.addEventListener("click", taskComplete); // upon click
+
+/**
+ * Task is completed upon button click
+ */
+function taskComplete() {
+    displayTaskComplete();
+    updateLocalStorage();
+}
+
+/**
+ * Display pop-up window and message upon task completion
+ * @todo change visual display (see UI design)
+ */
+function displayTaskComplete() {
+    window.alert(TASK_COMPLETE_TXT);
+}
+
+/**
+ * Update local storage with finished task information
+ */
+function updateLocalStorage() {
+    // date information
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    let yyyy = today.getFullYear();
+    today = mm + "/" + dd + "/" + yyyy;
+    
+    // check if local storage is empty
+    if(localStorage.length == 0) {
+        totalTaskCount = 0;
+    } else {
+        totalTaskCount = localStorage.getItem(TOTAL_TASK_ID);
+    }
+
+    localStorage.setItem(String(Number(totalTaskCount) + 1), JSON.stringify({pomos : totalPomoCount, date : today})); // add task info to local storage
+    localStorage.setItem(TOTAL_TASK_ID, String(Number(totalTaskCount) + 1)); // update total task count
+
+    // console.log(localStorage); // for debugging
+}
