@@ -14,8 +14,8 @@ var onBreak = false;
 var pomoCount = 0;
 
 // Parameters for standard pomo time durations (in seconds).
-var stdWork = 1500; // 1500
-var stdBreak = 300; // 300
+var stdWork = 10; // 1500
+var stdBreak = 3; // 300
 var stdExtBreak = 900; // 900
 
 // Main countdown function.
@@ -27,13 +27,10 @@ function beginCountdown(duration, textDisplay) {
 
     document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer, onBreak) * 220)} 220`);
     
-    if(timer == 1){
-        //Sets the color of the timer
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#34DBB3");
-    }
     // Break from current cycle.
     if (--timer < -1) { 
-        
+        //Change color
+        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#34DBB3");
         clearInterval(interval);
         onBreak = true;
         // Display (but not begin) next cycle.
@@ -80,10 +77,10 @@ function currentTime(timer, textDisplay) {
 
 function timeFraction(timer, onBreak){
     if (!onBreak){
-        return (timer/stdWork - (1/stdWork)*(1-timer/stdWork));
+        return timer/stdWork;
     }
     else{
-        return timer/stdBreak - (1/stdBreak)*(1-timer/stdBreak);
+        return timer/stdBreak;
     }
 }
 
