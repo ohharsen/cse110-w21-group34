@@ -48,8 +48,6 @@ function beginCountdown(duration, textDisplay) {
 function beginBreak(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
 
-    
-
   let interval = setInterval(function() {
     currentTime(timer, textDisplay);
 
@@ -102,30 +100,30 @@ function toggleFade() {
 function fadeEffect() {
 
 }
-
-
 // -----------------------------------------------------------------------------------------
 
 // TEMPORARY, PLACEHOLDER BUTTONS BELOW FOR TESTING
 // TODO: INTEGRATE WITH OTHERS' CODE
 
-document.getElementById("makeshiftButton").onclick = function() {
-	var display = document.querySelector('#countdownText');
-	if (onBreak == false) {
-  	    beginCountdown(stdWork, display);
-    }
-    else {
-  	    if(pomoCount == 3) {
-    	    pomoCount = 0;
-            beginBreak(stdExtBreak, display);
-        }
-        else {
-    	    pomoCount++;
-            beginBreak(stdBreak, display);
-        }
-    }
-};
+// Final button: start-stop-button
+// document.getElementById("start-stop-button").onclick = function() {
+//   var display = document.querySelector('#countdownText');
+// 	if (onBreak == false) {
+//   	    beginCountdown(stdWork, display);
+//     }
+//     else {
+//   	    if(pomoCount == 3) {
+//     	    pomoCount = 0;
+//             beginBreak(stdExtBreak, display);
+//         }
+//         else {
+//     	    pomoCount++;
+//             beginBreak(stdBreak, display);
+//         }
+//     }
+// };
 
+// Temporary button removed.
 
 
 /**
@@ -137,3 +135,6 @@ $(document).ready(function() {
 });
 */
 }
+
+module.exports = { beginCountdown, stdWork, stdBreak, stdExtBreak, beginBreak, pomoCount};
+
