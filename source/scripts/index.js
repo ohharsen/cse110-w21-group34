@@ -66,8 +66,6 @@ function resetTimer() {
     return [pomoState, BEGIN_BTN_TXT];
 }
 
-module.exports = { togglePomoBreak, startTimer, resetTimer };
-
 /***********  Task Button ***********/
 let taskButton = document.getElementById(TASK_BTN_ID);
 let localStorage = window.localStorage;
@@ -75,8 +73,6 @@ let totalTaskCount;
 let totalPomoCount; // NEEDS TO BE UPDATED BY TIMER --> TRACKS TOTAL POMOS DURING CURRENT TASK
 
 // localStorage.clear(); // for debugging
-
-
 
 if (taskButton) {
     taskButton.addEventListener("click", taskComplete); // upon click
@@ -96,6 +92,7 @@ function taskComplete() {
  */
 function displayTaskComplete() {
     window.alert(TASK_COMPLETE_TXT);
+    return TASK_COMPLETE_TXT;
 }
 
 /**
@@ -116,8 +113,12 @@ function updateLocalStorage() {
         totalTaskCount = localStorage.getItem(TOTAL_TASK_ID);
     }
 
-    localStorage.setItem(String(Number(totalTaskCount) + 1), JSON.stringify({pomos : totalPomoCount, date : today})); // add task info to local storage
+    localStorage.setItem(String(Number(totalTaskCount) + 1), JSON.stringify({date : today, pomos : totalPomoCount})); // add task info to local storage
     localStorage.setItem(TOTAL_TASK_ID, String(Number(totalTaskCount) + 1)); // update total task count
 
     // console.log(localStorage); // for debugging
+
+    return today;
 }
+
+module.exports = { togglePomoBreak, startTimer, resetTimer, displayTaskComplete, updateLocalStorage };
