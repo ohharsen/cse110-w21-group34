@@ -27,8 +27,8 @@ test('checks task date text', () => {
   let dd = String(check.getDate()).padStart(2, "0"); // date
   let mm = String(check.getMonth() + 1).padStart(2, "0"); // month
   let yyyy = check.getFullYear(); // year
-  check = mm + "/" + dd + "/" + yyyy;
+  check_format = mm + "/" + dd + "/" + yyyy;
   
-  expect(updateLocalStorage()).toStrictEqual(check);
+  expect(updateLocalStorage()).toStrictEqual(check_format);
 });
 
