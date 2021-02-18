@@ -75,8 +75,6 @@ function resetTimer() {
 let taskButton = document.getElementById(TASK_BTN_ID);
 let localStorage = window.localStorage;
 
-// localStorage.clear(); // for debugging
-
 if (taskButton) {
     taskButton.addEventListener("click", taskComplete); // upon click
 }
@@ -85,8 +83,11 @@ if (taskButton) {
  * Task is completed upon button click
  */
 function taskComplete() {
+    let date1 = new Date();
+    let date2 = new Date();
+    let date3 = new Date();
     displayTaskComplete();
-    updateLocalStorage();
+    updateLocalStorage(false, date1, date2, date3);
 }
 
 /**
@@ -113,15 +114,31 @@ function format_date(to_format) {
 
 /**
  * Update local storage with finished task information
+ * @param boolean to clear storage or not for debugging
+ * @param date1 input date object
+ * @param date2 input date object
+ * @param date3 input date object
+ * @returns localStorage
  */
-function updateLocalStorage() {
+function updateLocalStorage(clear_storage = false, date1, date2, date3) {
     // date information
-    let today = new Date();
-    let curr_date = new Date();
-    let temp = new Date();
+    let today = date1;
+    let curr_date = date2;
+    let temp = date3;
 
     let today_format = format_date(today);
     let weekStartDate;
+
+    // storage variables
+    let storage_total_task;
+    let storage_today_task;
+    let storage_week_task;
+    let storage_today_date;
+    let storage_week_start;
+
+    if (clear_storage) {
+        localStorage.clear();
+    }
     
     // check if local storage is empty
     if (localStorage.length == 0) {
@@ -138,18 +155,20 @@ function updateLocalStorage() {
             weekStartDate = format_date(curr_date);
         }
 
-        // set local storage
-        localStorage.setItem(TOTAL_TASK_ID, "1");
-        localStorage.setItem(TODAY_TASK_ID, "1");
-        localStorage.setItem(WEEK_TASK_ID, "1");
-        localStorage.setItem(TODAY_DATE_ID, today_format);
-        localStorage.setItem(WEEK_START_ID, weekStartDate);
+        // set local storage variables
+        storage_total_task = "1";
+        storage_today_task = "1";
+        storage_week_task = "1";
+        storage_today_date = today_format;
+        storage_week_start = weekStartDate;
+        
 
     } else {
-        let storage_total_task = localStorage.getItem(TOTAL_TASK_ID);
-        let storage_today_task = localStorage.getItem(TODAY_TASK_ID);
-        let storage_week_task = localStorage.getItem(WEEK_TASK_ID);
-        let storage_today_date = localStorage.getItem(TODAY_DATE_ID);
+        storage_total_task = localStorage.getItem(TOTAL_TASK_ID);
+        storage_today_task = localStorage.getItem(TODAY_TASK_ID);
+        storage_week_task = localStorage.getItem(WEEK_TASK_ID);
+        storage_today_date = localStorage.getItem(TODAY_DATE_ID);
+        storage_week_start = localStorage.getItem(WEEK_START_ID);
 
         if (today_format != storage_today_date) { // check if it's the same day
 
@@ -157,7 +176,8 @@ function updateLocalStorage() {
             let difference = 0;
 
             // condition: curr_date > storage_today_date
-            while (format_date(curr_date) != storage_today_date) { 
+            // check for new week
+            while (format_date(curr_date) != storage_week_start) { 
                 curr_date.setDate(curr_date.getDate() - 1); // previous day
                 if (++difference == LENGTH_OF_WEEK) break;
             }
@@ -171,30 +191,42 @@ function updateLocalStorage() {
                 }
                 weekStartDate = format_date(curr_date);
 
-                // set local storage
-                localStorage.setItem(TOTAL_TASK_ID, String(Number(storage_total_task) + 1));
-                localStorage.setItem(TODAY_TASK_ID, "1");
-                localStorage.setItem(WEEK_TASK_ID, "1");
-                localStorage.setItem(TODAY_DATE_ID, today_format);
-                localStorage.setItem(WEEK_START_ID, weekStartDate);
+                // set local storage variables
+                storage_total_task = String(Number(storage_total_task) + 1);
+                storage_today_task = "1";
+                storage_week_task = "1";
+                storage_today_date = today_format;
+                storage_week_start = weekStartDate;
+                
             } else { // CASE 2: different day, same week
-                // set local storage
-                localStorage.setItem(TOTAL_TASK_ID, String(Number(storage_total_task) + 1));
-                localStorage.setItem(TODAY_TASK_ID, "1");
-                localStorage.setItem(WEEK_TASK_ID, String(Number(storage_week_task) + 1));
-                localStorage.setItem(TODAY_DATE_ID, today_format);
+
+                // set local storage variables
+                storage_total_task = String(Number(storage_total_task) + 1);
+                storage_today_task = "1";
+                storage_week_task = String(Number(storage_week_task) + 1);
+                storage_today_date = today_format;
+                
             }
         } else { // CASE 3: same day
-            // set local storage
-            localStorage.setItem(TOTAL_TASK_ID, String(Number(storage_total_task) + 1));
-            localStorage.setItem(TODAY_TASK_ID, String(Number(storage_today_task) + 1));
-            localStorage.setItem(WEEK_TASK_ID, String(Number(storage_week_task) + 1));
+
+            // set local storage variables
+            storage_total_task = String(Number(storage_total_task) + 1);
+            storage_today_task = String(Number(storage_today_task) + 1);
+            storage_week_task = String(Number(storage_week_task) + 1);
+
         }
     }
 
+    // update local storage
+    localStorage.setItem(TOTAL_TASK_ID, storage_total_task);
+    localStorage.setItem(TODAY_TASK_ID, storage_today_task);
+    localStorage.setItem(WEEK_TASK_ID, storage_week_task);
+    localStorage.setItem(TODAY_DATE_ID, storage_today_date);
+    localStorage.setItem(WEEK_START_ID, storage_week_start);
+    
     // console.log(localStorage); // for debugging
 
-    return today_format;
+    return localStorage;
 }
 
 module.exports = { togglePomoBreak, startTimer, resetTimer, displayTaskComplete, updateLocalStorage };
