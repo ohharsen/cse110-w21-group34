@@ -43,58 +43,6 @@ if (startStopButton) {
 }
 
 /**
- * Toggles break styling in start-stop-button
- */
-function togglePomoBreak(onBreak) {
-    if (startStopButton) {
-        startStopButton.classList.toggle("break-button");
-    }
-    return !onBreak;
-}
-
-/**
- * Starts timer upon button click
- */
-function startTimer() {
-    if (startStopButton) { 
-        startStopButton.innerHTML = RESET_BTN_TXT;
-
-        // Copied from buttonTest
-        var display = document.querySelector('#countdownText');
-        if (onBreak == false) {
-            pomoState = timerOptions.POMO;
-            beginCountdown(stdWork, display);
-        }
-        else {
-            if(pomoCount == 3) {
-                pomoCount = 0;
-                pomoState = timerOptions.LONG;
-                beginBreak(stdExtBreak, display);
-            }
-            else {
-                pomoCount++;
-                pomoState = timerOptions.SHORT;
-                beginBreak(stdBreak, display);
-            }
-        }
-        //
-    }
-    return [pomoState, RESET_BTN_TXT];
-}
-
-/**
- * Resets timer upon button click
- */
-function resetTimer() {
-    pomoState = timerOptions.STOPPED;
-    if (startStopButton) {
-        startStopButton.innerHTML = BEGIN_BTN_TXT;
-    }
-    return [pomoState, pomoCount, BEGIN_BTN_TXT];
-}
-
-
-/**
  * Begins the countdown for a work cycle
  * @param {*} duration The duration of the countdown 
  * @param {*} textDisplay The component on which the remaining time is outputted
@@ -165,6 +113,57 @@ function beginBreak(duration, textDisplay) {
   }, 1000);
 }
 
+}
+
+/**
+ * Toggles break styling in start-stop-button
+ */
+function togglePomoBreak(onBreak) {
+    if (startStopButton) {
+        startStopButton.classList.toggle("break-button");
+    }
+    return !onBreak;
+}
+
+/**
+ * Starts timer upon button click
+ */
+function startTimer() {
+    if (startStopButton) { 
+        startStopButton.innerHTML = RESET_BTN_TXT;
+
+        // Copied from buttonTest
+        var display = document.querySelector('#countdownText');
+        if (onBreak == false) {
+            pomoState = timerOptions.POMO;
+            beginCountdown(stdWork, display);
+        }
+        else {
+            if(pomoCount == 3) {
+                pomoCount = 0;
+                pomoState = timerOptions.LONG;
+                beginBreak(stdExtBreak, display);
+            }
+            else {
+                pomoCount++;
+                pomoState = timerOptions.SHORT;
+                beginBreak(stdBreak, display);
+            }
+        }
+        //
+    }
+    return [pomoState, RESET_BTN_TXT];
+}
+
+/**
+ * Resets timer upon button click
+ */
+function resetTimer() {
+    pomoState = timerOptions.STOPPED;
+    if (startStopButton) {
+        startStopButton.innerHTML = BEGIN_BTN_TXT;
+    }
+    return [pomoState, pomoCount, BEGIN_BTN_TXT];
 }
 
 /**
