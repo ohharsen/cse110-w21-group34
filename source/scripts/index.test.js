@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-let { togglePomoBreak, startTimer, resetTimer, displayTaskComplete, updateLocalStorage } = require("./index");
+let { togglePomoBreak, startTimer, resetTimer, displayTaskComplete, format_date, updateLocalStorage } = require("./index");
 
 test('checks break toggle', () => {
   expect(togglePomoBreak(true)).toBe(false);

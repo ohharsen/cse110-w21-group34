@@ -229,4 +229,4 @@ function updateLocalStorage(clear_storage = false, date1, date2, date3) {
     return localStorage;
 }
 
-module.exports = { togglePomoBreak, startTimer, resetTimer, displayTaskComplete, updateLocalStorage };
+module.exports = { togglePomoBreak, startTimer, resetTimer, displayTaskComplete, format_date, updateLocalStorage };
