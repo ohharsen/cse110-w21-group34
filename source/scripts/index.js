@@ -9,6 +9,7 @@ const WEEK_TASK_ID = "week-task-count";
 const TODAY_DATE_ID = "today";
 const WEEK_START_ID = "week-start";
 const TASK_COMPLETE_TXT = "You've Completed a Task!!!";
+const LENGTH_OF_WEEK = 7;
 
 /**
  * Enumerated timer states
@@ -116,6 +117,9 @@ function format_date(to_format) {
 function updateLocalStorage() {
     // date information
     let today = new Date();
+    let curr_date = new Date();
+    let temp = new Date();
+
     let today_format = format_date(today);
     let weekStartDate;
     
@@ -126,9 +130,10 @@ function updateLocalStorage() {
         if (today.getDay() == 1) { // It is Monday
             weekStartDate = today_format;
         } else { // get closest previous Monday
-            let curr_date = today;
-            while (curr_date.getDay() != 1) {
-                curr_date.setDate(curr_date.getDate() - 1); // previous day
+            if(curr_date.getDay() == 0) { // Sunday
+                curr_date.setDate(curr_date.getDate() - (LENGTH_OF_WEEK - 1));
+            } else {
+                curr_date.setDate(curr_date.getDate() - (curr_date.getDay() - 1));
             }
             weekStartDate = format_date(curr_date);
         }
@@ -150,18 +155,19 @@ function updateLocalStorage() {
 
             // get the date difference
             let difference = 0;
-            let curr_date = today;
 
             // condition: curr_date > storage_today_date
             while (format_date(curr_date) != storage_today_date) { 
                 curr_date.setDate(curr_date.getDate() - 1); // previous day
-                difference++;
+                if (++difference == LENGTH_OF_WEEK) break;
             }
 
-            if (difference >= 7) { // CASE 1: different day, different week
-                curr_date = today;
-                while (curr_date.getDay() != 1) {
-                    curr_date.setDate(curr_date.getDate() - 1); // previous day
+            if (difference == LENGTH_OF_WEEK) { // CASE 1: different day, different week
+                curr_date = temp;
+                if(curr_date.getDay() == 0) { // Sunday
+                    curr_date.setDate(curr_date.getDate() - (LENGTH_OF_WEEK - 1));
+                } else {
+                    curr_date.setDate(curr_date.getDate() - (curr_date.getDay() - 1));
                 }
                 weekStartDate = format_date(curr_date);
 
