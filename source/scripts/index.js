@@ -1,16 +1,10 @@
-// import { beginCountdown, stdWork, stdBreak, stdExtBreak, beginBreak, pomoCount} from './buttonTest.js';
-
-//Sets the color of the timer
-window.onload = function(){
-document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
-
-// variables from buttonTest.js
+// Variables
 var isShown = true;
 var onBreak = false;
-var pomoCount = 0;
-var stdWork = 10; // 1500
-var stdBreak = 3; // 300
-var stdExtBreak = 8; // 900
+var pomoCount = 0;     //# of pomos covered so far (orig. 0)
+var stdWork = 1500;    //# of seconds in a work pomo (orig. 1500)
+var stdBreak = 300;    //# of seconds in a short break (orig. 300)
+var stdExtBreak = 900; //# of seconds in a long break (orig. 900)
 
 /* Constants */
 const START_STOP_ID = "start-stop-button";
@@ -27,6 +21,11 @@ const timerOptions = {
     SHORT: "short break",
     LONG: "long break"
 }
+
+window.onload = function(){
+
+//Sets the color of the timer
+document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
 
 /***********  Start/Reset button ***********/
 let startStopButton = document.getElementById(START_STOP_ID);
@@ -55,7 +54,6 @@ function togglePomoBreak(onBreak) {
 
 /**
  * Starts timer upon button click
- * @todo timer-specific functionality
  */
 function startTimer() {
     if (startStopButton) { 
@@ -86,19 +84,21 @@ function startTimer() {
 
 /**
  * Resets timer upon button click
- * @todo timer-specific functionality
  */
 function resetTimer() {
     pomoState = timerOptions.STOPPED;
     if (startStopButton) {
         startStopButton.innerHTML = BEGIN_BTN_TXT;
     }
-    return [pomoState, BEGIN_BTN_TXT];
+    return [pomoState, pomoCount, BEGIN_BTN_TXT];
 }
 
-// --------------------- Copied from buttonTest -------------------------
 
-// Main countdown function.
+/**
+ * Begins the countdown for a work cycle
+ * @param {*} duration The duration of the countdown 
+ * @param {*} textDisplay The component on which the remaining time is outputted
+ */
 function beginCountdown(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
 
@@ -131,7 +131,11 @@ function beginCountdown(duration, textDisplay) {
   }, 1000);
 }
 
-// Main break function.
+/**
+ * Begins the countdown for a break cycle
+ * @param {*} duration The duration of the countdown 
+ * @param {*} textDisplay The component on which the remaining time is outputted
+ */
 function beginBreak(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
     let interval = setInterval(function() {
@@ -161,8 +165,13 @@ function beginBreak(duration, textDisplay) {
   }, 1000);
 }
 
+}
 
-// Helper method; calculate current time.
+/**
+ * Displays the amount of time remaining 
+ * @param {*} timer The time to be displayed 
+ * @param {*} textDisplay The component on which the remaining time is displayed
+ */
 function currentTime(timer, textDisplay) {
     let minutes, seconds;
     minutes = parseInt(timer / 60, 10);
@@ -170,8 +179,13 @@ function currentTime(timer, textDisplay) {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     textDisplay.textContent = minutes + ":" + seconds;
+    return textDisplay.textContent;
 }
 
+/**
+ * Returns the fraction of the time remaining for the current countdown
+ * @param {*} timer The amont of time on the timer 
+ */
 function timeFraction(timer){
     if (pomoState == timerOptions.POMO){
         return timer/stdWork;
@@ -185,5 +199,3 @@ function timeFraction(timer){
 }
 
 module.exports = { togglePomoBreak, startTimer, resetTimer };
-
-}
