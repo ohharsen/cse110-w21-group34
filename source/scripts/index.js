@@ -21,6 +21,8 @@ const timerOptions = {
     SHORT: "short break",
     LONG: "long break"
 }
+let startStopButton;
+let pomoState;
 
 window.onload = function(){
 
@@ -28,8 +30,8 @@ window.onload = function(){
 document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
 
 /***********  Start/Reset button ***********/
-let startStopButton = document.getElementById(START_STOP_ID);
-let pomoState = timerOptions.STOPPED;
+startStopButton = document.getElementById(START_STOP_ID);
+pomoState = timerOptions.STOPPED;
 
 if (startStopButton) {
     startStopButton.classList.toggle("break-button");
@@ -40,6 +42,42 @@ if (startStopButton) {
             resetTimer();
         }
     });
+}
+
+/**
+ * Begins the countdown for a break cycle
+ * @param {*} duration The duration of the countdown 
+ * @param {*} textDisplay The component on which the remaining time is outputted
+ */
+function beginBreak(duration, textDisplay) {
+	let timer = duration; // minutes, seconds;
+    let interval = setInterval(function() {
+    currentTime(timer, textDisplay);
+    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer) * 220)} 220`);
+    
+    // Press break in middle of countdown.
+    if (pomoState == timerOptions.STOPPED) {
+        clearInterval(interval);
+        pomoCount = 0;
+        onBreak = false;
+        currentTime(stdWork, textDisplay);
+        document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `220 220`);
+        //Changes the color of the timer
+        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
+    }
+
+    if (--timer < -1) {
+        clearInterval(interval);
+        startStopButton.innerHTML = BEGIN_BTN_TXT; 
+        pomoState = timerOptions.STOPPED;
+        onBreak = false;
+        //Changes the color of the timer
+        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
+        currentTime(stdWork, textDisplay);
+    }
+  }, 1000);
+}
+
 }
 
 /**
@@ -77,42 +115,6 @@ function beginCountdown(duration, textDisplay) {
         }
     }
   }, 1000);
-}
-
-/**
- * Begins the countdown for a break cycle
- * @param {*} duration The duration of the countdown 
- * @param {*} textDisplay The component on which the remaining time is outputted
- */
-function beginBreak(duration, textDisplay) {
-	let timer = duration; // minutes, seconds;
-    let interval = setInterval(function() {
-    currentTime(timer, textDisplay);
-    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer) * 220)} 220`);
-    
-    // Press break in middle of countdown.
-    if (pomoState == timerOptions.STOPPED) {
-        clearInterval(interval);
-        pomoCount = 0;
-        onBreak = false;
-        currentTime(stdWork, textDisplay);
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `220 220`);
-        //Changes the color of the timer
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
-    }
-
-    if (--timer < -1) {
-        clearInterval(interval);
-        startStopButton.innerHTML = BEGIN_BTN_TXT; 
-        pomoState = timerOptions.STOPPED;
-        onBreak = false;
-        //Changes the color of the timer
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
-        currentTime(stdWork, textDisplay);
-    }
-  }, 1000);
-}
-
 }
 
 /**
@@ -197,4 +199,4 @@ function timeFraction(timer){
     }
 }
 
-module.exports = { togglePomoBreak, startTimer, resetTimer };
+module.exports = { togglePomoBreak, startTimer, resetTimer, currentTime };
