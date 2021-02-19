@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-let { togglePomoBreak, startTimer, resetTimer } = require("./index");
+let { togglePomoBreak, startTimer, resetTimer, testDom, currentTime } = require("./index");
 
 test('checks break toggle', () => {
   expect(togglePomoBreak(true)).toBe(false);
@@ -21,5 +21,14 @@ test('Check current time display', ()=>{
   expect(currentTime(1500, document.querySelector('#countdownText'))).toStrictEqual("25:00");
   expect(currentTime(319, document.querySelector('#countdownText'))).toStrictEqual("05:19");
   expect(currentTime(23, document.querySelector('#countdownText'))).toStrictEqual("00:23");
+});
+
+test('checks reset state', () => {
+  document.body.innerHTML =
+    '<title>' +
+    'Not Test Text' +
+    '</title>';
+  testDom();
+  expect(document.querySelector("title").innerText).toStrictEqual("Test Text");
 });
 
