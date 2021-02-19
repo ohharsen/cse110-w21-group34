@@ -50,6 +50,12 @@ if (startStopButton) {
  * @param {*} duration The duration of the countdown 
  * @param {*} textDisplay The component on which the remaining time is outputted
  */
+
+function testDom(){
+    let titleEl = document.querySelector("title");
+    titleEl.innerText = "Test Text";
+}
+
 function beginBreak(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
     let interval = setInterval(function() {
@@ -198,4 +204,4 @@ function timeFraction(timer){
     }
 }
 
-module.exports = { togglePomoBreak, startTimer, resetTimer, currentTime };
+module.exports = { togglePomoBreak, startTimer, resetTimer, currentTime, testDom, currentTime };
