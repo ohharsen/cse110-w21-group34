@@ -43,6 +43,7 @@ if (startStopButton) {
         }
     });
 }
+}
 
 /**
  * Begins the countdown for a break cycle
@@ -76,8 +77,6 @@ function beginBreak(duration, textDisplay) {
         currentTime(stdWork, textDisplay);
     }
   }, 1000);
-}
-
 }
 
 /**
