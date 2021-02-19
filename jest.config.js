@@ -200,5 +200,9 @@ module.exports = {
         statements: 20
       },
   },
+
+  setupFiles: [
+    "./__mocks__/client.js"
+  ],
   
 };
