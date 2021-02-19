@@ -56,6 +56,11 @@ function testDom(){
     titleEl.innerText = "Test Text";
 }
 
+/**
+ * Begins the countdown for a break cycle
+ * @param {*} duration The duration of the countdown 
+ * @param {*} textDisplay The component on which the remaining time is outputted
+ */
 function beginBreak(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
     let interval = setInterval(function() {
@@ -159,7 +164,7 @@ function startTimer() {
         }
         //
     }
-    return [pomoState, RESET_BTN_TXT];
+    return [pomoState, pomoCount, RESET_BTN_TXT];
 }
 
 /**
