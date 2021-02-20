@@ -63,4 +63,13 @@ function resetTimer() {
     return [pomoState, BEGIN_BTN_TXT];
 }
 
-module.exports = { togglePomoBreak, startTimer, resetTimer };
+
+/**
+ * A demo function for frontend testing
+ */
+function testDom(){
+    let titleEl = document.querySelector("title");
+    titleEl.innerText = "Test Text";
+}
+
+module.exports = { togglePomoBreak, startTimer, resetTimer, testDom };
