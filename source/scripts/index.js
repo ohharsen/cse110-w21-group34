@@ -85,4 +85,4 @@ function closeStatsPane() {
     statsPane.setAttribute('style', 'left: 100vw;');
 }
 
-module.exports = { togglePomoBreak, startTimer, resetTimer };
+ 
