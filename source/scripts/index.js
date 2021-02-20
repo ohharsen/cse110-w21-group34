@@ -68,6 +68,21 @@ const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
 const statsPane = document.getElementById('stats-container');
 
+const statsSlideAnim = {
+    keys: [
+        { left: '100vw' },
+        { left: 'calc(100vw - 25vw - 32px)' },
+    ],
+    timing: {
+        duration: 500,
+        easing: 'ease-out',
+        fill: 'forwards',
+    },
+};
+
+console.log(statsPane.animate);
+const statsSlide = statsPane.animate(statsSlideAnim.keys, statsSlideAnim.timing);
+statsSlide.cancel();
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
 
@@ -75,14 +90,16 @@ statsCloseButton.onclick = closeStatsPane;
  * Opens the statistics pane.
  */
 function openStatsPane() {
-    statsPane.setAttribute('style', 'left: calc(100vw - 25vw - 32px);');
+    statsSlide.playbackRate = 1;
+    statsSlide.play();
 }
 
 /**
  * Closes the statistics pane.
  */
 function closeStatsPane() {
-    statsPane.setAttribute('style', 'left: 100vw;');
+    statsSlide.playbackRate = -1;
+    statsSlide.play();
 }
 
 /**

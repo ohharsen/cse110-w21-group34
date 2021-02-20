@@ -130,7 +130,6 @@ main{
     position: fixed;
     top: 0;
     left: 100vw;
-    transition: left 0.5s ease-in;
     font-family: Roboto;
 }
 
