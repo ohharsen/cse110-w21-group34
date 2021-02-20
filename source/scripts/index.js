@@ -85,4 +85,12 @@ function closeStatsPane() {
     statsPane.setAttribute('style', 'left: 100vw;');
 }
 
-module.exports = { togglePomoBreak, startTimer, resetTimer };
+/**
+ * A demo function for frontend testing
+ */
+function testDom(){
+    let titleEl = document.querySelector("title");
+    titleEl.innerText = "Test Text";
+}
+
+module.exports = { togglePomoBreak, startTimer, resetTimer, testDom };
