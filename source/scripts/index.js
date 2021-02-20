@@ -63,7 +63,7 @@ function resetTimer() {
     return [pomoState, BEGIN_BTN_TXT];
 }
 
-/**************  Statistics Button ***************/
+/**************  Statistics Frontend ***************/
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
 const statsPane = document.getElementById('stats-container');
