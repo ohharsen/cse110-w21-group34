@@ -4,23 +4,17 @@ Standard heading bullets; change
 - Team: Teddy Bears
 - Date: 2/18/21
 - Time: 12:15pm (Sunday)
+- Duration: 1 hr. 15 min.
 - Location: Zoom (Online)
 - Written by: Michael Brown
 - Attendance: 9/9
 ```
 
+After collaborating via a live-coding session to complete our PRs, we moved on to our Retrospective Reflection. The snapshots below show some of our written thoughts as we engaged using Retrium.
 
- 
- Using Retrium Software ---> "Development Practices Retro"
- 
- 
- ability to focus
- 
- managing technical dept
- 
- 
- - Use to develop sprint planning sections
- 
+![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/graphicalVotes.png)
+
+![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/graphicDetails.png)
  
  
  - Technical debt being well managed
