@@ -2,7 +2,8 @@
  * @jest-environment jsdom
  */
 
-let { togglePomoBreak, startTimer, resetTimer, displayTaskComplete, format_date, updateLocalStorage } = require("./index");
+require('../../__mocks__/WebAnim.mock');
+let { togglePomoBreak, startTimer, resetTimer, displayTaskComplete, format_date, updateLocalStorage, testDom } = require("./index");
 
 test('checks break toggle', () => {
   expect(togglePomoBreak(true)).toBe(false);
@@ -15,6 +16,11 @@ test('checks start state', () => {
   
 test('checks reset state', () => {
   expect(resetTimer()).toStrictEqual(["stopped","▶ Begin"]);
+});
+  
+test('checks test', () => {
+  testDom();
+  expect(document.querySelector("title").innerText).toStrictEqual("Test Text");
 });
 
 test('checks task display text', () => {
@@ -91,3 +97,8 @@ test('checks local storage test 3', () => { // test case 3
   expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
 });
 
+describe('statistics', () => {
+  test.todo('if open-button opens stats-pane');
+  test.todo('if close-button closes stats-pane, after opening');
+  test.todo('if open-button opens stats-pane, after closing');
+});
