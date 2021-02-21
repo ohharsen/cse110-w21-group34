@@ -27,7 +27,7 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
 ![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/anonymousThoughts.png)
 ![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/organizedThoughts.png)
 
-
+*Side notes*
 - Feature Branches
   * Creating more issues for specific features
 - Revisit design and system diagrams
@@ -38,13 +38,6 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
 
 ## Responsive Action Plans
 [Link to Action Items](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/action_plan.csv)
-
-- Normalize creating GH isues based on what is being discussed as problems in Slack
--------
-- Meeting sometime this week to review design and system diagram status
--------
-- Better delegation of tasks withing feature groups
--------
 
 - *Synchronous stand-ups with camera on*
   * Tuesdays and Saturdays
@@ -78,6 +71,3 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
 
 - *Workflow Practices*
   - Follow workflow guidelines: pulling origin, mergin main, running lint and tests locally THEN submitting PRs
-
-- *Code processes*
-  - 
