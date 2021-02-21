@@ -12,16 +12,12 @@ Standard heading bullets; change
 
 After collaborating via a live-coding session to complete our PRs, we moved on to our Retrospective Reflection. The snapshots below show some of our written thoughts as we engaged using Retrium.
 
+## Anonymous Responses
 ![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/graphicalVotes.png)
 
 ![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/graphicDetails.png)
- 
- 
- - Technical debt being well managed
- - Coding standards
-  * How we can improve?
-  
-  Staes of Retrium Meeting
+
+
   ```
   Graphical display of where people's thoughts of our group lie so far
   
@@ -29,6 +25,13 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
   
   Voting and creating action items for next steps/phases of our project
   ```
+
+
+- *Side notes*
+ * Technical debt is being well managed among ourselves
+ * Coding standards
+  - Room for improvement (described further below)
+ 
   
   13 Topics Voted on for Retrospect
   
