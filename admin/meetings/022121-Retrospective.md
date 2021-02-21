@@ -17,26 +17,15 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
 
 ![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/graphicDetails.png)
 
-
-  ```
-  Graphical display of where people's thoughts of our group lie so far
-  
-  Sharing bubbles of thoughts (what we each want to start, stop, and continue doing as individuals to aid the efforts of the collective whole of the entire group)
-  
-  Voting and creating action items for next steps/phases of our project
-  ```
-
-
 - *Side notes*
  * Technical debt is being well managed among ourselves
  * Coding standards
   - Room for improvement (described further below)
- 
-  
-  13 Topics Voted on for Retrospect
-  
+
 ## Order of discussion:
-  
+
+[Link to Action Items](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/action_plan.csv)
+
 **Project Management**
 - Feature Branches
   * Creating more issues for specific features
