@@ -27,14 +27,36 @@
   * Aiming for >75% by end of week/sprint
 ```
 
+## Closing Coverage of JS code
+
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------|---------|----------|---------|---------|----------------------------
+All files |   61.47 |    47.06 |   61.54 |   61.47 | 
+ index.js |   61.47 |    47.06 |   61.54 |   61.47 | 37-40,61-82,96-118,247-258
+ 
+
 ## Sprint Retrospective
+```
+a. Stats Page (Ved, Michael K., Josh)
+- Local storage updates when user completes pomos
+  * Timestamps can be converted into strings for computations/attaining actual values
+- Extended goals/current challenges
+  * Discussing finalized data structures to use
 
+b. William's implementations
+  - Local storage implementation
+  - Can be merged; stats team should approve
 
-Skeleton (Arsen Amy)
+c. Timer (Keshab, Michael B.)
+  - Timer functionality is implemented
+  - Works via button click (start, reset functionality)
+  - Fixtures
+    * Testing and PRs needed
+  - Extended goals: window resizing and fading animations
 
-Start Reset button (Viren)
-interactions completed
-.....
+d. Skeleton (Amy, Arsen)
+  - Skeleton / outline has been completed
+  - Open for further implementations from other groups
+  - PRs needed
+```
 
-
-- show and tell per member
