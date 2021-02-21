@@ -80,7 +80,6 @@ const statsSlideAnim = {
     },
 };
 
-console.log(statsPane.animate);
 const statsSlide = statsPane.animate(statsSlideAnim.keys, statsSlideAnim.timing);
 statsSlide.cancel();
 statsOpenButton.onclick = openStatsPane;

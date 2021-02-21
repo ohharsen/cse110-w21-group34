@@ -16,30 +16,6 @@ body {
     margin: 0;
 }
 
-.stats-button {
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
-    border-radius: 15px;
-}
-
-.stats-button:active {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 99.99%, rgba(255, 209, 209, 0.5) 100%, rgba(255, 209, 209, 0.5) 100%);
-}
-
-#stats-close-button {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
-    border-radius: 15px;
-}
-
 main{
     width: 100%;
     min-height: 100%;
@@ -193,5 +169,29 @@ main{
     justify-content: space-between;
 }
 
+.stats-button {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    border-radius: 15px;
+    outline: 0;
+}
 
+.stats-button:active {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 99.99%, rgba(255, 209, 209, 0.5) 100%, rgba(255, 209, 209, 0.5) 100%);
+}
+
+#stats-close-button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    border-radius: 15px;
+    outline: 0;
+}
 /*stats panel css end*/
