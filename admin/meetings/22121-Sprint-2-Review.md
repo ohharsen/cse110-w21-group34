@@ -28,4 +28,13 @@
 ```
 
 ## Sprint Retrospective
+
+
+Skeleton (Arsen Amy)
+
+Start Reset button (Viren)
+interactions completed
 .....
+
+
+- show and tell per member
