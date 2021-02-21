@@ -1,6 +1,7 @@
 /**
  * @jest-environment jsdom
  */
+require('../../__mocks__/WebAnim.mock');
 let { 
   togglePomoBreak, 
   startTimer, 
@@ -78,8 +79,19 @@ test('Checking begin countdown', () => {
     beginCountdown(1500, document.querySelector('#countdownText'));
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("5:00");
 });
+  
+test('checks test', () => {
+  testDom();
+  expect(document.querySelector("title").innerText).toStrictEqual("Test Text");
+});
 
 test('Checking begin break', () => {
     beginBreak(300, document.querySelector('#countdownText'));
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("25:00");
+});
+
+describe('statistics', () => {
+  test.todo('if open-button opens stats-pane');
+  test.todo('if close-button closes stats-pane, after opening');
+  test.todo('if open-button opens stats-pane, after closing');
 });
