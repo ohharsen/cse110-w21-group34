@@ -134,31 +134,33 @@ function togglePomoBreak(onBreak) {
 /**
  * Starts timer upon button click
  */
-function startTimer() {
+function startTimer(on_break = onBreak, pomo_count = pomoCount) {
     if (startStopButton) { 
         startStopButton.innerHTML = RESET_BTN_TXT;
 
         // Copied from buttonTest
         var display = document.querySelector('#countdownText');
-        if (onBreak == false) {
+        if (!on_break) {
             pomoState = timerOptions.POMO;
             beginCountdown(stdWork, display);
         }
         else {
-            if(pomoCount == 3) {
+            if(pomo_count == 3) {
                 pomoCount = 0;
+                pomo_count = 0;
                 pomoState = timerOptions.LONG;
                 beginBreak(stdExtBreak, display);
             }
             else {
                 pomoCount++;
+                pomo_count++;
                 pomoState = timerOptions.SHORT;
                 beginBreak(stdBreak, display);
             }
         }
         //
     }
-    return [pomoState, pomoCount, RESET_BTN_TXT];
+    return [pomoState, pomo_count];
 }
 
 /**

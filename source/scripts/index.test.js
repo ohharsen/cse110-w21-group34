@@ -20,30 +20,15 @@ test('checks break toggle', () => {
 });
   
 test('checks start state', () => {
-  
-  let listOfCalls = [];
-  for(let i = 0; i < 6; ++i){
-    listOfCalls.push(startTimer());
-  }
-  // expect(startTimer()).toStrictEqual(["short break", 1,"✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["pomo", 1, "✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["short break", 2,"✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["pomo", 2, "✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["short break", 3,"✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["pomo",3, "✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["long break", 0,"✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["pomo", 0, "✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["short break", 1, "✖ Reset"]);
-  expect(listOfCalls[0]).toStrictEqual(["pomo", 0, "✖ Reset"]);
-  expect(listOfCalls[1]).toStrictEqual(["short break", 1,"✖ Reset"]);
-  expect(listOfCalls[2]).toStrictEqual(["pomo", 1, "✖ Reset"]);
-  expect(listOfCalls[3]).toStrictEqual(["short break", 2,"✖ Reset"]);
-  expect(listOfCalls[4]).toStrictEqual(["pomo", 2, "✖ Reset"]);
-  expect(listOfCalls[5]).toStrictEqual(["short break", 3,"✖ Reset"]);
-
-  // resetTimer();
-  // expect(startTimer()).toStrictEqual(["pomo", 0, "✖ Reset"]);
-  // expect(startTimer()).toStrictEqual(["short break", 1, "✖ Reset"]);
+  expect(startTimer(false, 0)).toStrictEqual(["pomo", 0]);
+  expect(startTimer(true, 0)).toStrictEqual(["short break", 1]);
+  expect(startTimer(false, 1)).toStrictEqual(["pomo", 1]);
+  expect(startTimer(true, 1)).toStrictEqual(["short break", 2]);
+  expect(startTimer(false, 2)).toStrictEqual(["pomo", 2]);
+  expect(startTimer(true, 2)).toStrictEqual(["short break", 3]);
+  expect(startTimer(false, 3)).toStrictEqual(["pomo",3]);
+  expect(startTimer(true, 3)).toStrictEqual(["long break", 0]);
+  expect(startTimer(false, 0)).toStrictEqual(["pomo", 0]);
 });
   
 test('checks reset state', () => {
