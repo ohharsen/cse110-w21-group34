@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Pomodoro by Teddy Bears</title>
     <link rel="stylesheet" href="./styles/style.css">
-    
+
+    <!-- Roboto font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
      
@@ -13,7 +16,24 @@
     <main>
         <div class="center-container">
             <div class="timer-container">
-                <div class="timer"></div>
+                <div class="timer" id = "clockTimer">
+                  <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50%" cy="43" r="35" style="fill:white" />
+                    <g class="timer_circle_container"> <!-- The containter for grouping multiple svg elements -->
+                      <path
+                        id="base-timer-path-remaining"
+                        stroke-dasharray="283"
+                        class="timer_path_elapsed"
+                        d="
+                          M 8, 50
+                          a 35,35 0 1,0 70,0
+                          a 35,35 0 1,0 -70,0
+                        "
+                      />
+                    </g>
+                  </svg>
+                  <span id="countdownText">25:00</span>
+                </div>
                 <button id="start-stop-button" class="pomodoro-button break-button">▶ Begin</button>
             </div>
             <button id="task" class="task-button">Complete Task</button>
@@ -76,8 +96,7 @@
             </div>
         </div>
     </div>
-
-    
-    <script src="scripts/index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
+  
 </html> 
