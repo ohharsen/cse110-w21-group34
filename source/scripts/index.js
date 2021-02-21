@@ -59,7 +59,7 @@ function beginBreak(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
     let interval = setInterval(function() {
     currentTime(timer, textDisplay);
-    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer) * 220)} 220`);
+    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer, pomoState) * 220)} 220`);
     
     // Press break in middle of countdown.
     if (pomoState == timerOptions.STOPPED) {
@@ -94,7 +94,7 @@ function beginCountdown(duration, textDisplay) {
 
     var interval = setInterval(function() {
     currentTime(timer, textDisplay);
-    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer, onBreak) * 220)} 220`);
+    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer, pomoState) * 220)} 220`);
    
     // Press break in middle of countdown.
     if (pomoState == timerOptions.STOPPED) {
@@ -190,8 +190,9 @@ function currentTime(timer, textDisplay) {
 /**
  * Returns the fraction of the time remaining for the current countdown
  * @param {*} timer The amont of time on the timer 
+ * @param {*} pomoState The current state of the pomodoro
  */
-function timeFraction(timer){
+function timeFraction(timer, pomoState){
     if (pomoState == timerOptions.POMO){
         return timer/stdWork;
     }
@@ -264,5 +265,6 @@ module.exports = {
     currentTime, 
     timerOptions, 
     beginCountdown, 
-    timeFraction 
+    timeFraction,
+    testDom
 };
