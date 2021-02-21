@@ -83,8 +83,7 @@ const timerSlideAnim = {
 
 const statsSlideAnim = {
     keys: [
-        { left: '100vw' },
-        { left: 'calc(100vw - 25vw - 32px)' },
+        { right: '0' },
     ],
     timing: {
         duration: 500,
