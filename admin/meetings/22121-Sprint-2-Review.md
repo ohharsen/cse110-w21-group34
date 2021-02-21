@@ -1,4 +1,4 @@
-- Topic: Merging
+- Topic: Merging & Hindsight Overview
 - Date: 2/18/21
 - Time: 11:00am (Sunday)
 - Location: Zoom (Online)
@@ -42,10 +42,12 @@ a. Stats Page (Ved, Michael K., Josh)
   * Timestamps can be converted into strings for computations/attaining actual values
 - Extended goals/current challenges
   * Discussing finalized data structures to use
+- Transition animations function as expected
+- Works independently from timer countdown + animations
 
-b. William's implementations
+b. Complete Task Button (William)
   - Local storage implementation
-  - Can be merged; stats team should approve
+  - Is now merged with main
 
 c. Timer (Keshab, Michael B.)
   - Timer functionality is implemented
@@ -58,5 +60,14 @@ d. Skeleton (Amy, Arsen)
   - Skeleton / outline has been completed
   - Open for further implementations from other groups
   - PRs needed
+
+e. Start / Stop Button (Viren)
+ - Implemented and merged with main
+ - Functionality combined/merged with timer
 ```
 
+## Closing Thoughts
+- Great progress thus far
+- MVP is complete
+- Further development recommended to be test-driven
+- More-efficient PRs and descriptive issues for up-to-datem, asynchronous work
