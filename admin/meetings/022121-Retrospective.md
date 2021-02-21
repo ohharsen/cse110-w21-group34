@@ -17,16 +17,17 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
 
 ![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/graphicDetails.png)
 
-- *Side notes*
+*Side notes*
  * Technical debt is being well managed among ourselves
- * Coding standards
-  - Room for improvement (described further below)
+ * As for coding standards --> room for improvement (discussed further below)
 
-## Order of discussion:
 
-[Link to Action Items](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/action_plan.csv)
+## Project Management (Start, Stop, Continue)
 
-**Project Management**
+![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/anonymousThoughts.png)
+![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/organizedThoughts.png)
+
+
 - Feature Branches
   * Creating more issues for specific features
 - Revisit design and system diagrams
@@ -36,6 +37,7 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
   * ie. during live sessions, one person working / others watching
 
 ## Responsive Action Plans
+[Link to Action Items](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/action_plan.csv)
 
 - Normalize creating GH isues based on what is being discussed as problems in Slack
 -------
