@@ -38,6 +38,7 @@ if (taskButton) {
     taskButton.addEventListener("click", taskComplete); // upon click
 }
 
+/* istanbul ignore next */
 /**
  * Task is completed upon button click
  */
@@ -204,12 +205,12 @@ function testDom(){
     titleEl.innerText = "Test Text";
 }
 
+/* istanbul ignore next */
 /**
  * Begins the countdown for a break cycle
  * @param {*} duration The duration of the countdown 
  * @param {*} textDisplay The component on which the remaining time is outputted
  */
-/* istanbul ignore next */
 function beginBreak(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
     let interval = setInterval(function() {
@@ -239,12 +240,12 @@ function beginBreak(duration, textDisplay) {
   }, 1000);
 }
 
+/* istanbul ignore next */
 /**
  * Begins the countdown for a work cycle
  * @param {*} duration The duration of the countdown 
  * @param {*} textDisplay The component on which the remaining time is outputted
  */
-/* istanbul ignore next */
 function beginCountdown(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
 
@@ -396,20 +397,20 @@ statsSlide.cancel();
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
 
+/* istanbul ignore next */
 /**
  * Opens the statistics pane.
  */
-/* istanbul ignore next */
 function openStatsPane() {
     timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing);
     statsSlide.playbackRate = 1;
     statsSlide.play();
 }
 
+/* istanbul ignore next */
 /**
  * Closes the statistics pane.
  */
-/* istanbul ignore next */
 function closeStatsPane() {
     timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing).reverse();
     statsSlide.playbackRate = -1;
