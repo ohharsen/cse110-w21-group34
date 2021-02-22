@@ -38,6 +38,7 @@ if (taskButton) {
     taskButton.addEventListener("click", taskComplete); // upon click
 }
 
+/* istanbul ignore next */
 /**
  * Task is completed upon button click
  */
@@ -204,6 +205,7 @@ function testDom(){
     titleEl.innerText = "Test Text";
 }
 
+/* istanbul ignore next */
 /**
  * Begins the countdown for a break cycle
  * @param {*} duration The duration of the countdown 
@@ -238,6 +240,7 @@ function beginBreak(duration, textDisplay) {
   }, 1000);
 }
 
+/* istanbul ignore next */
 /**
  * Begins the countdown for a work cycle
  * @param {*} duration The duration of the countdown 
@@ -394,6 +397,7 @@ statsSlide.cancel();
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
 
+/* istanbul ignore next */
 /**
  * Opens the statistics pane.
  */
@@ -403,6 +407,7 @@ function openStatsPane() {
     statsSlide.play();
 }
 
+/* istanbul ignore next */
 /**
  * Closes the statistics pane.
  */
