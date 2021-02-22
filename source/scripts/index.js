@@ -55,6 +55,7 @@ function testDom(){
  * @param {*} duration The duration of the countdown 
  * @param {*} textDisplay The component on which the remaining time is outputted
  */
+/* istanbul ignore next */
 function beginBreak(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
     let interval = setInterval(function() {
@@ -89,6 +90,7 @@ function beginBreak(duration, textDisplay) {
  * @param {*} duration The duration of the countdown 
  * @param {*} textDisplay The component on which the remaining time is outputted
  */
+/* istanbul ignore next */
 function beginCountdown(duration, textDisplay) {
 	let timer = duration; // minutes, seconds;
 
@@ -243,6 +245,7 @@ statsCloseButton.onclick = closeStatsPane;
 /**
  * Opens the statistics pane.
  */
+/* istanbul ignore next */
 function openStatsPane() {
     timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing);
     statsSlide.playbackRate = 1;
@@ -252,6 +255,7 @@ function openStatsPane() {
 /**
  * Closes the statistics pane.
  */
+/* istanbul ignore next */
 function closeStatsPane() {
     timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing).reverse();
     statsSlide.playbackRate = -1;
