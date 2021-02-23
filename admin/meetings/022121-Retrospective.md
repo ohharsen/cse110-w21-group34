@@ -13,9 +13,9 @@ Standard heading bullets; change
 After collaborating via a live-coding session to complete our PRs, we moved on to our Retrospective Reflection. The snapshots below show some of our written thoughts as we engaged using Retrium.
 
 ## Anonymous Responses
-![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/graphicalVotes.png)
+![](https://github.com/4R53N/cse110-w21-group34/blob/main/admin/meetings/retroNotes/graphicalVotes.png)
 
-![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/graphicDetails.png)
+![](https://github.com/4R53N/cse110-w21-group34/blob/main/admin/meetings/retroNotes/graphicDetails.png)
 
 *Side notes*
  * Technical debt is being well managed among ourselves
@@ -24,8 +24,8 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
 
 ## Project Management (Start, Stop, Continue)
 
-![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/anonymousThoughts.png)
-![](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/organizedThoughts.png)
+![](https://github.com/4R53N/cse110-w21-group34/blob/main/admin/meetings/retroNotes/anonymousThoughts.png)
+![](https://github.com/4R53N/cse110-w21-group34/blob/main/admin/meetings/retroNotes/organizedThoughts.png)
 
 *Side notes*
 - Feature Branches
@@ -37,7 +37,7 @@ After collaborating via a live-coding session to complete our PRs, we moved on t
   * ie. during live sessions, one person working / others watching
 
 ## Responsive Action Plans
-[Link to Action Items](https://github.com/4R53N/cse110-w21-group34/blob/mbrown-2-patch-2/admin/meetings/retroNotes/action_plan.csv)
+[Link to Action Items](https://github.com/4R53N/cse110-w21-group34/blob/main/admin/meetings/retroNotes/action_plan.csv)
 
 - *Synchronous stand-ups with camera on*
   * Tuesdays and Saturdays

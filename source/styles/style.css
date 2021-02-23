@@ -51,6 +51,42 @@ main{
     height: 70%;
 }
 
+.timer_circle_container {
+    background-color: white;
+    stroke: none;
+  }
+
+  .timer_basic {
+      fill : none;
+      stroke: none;
+  }
+
+  /*The SVG path that displays the timer's progress */
+  .timer_path_elapsed {
+    fill: none;
+    stroke-width: 2px;
+    /* stroke: #DB2E2E; */
+    transform: rotate(90deg) scale(1, -1) ;
+    transform-origin: center;
+    transition: 1s linear all;
+    stroke-linecap: round;
+  }
+  
+  #countdownText {
+    /** Organization of text and positioning. **/
+    font-family: "Roboto";
+    font-size: 45px;
+    position: relative;
+    top: -65%;
+
+    opacity: 1.0;
+    transition: 1.0s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 #start-stop-button{
     width: 40%;
     height: 60px;
