@@ -58,14 +58,20 @@ Before the end of the sprint, the group moved further into the back-end design p
 
 ![](./sprint2Files/stats-html-glimpse.PNG)
 
-
+----------
 
 ### Task Button
 - Contributor: **William Sun**
 
+The task button, alone, is extremely pivotal when it comes to documenting and tracking our users' habits as they use the pomo app. Since this data is meant to be further manipulated by our stats team, this implementation alone must act as a clear foundation for others to use. Hence, William was able to write a series of JS local storage functions as well as prepare several storage variables to allow data tracking across daily and weekly user performances.
 
+This code is organized into unique cases (thanks to clear commenting) that describe how specific circumstances will impact how our data is calculated. In addition, William's code reads the timer output (produced by the timer team) and reformats it for easier input to be tossed between functions.
 
-```
+*Example of developed code:*
+
+![]()
+
+---------
 
 ### Timer
 - Contributors: **Keshab Agarwal, Michael Brown**
@@ -74,7 +80,7 @@ Before the end of the sprint, the group moved further into the back-end design p
 ```
 
 ### Skeleton Page
-- Contributors: **Arsen Ohanyan**
+- Contributors: **Arsen Ohanyan, Amy Shen**
 ```
 
 ```
