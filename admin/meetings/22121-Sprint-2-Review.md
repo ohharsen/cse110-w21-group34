@@ -103,6 +103,8 @@ This team was tasked with constructing the pure foundation of our application by
 
 In order to allow user interaction and enable functionality, Viren implemented the start/stop buttton. The button was formatted in HTML and CSS with a majority of its implementation involved in JS. Viren's work introduced a global variable that would track the state of the pomodoro cycle (ie. notifying if the timer is stopped, ongoing, or in the midst of a break). This information is then used/passed through the timer to track which duration should be shown. The implementation toggles between such states and displays the appropriate text on the button for the user.
 
+*Examples of developed code:*
+
 ![](./sprint2Files/button-css-glimpse.PNG)
 
 ![](./sprint2Files/button-js-glimpse.PNG)
