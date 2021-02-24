@@ -48,8 +48,6 @@ In hindsight of our work and accomplishments throughout Sprint 2, our team has b
 
 This group was tasked with producing the essential functionality of our statistics page of the web application. The majority of this work comprised of front-end development, such as the page's opening/closing animations and button event listeners. The HTML implementation was kept simplistic in design as the information we wish to display is intended to appear in a vertical fashion. Hence, several containers (divs) were utilized to help organize the text and make the necessary stylization as concise/simple as possible. The animation and appearance of the page was then implemented as a majority of the group's code was written in CSS. Lastly, two panel buttons were implemented via onclick listeners in JS to allow the user to open/close the stats display. Open and close functions were also written to implement the visual transition cues.
 
-Each of the members as a whole had worked both synchronously (ie. live Zoom sessions for simultaneous programming sessions) as well as asynchronously (ie. Slack and merging each other's code) before merging their finalized part with our main branch.
-
 Before the end of the sprint, the group moved further into the back-end design phase. This early brainstorming phase was necessary to solidify how our program would retrieve information and store data with persistence. Luckily, William's implementations with the app's task button as well as back-end JS functions were prepared for the stats team to refer to for additional guidance. 
 
 *Examples of developed code:*
@@ -84,13 +82,20 @@ The team then merged its code locally with a copy of the start/stop button funct
 
 *Example of developed code:*
 
+![](./sprint2Files/timer-js-glimpse.gif)
+
 --------
 
 ### Skeleton Page
 - Contributors: **Arsen Ohanyan, Amy Shen**
-```
 
-```
+This team was tasked with constructing the pure foundation of our application by setting up the early principle layout of our HTML and CSS files. The organization of divs in HTML were labeled for other teams to navigate through and insert their code for future merges. Most importantly, the code structure was written based on the submitted UI design from the previous sprint. This was especially prevalent for the CSS as the background, image layout, and fonts had replicated exactly what our final Figma drafts appeared as.
+
+*Example of developed code:*
+
+![]()
+
+![]()
 
 
 ### Start / Stop Button
@@ -103,22 +108,13 @@ The team then merged its code locally with a copy of the start/stop button funct
 
 ```
 
-c. Timer (Keshab, Michael B.)
-  - Timer functionality is implemented
-  - Works via button click (start, reset functionality)
-  - Fixtures
-    * Testing and PRs needed
-  - Extended goals: window resizing and fading animations
-
-d. Skeleton (Amy, Arsen)
-  - Skeleton / outline has been completed
-  - Open for further implementations from other groups
-  - PRs needed
-
 e. Start / Stop Button (Viren)
  - Implemented and merged with main
  - Functionality combined/merged with timer
 ```
+
+
+Altogether, each of the sub-groups were able to produce their work on a timely fashion. Groups with more than one person were able to hold as many syncrhonous meetings as necessary. Asychnronous work was held between all members via Slack so that future merges and concerns would be clearer.
 
 # MVP (as of Sprint 2)
 
