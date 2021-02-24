@@ -69,15 +69,22 @@ This code is organized into unique cases (thanks to clear commenting) that descr
 
 *Example of developed code:*
 
-![]()
+![](./sprint2Files/task-js-glimpse.gif)
 
 ---------
 
 ### Timer
 - Contributors: **Keshab Agarwal, Michael Brown**
-```
 
-```
+The next section in our list of contributions describes the timer functionality itself. The webpage's skeleton was created prior to the actions of this group so that it would serve as a helpful guide for future code implementations. The majority of work for the timer was then divided into two tasks: ring animation and timer feed.
+
+Keshab handled the CSS framework for designing the timer's ring and color animation. Its shape and color were defined in CSS and later implemented in JS. The animation of the ring is fluid (as in, its FPS does not snap) and is synched to the clock by reading in the total number of seconds and returning a fraction to measure the time remaining. On the other hand, Michael focused on producing the timer's interval and text display. The necessity for CSS was minimalistic whereas the code written for JS required implementations of interval functions to update the feed for each second passed.
+
+The team then merged its code locally with a copy of the start/stop button functionality. This process allowed the timer and ring to be paired so that the code would initiated/concluded based on user input.
+
+*Example of developed code:*
+
+--------
 
 ### Skeleton Page
 - Contributors: **Arsen Ohanyan, Amy Shen**
@@ -95,17 +102,6 @@ This code is organized into unique cases (thanks to clear commenting) that descr
 
 
 ```
-a. Stats Page (Ved, Michael K., Josh)
-- Local storage updates when user completes pomos
-  * Timestamps can be converted into strings for computations/attaining actual values
-- Extended goals/current challenges
-  * Discussing finalized data structures to use
-- Transition animations function as expected
-- Works independently from timer countdown + animations
-
-b. Complete Task Button (William)
-  - Local storage implementation
-  - Is now merged with main
 
 c. Timer (Keshab, Michael B.)
   - Timer functionality is implemented
@@ -123,6 +119,9 @@ e. Start / Stop Button (Viren)
  - Implemented and merged with main
  - Functionality combined/merged with timer
 ```
+
+# MVP (as of Sprint 2)
+
 
 ## Closing Thoughts
 - Great progress thus far
