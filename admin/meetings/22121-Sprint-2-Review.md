@@ -93,16 +93,21 @@ This team was tasked with constructing the pure foundation of our application by
 
 *Example of developed code:*
 
-![]()
+![](./sprint2Files/skeleton-html-glimpse.PNG)
 
-![]()
+![](./sprint2Files/skeleton-css-glimpse.PNG)
 
 
 ### Start / Stop Button
 - Contributor: **Viren Abhyankar**
-```
 
-```
+In order to allow user interaction and enable functionality, Viren implemented the start/stop buttton. The button was formatted in HTML and CSS with a majority of its implementation involved in JS. Viren's work introduced a global variable that would track the state of the pomodoro cycle (ie. notifying if the timer is stopped, ongoing, or in the midst of a break). This information is then used/passed through the timer to track which duration should be shown. The implementation toggles between such states and displays the appropriate text on the button for the user.
+
+In order for the timer to function in the first place and to allow the user to interact with the app, there must exist a start/stop button. Hence, Viren was able to implement this functionality 
+
+swapping states and button prompts for the user
+
+a foundation too for future implementations, such as message prompts to the user when concludinga  cycle early. Necessary for measurement of user statistics over pomo cycles
 
 
 
@@ -116,11 +121,9 @@ e. Start / Stop Button (Viren)
 
 Altogether, each of the sub-groups were able to produce their work on a timely fashion. Groups with more than one person were able to hold as many syncrhonous meetings as necessary. Asychnronous work was held between all members via Slack so that future merges and concerns would be clearer.
 
+In addition, all groups (where necessary) contributed to a JS test file to increase the coverage of our project.
+
 # MVP (as of Sprint 2)
 
+- Below is a quick demo of our current MVP. Take note that the timer durations are shortened on purposefor easier demonstration.
 
-## Closing Thoughts
-- Great progress thus far
-- MVP is complete
-- Further development recommended to be test-driven
-- More-efficient PRs and descriptive issues for up-to-datem, asynchronous work
