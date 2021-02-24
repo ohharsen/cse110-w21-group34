@@ -54,7 +54,7 @@ Before the end of the sprint, the group moved further into the back-end design p
 
 *Examples of developed code:*
 
-![]()
+![](./Sprint 2 Review Files/stats-css-glimpse.gif)
 
 ![]()
 
