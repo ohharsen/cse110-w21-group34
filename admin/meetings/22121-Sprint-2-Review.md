@@ -52,8 +52,11 @@ Each of the members as a whole had worked both synchronously (ie. live Zoom sess
 
 Before the end of the sprint, the group moved further into the back-end design phase. This early brainstorming phase was necessary to solidify how our program would retrieve information and store data with persistence. Luckily, William's implementations with the app's task button as well as back-end JS functions were prepared for the stats team to refer to for additional guidance. 
 
+*Examples of developed code:*
 
+![]()
 
+![]()
 
 
 
