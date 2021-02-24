@@ -8,11 +8,9 @@ const TODAY_TASK_ID = "today-task-count";
 const WEEK_TASK_ID = "week-task-count";
 const TODAY_DATE_ID = "today";
 const WEEK_START_ID = "week-start";
-const TASK_COMPLETE_TXT = "You've Completed a Task!!!";
 const LENGTH_OF_WEEK = 7;
 
 // Variables
-var isShown = true;
 var onBreak = false;
 var pomoCount = 0;     //# of pomos covered so far (orig. 0)
 var stdWork = 1500;    //# of seconds in a work pomo (orig. 1500)
