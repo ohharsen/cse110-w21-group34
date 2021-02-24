@@ -116,3 +116,4 @@ In addition, all groups (where necessary) contributed to a JS test file to incre
 # MVP (as of Sprint 2)
 - Below is a quick demo of our current MVP. Take note that the timer durations are shortened on purposefor easier demonstration.
 
+![](./sprint2Files/MVP-Sprint-2.gif)
