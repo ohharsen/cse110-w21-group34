@@ -9,13 +9,14 @@ const WEEK_TASK_ID = "week-task-count";
 const TODAY_DATE_ID = "today";
 const WEEK_START_ID = "week-start";
 const LENGTH_OF_WEEK = 7;
+const stdWork = 1500;    //# of seconds in a work pomo (orig. 1500)
+const stdBreak = 300;    //# of seconds in a short break (orig. 300)
+const stdExtBreak = 900; //# of seconds in a long break (orig. 900)
+
 
 // Variables
 var onBreak = false;
 var pomoCount = 0;     //# of pomos covered so far (orig. 0)
-var stdWork = 1500;    //# of seconds in a work pomo (orig. 1500)
-var stdBreak = 300;    //# of seconds in a short break (orig. 300)
-var stdExtBreak = 900; //# of seconds in a long break (orig. 900)
 
 /**
  * Enumerated timer states
@@ -228,6 +229,7 @@ function beginBreak(duration, textDisplay) {
 
     if (--timer < -1) {
         clearInterval(interval);
+        document.getElementById("timer-sound").play();
         startStopButton.innerHTML = BEGIN_BTN_TXT; 
         pomoState = timerOptions.STOPPED;
         onBreak = false;
@@ -263,6 +265,7 @@ function beginCountdown(duration, textDisplay) {
     if (--timer < -1) { 
         document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#34DBB3");
         clearInterval(interval);
+        document.getElementById("timer-sound").play();
         onBreak = true;
         startStopButton.innerHTML = BEGIN_BTN_TXT; 
         pomoState = timerOptions.STOPPED;
@@ -290,6 +293,11 @@ function togglePomoBreak(onBreak) {
  * Starts timer upon button click
  */
 function startTimer(on_break = onBreak, pomo_count = pomoCount) {
+    let timerAudio = document.getElementById("timer-sound");
+    if(!timerAudio.paused){
+        timerAudio.pause();
+        timerAudio.currentTime = 0;
+    }
     if (startStopButton) { 
         startStopButton.innerHTML = RESET_BTN_TXT;
 
