@@ -33,8 +33,8 @@ const taskButton = document.getElementById(TASK_BTN_ID);
 const localStorage = window.localStorage;
 
 if (taskButton) {
-    let today = new Date();
-    taskButton.addEventListener("click", taskComplete(false, today)); // upon click
+  const today = new Date();
+  taskButton.addEventListener('click', taskComplete(false, today)); // upon click
 }
 
 /* istanbul ignore next */
@@ -43,12 +43,12 @@ if (taskButton) {
  * @param Date() variable
  * @returns formatted string
  */
-function formatDate(to_format) {
-    let dd = String(to_format.getDate()).padStart(2, "0"); // date
-    let mm = String(to_format.getMonth() + 1).padStart(2, "0"); // month
-    let yyyy = to_format.getFullYear(); // year
-    let formatted = mm + "/" + dd + "/" + yyyy;
-    return formatted;
+function formatDate (toFormat) {
+  const dd = String(toFormat.getDate()).padStart(2, '0'); // date
+  const mm = String(toFormat.getMonth() + 1).padStart(2, '0'); // month
+  const yyyy = toFormat.getFullYear(); // year
+  const formatted = mm + '/' + dd + '/' + yyyy;
+  return formatted;
 }
 
 /* istanbul ignore next */
@@ -58,28 +58,27 @@ function formatDate(to_format) {
  * @param today current date
  * @returns local storage for debug
  */
-function taskComplete(clearStorage, today) {
+function taskComplete (clearStorage, today) {
+  if (clearStorage) localStorage.clear();
 
-    if (clearStorage) localStorage.clear();
+  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+  let weekCounter = Number(localStorage.getItem(WEEK_TASK_ID));
+  let dayCounter = Number(localStorage.getItem(TODAY_TASK_ID));
 
-    let todayStorage = localStorage.getItem(TODAY_DATE_ID);
-    let weekCounter = Number(localStorage.getItem(WEEK_TASK_ID));
-    let dayCounter = Number(localStorage.getItem(TODAY_TASK_ID));
-
-    if (formatDate(today) != todayStorage) {
-        if (isSameWeek(today)) { // different day, same week
-            weekCounter++;
-        } else { // different week
-            weekCounter = 1;
-        }
-        dayCounter = 1;
-        localStorage.setItem(TODAY_DATE_ID, formatDate(today));
-    } else { // same day, same week
-        dayCounter++;
-        weekCounter++;
+  if (formatDate(today) !== todayStorage) {
+    if (isSameWeek(today)) { // different day, same week
+      weekCounter++;
+    } else { // different week
+      weekCounter = 1;
     }
+    dayCounter = 1;
+    localStorage.setItem(TODAY_DATE_ID, formatDate(today));
+  } else { // same day, same week
+    dayCounter++;
+    weekCounter++;
+  }
 
-    return updateLocalStorage(dayCounter, weekCounter);
+  return updateLocalStorage(dayCounter, weekCounter);
 }
 
 /* istanbul ignore next */
@@ -88,24 +87,24 @@ function taskComplete(clearStorage, today) {
  * @param today current date
  * @returns boolean is it the same week
  */
-function isSameWeek(today) {
-    let checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    let weekStorage = localStorage.getItem(WEEK_START_ID);
-    let mondayDate;
-    let difference = 0;
+function isSameWeek (today) {
+  const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const weekStorage = localStorage.getItem(WEEK_START_ID);
+  let mondayDate;
+  let difference = 0;
 
-    // iterate until previous week start is reached
-    while (formatDate(checkDate) != weekStorage) { 
-        checkDate.setDate(checkDate.getDate() - 1); // previous day
-        if (checkDate.getDay() == 1) mondayDate = formatDate(checkDate);
+  // iterate until previous week start is reached
+  while (formatDate(checkDate) !== weekStorage) {
+    checkDate.setDate(checkDate.getDate() - 1); // previous day
+    if (checkDate.getDay() === 1) mondayDate = formatDate(checkDate);
 
-        // not the same week
-        if (++difference == LENGTH_OF_WEEK) {
-            localStorage.setItem(WEEK_START_ID, mondayDate);
-            return false;
-        }
+    // not the same week
+    if (++difference === LENGTH_OF_WEEK) {
+      localStorage.setItem(WEEK_START_ID, mondayDate);
+      return false;
     }
-    return true;
+  }
+  return true;
 }
 
 /**
@@ -114,12 +113,12 @@ function isSameWeek(today) {
  * @param weekCounter week total task count
  * @returns local storage for debug
  */
-function updateLocalStorage(dayCounter, weekCounter) {
-    localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
-    localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
+function updateLocalStorage (dayCounter, weekCounter) {
+  localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
+  localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
 
-    let totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
-    localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
+  const totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
+  localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 
   return localStorage;
 }
@@ -357,18 +356,18 @@ function closeStatsPane () {
   statsSlide.play();
 }
 
-module.exports = { 
-    togglePomoBreak, 
-    startTimer, 
-    resetTimer, 
-    beginBreak, 
-    currentTime, 
-    timerOptions, 
-    beginCountdown, 
-    timeFraction,
-    formatDate, 
-    taskComplete, 
-    isSameWeek, 
-    updateLocalStorage,
-    testDom
+module.exports = {
+  togglePomoBreak,
+  startTimer,
+  resetTimer,
+  beginBreak,
+  currentTime,
+  timerOptions,
+  beginCountdown,
+  timeFraction,
+  formatDate,
+  taskComplete,
+  isSameWeek,
+  updateLocalStorage,
+  testDom
 };
