@@ -1,36 +1,36 @@
 /* Constants */
-const START_STOP_ID = "start-stop-button";
-const RESET_BTN_TXT = "✖ Reset";
-const BEGIN_BTN_TXT = "▶ Begin";
-const TASK_BTN_ID = "task";
-const TOTAL_TASK_ID = "total-task-count";
-const TODAY_TASK_ID = "today-task-count";
-const WEEK_TASK_ID = "week-task-count";
-const TODAY_DATE_ID = "today";
-const WEEK_START_ID = "week-start";
+const START_STOP_ID = 'start-stop-button';
+const RESET_BTN_TXT = '✖ Reset';
+const BEGIN_BTN_TXT = '▶ Begin';
+const TASK_BTN_ID = 'task';
+const TOTAL_TASK_ID = 'total-task-count';
+const TODAY_TASK_ID = 'today-task-count';
+const WEEK_TASK_ID = 'week-task-count';
+const TODAY_DATE_ID = 'today';
+const WEEK_START_ID = 'week-start';
 const LENGTH_OF_WEEK = 7;
 
 // Variables
-var onBreak = false;
-var pomoCount = 0;     //# of pomos covered so far (orig. 0)
-var stdWork = 1500;    //# of seconds in a work pomo (orig. 1500)
-var stdBreak = 300;    //# of seconds in a short break (orig. 300)
-var stdExtBreak = 900; //# of seconds in a long break (orig. 900)
+let onBreak = false;
+let pomoCount = 0; // # of pomos covered so far (orig. 0)
+const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
+const stdBreak = 300; // # of seconds in a short break (orig. 300)
+const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 
 /**
  * Enumerated timer states
  * @enum {string}
  */
 const timerOptions = {
-    STOPPED: "stopped",
-    POMO: "pomo",
-    SHORT: "short break",
-    LONG: "long break"
-}
+  STOPPED: 'stopped',
+  POMO: 'pomo',
+  SHORT: 'short break',
+  LONG: 'long break'
+};
 
-/***********  Task Button ***********/
-let taskButton = document.getElementById(TASK_BTN_ID);
-let localStorage = window.localStorage;
+/** *********  Task Button ***********/
+const taskButton = document.getElementById(TASK_BTN_ID);
+const localStorage = window.localStorage;
 
 if (taskButton) {
     let today = new Date();
@@ -105,7 +105,6 @@ function isSameWeek(today) {
             return false;
         }
     }
-
     return true;
 }
 
@@ -122,66 +121,66 @@ function updateLocalStorage(dayCounter, weekCounter) {
     let totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
     localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 
-    return localStorage;
+  return localStorage;
 }
 
 // Sets the color of the timer
-document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
+document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
 
-/***********  Start/Reset button ***********/
-let startStopButton = document.getElementById(START_STOP_ID);
+/** *********  Start/Reset button ***********/
+const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 
 if (startStopButton) {
-    startStopButton.classList.toggle("break-button");
-    startStopButton.addEventListener("click", function() {
-        if (pomoState == timerOptions.STOPPED) {
-            startTimer();
-        } else {
-            resetTimer();
-        }
-    });
+  startStopButton.classList.toggle('break-button');
+  startStopButton.addEventListener('click', function () {
+    if (pomoState === timerOptions.STOPPED) {
+      startTimer();
+    } else {
+      resetTimer();
+    }
+  });
 }
 
 /**
  * A demo function for frontend testing
  */
-function testDom(){
-    let titleEl = document.querySelector("title");
-    titleEl.innerText = "Test Text";
+function testDom () {
+  const titleEl = document.querySelector('title');
+  titleEl.innerText = 'Test Text';
 }
 
 /* istanbul ignore next */
 /**
  * Begins the countdown for a break cycle
- * @param {*} duration The duration of the countdown 
+ * @param {*} duration The duration of the countdown
  * @param {*} textDisplay The component on which the remaining time is outputted
  */
-function beginBreak(duration, textDisplay) {
-	let timer = duration; // minutes, seconds;
-    let interval = setInterval(function() {
+function beginBreak (duration, textDisplay) {
+  let timer = duration; // minutes, seconds;
+  const interval = setInterval(function () {
     currentTime(timer, textDisplay);
-    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer, pomoState) * 220)} 220`);
-    
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
+
     // Press break in middle of countdown.
-    if (pomoState == timerOptions.STOPPED) {
-        clearInterval(interval);
-        pomoCount = 0;
-        onBreak = false;
-        currentTime(stdWork, textDisplay);
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `220 220`);
-        //Changes the color of the timer
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
+    if (pomoState === timerOptions.STOPPED) {
+      clearInterval(interval);
+      pomoCount = 0;
+      onBreak = false;
+      currentTime(stdWork, textDisplay);
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
+      // Changes the color of the timer
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
     }
 
     if (--timer < -1) {
-        clearInterval(interval);
-        startStopButton.innerHTML = BEGIN_BTN_TXT; 
-        pomoState = timerOptions.STOPPED;
-        onBreak = false;
-        //Changes the color of the timer
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
-        currentTime(stdWork, textDisplay);
+      clearInterval(interval);
+      startStopButton.innerHTML = BEGIN_BTN_TXT;
+      pomoState = timerOptions.STOPPED;
+      onBreak = false;
+      // Changes the color of the timer
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+      currentTime(stdWork, textDisplay);
     }
   }, 1000);
 }
@@ -189,37 +188,36 @@ function beginBreak(duration, textDisplay) {
 /* istanbul ignore next */
 /**
  * Begins the countdown for a work cycle
- * @param {*} duration The duration of the countdown 
+ * @param {*} duration The duration of the countdown
  * @param {*} textDisplay The component on which the remaining time is outputted
  */
-function beginCountdown(duration, textDisplay) {
-	let timer = duration; // minutes, seconds;
+function beginCountdown (duration, textDisplay) {
+  let timer = duration; // minutes, seconds;
 
-    var interval = setInterval(function() {
+  const interval = setInterval(function () {
     currentTime(timer, textDisplay);
-    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `${(timeFraction(timer, pomoState) * 220)} 220`);
-   
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
+
     // Press break in middle of countdown.
-    if (pomoState == timerOptions.STOPPED) {
-        clearInterval(interval);
-        pomoCount = 0;
-        onBreak = false;
-        currentTime(stdWork, textDisplay);
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `220 220`);
-    }    
-    
-    if (--timer < -1) { 
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#34DBB3");
-        clearInterval(interval);
-        onBreak = true;
-        startStopButton.innerHTML = BEGIN_BTN_TXT; 
-        pomoState = timerOptions.STOPPED;
-        if(pomoCount == 3) {
-            currentTime(stdExtBreak, textDisplay);
-        }
-        else {
-            currentTime(stdBreak, textDisplay);
-        }
+    if (pomoState === timerOptions.STOPPED) {
+      clearInterval(interval);
+      pomoCount = 0;
+      onBreak = false;
+      currentTime(stdWork, textDisplay);
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
+    }
+
+    if (--timer < -1) {
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
+      clearInterval(interval);
+      onBreak = true;
+      startStopButton.innerHTML = BEGIN_BTN_TXT;
+      pomoState = timerOptions.STOPPED;
+      if (pomoCount === 3) {
+        currentTime(stdExtBreak, textDisplay);
+      } else {
+        currentTime(stdBreak, textDisplay);
+      }
     }
   }, 1000);
 }
@@ -227,115 +225,111 @@ function beginCountdown(duration, textDisplay) {
 /**
  * Toggles break styling in start-stop-button
  */
-function togglePomoBreak(onBreak) {
-    if (startStopButton) {
-        startStopButton.classList.toggle("break-button");
-    }
-    return !onBreak;
+function togglePomoBreak (onBreak) {
+  if (startStopButton) {
+    startStopButton.classList.toggle('break-button');
+  }
+  return !onBreak;
 }
 
 /**
  * Starts timer upon button click
  */
-function startTimer(on_break = onBreak, pomo_count = pomoCount) {
-    if (startStopButton) { 
-        startStopButton.innerHTML = RESET_BTN_TXT;
+function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
+  if (startStopButton) {
+    startStopButton.innerHTML = RESET_BTN_TXT;
 
-        // Copied from buttonTest
-        var display = document.querySelector('#countdownText');
-        if (!on_break) {
-            pomoState = timerOptions.POMO;
-            beginCountdown(stdWork, display);
-        }
-        else {
-            if(pomo_count == 3) {
-                pomoCount = 0;
-                pomo_count = 0;
-                pomoState = timerOptions.LONG;
-                beginBreak(stdExtBreak, display);
-            }
-            else {
-                pomoCount++;
-                pomo_count++;
-                pomoState = timerOptions.SHORT;
-                beginBreak(stdBreak, display);
-            }
-        }
-        //
+    // Copied from buttonTest
+    const display = document.querySelector('#countdownText');
+    if (!localOnBreak) {
+      pomoState = timerOptions.POMO;
+      beginCountdown(stdWork, display);
+    } else {
+      if (localPomoCount === 3) {
+        pomoCount = 0;
+        localPomoCount = 0;
+        pomoState = timerOptions.LONG;
+        beginBreak(stdExtBreak, display);
+      } else {
+        pomoCount++;
+        localPomoCount++;
+        pomoState = timerOptions.SHORT;
+        beginBreak(stdBreak, display);
+      }
     }
-    return [pomoState, pomo_count];
+    //
+  }
+  return [pomoState, localPomoCount];
 }
 
 /**
  * Resets timer upon button click
  */
-function resetTimer() {
-    pomoState = timerOptions.STOPPED;
-    if (startStopButton) {
-        startStopButton.innerHTML = BEGIN_BTN_TXT;
-    }
-    return [pomoState, pomoCount, BEGIN_BTN_TXT];
+function resetTimer () {
+  pomoState = timerOptions.STOPPED;
+  if (startStopButton) {
+    startStopButton.innerHTML = BEGIN_BTN_TXT;
+  }
+  return [pomoState, pomoCount, BEGIN_BTN_TXT];
 }
 
 /**
- * Displays the amount of time remaining 
- * @param {*} timer The time to be displayed 
+ * Displays the amount of time remaining
+ * @param {*} timer The time to be displayed
  * @param {*} textDisplay The component on which the remaining time is displayed
  */
-function currentTime(timer, textDisplay) {
-    let minutes, seconds;
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    textDisplay.textContent = minutes + ":" + seconds;
-    return textDisplay.textContent;
+function currentTime (timer, textDisplay) {
+  let minutes, seconds;
+  minutes = parseInt(timer / 60, 10);
+  seconds = parseInt(timer % 60, 10);
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  textDisplay.textContent = minutes + ':' + seconds;
+  return textDisplay.textContent;
 }
 
 /**
  * Returns the fraction of the time remaining for the current countdown
- * @param {*} timer The amont of time on the timer 
+ * @param {*} timer The amont of time on the timer
  * @param {*} pomoState The current state of the pomodoro
  */
-function timeFraction(timer, pomoState){
-    if (pomoState == timerOptions.POMO){
-        return timer/stdWork;
-    }
-    else if(pomoState == timerOptions.LONG){
-        return timer/stdExtBreak;
-    }
-    else{
-        return timer/stdBreak;
-    }
+function timeFraction (timer, pomoState) {
+  if (pomoState === timerOptions.POMO) {
+    return timer / stdWork;
+  } else if (pomoState === timerOptions.LONG) {
+    return timer / stdExtBreak;
+  } else {
+    return timer / stdBreak;
+  }
 }
 
-/**************  Statistics Frontend ***************/
+/** ************  Statistics Frontend ***************/
 const timerBlock = document.getElementsByClassName('center-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
 
 const timerSlideAnim = {
-    keys: [
-        { transform: 'translate(0, 0)' },
-        { transform: 'translate(-15vw, 0)' },
-    ],
-    timing: {
-        duration: 500,
-        easing: 'ease-out',
-        fill: 'both',
-    },
+  keys: [
+    { transform: 'translate(0, 0)' },
+    { transform: 'translate(-15vw, 0)' }
+  ],
+  timing: {
+    duration: 500,
+    easing: 'ease-out',
+    fill: 'both'
+  }
 };
 
 const statsSlideAnim = {
-    keys: [
-        { right: '0' },
-    ],
-    timing: {
-        duration: 500,
-        easing: 'ease-out',
-        fill: 'forwards',
-    },
+  keys: [
+    { right: '0' }
+  ],
+  timing: {
+    duration: 500,
+    easing: 'ease-out',
+    fill: 'forwards'
+  }
 };
 
 const statsSlide = statsPane.animate(statsSlideAnim.keys, statsSlideAnim.timing);
@@ -347,20 +341,20 @@ statsCloseButton.onclick = closeStatsPane;
 /**
  * Opens the statistics pane.
  */
-function openStatsPane() {
-    timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing);
-    statsSlide.playbackRate = 1;
-    statsSlide.play();
+function openStatsPane () {
+  timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing);
+  statsSlide.playbackRate = 1;
+  statsSlide.play();
 }
 
 /* istanbul ignore next */
 /**
  * Closes the statistics pane.
  */
-function closeStatsPane() {
-    timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing).reverse();
-    statsSlide.playbackRate = -1;
-    statsSlide.play();
+function closeStatsPane () {
+  timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing).reverse();
+  statsSlide.playbackRate = -1;
+  statsSlide.play();
 }
 
 module.exports = { 
