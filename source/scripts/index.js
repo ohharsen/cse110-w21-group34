@@ -37,7 +37,6 @@ if (taskButton) {
   taskButton.addEventListener('click', taskComplete(false, today)); // upon click
 }
 
-/* istanbul ignore next */
 /**
  * Reformat Date() variable to mm:dd:yyyy
  * @param Date() variable
@@ -80,7 +79,6 @@ function taskComplete (clearStorage, today) {
   return updateLocalStorage(dayCounter, weekCounter);
 }
 
-/* istanbul ignore next */
 /**
  * Check if today is in the same week as week start
  * @param today current date
