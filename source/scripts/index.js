@@ -29,8 +29,8 @@ const timerOptions = {
 };
 
 /** *********  Task Button ***********/
-const taskButton = document.getElementById(TASK_BTN_ID);
-const localStorage = window.localStorage;
+let taskButton = document.getElementById(TASK_BTN_ID);
+let localStorage = window.localStorage;
 
 if (taskButton) {
   const today = new Date();
@@ -44,10 +44,10 @@ if (taskButton) {
  * @returns formatted string
  */
 function formatDate (toFormat) {
-  const dd = String(toFormat.getDate()).padStart(2, '0'); // date
-  const mm = String(toFormat.getMonth() + 1).padStart(2, '0'); // month
-  const yyyy = toFormat.getFullYear(); // year
-  const formatted = mm + '/' + dd + '/' + yyyy;
+  let dd = String(toFormat.getDate()).padStart(2, '0'); // date
+  let mm = String(toFormat.getMonth() + 1).padStart(2, '0'); // month
+  let yyyy = toFormat.getFullYear(); // year
+  let formatted = mm + '/' + dd + '/' + yyyy;
   return formatted;
 }
 
@@ -61,7 +61,7 @@ function formatDate (toFormat) {
 function taskComplete (clearStorage, today) {
   if (clearStorage) localStorage.clear();
 
-  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+  let todayStorage = localStorage.getItem(TODAY_DATE_ID);
   let weekCounter = Number(localStorage.getItem(WEEK_TASK_ID));
   let dayCounter = Number(localStorage.getItem(TODAY_TASK_ID));
 
@@ -88,8 +88,8 @@ function taskComplete (clearStorage, today) {
  * @returns boolean is it the same week
  */
 function isSameWeek (today) {
-  const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const weekStorage = localStorage.getItem(WEEK_START_ID);
+  let checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  let weekStorage = localStorage.getItem(WEEK_START_ID);
   let mondayDate;
   let difference = 0;
 
@@ -117,7 +117,7 @@ function updateLocalStorage (dayCounter, weekCounter) {
   localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
   localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
 
-  const totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
+  let totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
   localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 
   return localStorage;
