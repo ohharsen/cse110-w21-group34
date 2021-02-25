@@ -33,18 +33,8 @@ const taskButton = document.getElementById(TASK_BTN_ID);
 const localStorage = window.localStorage;
 
 if (taskButton) {
-  taskButton.addEventListener('click', taskComplete); // upon click
-}
-
-/* istanbul ignore next */
-/**
- * Task is completed upon button click
- */
-function taskComplete () {
-  const date1 = new Date();
-  const date2 = new Date();
-  const date3 = new Date();
-  updateLocalStorage(false, date1, date2, date3);
+  const today = new Date();
+  taskButton.addEventListener('click', taskComplete(false, today)); // upon click
 }
 
 /**
@@ -61,109 +51,71 @@ function formatDate (toFormat) {
 }
 
 /**
- * Update local storage with finished task information
- * @param boolean to clear storage or not for debugging
- * @param date1 input date object
- * @param date2 input date object
- * @param date3 input date object
- * @returns localStorage
+ * Task is completed upon button click
+ * @param clearStorage for debugging
+ * @param today current date
+ * @returns local storage for debug
  */
-function updateLocalStorage (clearStorage = false, date1, date2, date3) {
-  // date information
-  const today = date1;
-  let currDate = date2;
-  const temp = date3;
+function taskComplete (clearStorage, today) {
+  if (clearStorage) localStorage.clear();
 
-  const todayFormat = formatDate(today);
-  let weekStartDate;
+  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+  let weekCounter = Number(localStorage.getItem(WEEK_TASK_ID));
+  let dayCounter = Number(localStorage.getItem(TODAY_TASK_ID));
 
-  // storage variables
-  let storageTotalTask;
-  let storageTodayTask;
-  let storageWeekTask;
-  let storageTodayDate;
-  let storageWeekStart;
-
-  if (clearStorage) {
-    localStorage.clear();
+  if (formatDate(today) !== todayStorage) {
+    if (isSameWeek(today)) { // different day, same week
+      weekCounter++;
+    } else { // different week
+      weekCounter = 1;
+    }
+    dayCounter = 1;
+    localStorage.setItem(TODAY_DATE_ID, formatDate(today));
+  } else { // same day, same week
+    dayCounter++;
+    weekCounter++;
   }
 
-  // check if local storage is empty
-  if (localStorage.length === 0) {
-    // first "weekStartDate" in storage history
-    if (today.getDay() === 1) { // It is Monday
-      weekStartDate = todayFormat;
-    } else { // get closest previous Monday
-      if (currDate.getDay() === 0) { // Sunday
-        currDate.setDate(currDate.getDate() - (LENGTH_OF_WEEK - 1));
-      } else {
-        currDate.setDate(currDate.getDate() - (currDate.getDay() - 1));
-      }
-      weekStartDate = formatDate(currDate);
-    }
+  return updateLocalStorage(dayCounter, weekCounter);
+}
 
-    // set local storage variables
-    storageTotalTask = '1';
-    storageTodayTask = '1';
-    storageWeekTask = '1';
-    storageTodayDate = todayFormat;
-    storageWeekStart = weekStartDate;
-  } else {
-    storageTotalTask = localStorage.getItem(TOTAL_TASK_ID);
-    storageTodayTask = localStorage.getItem(TODAY_TASK_ID);
-    storageWeekTask = localStorage.getItem(WEEK_TASK_ID);
-    storageTodayDate = localStorage.getItem(TODAY_DATE_ID);
-    storageWeekStart = localStorage.getItem(WEEK_START_ID);
+/**
+ * Check if today is in the same week as week start
+ * @param today current date
+ * @returns boolean is it the same week
+ */
+function isSameWeek (today) {
+  const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const weekStorage = localStorage.getItem(WEEK_START_ID);
+  let mondayDate;
+  let difference = 0;
 
-    if (todayFormat !== storageTodayDate) { // check if it's the same day
-      // get the date difference
-      let difference = 0;
+  // iterate until previous week start is reached
+  while (formatDate(checkDate) !== weekStorage) {
+    checkDate.setDate(checkDate.getDate() - 1); // previous day
+    if (checkDate.getDay() === 1) mondayDate = formatDate(checkDate);
 
-      // condition: currDate > storageTodayDate
-      // check for new week
-      while (formatDate(currDate) !== storageWeekStart) {
-        currDate.setDate(currDate.getDate() - 1); // previous day
-        if (++difference === LENGTH_OF_WEEK) break;
-      }
-
-      if (difference === LENGTH_OF_WEEK) { // CASE 1: different day, different week
-        currDate = temp;
-        if (currDate.getDay() === 0) { // Sunday
-          currDate.setDate(currDate.getDate() - (LENGTH_OF_WEEK - 1));
-        } else {
-          currDate.setDate(currDate.getDate() - (currDate.getDay() - 1));
-        }
-        weekStartDate = formatDate(currDate);
-
-        // set local storage variables
-        storageTotalTask = String(Number(storageTotalTask) + 1);
-        storageTodayTask = '1';
-        storageWeekTask = '1';
-        storageTodayDate = todayFormat;
-        storageWeekStart = weekStartDate;
-      } else { // CASE 2: different day, same week
-        // set local storage variables
-        storageTotalTask = String(Number(storageTotalTask) + 1);
-        storageTodayTask = '1';
-        storageWeekTask = String(Number(storageWeekTask) + 1);
-        storageTodayDate = todayFormat;
-      }
-    } else { // CASE 3: same day
-      // set local storage variables
-      storageTotalTask = String(Number(storageTotalTask) + 1);
-      storageTodayTask = String(Number(storageTodayTask) + 1);
-      storageWeekTask = String(Number(storageWeekTask) + 1);
+    // not the same week
+    if (++difference === LENGTH_OF_WEEK) {
+      localStorage.setItem(WEEK_START_ID, mondayDate);
+      return false;
     }
   }
+  return true;
+}
 
-  // update local storage
-  localStorage.setItem(TOTAL_TASK_ID, storageTotalTask);
-  localStorage.setItem(TODAY_TASK_ID, storageTodayTask);
-  localStorage.setItem(WEEK_TASK_ID, storageWeekTask);
-  localStorage.setItem(TODAY_DATE_ID, storageTodayDate);
-  localStorage.setItem(WEEK_START_ID, storageWeekStart);
+/**
+ * Update local storage with finished task information
+ * @param dayCounter today total task count
+ * @param weekCounter week total task count
+ * @returns local storage for debug
+ */
+function updateLocalStorage (dayCounter, weekCounter) {
+  localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
+  localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
 
-  // console.log(localStorage); // for debugging
+  const totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
+  localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 
   return localStorage;
 }
@@ -411,6 +363,8 @@ module.exports = {
   beginCountdown,
   timeFraction,
   formatDate,
+  taskComplete,
+  isSameWeek,
   updateLocalStorage,
   testDom
 };
