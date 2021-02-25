@@ -54,6 +54,9 @@ function formatDate(to_format) {
 /* istanbul ignore next */
 /**
  * Task is completed upon button click
+ * @param clearStorage for debugging
+ * @param today current date
+ * @returns local storage for debug
  */
 function taskComplete(clearStorage, today) {
 
@@ -64,14 +67,14 @@ function taskComplete(clearStorage, today) {
     let dayCounter = Number(localStorage.getItem(TODAY_TASK_ID));
 
     if (formatDate(today) != todayStorage) {
-        if (isSameWeek(today)) {
+        if (isSameWeek(today)) { // different day, same week
             weekCounter++;
-        } else {
+        } else { // different week
             weekCounter = 1;
         }
         dayCounter = 1;
         localStorage.setItem(TODAY_DATE_ID, formatDate(today));
-    } else {
+    } else { // same day, same week
         dayCounter++;
         weekCounter++;
     }
@@ -82,6 +85,8 @@ function taskComplete(clearStorage, today) {
 /* istanbul ignore next */
 /**
  * Check if today is in the same week as week start
+ * @param today current date
+ * @returns boolean is it the same week
  */
 function isSameWeek(today) {
     let checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -89,10 +94,12 @@ function isSameWeek(today) {
     let mondayDate;
     let difference = 0;
 
+    // iterate until previous week start is reached
     while (formatDate(checkDate) != weekStorage) { 
         checkDate.setDate(checkDate.getDate() - 1); // previous day
         if (checkDate.getDay() == 1) mondayDate = formatDate(checkDate);
 
+        // not the same week
         if (++difference == LENGTH_OF_WEEK) {
             localStorage.setItem(WEEK_START_ID, mondayDate);
             return false;
@@ -106,7 +113,7 @@ function isSameWeek(today) {
  * Update local storage with finished task information
  * @param dayCounter today total task count
  * @param weekCounter week total task count
- * @returns local storage
+ * @returns local storage for debug
  */
 function updateLocalStorage(dayCounter, weekCounter) {
     localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
