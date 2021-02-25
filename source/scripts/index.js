@@ -9,7 +9,7 @@ const WEEK_TASK_ID = "week-task-count";
 const TODAY_DATE_ID = "today";
 const WEEK_START_ID = "week-start";
 const LENGTH_OF_WEEK = 7;
-
+ 
 // Variables
 var onBreak = false;
 var pomoCount = 0;     //# of pomos covered so far (orig. 0)
@@ -87,7 +87,7 @@ function updateLocalStorage(clear_storage = false, date1, date2, date3) {
     if (clear_storage) {
         localStorage.clear();
     }
-    
+     
     // check if local storage is empty
     if (localStorage.length == 0) {
 
@@ -138,7 +138,7 @@ function updateLocalStorage(clear_storage = false, date1, date2, date3) {
                     curr_date.setDate(curr_date.getDate() - (curr_date.getDay() - 1));
                 }
                 weekStartDate = format_date(curr_date);
-
+                
                 // set local storage variables
                 storage_total_task = String(Number(storage_total_task) + 1);
                 storage_today_task = "1";
@@ -326,6 +326,7 @@ function resetTimer() {
     if (startStopButton) {
         startStopButton.innerHTML = BEGIN_BTN_TXT;
     }
+    
     return [pomoState, pomoCount, BEGIN_BTN_TXT];
 }
 
@@ -366,7 +367,7 @@ const timerBlock = document.getElementsByClassName('center-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
-
+  
 const timerSlideAnim = {
     keys: [
         { transform: 'translate(0, 0)' },
@@ -400,6 +401,23 @@ statsCloseButton.onclick = closeStatsPane;
  * Opens the statistics pane.
  */
 function openStatsPane() {
+    /* we have
+    toal task count 
+    today task count, 
+    week task count, 
+    week start 
+    
+    need
+    total/day/week interuptions
+    total pomos
+    way to store daily weekly
+    */
+    let total_TC = localStorage.getItem('total-task-count');
+    let today_TC = localStorage.getItem('today-task-count');
+    let week_TC = localStorage.getItem('week-task-count');
+    let week_start = localStorage.getItem('week-start');
+    
+    console.log(total_TC);
     timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing);
     statsSlide.playbackRate = 1;
     statsSlide.play();
