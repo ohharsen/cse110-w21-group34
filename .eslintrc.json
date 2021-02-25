@@ -1,6 +1,9 @@
 {
     "parser": "babel-eslint",
-    "extends": "eslint:recommended",
+    "extends": "standard",
+    "rules": {
+        "semi": [2, "always"]
+    },
     "env": {
         "browser": true,
         "node": true
