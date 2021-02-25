@@ -51,7 +51,6 @@ function formatDate (toFormat) {
   return formatted;
 }
 
-/* istanbul ignore next */
 /**
  * Task is completed upon button click
  * @param clearStorage for debugging
