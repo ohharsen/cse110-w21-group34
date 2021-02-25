@@ -33,26 +33,17 @@ let taskButton = document.getElementById(TASK_BTN_ID);
 let localStorage = window.localStorage;
 
 if (taskButton) {
-    taskButton.addEventListener("click", taskComplete); // upon click
+    let today = new Date();
+    taskButton.addEventListener("click", taskComplete(false, today)); // upon click
 }
 
 /* istanbul ignore next */
-/**
- * Task is completed upon button click
- */
-function taskComplete() {
-    let date1 = new Date();
-    let date2 = new Date();
-    let date3 = new Date();
-    updateLocalStorage(false, date1, date2, date3);
-}
-
 /**
  * Reformat Date() variable to mm:dd:yyyy
  * @param Date() variable
  * @returns formatted string
  */
-function format_date(to_format) {
+function formatDate(to_format) {
     let dd = String(to_format.getDate()).padStart(2, "0"); // date
     let mm = String(to_format.getMonth() + 1).padStart(2, "0"); // month
     let yyyy = to_format.getFullYear(); // year
@@ -60,119 +51,69 @@ function format_date(to_format) {
     return formatted;
 }
 
+/* istanbul ignore next */
+/**
+ * Task is completed upon button click
+ */
+function taskComplete(clearStorage, today) {
+
+    if (clearStorage) localStorage.clear();
+
+    let todayStorage = localStorage.getItem(TODAY_DATE_ID);
+    let weekCounter = Number(localStorage.getItem(WEEK_TASK_ID));
+    let dayCounter = Number(localStorage.getItem(TODAY_TASK_ID));
+
+    if (formatDate(today) != todayStorage) {
+        if (isSameWeek(today)) {
+            weekCounter++;
+        } else {
+            weekCounter = 1;
+        }
+        dayCounter = 1;
+        localStorage.setItem(TODAY_DATE_ID, formatDate(today));
+    } else {
+        dayCounter++;
+        weekCounter++;
+    }
+
+    return updateLocalStorage(dayCounter, weekCounter);
+}
+
+/* istanbul ignore next */
+/**
+ * Check if today is in the same week as week start
+ */
+function isSameWeek(today) {
+    let checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    let weekStorage = localStorage.getItem(WEEK_START_ID);
+    let mondayDate;
+    let difference = 0;
+
+    while (formatDate(checkDate) != weekStorage) { 
+        checkDate.setDate(checkDate.getDate() - 1); // previous day
+        if (checkDate.getDay() == 1) mondayDate = formatDate(checkDate);
+
+        if (++difference == LENGTH_OF_WEEK) {
+            localStorage.setItem(WEEK_START_ID, mondayDate);
+            return false;
+        }
+    }
+
+    return true;
+}
+
 /**
  * Update local storage with finished task information
- * @param boolean to clear storage or not for debugging
- * @param date1 input date object
- * @param date2 input date object
- * @param date3 input date object
- * @returns localStorage
+ * @param dayCounter today total task count
+ * @param weekCounter week total task count
+ * @returns local storage
  */
-function updateLocalStorage(clear_storage = false, date1, date2, date3) {
-    // date information
-    let today = date1;
-    let curr_date = date2;
-    let temp = date3;
+function updateLocalStorage(dayCounter, weekCounter) {
+    localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
+    localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
 
-    let today_format = format_date(today);
-    let weekStartDate;
-
-    // storage variables
-    let storage_total_task;
-    let storage_today_task;
-    let storage_week_task;
-    let storage_today_date;
-    let storage_week_start;
-
-    if (clear_storage) {
-        localStorage.clear();
-    }
-    
-    // check if local storage is empty
-    if (localStorage.length == 0) {
-
-        // first "weekStartDate" in storage history
-        if (today.getDay() == 1) { // It is Monday
-            weekStartDate = today_format;
-        } else { // get closest previous Monday
-            if(curr_date.getDay() == 0) { // Sunday
-                curr_date.setDate(curr_date.getDate() - (LENGTH_OF_WEEK - 1));
-            } else {
-                curr_date.setDate(curr_date.getDate() - (curr_date.getDay() - 1));
-            }
-            weekStartDate = format_date(curr_date);
-        }
-
-        // set local storage variables
-        storage_total_task = "1";
-        storage_today_task = "1";
-        storage_week_task = "1";
-        storage_today_date = today_format;
-        storage_week_start = weekStartDate;
-        
-
-    } else {
-        storage_total_task = localStorage.getItem(TOTAL_TASK_ID);
-        storage_today_task = localStorage.getItem(TODAY_TASK_ID);
-        storage_week_task = localStorage.getItem(WEEK_TASK_ID);
-        storage_today_date = localStorage.getItem(TODAY_DATE_ID);
-        storage_week_start = localStorage.getItem(WEEK_START_ID);
-
-        if (today_format != storage_today_date) { // check if it's the same day
-
-            // get the date difference
-            let difference = 0;
-
-            // condition: curr_date > storage_today_date
-            // check for new week
-            while (format_date(curr_date) != storage_week_start) { 
-                curr_date.setDate(curr_date.getDate() - 1); // previous day
-                if (++difference == LENGTH_OF_WEEK) break;
-            }
-
-            if (difference == LENGTH_OF_WEEK) { // CASE 1: different day, different week
-                curr_date = temp;
-                if(curr_date.getDay() == 0) { // Sunday
-                    curr_date.setDate(curr_date.getDate() - (LENGTH_OF_WEEK - 1));
-                } else {
-                    curr_date.setDate(curr_date.getDate() - (curr_date.getDay() - 1));
-                }
-                weekStartDate = format_date(curr_date);
-
-                // set local storage variables
-                storage_total_task = String(Number(storage_total_task) + 1);
-                storage_today_task = "1";
-                storage_week_task = "1";
-                storage_today_date = today_format;
-                storage_week_start = weekStartDate;
-                
-            } else { // CASE 2: different day, same week
-
-                // set local storage variables
-                storage_total_task = String(Number(storage_total_task) + 1);
-                storage_today_task = "1";
-                storage_week_task = String(Number(storage_week_task) + 1);
-                storage_today_date = today_format;
-                
-            }
-        } else { // CASE 3: same day
-
-            // set local storage variables
-            storage_total_task = String(Number(storage_total_task) + 1);
-            storage_today_task = String(Number(storage_today_task) + 1);
-            storage_week_task = String(Number(storage_week_task) + 1);
-
-        }
-    }
-
-    // update local storage
-    localStorage.setItem(TOTAL_TASK_ID, storage_total_task);
-    localStorage.setItem(TODAY_TASK_ID, storage_today_task);
-    localStorage.setItem(WEEK_TASK_ID, storage_week_task);
-    localStorage.setItem(TODAY_DATE_ID, storage_today_date);
-    localStorage.setItem(WEEK_START_ID, storage_week_start);
-    
-    // console.log(localStorage); // for debugging
+    let totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
+    localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 
     return localStorage;
 }
@@ -424,7 +365,9 @@ module.exports = {
     timerOptions, 
     beginCountdown, 
     timeFraction,
-    format_date, 
+    formatDate, 
+    taskComplete, 
+    isSameWeek, 
     updateLocalStorage,
     testDom
 };
