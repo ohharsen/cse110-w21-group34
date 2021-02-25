@@ -9,14 +9,13 @@ const WEEK_TASK_ID = 'week-task-count';
 const TODAY_DATE_ID = 'today';
 const WEEK_START_ID = 'week-start';
 const LENGTH_OF_WEEK = 7;
-const stdWork = 1500;    //# of seconds in a work pomo (orig. 1500)
-const stdBreak = 300;    //# of seconds in a short break (orig. 300)
-const stdExtBreak = 900; //# of seconds in a long break (orig. 900)
-
+const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
+const stdBreak = 300; // # of seconds in a short break (orig. 300)
+const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 
 // Variables
-var onBreak = false;
-var pomoCount = 0;     //# of pomos covered so far (orig. 0)
+let onBreak = false;
+let pomoCount = 0; // # of pomos covered so far (orig. 0)
 
 /**
  * Enumerated timer states
@@ -219,14 +218,14 @@ function beginBreak (duration, textDisplay) {
     }
 
     if (--timer < -1) {
-        clearInterval(interval);
-        document.getElementById("timer-sound").play();
-        startStopButton.innerHTML = BEGIN_BTN_TXT; 
-        pomoState = timerOptions.STOPPED;
-        onBreak = false;
-        //Changes the color of the timer
-        document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#DB2E2E");
-        currentTime(stdWork, textDisplay);
+      clearInterval(interval);
+      document.getElementById('timer-sound').play();
+      startStopButton.innerHTML = BEGIN_BTN_TXT;
+      pomoState = timerOptions.STOPPED;
+      onBreak = false;
+      // Changes the color of the timer
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+      currentTime(stdWork, textDisplay);
     }
   }, 1000);
 }
@@ -256,7 +255,7 @@ function beginCountdown (duration, textDisplay) {
     if (--timer < -1) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
-      document.getElementById("timer-sound").play();
+      document.getElementById('timer-sound').play();
       onBreak = true;
       startStopButton.innerHTML = BEGIN_BTN_TXT;
       pomoState = timerOptions.STOPPED;
@@ -283,8 +282,8 @@ function togglePomoBreak (onBreak) {
  * Starts timer upon button click
  */
 function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
-  let timerAudio = document.getElementById("timer-sound");
-  if(!timerAudio.paused){
+  const timerAudio = document.getElementById('timer-sound');
+  if (!timerAudio.paused) {
     timerAudio.pause();
     timerAudio.currentTime = 0;
   }
