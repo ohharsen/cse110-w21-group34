@@ -11,7 +11,7 @@ let {
   timerOptions, 
   beginCountdown, 
   timeFraction,
-  format_date, 
+  formatDate, 
   updateLocalStorage,
   testDom
 } = require("./index");
@@ -69,7 +69,7 @@ test('checks format date', () => {
   let yyyy = check.getFullYear(); // year
   let check_format = mm + "/" + dd + "/" + yyyy;
   
-  expect(format_date(check)).toStrictEqual(check_format);
+  expect(formatDate(check)).toStrictEqual(check_format);
 });
 
 test('checks local storage test 0', () => { // test empty storage
