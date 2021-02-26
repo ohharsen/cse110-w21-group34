@@ -270,3 +270,16 @@ main{
         right: 12px;
     }
 }
+
+.counters-container {
+    font-family: "Roboto";
+    font-size: 18px;
+    color: white;
+    width: 25%;
+    min-width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 5%;
+}
