@@ -305,31 +305,6 @@ const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
 
-const timerSlideAnim = {
-  keys: [
-    { transform: 'translate(0, 0)' },
-    { transform: 'translate(-15vw, 0)' }
-  ],
-  timing: {
-    duration: 500,
-    easing: 'ease-out',
-    fill: 'both'
-  }
-};
-
-const statsSlideAnim = {
-  keys: [
-    { right: '0' }
-  ],
-  timing: {
-    duration: 500,
-    easing: 'ease-out',
-    fill: 'forwards'
-  }
-};
-
-const statsSlide = statsPane.animate(statsSlideAnim.keys, statsSlideAnim.timing);
-statsSlide.cancel();
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
 
@@ -338,9 +313,10 @@ statsCloseButton.onclick = closeStatsPane;
  * Opens the statistics pane.
  */
 function openStatsPane () {
-  timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing);
-  statsSlide.playbackRate = 1;
-  statsSlide.play();
+  timerBlock.classList.remove('slide-close')
+  statsPane.classList.remove('slide-close')
+  timerBlock.classList.add('slide-open');
+  statsPane.classList.add('slide-open');
 }
 
 /* istanbul ignore next */
@@ -348,9 +324,10 @@ function openStatsPane () {
  * Closes the statistics pane.
  */
 function closeStatsPane () {
-  timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing).reverse();
-  statsSlide.playbackRate = -1;
-  statsSlide.play();
+  timerBlock.classList.remove('slide-open');
+  statsPane.classList.remove('slide-open');
+  timerBlock.classList.add('slide-close');
+  statsPane.classList.add('slide-close');
 }
 
 module.exports = {
