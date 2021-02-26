@@ -47,8 +47,6 @@ function taskComplete() {
     let date2 = new Date();
     let date3 = new Date();
     updateLocalStorage(false, date1, date2, date3);
-    taskPomoCount = 0;
-    document.getElementById("task-pomo-counter").innerHTML = taskPomoCount;
 }
 
 /**
