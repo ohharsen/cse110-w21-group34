@@ -262,29 +262,43 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
 
 /**
  * Resets timer upon button click
+ * @return An array containing the stopped timer state and begin button text
  */
 function resetTimer () {
   pomoState = timerOptions.STOPPED;
   if (startStopButton) {
     startStopButton.innerHTML = BEGIN_BTN_TXT;
   }
-  let distractions = Number(localStorage.getItem(DISTRACTION));
-  let todayDistractions = Number(localStorage.getItem(TODAY_DISTRACTION));
-  let todayStorage = localStorage.getItem(TODAY_DATE_ID);
+  const todayDistractions = Number(localStorage.getItem(TODAY_DISTRACTION));
+  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+  updateDistractions(todayDistractions, todayStorage);
+  return [pomoState, BEGIN_BTN_TXT];
+}
 
+/**
+ * Updates distractions in local storage
+ * @param {Number} todayDistractions The number of distractions today
+ * @param {String} todayStorage Today's date currently in localStorage
+ * @return The updated number of distractions
+ */
+function updateDistractions (todayDistractions, todayStorage) {
+  // Total distractions
+  let distractions = Number(localStorage.getItem(DISTRACTION));
   distractions++;
+  localStorage.setItem(DISTRACTION, String(distractions));
+
+  // Today's distractions
   const today = formatDate(new Date());
   if (today === todayStorage) {
     todayDistractions++;
   } else {
+    // Update
     todayDistractions = 1;
     localStorage.setItem(TODAY_DATE_ID, today);
   }
-
-  localStorage.setItem(DISTRACTION, String(distractions));
   localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
 
-  return [todayStorage, today, todayDistractions];
+  return todayDistractions;
 }
 
 /**
@@ -375,6 +389,7 @@ module.exports = {
   togglePomoBreak,
   startTimer,
   resetTimer,
+  updateDistractions,
   beginBreak,
   currentTime,
   timerOptions,

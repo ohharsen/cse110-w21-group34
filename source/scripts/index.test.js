@@ -6,6 +6,7 @@ let {
   togglePomoBreak, 
   startTimer, 
   resetTimer, 
+  updateDistractions,
   beginBreak, 
   currentTime, 
   timerOptions, 
@@ -36,27 +37,34 @@ test('checks start state', () => {
 });
   
 test('checks reset state', () => {
-  
+  expect(resetTimer()).toStrictEqual([timerOptions.STOPPED, "▶ Begin"]);
 });
 
-test('Check current time display', ()=>{
-    currentTime(1500, document.querySelector('#countdownText'));
-    expect(document.querySelector('#countdownText').textContent).toStrictEqual("25:00");
-  
-    currentTime(319, document.querySelector('#countdownText'));
-    expect(document.querySelector('#countdownText').textContent).toStrictEqual("05:19");
-  
-    currentTime(23, document.querySelector('#countdownText'));
-    expect(document.querySelector('#countdownText').textContent).toStrictEqual("00:23");
+test('checks distraction updates', () => {
+  let date = new Date();
+  date = formatDate(date);
+  expect(updateDistractions(2, "02/14/21")).toStrictEqual(1);
+  expect(updateDistractions(2, date)).toStrictEqual(3);
+});
+
+test('Check current time display', () => {
+  currentTime(1500, document.querySelector('#countdownText'));
+  expect(document.querySelector('#countdownText').textContent).toStrictEqual("25:00");
+
+  currentTime(319, document.querySelector('#countdownText'));
+  expect(document.querySelector('#countdownText').textContent).toStrictEqual("05:19");
+
+  currentTime(23, document.querySelector('#countdownText'));
+  expect(document.querySelector('#countdownText').textContent).toStrictEqual("00:23");
 });
 
 test('Test timer fraction', () => {
-    expect(timeFraction(150, timerOptions.POMO)).toStrictEqual(0.1);
-    expect(timeFraction(1500, timerOptions.POMO)).toStrictEqual(1);
-    expect(timeFraction(150, timerOptions.SHORT)).toStrictEqual(0.5);
-    expect(timeFraction(60, timerOptions.SHORT)).toStrictEqual(0.2);
-    expect(timeFraction(810, timerOptions.LONG)).toStrictEqual(0.9);
-    expect(timeFraction(450, timerOptions.LONG)).toStrictEqual(0.5);
+  expect(timeFraction(150, timerOptions.POMO)).toStrictEqual(0.1);
+  expect(timeFraction(1500, timerOptions.POMO)).toStrictEqual(1);
+  expect(timeFraction(150, timerOptions.SHORT)).toStrictEqual(0.5);
+  expect(timeFraction(60, timerOptions.SHORT)).toStrictEqual(0.2);
+  expect(timeFraction(810, timerOptions.LONG)).toStrictEqual(0.9);
+  expect(timeFraction(450, timerOptions.LONG)).toStrictEqual(0.5);
 });
   
 test('checks test', () => {
