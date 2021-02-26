@@ -16,6 +16,8 @@ var pomoCount = 0;     //# of pomos covered so far (orig. 0)
 var stdWork = 1500;    //# of seconds in a work pomo (orig. 1500)
 var stdBreak = 300;    //# of seconds in a short break (orig. 300)
 var stdExtBreak = 900; //# of seconds in a long break (orig. 900)
+var taskPomoCount = 0; //# of pomos for current task (orig. 0)
+var cyclePomoCount = 0; //current pomo in current cycle (orig. 0)
 
 /**
  * Enumerated timer states
@@ -45,6 +47,8 @@ function taskComplete() {
     let date2 = new Date();
     let date3 = new Date();
     updateLocalStorage(false, date1, date2, date3);
+    taskPomoCount = 0;
+    document.getElementById("task-pomo-counter").innerHTML = taskPomoCount;
 }
 
 /**
@@ -258,10 +262,13 @@ function beginCountdown(duration, textDisplay) {
         onBreak = false;
         currentTime(stdWork, textDisplay);
         document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", `220 220`);
+        cyclePomoCount--;
     }    
     
     if (--timer < -1) { 
         document.getElementById("base-timer-path-remaining").setAttribute("stroke", "#34DBB3");
+        taskPomoCount++;
+        document.getElementById("task-pomo-counter").innerHTML = taskPomoCount;
         clearInterval(interval);
         onBreak = true;
         startStopButton.innerHTML = BEGIN_BTN_TXT; 
@@ -297,6 +304,11 @@ function startTimer(on_break = onBreak, pomo_count = pomoCount) {
         var display = document.querySelector('#countdownText');
         if (!on_break) {
             pomoState = timerOptions.POMO;
+            if (cyclePomoCount == 4) {
+                cyclePomoCount = 0;
+            }
+            cyclePomoCount++;
+            document.getElementById("cycle-pomo-counter").innerHTML = cyclePomoCount;
             beginCountdown(stdWork, display);
         }
         else {
