@@ -8,7 +8,8 @@ const TODAY_TASK_ID = 'today-task-count';
 const WEEK_TASK_ID = 'week-task-count';
 const TODAY_DATE_ID = 'today';
 const WEEK_START_ID = 'week-start';
-const DISTRACTION = 'distraction';
+const DISTRACTION = 'total-distraction';
+const TODAY_DISTRACTION = 'today-distraction';
 const LENGTH_OF_WEEK = 7;
 
 // Variables
@@ -267,9 +268,23 @@ function resetTimer () {
   if (startStopButton) {
     startStopButton.innerHTML = BEGIN_BTN_TXT;
   }
-  const distractions = Number(localStorage.getItem(DISTRACTION))+1;
+  let distractions = Number(localStorage.getItem(DISTRACTION));
+  let todayDistractions = Number(localStorage.getItem(TODAY_DISTRACTION));
+  let todayStorage = localStorage.getItem(TODAY_DATE_ID);
+
+  distractions++;
+  const today = formatDate(new Date());
+  if (today === todayStorage) {
+    todayDistractions++;
+  } else {
+    todayDistractions = 1;
+    localStorage.setItem(TODAY_DATE_ID, today);
+  }
+
   localStorage.setItem(DISTRACTION, String(distractions));
-  return [pomoState, pomoCount, BEGIN_BTN_TXT];
+  localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
+
+  return [todayStorage, today, todayDistractions];
 }
 
 /**
