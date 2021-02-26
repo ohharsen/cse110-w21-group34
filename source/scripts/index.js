@@ -13,8 +13,8 @@ const LENGTH_OF_WEEK = 7;
 // Variables
 let onBreak = false;
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
-let taskPomoCount = 0; //# of pomos for current task (orig. 0)
-let cyclePomoCount = 0; //current pomo in current cycle (orig. 0)
+let taskPomoCount = 0; // # of pomos for current task (orig. 0)
+let cyclePomoCount = 0; // current pomo in current cycle (orig. 0)
 const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
 const stdBreak = 300; // # of seconds in a short break (orig. 300)
 const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
@@ -218,7 +218,7 @@ function beginCountdown (duration, textDisplay) {
         currentTime(stdBreak, textDisplay);
       }
       taskPomoCount++;
-      document.getElementById("task-pomo-counter").innerHTML = taskPomoCount;
+      document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
     }
   }, 1000);
 }
@@ -244,11 +244,11 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
     const display = document.querySelector('#countdownText');
     if (!localOnBreak) {
       pomoState = timerOptions.POMO;
-      if (cyclePomoCount == 4) {
+      if (cyclePomoCount === 4) {
         cyclePomoCount = 0;
       }
       cyclePomoCount++;
-      document.getElementById("cycle-pomo-counter").innerHTML = cyclePomoCount;
+      document.getElementById('cycle-pomo-counter').innerHTML = cyclePomoCount;
       beginCountdown(stdWork, display);
     } else {
       if (localPomoCount === 3) {
