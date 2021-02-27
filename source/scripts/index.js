@@ -19,9 +19,6 @@ const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 let onBreak = false;
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let taskPomoCount = 0; // # of pomos for current task (orig. 0)
-const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
-const stdBreak = 300; // # of seconds in a short break (orig. 300)
-const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 
 /**
  * Enumerated timer states
