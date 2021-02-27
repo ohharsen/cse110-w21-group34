@@ -359,21 +359,16 @@ statsCloseButton.onclick = closeStatsPane;
  * Opens the statistics pane.
  */
 function openStatsPane () {
-  /* we have
-    toal task count
-    today task count,
-    week task count,
-    week start
-
-    need
-    total/day/week interuptions
-    total pomos
-    way to store daily weekly
-  */
+  // TODO: total/day/week interuptions, total pomos, way to store daily weekly
   const totalTC = localStorage.getItem('total-task-count');
   const todayTC = localStorage.getItem('today-task-count');
   const weekTC = localStorage.getItem('week-task-count');
   const weekstart = localStorage.getItem('week-start');
+
+  console.log(totalTC);
+  console.log(todayTC);
+  console.log(weekTC);
+  console.log(weekstart);
 
   timerBlock.classList.remove('slide-close');
   statsPane.classList.remove('slide-close');
