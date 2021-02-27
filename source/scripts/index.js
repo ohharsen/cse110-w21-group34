@@ -374,10 +374,6 @@ function openStatsPane () {
   const todayTC = localStorage.getItem('today-task-count');
   const weekTC = localStorage.getItem('week-task-count');
   const weekstart = localStorage.getItem('week-start');
-  console.log(totalTC);
-  console.log(todayTC);
-  console.log(weekTC);
-  console.log(weekstart);
 
   timerBlock.classList.remove('slide-close');
   statsPane.classList.remove('slide-close');
