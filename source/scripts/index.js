@@ -35,7 +35,7 @@ const localStorage = window.localStorage;
 
 if (taskButton) {
   const today = new Date();
-  taskButton.addEventListener('click', function (event) { 
+  taskButton.addEventListener('click', function (event) {
     taskComplete(false, today);
     event.preventDefault();
   }); // upon click
