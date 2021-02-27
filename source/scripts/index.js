@@ -35,7 +35,7 @@ const localStorage = window.localStorage;
 
 if (taskButton) {
   const today = new Date();
-  taskButton.addEventListener('click', function(event) { 
+  taskButton.addEventListener('click', function (event) { 
     taskComplete(false, today);
     event.preventDefault();
   }); // upon click
@@ -63,7 +63,6 @@ function formatDate (toFormat) {
 function taskComplete (clearStorage, today) {
   taskPomoCount = 0;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
-  
   if (clearStorage) localStorage.clear();
 
   const todayStorage = localStorage.getItem(TODAY_DATE_ID);
