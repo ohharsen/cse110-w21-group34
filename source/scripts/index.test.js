@@ -6,12 +6,15 @@ let {
   togglePomoBreak, 
   startTimer, 
   resetTimer, 
+  updateDistractions,
   beginBreak, 
   currentTime, 
   timerOptions, 
   beginCountdown, 
   timeFraction,
-  format_date, 
+  formatDate, 
+  taskComplete, 
+  isSameWeek, 
   updateLocalStorage,
   testDom
 } = require("./index");
@@ -34,27 +37,34 @@ test('checks start state', () => {
 });
   
 test('checks reset state', () => {
-  expect(resetTimer()).toStrictEqual(["stopped", 0, "▶ Begin"]);
+  expect(resetTimer()).toStrictEqual([timerOptions.STOPPED, "▶ Begin"]);
 });
 
-test('Check current time display', ()=>{
-    currentTime(1500, document.querySelector('#countdownText'));
-    expect(document.querySelector('#countdownText').textContent).toStrictEqual("25:00");
-  
-    currentTime(319, document.querySelector('#countdownText'));
-    expect(document.querySelector('#countdownText').textContent).toStrictEqual("05:19");
-  
-    currentTime(23, document.querySelector('#countdownText'));
-    expect(document.querySelector('#countdownText').textContent).toStrictEqual("00:23");
+test('checks distraction updates', () => {
+  let date = new Date();
+  date = formatDate(date);
+  expect(updateDistractions(2, "02/14/21")).toStrictEqual(1);
+  expect(updateDistractions(2, date)).toStrictEqual(3);
+});
+
+test('Check current time display', () => {
+  currentTime(1500, document.querySelector('#countdownText'));
+  expect(document.querySelector('#countdownText').textContent).toStrictEqual("25:00");
+
+  currentTime(319, document.querySelector('#countdownText'));
+  expect(document.querySelector('#countdownText').textContent).toStrictEqual("05:19");
+
+  currentTime(23, document.querySelector('#countdownText'));
+  expect(document.querySelector('#countdownText').textContent).toStrictEqual("00:23");
 });
 
 test('Test timer fraction', () => {
-    expect(timeFraction(150, timerOptions.POMO)).toStrictEqual(0.1);
-    expect(timeFraction(1500, timerOptions.POMO)).toStrictEqual(1);
-    expect(timeFraction(150, timerOptions.SHORT)).toStrictEqual(0.5);
-    expect(timeFraction(60, timerOptions.SHORT)).toStrictEqual(0.2);
-    expect(timeFraction(810, timerOptions.LONG)).toStrictEqual(0.9);
-    expect(timeFraction(450, timerOptions.LONG)).toStrictEqual(0.5);
+  expect(timeFraction(150, timerOptions.POMO)).toStrictEqual(0.1);
+  expect(timeFraction(1500, timerOptions.POMO)).toStrictEqual(1);
+  expect(timeFraction(150, timerOptions.SHORT)).toStrictEqual(0.5);
+  expect(timeFraction(60, timerOptions.SHORT)).toStrictEqual(0.2);
+  expect(timeFraction(810, timerOptions.LONG)).toStrictEqual(0.9);
+  expect(timeFraction(450, timerOptions.LONG)).toStrictEqual(0.5);
 });
   
 test('checks test', () => {
@@ -69,14 +79,11 @@ test('checks format date', () => {
   let yyyy = check.getFullYear(); // year
   let check_format = mm + "/" + dd + "/" + yyyy;
   
-  expect(format_date(check)).toStrictEqual(check_format);
+  expect(formatDate(check)).toStrictEqual(check_format);
 });
 
-test('checks local storage test 0', () => { // test empty storage
-  let check1 = new Date(2021, 1, 18); // 2-18-2021 (month is 0-indexed)
-  let check2 = new Date(2021, 1, 18);
-  let check3 = new Date(2021, 1, 18);
-  let storage = updateLocalStorage(true, check1, check2, check3);
+test('checks local storage 0', () => { // test empty storage
+  let storage = taskComplete(true, new Date(2021, 1, 18)); // 2-18-2021
   expect(storage.getItem("total-task-count")).toStrictEqual("1");
   expect(storage.getItem("today-task-count")).toStrictEqual("1");
   expect(storage.getItem("week-task-count")).toStrictEqual("1");
@@ -84,15 +91,9 @@ test('checks local storage test 0', () => { // test empty storage
   expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
 });
 
-test('checks local storage test 1', () => { // test case 1
-  let check1 = new Date(2021, 1, 10); // 2-10-2021 (month is 0-indexed)
-  let check2 = new Date(2021, 1, 10);
-  let check3 = new Date(2021, 1, 10);
-  let storage = updateLocalStorage(true, check1, check2, check3);
-  let check4 = new Date(2021, 1, 16); // 2-16-2021 (month is 0-indexed)
-  let check5 = new Date(2021, 1, 16);
-  let check6 = new Date(2021, 1, 16);
-  storage = updateLocalStorage(false, check4, check5, check6);
+test('checks local storage 1', () => { // test different day, different week
+  let storage = taskComplete(true, new Date(2021, 1, 10)); // 2-10-2021
+  storage = taskComplete(false, new Date(2021, 1, 16)); // 2-16-2021
   expect(storage.getItem("total-task-count")).toStrictEqual("2");
   expect(storage.getItem("today-task-count")).toStrictEqual("1");
   expect(storage.getItem("week-task-count")).toStrictEqual("1");
@@ -100,15 +101,9 @@ test('checks local storage test 1', () => { // test case 1
   expect(storage.getItem("week-start")).toStrictEqual("02/15/2021"); // should update to new week start
 });
 
-test('checks local storage test 2', () => { // test case 2
-  let check1 = new Date(2021, 1, 17); // 2-17-2021 (month is 0-indexed)
-  let check2 = new Date(2021, 1, 17);
-  let check3 = new Date(2021, 1, 17);
-  let storage = updateLocalStorage(true, check1, check2, check3);
-  let check4 = new Date(2021, 1, 18); // 2-18-2021 (month is 0-indexed)
-  let check5 = new Date(2021, 1, 18);
-  let check6 = new Date(2021, 1, 18);
-  storage = updateLocalStorage(false, check4, check5, check6);
+test('checks local storage 2', () => { // test different day, same week
+  let storage = taskComplete(true, new Date(2021, 1, 17)); // 2-17-2021
+  storage = taskComplete(false, new Date(2021, 1, 18)); // 2-18-2021
   expect(storage.getItem("total-task-count")).toStrictEqual("2");
   expect(storage.getItem("today-task-count")).toStrictEqual("1");
   expect(storage.getItem("week-task-count")).toStrictEqual("2");
@@ -116,15 +111,29 @@ test('checks local storage test 2', () => { // test case 2
   expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
 });
 
-test('checks local storage test 3', () => { // test case 3
-  let check1 = new Date(2021, 1, 18); // 2-18-2021 (month is 0-indexed)
-  let check2 = new Date(2021, 1, 18);
-  let check3 = new Date(2021, 1, 18);
-  let storage = updateLocalStorage(true, check1, check2, check3);
-  let check4 = new Date(2021, 1, 18); // 2-18-2021 (month is 0-indexed)
-  let check5 = new Date(2021, 1, 18);
-  let check6 = new Date(2021, 1, 18);
-  storage = updateLocalStorage(false, check4, check5, check6);
+test('checks local storage 3', () => { // test same day, same week
+  let storage = taskComplete(true, new Date(2021, 1, 18)); // 2-18-2021
+  storage = taskComplete(false, new Date(2021, 1, 18)); // 2-18-2021
+  expect(storage.getItem("total-task-count")).toStrictEqual("2");
+  expect(storage.getItem("today-task-count")).toStrictEqual("2");
+  expect(storage.getItem("week-task-count")).toStrictEqual("2");
+  expect(storage.getItem("today")).toStrictEqual("02/18/2021");
+  expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
+});
+
+test('checks isSameWeek 0', () => { // is same week
+  taskComplete(true, new Date(2021, 1, 18));
+  expect(isSameWeek(new Date(2021, 1, 21))).toStrictEqual(true);
+});
+
+test('checks isSameWeek 1', () => { // is not same week
+  taskComplete(true, new Date(2021, 1, 18));
+  expect(isSameWeek(new Date(2021, 1, 22))).toStrictEqual(false);
+});
+
+test('checks updateLocalStorage', () => {
+  let storage = taskComplete(true, new Date(2021, 1, 18));
+  updateLocalStorage(2, 2);
   expect(storage.getItem("total-task-count")).toStrictEqual("2");
   expect(storage.getItem("today-task-count")).toStrictEqual("2");
   expect(storage.getItem("week-task-count")).toStrictEqual("2");
