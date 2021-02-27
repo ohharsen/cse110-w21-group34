@@ -45,6 +45,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .center-container{
@@ -323,4 +324,16 @@ main{
 @keyframes slide-center-in {
     from { transform: translate(-15vw, 0) }
     to { transform: translate(0, 0) }
+}
+.counters-container {
+    font-family: "Roboto";
+    font-size: 18px;
+    color: white;
+    width: 25%;
+    min-width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 5%;
 }
