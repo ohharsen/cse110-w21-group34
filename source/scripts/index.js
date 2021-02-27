@@ -18,6 +18,7 @@ const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 // Variables
 let onBreak = false;
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
+let taskPomoCount = 0; // # of pomos for current task (orig. 0)
 
 /**
  * Enumerated timer states
