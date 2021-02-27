@@ -313,8 +313,8 @@ statsCloseButton.onclick = closeStatsPane;
  * Opens the statistics pane.
  */
 function openStatsPane () {
-  timerBlock.classList.remove('slide-close')
-  statsPane.classList.remove('slide-close')
+  timerBlock.classList.remove('slide-close');
+  statsPane.classList.remove('slide-close');
   timerBlock.classList.add('slide-open');
   statsPane.classList.add('slide-open');
 }
