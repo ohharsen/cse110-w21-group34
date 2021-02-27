@@ -23,6 +23,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .center-container{
@@ -268,4 +269,17 @@ main{
         top: 12px;
         right: 12px;
     }
+}
+
+.counters-container {
+    font-family: "Roboto";
+    font-size: 18px;
+    color: white;
+    width: 25%;
+    min-width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 5%;
 }

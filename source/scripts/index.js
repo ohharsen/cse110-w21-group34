@@ -15,6 +15,7 @@ const LENGTH_OF_WEEK = 7;
 // Variables
 let onBreak = false;
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
+let taskPomoCount = 0; // # of pomos for current task (orig. 0)
 const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
 const stdBreak = 300; // # of seconds in a short break (orig. 300)
 const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
@@ -36,7 +37,10 @@ const localStorage = window.localStorage;
 
 if (taskButton) {
   const today = new Date();
-  taskButton.addEventListener('click', taskComplete(false, today)); // upon click
+  taskButton.addEventListener('click', function (event) {
+    taskComplete(false, today);
+    event.preventDefault();
+  }); // upon click
 }
 
 /**
@@ -59,6 +63,8 @@ function formatDate (toFormat) {
  * @returns local storage for debug
  */
 function taskComplete (clearStorage, today) {
+  taskPomoCount = 0;
+  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
   if (clearStorage) localStorage.clear();
 
   const todayStorage = localStorage.getItem(TODAY_DATE_ID);
@@ -216,6 +222,8 @@ function beginCountdown (duration, textDisplay) {
       } else {
         currentTime(stdBreak, textDisplay);
       }
+      taskPomoCount++;
+      document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
     }
   }, 1000);
 }
@@ -241,6 +249,7 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
     const display = document.querySelector('#countdownText');
     if (!localOnBreak) {
       pomoState = timerOptions.POMO;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount + 1;
       beginCountdown(stdWork, display);
     } else {
       if (localPomoCount === 3) {
