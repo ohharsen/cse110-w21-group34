@@ -5,7 +5,29 @@
         "semi": [2, "always"]
     },
     "env": {
-        "browser": true,
-        "node": true
+        "browser": true
+    },
+    "globals": {
+        "START_STOP_ID": "readonly",
+        "RESET_BTN_TXT": "readonly",
+        "BEGIN_BTN_TXT": "readonly",
+        "TASK_BTN_ID": "readonly",
+        "TOTAL_TASK_ID": "readonly",
+        "TODAY_TASK_ID": "readonly",
+        "WEEK_TASK_ID": "readonly",
+        "TODAY_DATE_ID": "readonly",
+        "WEEK_START_ID": "readonly",
+        "DISTRACTION": "readonly",
+        "TODAY_DISTRACTION": "readonly",
+        "LENGTH_OF_WEEK": "readonly",
+        "stdWork": "readonly",
+        "stdBreak": "readonly",
+        "stdExtBreak": "readonly",
+        "onBreak": "writable",
+        "pomoCount": "writable",
+        "taskPomoCount": "writable",
+        "timerOptions": "readonly",
+        "taskButton": "readonly",
+        "localStorage": "readonly"
     }
 }
