@@ -23,6 +23,10 @@ const onBreak = false;
 const pomoCount = 0; // # of pomos covered so far (orig. 0)
 const taskPomoCount = 0; // # of pomos for current task (orig. 0)
 
+// Helper variable for timing
+const responsiveness = 100;
+
+
 /**
  * Enumerated timer states
  * @enum {string}
@@ -54,15 +58,17 @@ global.stdWork = stdWork;
 global.stdBreak = stdBreak;
 global.stdExtBreak = stdExtBreak;
 global.onBreak = onBreak;
-global.pomoCount = pomoCount; 
+global.pomoCount = pomoCount;
 global.taskPomoCount = taskPomoCount;
-global.timerOptions = timerOptions; 
+global.timerOptions = timerOptions;
 global.taskButton = taskButton;
-global.localStorage = localStorage; 
+global.localStorage = localStorage;
+
+global.timerRespond = responsiveness;
+
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
-const { formatDate} = require('./taskButton');
-/* global formatDate */
+const { formatDate } = require('./taskButton');
 const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 
@@ -85,7 +91,10 @@ if (startStopButton) {
    */
 function beginBreak (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
+  currentTime(time, textDisplay);
   const interval = setInterval(function () {
+    
+    --timer;
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
 
@@ -100,7 +109,7 @@ function beginBreak (duration, textDisplay) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
     }
 
-    if (--timer < -1) {
+    if (timer < 0) {
       clearInterval(interval);
       document.getElementById('timer-sound').play();
       startStopButton.innerHTML = BEGIN_BTN_TXT;
@@ -121,8 +130,19 @@ function beginBreak (duration, textDisplay) {
    */
 function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
+  currentTime(timer, textDisplay);
 
   const interval = setInterval(function () {
+    // console.log("updating 10 milliseconds");
+    
+    // if(--timerRespond < 1) {
+    //   timerRespond = 100;
+    //   --timer;
+    //   currentTime(timer, textDisplay);
+    //   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
+    // }
+
+    --timer;
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
 
@@ -135,7 +155,7 @@ function beginCountdown (duration, textDisplay) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     }
 
-    if (--timer < -1) {
+    if (timer < 0) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
       document.getElementById('timer-sound').play();
@@ -270,15 +290,15 @@ function timeFraction (timer, pomoState) {
 }
 
 module.exports = {
-    beginBreak,
-    beginCountdown,
-    togglePomoBreak,
-    startTimer,
-    resetTimer,
-    updateDistractions,
-    currentTime,
-    timeFraction
-}
+  beginBreak,
+  beginCountdown,
+  togglePomoBreak,
+  startTimer,
+  resetTimer,
+  updateDistractions,
+  currentTime,
+  timeFraction
+};
 
 },{"./taskButton":4}],3:[function(require,module,exports){
 require('./startResetButton');
@@ -432,10 +452,10 @@ function updateLocalStorage (dayCounter, weekCounter) {
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
 
 module.exports = {
-    formatDate,
-    taskComplete,
-    isSameWeek,
-    updateLocalStorage
+  formatDate,
+  taskComplete,
+  isSameWeek,
+  updateLocalStorage
 };
 
 },{"./index":1}]},{},[3]);
