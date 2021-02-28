@@ -21,7 +21,10 @@ if (startStopButton) {
    */
 function beginBreak (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
+  currentTime(time, textDisplay);
   const interval = setInterval(function () {
+    
+    --timer;
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
 
@@ -36,7 +39,7 @@ function beginBreak (duration, textDisplay) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
     }
 
-    if (--timer < -1) {
+    if (timer < 0) {
       clearInterval(interval);
       document.getElementById('timer-sound').play();
       startStopButton.innerHTML = BEGIN_BTN_TXT;
@@ -57,8 +60,19 @@ function beginBreak (duration, textDisplay) {
    */
 function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
+  currentTime(timer, textDisplay);
 
   const interval = setInterval(function () {
+    // console.log("updating 10 milliseconds");
+    
+    // if(--timerRespond < 1) {
+    //   timerRespond = 100;
+    //   --timer;
+    //   currentTime(timer, textDisplay);
+    //   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
+    // }
+
+    --timer;
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
 
@@ -71,7 +85,7 @@ function beginCountdown (duration, textDisplay) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     }
 
-    if (--timer < -1) {
+    if (timer < 0) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
       document.getElementById('timer-sound').play();
