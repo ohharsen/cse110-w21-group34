@@ -37,8 +37,11 @@ jobs:
       - name: Run linters
         run: npm run lint
      
-      - name: Run Tests
+      - name: Run Jest Tests
         run: npm run test
+        
+      - name: Run Cypress Tests
+        run: npm run cypress
       
       - name: Create Coverage
         run: node ./node_modules/jest/bin/jest.js --coverage

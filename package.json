@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./source/scripts --ext .js --ignore-path .eslintignore",
     "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
-    "test": "jest"
+    "test": "jest",
+    "build": "browserify ./source/scripts/stats.js -o ./source/bundle.js"
   },
   "repository": {
     "type": "git",
