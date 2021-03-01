@@ -83,6 +83,7 @@ function beginCountdown (duration, textDisplay) {
       } else {
         currentTime(stdBreak, textDisplay);
       }
+      localStorage.setItem(TOTAL_POMO_ID, String(Number(localStorage.getItem(TOTAL_POMO_ID)) + 1));
       taskPomoCount++;
       document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
     }
@@ -157,9 +158,8 @@ function resetTimer () {
    */
 function updateDistractions (todayDistractions, todayStorage) {
   // Total distractions
-  let distractions = Number(localStorage.getItem(DISTRACTION));
-  distractions++;
-  localStorage.setItem(DISTRACTION, String(distractions));
+  const distractions = Number(localStorage.getItem(TOTAL_DISTRACTION)) + 1;
+  localStorage.setItem(TOTAL_DISTRACTION, String(distractions));
 
   // Today's distractions
   const today = formatDate(new Date());
