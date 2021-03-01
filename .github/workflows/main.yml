@@ -39,7 +39,7 @@ jobs:
      
       - name: Run Jest Tests
         run: npm run test
-        
+
       - name: Run Cypress Tests
         run: npm run cypress
       
