@@ -6,12 +6,14 @@ const START_STOP_ID = 'start-stop-button';
 const RESET_BTN_TXT = '✖ Reset';
 const BEGIN_BTN_TXT = '▶ Begin';
 const TASK_BTN_ID = 'task';
+const BEST_DAILY_POMO_ID = 'best-daily-pomo-count';
+const TOTAL_POMO_ID = 'total-pomo-count';
 const TOTAL_TASK_ID = 'total-task-count';
 const TODAY_TASK_ID = 'today-task-count';
 const WEEK_TASK_ID = 'week-task-count';
 const TODAY_DATE_ID = 'today';
 const WEEK_START_ID = 'week-start';
-const DISTRACTION = 'total-distraction';
+const TOTAL_DISTRACTION = 'total-distraction';
 const TODAY_DISTRACTION = 'today-distraction';
 const LENGTH_OF_WEEK = 7;
 const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
@@ -42,27 +44,29 @@ global.START_STOP_ID = START_STOP_ID;
 global.RESET_BTN_TXT = RESET_BTN_TXT;
 global.BEGIN_BTN_TXT = BEGIN_BTN_TXT;
 global.TASK_BTN_ID = TASK_BTN_ID;
+global.BEST_DAILY_POMO_ID = BEST_DAILY_POMO_ID;
+global.TOTAL_POMO_ID = TOTAL_POMO_ID;
 global.TOTAL_TASK_ID = TOTAL_TASK_ID;
 global.TODAY_TASK_ID = TODAY_TASK_ID;
 global.WEEK_TASK_ID = WEEK_TASK_ID;
 global.TODAY_DATE_ID = TODAY_DATE_ID;
 global.WEEK_START_ID = WEEK_START_ID;
-global.DISTRACTION = DISTRACTION;
+global.TOTAL_DISTRACTION = TOTAL_DISTRACTION;
 global.TODAY_DISTRACTION = TODAY_DISTRACTION;
 global.LENGTH_OF_WEEK = LENGTH_OF_WEEK;
 global.stdWork = stdWork;
 global.stdBreak = stdBreak;
 global.stdExtBreak = stdExtBreak;
 global.onBreak = onBreak;
-global.pomoCount = pomoCount; 
+global.pomoCount = pomoCount;
 global.taskPomoCount = taskPomoCount;
-global.timerOptions = timerOptions; 
+global.timerOptions = timerOptions;
 global.taskButton = taskButton;
-global.localStorage = localStorage; 
+global.localStorage = localStorage;
+
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
-const { formatDate} = require('./taskButton');
-/* global formatDate */
+const { formatDate } = require('./taskButton');
 const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 
@@ -147,6 +151,7 @@ function beginCountdown (duration, textDisplay) {
       } else {
         currentTime(stdBreak, textDisplay);
       }
+      localStorage.setItem(TOTAL_POMO_ID, String(Number(localStorage.getItem(TOTAL_POMO_ID)) + 1));
       taskPomoCount++;
       document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
     }
@@ -221,9 +226,8 @@ function resetTimer () {
    */
 function updateDistractions (todayDistractions, todayStorage) {
   // Total distractions
-  let distractions = Number(localStorage.getItem(DISTRACTION));
-  distractions++;
-  localStorage.setItem(DISTRACTION, String(distractions));
+  const distractions = Number(localStorage.getItem(TOTAL_DISTRACTION)) + 1;
+  localStorage.setItem(TOTAL_DISTRACTION, String(distractions));
 
   // Today's distractions
   const today = formatDate(new Date());
@@ -270,22 +274,27 @@ function timeFraction (timer, pomoState) {
 }
 
 module.exports = {
-    beginBreak,
-    beginCountdown,
-    togglePomoBreak,
-    startTimer,
-    resetTimer,
-    updateDistractions,
-    currentTime,
-    timeFraction
-}
+  beginBreak,
+  beginCountdown,
+  togglePomoBreak,
+  startTimer,
+  resetTimer,
+  updateDistractions,
+  currentTime,
+  timeFraction
+};
 
 },{"./taskButton":4}],3:[function(require,module,exports){
 require('./startResetButton');
+
 const timerBlock = document.getElementsByClassName('center-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
+
+const totalPomoElem = document.getElementById('total-pomodoros');
+const totalTasksElem = document.getElementById('total-tasks');
+const totalDistractElem = document.getElementById('total-distractions');
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
@@ -306,6 +315,9 @@ function openStatsPane () {
     total pomos
     way to store daily weekly
   */
+
+  displayTotalStats();
+
   const totalTC = localStorage.getItem('total-task-count');
   const todayTC = localStorage.getItem('today-task-count');
   const weekTC = localStorage.getItem('week-task-count');
@@ -331,6 +343,30 @@ function closeStatsPane () {
   timerBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
 }
+
+/**
+ * Displays the user's current all-time statistics on the statistics pane.
+ * Total statistics include:
+ *    - Total pomodoros completed
+ *    - Total avg. distractions per pomodoro
+ *    - Total tasks completed
+ *    - Most pomodoros completed in a single day
+ */
+function displayTotalStats () {
+  const totalPomoCount = localStorage.getItem(TOTAL_POMO_ID) || '0';
+  const totalDistractCount = localStorage.getItem(TOTAL_DISTRACTION) || '0';
+  const totalTaskCount = localStorage.getItem(TOTAL_TASK_ID) || '0';
+  // TODO: Add most pomodoros completed in a single day
+
+  totalPomoElem.textContent = totalPomoCount;
+  totalDistractElem.textContent = (Number(totalDistractCount) / (Number(totalPomoCount) || 1)).toFixed(2);
+  totalTasksElem.textContent = totalTaskCount;
+  // TODO: Display most pomodoros completed in a single day
+}
+
+module.exports = {
+  displayTotalStats: displayTotalStats
+};
 
 },{"./startResetButton":2}],4:[function(require,module,exports){
 
@@ -432,10 +468,10 @@ function updateLocalStorage (dayCounter, weekCounter) {
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
 
 module.exports = {
-    formatDate,
-    taskComplete,
-    isSameWeek,
-    updateLocalStorage
+  formatDate,
+  taskComplete,
+  isSameWeek,
+  updateLocalStorage
 };
 
 },{"./index":1}]},{},[3]);
