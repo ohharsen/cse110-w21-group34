@@ -1,4 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+    --black: #000000;
+    --black-a1: rgba(0, 0, 0, 0.7);
+    --black-a2: rgba(0, 0, 0, 0.5);
+    --black-a3: rgba(0, 0, 0, 0.2);
+    --white: #FFFFFF;
+    --white-a1: rgba(255, 255, 255, 0.7);
+    --white-a2: rgba(255, 255, 255, 0.5);
+    --white-a3: rgba(255, 255, 255, 0.2);
+    --red: #DB2E2E;
+    --pink-grad: linear-gradient(0deg, #FFD1D1 0%, #EEEEEE 100%);
+    --pink-dark-grad: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    --orange: #E95D31;
+    --orangered-grad: linear-gradient(180deg, rgba(255, 0, 0, 0.78) 0%, #E8582B 100%);
+    --orange-light-grad: linear-gradient(180deg, rgba(255, 0, 0, 0.21) 0%, #E8582B 100%), conic-gradient(from 1.14deg at 42.54% 1226.03%, #BDD915 -22.72deg, rgba(25, 21, 217, 0.887755) 160.22deg, rgba(189, 217, 21, 0) 163.43deg, #BDD915 337.28deg, rgba(25, 21, 217, 0.887755) 520.22deg);
+    --orange-dark-grad: linear-gradient(180deg, #E95D31 0%, rgba(255, 255, 255, 0) 100%);
+    --orange-dark-grad-1: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%);
+    --green: #34DBB3;
+    --green-grad: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
+    --green-grad-1: linear-gradient(180deg,  rgba(255, 255, 255, 0) 0%, #0D927A 100%);
+}
 
 html{
     background: url('../images/background.png') no-repeat center center fixed; 
@@ -36,11 +58,19 @@ main{
     justify-content: space-evenly;
 }
 
+.center-container.slide-open {
+    animation: slide-center-out 0.5s ease-out forwards;
+}
+.center-container.slide-close {
+    animation: slide-center-in 0.5s ease-out forwards;
+}
+
 .timer-container{
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    background: var(--white-a1);
     height: 80%;
     width: 100%;
     display: flex;
+    border-radius: 21px;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
@@ -48,7 +78,6 @@ main{
 
 .timer{
     width: 75%;
-    background: white;
     height: 70%;
 }
 
@@ -75,10 +104,9 @@ main{
   
   #countdownText {
     /** Organization of text and positioning. **/
-    font-family: "Roboto";
-    font-size: 45px;
-    position: relative;
-    top: -65%;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
 
     opacity: 1.0;
     transition: 1.0s;
@@ -102,23 +130,23 @@ main{
 }
 
 .pomodoro-button{
-    background: linear-gradient(180deg, #E95D31 0%, rgba(255, 255, 255, 0) 100%), #DB2E2E;
+    background: var(--orange-dark-grad), var(--red);
 }
 
 .pomodoro-button:active{
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%), #DB2E2E;
+    background: var(--orange-dark-grad-1), var(--red);
 }
 
 .break-button{
-    background: linear-gradient(180deg,  rgba(255, 255, 255, 0) 0%, #0D927A 100%), #34DBB3;
+    background: var(--green-grad), var(--green);
 }
 
 .break-button:active{
-    background: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%), #34DBB3; 
+    background: var(--green-grad-1), var(--green); 
 }
 
 .task-button{
-    background: linear-gradient(180deg, rgba(255, 0, 0, 0.21) 0%, #E8582B 100%), conic-gradient(from 1.14deg at 42.54% 1226.03%, #BDD915 -22.72deg, rgba(25, 21, 217, 0.887755) 160.22deg, rgba(189, 217, 21, 0) 163.43deg, #BDD915 337.28deg, rgba(25, 21, 217, 0.887755) 520.22deg);
+    background: var(--orange-light-grad);
     border-radius: 5px;
     height: 50px;
     font-family: Roboto;
@@ -127,7 +155,7 @@ main{
 }
 
 .task-button:active{
-    background: linear-gradient(180deg, rgba(255, 0, 0, 0.78) 0%, #E8582B 100%), #FFFFFF;
+    background: var(--orangered-grad), white;
     outline: 0;
 }
 
@@ -143,6 +171,13 @@ main{
     top: 0;
     right: -418px;
     font-family: Roboto;
+}
+
+#stats-container.slide-open {
+    animation: slide-right-out 0.5s ease-out forwards;
+}
+#stats-container.slide-close {
+    animation: slide-right-in 0.5s ease-out forwards;
 }
 
 #stats-container h1 {
@@ -162,7 +197,7 @@ main{
     height: 100%;
     border-radius: 8px;
     padding: 24px 48px 24px 48px;
-    background: linear-gradient(0deg, #FFD1D1 0%, #EEEEEE 100%);
+    background: var(--pink-grad);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -180,8 +215,8 @@ main{
     width: 100%;
     padding: 12px 12px 12px 12px;
     border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 5px 4px 4px 2px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    box-shadow: 5px 4px 4px 2px var(--black-a3);
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -213,13 +248,14 @@ main{
     right: 20px;
     width: 100px;
     height: 100px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    background: var(--white-a1);
     border-radius: 15px;
     outline: 0;
 }
 
 .stats-button:active {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 99.99%, rgba(255, 209, 209, 0.5) 100%, rgba(255, 209, 209, 0.5) 100%);
+    opacity: 90%;
+    /* background: var(--white-a2); */
 }
 
 #stats-close-button {
@@ -228,7 +264,7 @@ main{
     right: 12px;
     width: 30px;
     height: 30px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    background: var(--white-a1);
     border-radius: 16px;
     outline: 0;
     display: flex;
@@ -271,6 +307,23 @@ main{
     }
 }
 
+@keyframes slide-right-out {
+    to { right: 0 }
+}
+
+@keyframes slide-right-in {
+    from { right: 0 }
+}
+
+@keyframes slide-center-out {
+    from { transform: translate(0, 0) }
+    to { transform: translate(-15vw, 0) }
+}
+
+@keyframes slide-center-in {
+    from { transform: translate(-15vw, 0) }
+    to { transform: translate(0, 0) }
+}
 .counters-container {
     font-family: "Roboto";
     font-size: 18px;
