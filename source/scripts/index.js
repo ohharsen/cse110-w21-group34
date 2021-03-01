@@ -21,10 +21,6 @@ const onBreak = false;
 const pomoCount = 0; // # of pomos covered so far (orig. 0)
 const taskPomoCount = 0; // # of pomos for current task (orig. 0)
 
-// Helper variable for timing
-const responsiveness = 100;
-
-
 /**
  * Enumerated timer states
  * @enum {string}
@@ -61,5 +57,3 @@ global.taskPomoCount = taskPomoCount;
 global.timerOptions = timerOptions;
 global.taskButton = taskButton;
 global.localStorage = localStorage;
-
-global.timerRespond = responsiveness;
