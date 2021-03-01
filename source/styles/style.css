@@ -18,8 +18,8 @@
     --orange-dark-grad: linear-gradient(180deg, #E95D31 0%, rgba(255, 255, 255, 0) 100%);
     --orange-dark-grad-1: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%);
     --green: #34DBB3;
-    --green-grad: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
-    --green-grad-1: linear-gradient(180deg,  rgba(255, 255, 255, 0) 0%, #0D927A 100%);
+    --green-grad: linear-gradient(180deg,  rgba(255, 255, 255, 0) 0%, #0D927A 100%);
+    --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 html{
@@ -324,6 +324,7 @@ main{
     from { transform: translate(-15vw, 0) }
     to { transform: translate(0, 0) }
 }
+
 .counters-container {
     font-family: "Roboto";
     font-size: 18px;
@@ -334,5 +335,12 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    top: 5%;
+    top: 6.5%;
+}
+
+.counters-container.slide-open {
+    animation: slide-center-out 0.5s ease-out forwards;
+}
+.counters-container.slide-close {
+    animation: slide-center-in 0.5s ease-out forwards;
 }
