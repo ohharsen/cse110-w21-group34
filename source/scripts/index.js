@@ -8,15 +8,17 @@ const TODAY_TASK_ID = 'today-task-count';
 const WEEK_TASK_ID = 'week-task-count';
 const TODAY_DATE_ID = 'today';
 const WEEK_START_ID = 'week-start';
+const DISTRACTION = 'total-distraction';
+const TODAY_DISTRACTION = 'today-distraction';
 const LENGTH_OF_WEEK = 7;
+const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
+const stdBreak = 300; // # of seconds in a short break (orig. 300)
+const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 
 // Variables
 let onBreak = false;
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let taskPomoCount = 0; // # of pomos for current task (orig. 0)
-const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
-const stdBreak = 300; // # of seconds in a short break (orig. 300)
-const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 
 /**
  * Enumerated timer states
@@ -177,6 +179,7 @@ function beginBreak (duration, textDisplay) {
 
     if (--timer < -1) {
       clearInterval(interval);
+      document.getElementById('timer-sound').play();
       startStopButton.innerHTML = BEGIN_BTN_TXT;
       pomoState = timerOptions.STOPPED;
       onBreak = false;
@@ -212,6 +215,7 @@ function beginCountdown (duration, textDisplay) {
     if (--timer < -1) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
+      document.getElementById('timer-sound').play();
       onBreak = true;
       startStopButton.innerHTML = BEGIN_BTN_TXT;
       pomoState = timerOptions.STOPPED;
@@ -240,6 +244,11 @@ function togglePomoBreak (onBreak) {
  * Starts timer upon button click
  */
 function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
+  const timerAudio = document.getElementById('timer-sound');
+  if (!timerAudio.paused) {
+    timerAudio.pause();
+    timerAudio.currentTime = 0;
+  }
   if (startStopButton) {
     startStopButton.innerHTML = RESET_BTN_TXT;
 
@@ -262,20 +271,49 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
         beginBreak(stdBreak, display);
       }
     }
-    //
   }
   return [pomoState, localPomoCount];
 }
 
 /**
  * Resets timer upon button click
+ * @return An array containing the stopped timer state and begin button text
  */
 function resetTimer () {
   pomoState = timerOptions.STOPPED;
   if (startStopButton) {
     startStopButton.innerHTML = BEGIN_BTN_TXT;
   }
-  return [pomoState, pomoCount, BEGIN_BTN_TXT];
+  const todayDistractions = Number(localStorage.getItem(TODAY_DISTRACTION));
+  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+  updateDistractions(todayDistractions, todayStorage);
+  return [pomoState, BEGIN_BTN_TXT];
+}
+
+/**
+ * Updates distractions in local storage
+ * @param {Number} todayDistractions The number of distractions today
+ * @param {String} todayStorage Today's date currently in localStorage
+ * @return The updated number of distractions
+ */
+function updateDistractions (todayDistractions, todayStorage) {
+  // Total distractions
+  let distractions = Number(localStorage.getItem(DISTRACTION));
+  distractions++;
+  localStorage.setItem(DISTRACTION, String(distractions));
+
+  // Today's distractions
+  const today = formatDate(new Date());
+  if (today === todayStorage) {
+    todayDistractions++;
+  } else {
+    // Update
+    todayDistractions = 1;
+    localStorage.setItem(TODAY_DATE_ID, today);
+  }
+  localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
+
+  return todayDistractions;
 }
 
 /**
@@ -314,31 +352,6 @@ const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
 
-const timerSlideAnim = {
-  keys: [
-    { transform: 'translate(0, 0)' },
-    { transform: 'translate(-15vw, 0)' }
-  ],
-  timing: {
-    duration: 500,
-    easing: 'ease-out',
-    fill: 'both'
-  }
-};
-
-const statsSlideAnim = {
-  keys: [
-    { right: '0' }
-  ],
-  timing: {
-    duration: 500,
-    easing: 'ease-out',
-    fill: 'forwards'
-  }
-};
-
-const statsSlide = statsPane.animate(statsSlideAnim.keys, statsSlideAnim.timing);
-statsSlide.cancel();
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
 
@@ -347,9 +360,10 @@ statsCloseButton.onclick = closeStatsPane;
  * Opens the statistics pane.
  */
 function openStatsPane () {
-  timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing);
-  statsSlide.playbackRate = 1;
-  statsSlide.play();
+  timerBlock.classList.remove('slide-close');
+  statsPane.classList.remove('slide-close');
+  timerBlock.classList.add('slide-open');
+  statsPane.classList.add('slide-open');
 }
 
 /* istanbul ignore next */
@@ -357,15 +371,17 @@ function openStatsPane () {
  * Closes the statistics pane.
  */
 function closeStatsPane () {
-  timerBlock.animate(timerSlideAnim.keys, timerSlideAnim.timing).reverse();
-  statsSlide.playbackRate = -1;
-  statsSlide.play();
+  timerBlock.classList.remove('slide-open');
+  statsPane.classList.remove('slide-open');
+  timerBlock.classList.add('slide-close');
+  statsPane.classList.add('slide-close');
 }
 
 module.exports = {
   togglePomoBreak,
   startTimer,
   resetTimer,
+  updateDistractions,
   beginBreak,
   currentTime,
   timerOptions,
