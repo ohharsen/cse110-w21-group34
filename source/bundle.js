@@ -54,15 +54,15 @@ global.stdWork = stdWork;
 global.stdBreak = stdBreak;
 global.stdExtBreak = stdExtBreak;
 global.onBreak = onBreak;
-global.pomoCount = pomoCount; 
+global.pomoCount = pomoCount;
 global.taskPomoCount = taskPomoCount;
-global.timerOptions = timerOptions; 
+global.timerOptions = timerOptions;
 global.taskButton = taskButton;
-global.localStorage = localStorage; 
+global.localStorage = localStorage;
+
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
-const { formatDate} = require('./taskButton');
-/* global formatDate */
+const { formatDate } = require('./taskButton');
 const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 
@@ -93,6 +93,7 @@ function beginBreak (duration, textDisplay) {
     if (pomoState === timerOptions.STOPPED) {
       clearInterval(interval);
       pomoCount = 0;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
       onBreak = togglePomoBreak(onBreak);
       currentTime(stdWork, textDisplay);
       document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
@@ -130,6 +131,7 @@ function beginCountdown (duration, textDisplay) {
     if (pomoState === timerOptions.STOPPED) {
       clearInterval(interval);
       pomoCount = 0;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
       onBreak = false;
       currentTime(stdWork, textDisplay);
       document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
@@ -270,19 +272,20 @@ function timeFraction (timer, pomoState) {
 }
 
 module.exports = {
-    beginBreak,
-    beginCountdown,
-    togglePomoBreak,
-    startTimer,
-    resetTimer,
-    updateDistractions,
-    currentTime,
-    timeFraction
-}
+  beginBreak,
+  beginCountdown,
+  togglePomoBreak,
+  startTimer,
+  resetTimer,
+  updateDistractions,
+  currentTime,
+  timeFraction
+};
 
 },{"./taskButton":4}],3:[function(require,module,exports){
 require('./startResetButton');
 const timerBlock = document.getElementsByClassName('center-container')[0];
+const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
@@ -316,8 +319,10 @@ function openStatsPane () {
   console.log(weekstart);
 
   timerBlock.classList.remove('slide-close');
+  counterBlock.classList.remove('slide-close');
   statsPane.classList.remove('slide-close');
   timerBlock.classList.add('slide-open');
+  counterBlock.classList.add('slide-open');
   statsPane.classList.add('slide-open');
 }
 
@@ -327,8 +332,10 @@ function openStatsPane () {
  */
 function closeStatsPane () {
   timerBlock.classList.remove('slide-open');
+  counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
   timerBlock.classList.add('slide-close');
+  counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
 }
 
@@ -432,10 +439,10 @@ function updateLocalStorage (dayCounter, weekCounter) {
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
 
 module.exports = {
-    formatDate,
-    taskComplete,
-    isSameWeek,
-    updateLocalStorage
+  formatDate,
+  taskComplete,
+  isSameWeek,
+  updateLocalStorage
 };
 
 },{"./index":1}]},{},[3]);
