@@ -85,21 +85,33 @@ function beginCountdown (duration, textDisplay) {
       } else {
         currentTime(stdBreak, textDisplay);
       }
+      // current pomos cycles completed today 
       const todayPomos = Number(localStorage.getItem(TODAY_POMO_ID));
+      // Today's date 
       const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+      // incrementing daily pomo cycle count 
       updatePomoCount(todayPomos, todayStorage);
       taskPomoCount++;
       document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
     }
   }, 1000);
 }
-
+/* istanbul ignore next */
+/**
+   * Update's pomo count for today in local storage
+   * @param {*} todayPomos The number of daily current pomos completed
+   * @param {*} todayStorage the local storage date for the current day
+   * @return number of pomos completed today
+   */
 function updatePomoCount(todayPomos, todayStorage){
+  //update pomo cycle day count 
   const today = formatDate(new Date());
+  // case if we are on same day 
   if (today === todayStorage) {
     todayPomos++;
-  } else {
-    // Update
+  } 
+  /// case if we are on different day 
+  else {
     todayPomos = 1;
     localStorage.setItem(TODAY_DATE_ID, today);
   }
@@ -233,5 +245,6 @@ module.exports = {
   resetTimer,
   updateDistractions,
   currentTime,
-  timeFraction
+  timeFraction,
+  updatePomoCount
 };
