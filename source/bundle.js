@@ -54,15 +54,15 @@ global.stdWork = stdWork;
 global.stdBreak = stdBreak;
 global.stdExtBreak = stdExtBreak;
 global.onBreak = onBreak;
-global.pomoCount = pomoCount; 
+global.pomoCount = pomoCount;
 global.taskPomoCount = taskPomoCount;
-global.timerOptions = timerOptions; 
+global.timerOptions = timerOptions;
 global.taskButton = taskButton;
-global.localStorage = localStorage; 
+global.localStorage = localStorage;
+
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
-const { formatDate} = require('./taskButton');
-/* global formatDate */
+const { formatDate } = require('./taskButton');
 const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 
@@ -270,15 +270,15 @@ function timeFraction (timer, pomoState) {
 }
 
 module.exports = {
-    beginBreak,
-    beginCountdown,
-    togglePomoBreak,
-    startTimer,
-    resetTimer,
-    updateDistractions,
-    currentTime,
-    timeFraction
-}
+  beginBreak,
+  beginCountdown,
+  togglePomoBreak,
+  startTimer,
+  resetTimer,
+  updateDistractions,
+  currentTime,
+  timeFraction
+};
 
 },{"./taskButton":4}],3:[function(require,module,exports){
 require('./startResetButton');
@@ -432,10 +432,10 @@ function updateLocalStorage (dayCounter, weekCounter) {
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
 
 module.exports = {
-    formatDate,
-    taskComplete,
-    isSameWeek,
-    updateLocalStorage
+  formatDate,
+  taskComplete,
+  isSameWeek,
+  updateLocalStorage
 };
 
 },{"./index":1}]},{},[3]);
