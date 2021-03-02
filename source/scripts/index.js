@@ -17,7 +17,6 @@ const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
 const stdBreak = 300; // # of seconds in a short break (orig. 300)
 const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 
-
 // Variables
 const onBreak = false;
 const pomoCount = 0; // # of pomos covered so far (orig. 0)
@@ -60,4 +59,3 @@ global.taskPomoCount = taskPomoCount;
 global.timerOptions = timerOptions;
 global.taskButton = taskButton;
 global.localStorage = localStorage;
-

@@ -26,7 +26,6 @@ function openStatsPane () {
   */
   displayTodayStats();
 
-
   timerBlock.classList.remove('slide-close');
   counterBlock.classList.remove('slide-close');
   statsPane.classList.remove('slide-close');
@@ -57,17 +56,17 @@ function closeStatsPane () {
  *    - Most pomodoros completed in a single day
  */
 function displayTodayStats () {
-  // setting variables for html elements to modify 
+  // setting variables for html elements to modify
   const todayPomoElem = document.getElementById('today-pomodoros');
   const todayTasksElem = document.getElementById('today-tasks');
   const todayDistractElem = document.getElementById('today-distractions');
 
-  // extracting daily stats data to be used for calculation 
+  // extracting daily stats data to be used for calculation
   const todayPomoCount = localStorage.getItem('today-pomo-count') || '0';
   const todayDistractCount = localStorage.getItem('today-distraction') || '0';
   const todayTaskCount = localStorage.getItem('today-task-count') || '0';
- 
-  // calculating daily stats with extracted data and displaying to UI 
+
+  // calculating daily stats with extracted data and displaying to UI
   todayPomoElem.textContent = todayPomoCount;
   todayDistractElem.textContent = todayDistractCount;
   todayTasksElem.textContent = todayTaskCount;
