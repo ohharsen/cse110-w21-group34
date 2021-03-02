@@ -151,6 +151,7 @@ function resetTimer () {
   return [pomoState, BEGIN_BTN_TXT];
 }
 
+ 
 /**
    * Updates distractions in local storage
    * @param {Number} todayDistractions The number of distractions today
