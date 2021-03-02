@@ -309,14 +309,8 @@ function openStatsPane () {
     total pomos
     way to store daily weekly
   */
-  const totalTC = localStorage.getItem('total-task-count');
-  const todayTC = localStorage.getItem('today-task-count');
-  const weekTC = localStorage.getItem('week-task-count');
-  const weekstart = localStorage.getItem('week-start');
-  console.log(totalTC);
-  console.log(todayTC);
-  console.log(weekTC);
-  console.log(weekstart);
+  displayTodayStats();
+
 
   timerBlock.classList.remove('slide-close');
   counterBlock.classList.remove('slide-close');
@@ -339,6 +333,29 @@ function closeStatsPane () {
   statsPane.classList.add('slide-close');
 }
 
+/**
+ * Displays the user's statistics for the day on the statistics pane.
+ * Today statistics include:
+ *    - Today's pomodoros completed
+ *    - Today's avg. distractions per pomodoro
+ *    - Today's tasks completed
+ *    - Most pomodoros completed in a single day
+ */
+function displayTodayStats () {
+  const todayPomoElem = document.getElementById('today-pomodoros');
+  const todayTasksElem = document.getElementById('today-tasks');
+  const todayDistractElem = document.getElementById('today-distractions');
+
+  const todayPomoCount = localStorage.getItem('today-pomodoros') || '0';
+  const todayDistractCount = localStorage.getItem('today-distraction') || '0';
+  const todayTaskCount = localStorage.getItem('today-task-count') || '0';
+  // TODO: Add pomodoros completed in a single day
+
+  todayPomoElem.textContent = todayPomoCount;
+  todayDistractElem.textContent = todayDistractCount;
+  todayTasksElem.textContent = todayTaskCount;
+  // TODO: Display pomodoros completed in a single day
+}
 },{"./startResetButton":2}],4:[function(require,module,exports){
 
 require('./index');
