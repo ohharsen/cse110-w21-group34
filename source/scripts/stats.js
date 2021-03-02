@@ -60,12 +60,14 @@ function displayTodayStats () {
   const todayPomoElem = document.getElementById('today-pomodoros');
   const todayTasksElem = document.getElementById('today-tasks');
   const todayDistractElem = document.getElementById('today-distractions');
-
-  const todayPomoCount = localStorage.getItem('today-pomodoros') || '0';
+  // extracting stats data to be used for calculation 
+  const todayPomoCount = localStorage.getItem('today-pomo-count') || '0';
   const todayDistractCount = localStorage.getItem('today-distraction') || '0';
   const todayTaskCount = localStorage.getItem('today-task-count') || '0';
   // TODO: Add pomodoros completed in a single day
 
+
+  // calculating stats with extracted data and displaying to UI 
   todayPomoElem.textContent = todayPomoCount;
   todayDistractElem.textContent = todayDistractCount;
   todayTasksElem.textContent = todayTaskCount;

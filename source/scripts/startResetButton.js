@@ -85,10 +85,27 @@ function beginCountdown (duration, textDisplay) {
       } else {
         currentTime(stdBreak, textDisplay);
       }
+      const todayPomos = Number(localStorage.getItem(TODAY_POMO_ID));
+      const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+      updatePomoCount(todayPomos, todayStorage);
       taskPomoCount++;
       document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
     }
   }, 1000);
+}
+
+function updatePomoCount(todayPomos, todayStorage){
+  const today = formatDate(new Date());
+  if (today === todayStorage) {
+    todayPomos++;
+  } else {
+    // Update
+    todayPomos = 1;
+    localStorage.setItem(TODAY_DATE_ID, today);
+  }
+  localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+  
+  return todayPomos;
 }
 
 /**

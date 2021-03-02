@@ -9,12 +9,14 @@ const TODAY_TASK_ID = 'today-task-count';
 const WEEK_TASK_ID = 'week-task-count';
 const TODAY_DATE_ID = 'today';
 const WEEK_START_ID = 'week-start';
+const TODAY_POMO_ID = 'today-pomo-count';
 const DISTRACTION = 'total-distraction';
 const TODAY_DISTRACTION = 'today-distraction';
 const LENGTH_OF_WEEK = 7;
 const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
 const stdBreak = 300; // # of seconds in a short break (orig. 300)
 const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
+
 
 // Variables
 const onBreak = false;
@@ -45,6 +47,7 @@ global.TODAY_TASK_ID = TODAY_TASK_ID;
 global.WEEK_TASK_ID = WEEK_TASK_ID;
 global.TODAY_DATE_ID = TODAY_DATE_ID;
 global.WEEK_START_ID = WEEK_START_ID;
+global.TODAY_POMO_ID = TODAY_POMO_ID;
 global.DISTRACTION = DISTRACTION;
 global.TODAY_DISTRACTION = TODAY_DISTRACTION;
 global.LENGTH_OF_WEEK = LENGTH_OF_WEEK;
@@ -57,3 +60,4 @@ global.taskPomoCount = taskPomoCount;
 global.timerOptions = timerOptions;
 global.taskButton = taskButton;
 global.localStorage = localStorage;
+

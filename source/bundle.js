@@ -11,12 +11,14 @@ const TODAY_TASK_ID = 'today-task-count';
 const WEEK_TASK_ID = 'week-task-count';
 const TODAY_DATE_ID = 'today';
 const WEEK_START_ID = 'week-start';
+const TODAY_POMO_ID = 'today-pomo-count';
 const DISTRACTION = 'total-distraction';
 const TODAY_DISTRACTION = 'today-distraction';
 const LENGTH_OF_WEEK = 7;
 const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
 const stdBreak = 300; // # of seconds in a short break (orig. 300)
 const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
+
 
 // Variables
 const onBreak = false;
@@ -47,6 +49,7 @@ global.TODAY_TASK_ID = TODAY_TASK_ID;
 global.WEEK_TASK_ID = WEEK_TASK_ID;
 global.TODAY_DATE_ID = TODAY_DATE_ID;
 global.WEEK_START_ID = WEEK_START_ID;
+global.TODAY_POMO_ID = TODAY_POMO_ID;
 global.DISTRACTION = DISTRACTION;
 global.TODAY_DISTRACTION = TODAY_DISTRACTION;
 global.LENGTH_OF_WEEK = LENGTH_OF_WEEK;
@@ -59,6 +62,7 @@ global.taskPomoCount = taskPomoCount;
 global.timerOptions = timerOptions;
 global.taskButton = taskButton;
 global.localStorage = localStorage;
+
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
@@ -149,10 +153,27 @@ function beginCountdown (duration, textDisplay) {
       } else {
         currentTime(stdBreak, textDisplay);
       }
+      const todayPomos = Number(localStorage.getItem(TODAY_POMO_ID));
+      const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+      updatePomoCount(todayPomos, todayStorage);
       taskPomoCount++;
       document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
     }
   }, 1000);
+}
+
+function updatePomoCount(todayPomos, todayStorage){
+  const today = formatDate(new Date());
+  if (today === todayStorage) {
+    todayPomos++;
+  } else {
+    // Update
+    todayPomos = 1;
+    localStorage.setItem(TODAY_DATE_ID, today);
+  }
+  localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+  
+  return todayPomos;
 }
 
 /**
@@ -215,6 +236,7 @@ function resetTimer () {
   return [pomoState, BEGIN_BTN_TXT];
 }
 
+ 
 /**
    * Updates distractions in local storage
    * @param {Number} todayDistractions The number of distractions today
@@ -345,12 +367,14 @@ function displayTodayStats () {
   const todayPomoElem = document.getElementById('today-pomodoros');
   const todayTasksElem = document.getElementById('today-tasks');
   const todayDistractElem = document.getElementById('today-distractions');
-
-  const todayPomoCount = localStorage.getItem('today-pomodoros') || '0';
+  // extracting stats data to be used for calculation 
+  const todayPomoCount = localStorage.getItem('today-pomo-count') || '0';
   const todayDistractCount = localStorage.getItem('today-distraction') || '0';
   const todayTaskCount = localStorage.getItem('today-task-count') || '0';
   // TODO: Add pomodoros completed in a single day
 
+
+  // calculating stats with extracted data and displaying to UI 
   todayPomoElem.textContent = todayPomoCount;
   todayDistractElem.textContent = todayDistractCount;
   todayTasksElem.textContent = todayTaskCount;
