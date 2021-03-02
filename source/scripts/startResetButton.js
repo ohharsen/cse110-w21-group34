@@ -29,6 +29,7 @@ function beginBreak (duration, textDisplay) {
     if (pomoState === timerOptions.STOPPED) {
       clearInterval(interval);
       pomoCount = 0;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
       onBreak = togglePomoBreak(onBreak);
       currentTime(stdWork, textDisplay);
       document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
@@ -66,6 +67,7 @@ function beginCountdown (duration, textDisplay) {
     if (pomoState === timerOptions.STOPPED) {
       clearInterval(interval);
       pomoCount = 0;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
       onBreak = false;
       currentTime(stdWork, textDisplay);
       document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');

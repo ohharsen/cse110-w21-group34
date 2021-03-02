@@ -93,6 +93,7 @@ function beginBreak (duration, textDisplay) {
     if (pomoState === timerOptions.STOPPED) {
       clearInterval(interval);
       pomoCount = 0;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
       onBreak = togglePomoBreak(onBreak);
       currentTime(stdWork, textDisplay);
       document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
@@ -130,6 +131,7 @@ function beginCountdown (duration, textDisplay) {
     if (pomoState === timerOptions.STOPPED) {
       clearInterval(interval);
       pomoCount = 0;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
       onBreak = false;
       currentTime(stdWork, textDisplay);
       document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
@@ -283,6 +285,7 @@ module.exports = {
 },{"./taskButton":4}],3:[function(require,module,exports){
 require('./startResetButton');
 const timerBlock = document.getElementsByClassName('center-container')[0];
+const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
@@ -316,8 +319,10 @@ function openStatsPane () {
   console.log(weekstart);
 
   timerBlock.classList.remove('slide-close');
+  counterBlock.classList.remove('slide-close');
   statsPane.classList.remove('slide-close');
   timerBlock.classList.add('slide-open');
+  counterBlock.classList.add('slide-open');
   statsPane.classList.add('slide-open');
 }
 
@@ -327,8 +332,10 @@ function openStatsPane () {
  */
 function closeStatsPane () {
   timerBlock.classList.remove('slide-open');
+  counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
   timerBlock.classList.add('slide-close');
+  counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
 }
 
