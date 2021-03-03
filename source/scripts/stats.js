@@ -1,4 +1,3 @@
-require('./startResetButton');
 const timerBlock = document.getElementsByClassName('center-container')[0];
 const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
@@ -52,4 +51,9 @@ function closeStatsPane () {
   timerBlock.classList.add('slide-close');
   counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
+}
+
+module.exports = {
+  openStatsPane,
+  closeStatsPane
 }

@@ -3,15 +3,21 @@ const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 let interval;
 
-if (startStopButton) {
-  startStopButton.classList.toggle('break-button');
-  startStopButton.addEventListener('click', function () {
+
+/**
+ * The callback for events that trigger the start or stop of timer
+ */
+function startResetController(){
     if (pomoState === timerOptions.STOPPED) {
       startTimer();
     } else {
       resetTimer();
     }
-  });
+}
+
+if (startStopButton) {
+  startStopButton.classList.toggle('break-button');
+  startStopButton.addEventListener('click', startResetController);
 }
 
 /* istanbul ignore next */
@@ -201,5 +207,6 @@ module.exports = {
   resetTimer,
   updateDistractions,
   currentTime,
-  timeFraction
+  timeFraction,
+  startResetController
 };

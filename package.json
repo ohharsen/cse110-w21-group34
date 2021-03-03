@@ -7,7 +7,7 @@
     "lint": "./node_modules/.bin/eslint ./source/scripts --ext .js --ignore-path .eslintignore",
     "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
     "test": "jest",
-    "build": "browserify ./source/scripts/stats.js -o ./source/bundle.js",
+    "build": "browserify ./source/scripts/bundleEntry.js -o ./source/bundle.js",
     "cypress": "./node_modules/.bin/cypress run"
   },
   "repository": {
