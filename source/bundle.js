@@ -11,12 +11,14 @@ const TODAY_TASK_ID = 'today-task-count';
 const WEEK_TASK_ID = 'week-task-count';
 const TODAY_DATE_ID = 'today';
 const WEEK_START_ID = 'week-start';
+const TODAY_POMO_ID = 'today-pomo-count';
 const DISTRACTION = 'total-distraction';
 const TODAY_DISTRACTION = 'today-distraction';
 const LENGTH_OF_WEEK = 7;
 const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
 const stdBreak = 300; // # of seconds in a short break (orig. 300)
 const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
+
 
 // Variables
 const onBreak = false;
@@ -47,6 +49,7 @@ global.TODAY_TASK_ID = TODAY_TASK_ID;
 global.WEEK_TASK_ID = WEEK_TASK_ID;
 global.TODAY_DATE_ID = TODAY_DATE_ID;
 global.WEEK_START_ID = WEEK_START_ID;
+global.TODAY_POMO_ID = TODAY_POMO_ID;
 global.DISTRACTION = DISTRACTION;
 global.TODAY_DISTRACTION = TODAY_DISTRACTION;
 global.LENGTH_OF_WEEK = LENGTH_OF_WEEK;
@@ -60,12 +63,12 @@ global.timerOptions = timerOptions;
 global.taskButton = taskButton;
 global.localStorage = localStorage;
 
+
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
 const { formatDate } = require('./taskButton');
 const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
-let interval;
 
 if (startStopButton) {
   startStopButton.classList.toggle('break-button');
@@ -86,13 +89,23 @@ if (startStopButton) {
    */
 function beginBreak (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
-  currentTime(--timer, textDisplay);
-  document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-  interval = setInterval(function () {
-    --timer;
+  const interval = setInterval(function () {
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-    if (timer < 0) {
+
+    // Press break in middle of countdown.
+    if (pomoState === timerOptions.STOPPED) {
+      clearInterval(interval);
+      pomoCount = 0;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
+      onBreak = togglePomoBreak(onBreak);
+      currentTime(stdWork, textDisplay);
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
+      // Changes the color of the timer
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+    }
+
+    if (--timer < -1) {
       clearInterval(interval);
       document.getElementById('timer-sound').play();
       startStopButton.innerHTML = BEGIN_BTN_TXT;
@@ -113,13 +126,22 @@ function beginBreak (duration, textDisplay) {
    */
 function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
-  currentTime(--timer, textDisplay);
-  document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-  interval = setInterval(function () {
-    --timer;
+
+  const interval = setInterval(function () {
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-    if (timer < 0) {
+
+    // Press break in middle of countdown.
+    if (pomoState === timerOptions.STOPPED) {
+      clearInterval(interval);
+      pomoCount = 0;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
+      onBreak = false;
+      currentTime(stdWork, textDisplay);
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
+    }
+
+    if (--timer < -1) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
       document.getElementById('timer-sound').play();
@@ -131,10 +153,39 @@ function beginCountdown (duration, textDisplay) {
       } else {
         currentTime(stdBreak, textDisplay);
       }
+      // current pomos cycles completed today 
+      const todayPomos = Number(localStorage.getItem(TODAY_POMO_ID));
+      // Today's date 
+      const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+      // incrementing daily pomo cycle count 
+      updatePomoCount(todayPomos, todayStorage);
       taskPomoCount++;
       document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
     }
   }, 1000);
+}
+/* istanbul ignore next */
+/**
+   * Update's pomo count for today in local storage
+   * @param {*} todayPomos The number of daily current pomos completed
+   * @param {*} todayStorage the local storage date for the current day
+   * @return number of pomos completed today
+   */
+function updatePomoCount(todayPomos, todayStorage){
+  //update pomo cycle day count 
+  const today = formatDate(new Date());
+  // case if we are on same day 
+  if (today === todayStorage) {
+    todayPomos++;
+  } 
+  /// case if we are on different day 
+  else {
+    todayPomos = 1;
+    localStorage.setItem(TODAY_DATE_ID, today);
+  }
+  localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+  
+  return todayPomos;
 }
 
 /**
@@ -159,6 +210,7 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   if (startStopButton) {
     startStopButton.innerHTML = RESET_BTN_TXT;
 
+    // Copied from buttonTest
     const display = document.querySelector('#countdownText');
     if (!localOnBreak) {
       pomoState = timerOptions.POMO;
@@ -189,11 +241,6 @@ function resetTimer () {
   pomoState = timerOptions.STOPPED;
   if (startStopButton) {
     startStopButton.innerHTML = BEGIN_BTN_TXT;
-    clearInterval(interval);
-    if (onBreak) onBreak = togglePomoBreak(onBreak);
-    currentTime(stdWork, document.querySelector('#countdownText'));
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
   }
   const todayDistractions = Number(localStorage.getItem(TODAY_DISTRACTION));
   const todayStorage = localStorage.getItem(TODAY_DATE_ID);
@@ -201,6 +248,7 @@ function resetTimer () {
   return [pomoState, BEGIN_BTN_TXT];
 }
 
+ 
 /**
    * Updates distractions in local storage
    * @param {Number} todayDistractions The number of distractions today
@@ -265,7 +313,8 @@ module.exports = {
   resetTimer,
   updateDistractions,
   currentTime,
-  timeFraction
+  timeFraction,
+  updatePomoCount
 };
 
 },{"./taskButton":4}],3:[function(require,module,exports){
@@ -295,14 +344,8 @@ function openStatsPane () {
     total pomos
     way to store daily weekly
   */
-  const totalTC = localStorage.getItem('total-task-count');
-  const todayTC = localStorage.getItem('today-task-count');
-  const weekTC = localStorage.getItem('week-task-count');
-  const weekstart = localStorage.getItem('week-start');
-  console.log(totalTC);
-  console.log(todayTC);
-  console.log(weekTC);
-  console.log(weekstart);
+  displayTodayStats();
+
 
   timerBlock.classList.remove('slide-close');
   counterBlock.classList.remove('slide-close');
@@ -325,6 +368,35 @@ function closeStatsPane () {
   statsPane.classList.add('slide-close');
 }
 
+/**
+ * Displays the user's statistics for the day on the statistics pane.
+ * Today statistics include:
+ *    - Today's pomodoros completed
+ *    - Today's avg. distractions per pomodoro
+ *    - Today's tasks completed
+ *    - Most pomodoros completed in a single day
+ */
+function displayTodayStats () {
+  const todayPomoElem = document.getElementById('today-pomodoros');
+  const todayTasksElem = document.getElementById('today-tasks');
+  const todayDistractElem = document.getElementById('today-distractions');
+  // extracting stats data to be used for calculation 
+  const todayPomoCount = localStorage.getItem('today-pomo-count') || '0';
+  const todayDistractCount = localStorage.getItem('today-distraction') || '0';
+  const todayTaskCount = localStorage.getItem('today-task-count') || '0';
+  // TODO: Add pomodoros completed in a single day
+
+
+  // calculating stats with extracted data and displaying to UI 
+  todayPomoElem.textContent = todayPomoCount;
+  todayDistractElem.textContent = todayDistractCount;
+  todayTasksElem.textContent = todayTaskCount;
+  // TODO: Display pomodoros completed in a single day
+}
+
+module.exports = {
+  displayTodayStats: displayTodayStats
+};
 },{"./startResetButton":2}],4:[function(require,module,exports){
 
 require('./index');
