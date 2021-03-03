@@ -19,6 +19,7 @@
         "WEEK_TASK_ID": "readonly",
         "TODAY_DATE_ID": "readonly",
         "WEEK_START_ID": "readonly",
+        "TODAY_POMO_ID": "readonly",
         "TOTAL_DISTRACTION": "readonly",
         "TODAY_DISTRACTION": "readonly",
         "LENGTH_OF_WEEK": "readonly",
