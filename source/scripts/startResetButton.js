@@ -1,6 +1,7 @@
 const { formatDate } = require('./taskButton');
 const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
+let interval;
 
 if (startStopButton) {
   startStopButton.classList.toggle('break-button');
@@ -21,23 +22,13 @@ if (startStopButton) {
    */
 function beginBreak (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
-  const interval = setInterval(function () {
+  currentTime(--timer, textDisplay);
+  document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
+  interval = setInterval(function () {
+    --timer;
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-
-    // Press break in middle of countdown.
-    if (pomoState === timerOptions.STOPPED) {
-      clearInterval(interval);
-      pomoCount = 0;
-      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
-      onBreak = togglePomoBreak(onBreak);
-      currentTime(stdWork, textDisplay);
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
-      // Changes the color of the timer
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
-    }
-
-    if (--timer < -1) {
+    if (timer < 0) {
       clearInterval(interval);
       document.getElementById('timer-sound').play();
       startStopButton.innerHTML = BEGIN_BTN_TXT;
@@ -58,22 +49,13 @@ function beginBreak (duration, textDisplay) {
    */
 function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
-
-  const interval = setInterval(function () {
+  currentTime(--timer, textDisplay);
+  document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
+  interval = setInterval(function () {
+    --timer;
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-
-    // Press break in middle of countdown.
-    if (pomoState === timerOptions.STOPPED) {
-      clearInterval(interval);
-      pomoCount = 0;
-      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount;
-      onBreak = false;
-      currentTime(stdWork, textDisplay);
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
-    }
-
-    if (--timer < -1) {
+    if (timer < 0) {
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
       document.getElementById('timer-sound').play();
@@ -103,20 +85,20 @@ function beginCountdown (duration, textDisplay) {
    * @param {*} todayStorage the local storage date for the current day
    * @return number of pomos completed today
    */
-function updatePomoCount (todayPomos, todayStorage) {
-  // update pomo cycle day count
-  const today = formatDate(new Date());
-  // case if we are on same day
-  if (today === todayStorage) {
-    todayPomos++;
-  } else { // case if we are on different day
-    todayPomos = 1;
-    localStorage.setItem(TODAY_DATE_ID, today);
+  function updatePomoCount (todayPomos, todayStorage) {
+    // update pomo cycle day count
+    const today = formatDate(new Date());
+    // case if we are on same day
+    if (today === todayStorage) {
+      todayPomos++;
+    } else { // case if we are on different day
+      todayPomos = 1;
+      localStorage.setItem(TODAY_DATE_ID, today);
+    }
+    localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+  
+    return todayPomos;
   }
-  localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
-
-  return todayPomos;
-}
 
 /**
    * Toggles break styling in start-stop-button
@@ -140,7 +122,6 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   if (startStopButton) {
     startStopButton.innerHTML = RESET_BTN_TXT;
 
-    // Copied from buttonTest
     const display = document.querySelector('#countdownText');
     if (!localOnBreak) {
       pomoState = timerOptions.POMO;
@@ -171,6 +152,11 @@ function resetTimer () {
   pomoState = timerOptions.STOPPED;
   if (startStopButton) {
     startStopButton.innerHTML = BEGIN_BTN_TXT;
+    clearInterval(interval);
+    if (onBreak) onBreak = togglePomoBreak(onBreak);
+    currentTime(stdWork, document.querySelector('#countdownText'));
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
   }
   const todayDistractions = Number(localStorage.getItem(TODAY_DISTRACTION));
   const todayStorage = localStorage.getItem(TODAY_DATE_ID);
