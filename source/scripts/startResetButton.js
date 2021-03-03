@@ -81,8 +81,8 @@ function beginCountdown (duration, textDisplay) {
 
 /**
    * Update's pomo count for today in local storage
-   * @param {*} todayPomos The number of daily current pomos completed
-   * @param {*} todayStorage updatePomoCount the local storage date for the current day
+   * @param {Number} todayPomos The number of daily current pomos completed
+   * @param {String} todayStorage updatePomoCount the local storage date for the current day
    * @return number of pomos completed today
    */
 function updatePomoCount (todayPomos, todayStorage) {
