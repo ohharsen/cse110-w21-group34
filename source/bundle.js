@@ -84,33 +84,6 @@ if (startStopButton) {
    * @param {*} duration The duration of the countdown
    * @param {*} textDisplay The component on which the remaining time is outputted
    */
-function beginBreak (duration, textDisplay) {
-  let timer = duration; // minutes, seconds;
-  currentTime(--timer, textDisplay);
-  document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-  interval = setInterval(function () {
-    --timer;
-    currentTime(timer, textDisplay);
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-    if (timer < 0) {
-      clearInterval(interval);
-      document.getElementById('timer-sound').play();
-      startStopButton.innerHTML = BEGIN_BTN_TXT;
-      pomoState = timerOptions.STOPPED;
-      onBreak = togglePomoBreak(onBreak);
-      // Changes the color of the timer
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
-      currentTime(stdWork, textDisplay);
-    }
-  }, 1000);
-}
-
-/* istanbul ignore next */
-/**
-   * Begins the countdown for a work cycle
-   * @param {*} duration The duration of the countdown
-   * @param {*} textDisplay The component on which the remaining time is outputted
-   */
 function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
@@ -120,22 +93,28 @@ function beginCountdown (duration, textDisplay) {
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
     if (timer < 0) {
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
       document.getElementById('timer-sound').play();
-      onBreak = togglePomoBreak(onBreak);
       startStopButton.innerHTML = BEGIN_BTN_TXT;
       pomoState = timerOptions.STOPPED;
-      if (pomoCount === 3) {
-        currentTime(stdExtBreak, textDisplay);
+      if(!onBreak){
+        if (pomoCount === 3) {
+          currentTime(stdExtBreak, textDisplay);
+        } else {
+          currentTime(stdBreak, textDisplay);
+        }
+        taskPomoCount++;
+        document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       } else {
-        currentTime(stdBreak, textDisplay);
+        currentTime(stdWork, textDisplay);
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
       }
-      taskPomoCount++;
-      document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+      onBreak = togglePomoBreak(onBreak);
     }
   }, 1000);
 }
+
 
 /**
    * Toggles break styling in start-stop-button
@@ -169,12 +148,12 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
         pomoCount = 0;
         localPomoCount = 0;
         pomoState = timerOptions.LONG;
-        beginBreak(stdExtBreak, display);
+        beginCountdown(stdExtBreak, display);
       } else {
         pomoCount++;
         localPomoCount++;
         pomoState = timerOptions.SHORT;
-        beginBreak(stdBreak, display);
+        beginCountdown(stdBreak, display);
       }
     }
   }
@@ -258,7 +237,6 @@ function timeFraction (timer, pomoState) {
 }
 
 module.exports = {
-  beginBreak,
   beginCountdown,
   togglePomoBreak,
   startTimer,
