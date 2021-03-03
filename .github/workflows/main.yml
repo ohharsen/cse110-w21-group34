@@ -40,6 +40,9 @@ jobs:
       - name: Run Jest Tests
         run: npm run test
 
+      - name: Run Node Server
+        run: node ./source/app.js
+
       - name: Run Cypress Tests
         run: npm run cypress
       
