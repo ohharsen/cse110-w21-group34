@@ -43,17 +43,20 @@ jobs:
       - name: Create Coverage
         run: node ./node_modules/jest/bin/jest.js --coverage
 
-      - name: Run Node Server
-        run: nohup node ./source/app.js &
-
-      - name: Run Cypress Tests
-        run: npm run cypress && kill %1
-
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      
+
+      - name: Run Node Server
+        run: nohup npm run host &
+
+      - name: Run Cypress Tests
+        run: npm run cypress
+
+      - name: Kill Node Server
+        run: kill %1
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

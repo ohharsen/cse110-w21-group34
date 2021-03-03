@@ -2,13 +2,13 @@ import * as Constants from '../../../source/scripts/constants';
 
 describe('View / Animation', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:5500/source/');
+    cy.visit('http://127.0.0.1:5500/');
   });
 });
 
 describe('Daily Statistics', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:5500/source/');
+    cy.visit('http://127.0.0.1:5500/');
   });
 
   // Tests on Pomodoro cycles 
@@ -63,7 +63,7 @@ describe('Daily Statistics', () => {
 
 describe('Total Statistics', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:5500/source/');
+    cy.visit('http://127.0.0.1:5500/');
   });
 
   it('Defaults to 0 for the total pomodoros completed', () => {

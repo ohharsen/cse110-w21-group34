@@ -8,6 +8,7 @@
     "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
     "test": "jest",
     "build": "browserify ./source/scripts/stats.js -o ./source/bundle.js",
+    "host": "http-server ./source -a 127.0.0.1 -p 5500",
     "cypress": "./node_modules/.bin/cypress run"
   },
   "repository": {
@@ -31,6 +32,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
+    "http-server": "^0.12.3",
     "jest": "^26.6.3"
   },
   "dependencies": {
