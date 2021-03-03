@@ -85,20 +85,19 @@ function beginCountdown (duration, textDisplay) {
    * @param {*} todayStorage the local storage date for the current day
    * @return number of pomos completed today
    */
-  function updatePomoCount (todayPomos, todayStorage) {
-    // update pomo cycle day count
-    const today = formatDate(new Date());
-    // case if we are on same day
-    if (today === todayStorage) {
-      todayPomos++;
-    } else { // case if we are on different day
-      todayPomos = 1;
-      localStorage.setItem(TODAY_DATE_ID, today);
-    }
-    localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
-  
-    return todayPomos;
+function updatePomoCount (todayPomos, todayStorage) {
+  // update pomo cycle day count
+  const today = formatDate(new Date());
+  // case if we are on same day
+  if (today === todayStorage) {
+    todayPomos++;
+  } else { // case if we are on different day
+    todayPomos = 1;
+    localStorage.setItem(TODAY_DATE_ID, today);
   }
+  localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+  return todayPomos;
+}
 
 /**
    * Toggles break styling in start-stop-button
