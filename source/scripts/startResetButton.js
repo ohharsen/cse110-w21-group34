@@ -3,16 +3,15 @@ const startStopButton = document.getElementById(START_STOP_ID);
 let pomoState = timerOptions.STOPPED;
 let interval;
 
-
 /**
  * The callback for events that trigger the start or stop of timer
  */
-function startResetController(){
-    if (pomoState === timerOptions.STOPPED) {
-      startTimer();
-    } else {
-      resetTimer();
-    }
+function startResetController () {
+  if (pomoState === timerOptions.STOPPED) {
+    startTimer();
+  } else {
+    resetTimer();
+  }
 }
 
 if (startStopButton) {

@@ -56,4 +56,4 @@ function closeStatsPane () {
 module.exports = {
   openStatsPane,
   closeStatsPane
-}
+};
