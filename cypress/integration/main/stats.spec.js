@@ -127,10 +127,10 @@ describe('Total Statistics', () => {
   });
   
   it('Correctly displays pomodoros for the "Best Day" display', () => {
-    window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, '9');
+    window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, '8');
     cy.get('#stats-open-button').click();
     cy.get('#total-best-pomo').then((elem) => {
-      expect(elem.text()).to.equal('9');
+      expect(elem.text()).to.equal('8');
     });
   });
   
