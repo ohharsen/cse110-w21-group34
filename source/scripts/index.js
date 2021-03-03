@@ -62,4 +62,3 @@ global.pomoCount = pomoCount;
 global.taskPomoCount = taskPomoCount;
 global.timerOptions = timerOptions;
 global.taskButton = taskButton;
-global.localStorage = localStorage;

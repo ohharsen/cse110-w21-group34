@@ -55,10 +55,10 @@ function displayTotalStats () {
   const bestTimeElem = document.getElementById('total-best-time');
   const totalTasksElem = document.getElementById('total-tasks');
 
-  const totalPomoCount = localStorage.getItem(TOTAL_POMO_ID) || '0';
-  const totalDistractCount = localStorage.getItem(TOTAL_DISTRACTION) || '0';
-  const bestPomoCount = localStorage.getItem(BEST_DAILY_POMO_ID) || '0';
-  const totalTaskCount = localStorage.getItem(TOTAL_TASK_ID) || '0';
+  const totalPomoCount = window.localStorage.getItem(TOTAL_POMO_ID) || '0';
+  const totalDistractCount = window.localStorage.getItem(TOTAL_DISTRACTION) || '0';
+  const bestPomoCount = window.localStorage.getItem(BEST_DAILY_POMO_ID) || '0';
+  const totalTaskCount = window.localStorage.getItem(TOTAL_TASK_ID) || '0';
 
   totalPomoElem.textContent = totalPomoCount;
   totalDistractElem.textContent = (Number(totalDistractCount) / (Number(totalPomoCount) || 1)).toFixed(2);
@@ -83,9 +83,9 @@ function displayTodayStats () {
   const todayDistractElem = document.getElementById('today-distractions');
 
   // extracting daily stats data to be used for calculation
-  const todayPomoCount = localStorage.getItem('today-pomo-count') || '0';
-  const todayDistractCount = localStorage.getItem('today-distraction') || '0';
-  const todayTaskCount = localStorage.getItem('today-task-count') || '0';
+  const todayPomoCount = window.localStorage.getItem('today-pomo-count') || '0';
+  const todayDistractCount = window.localStorage.getItem('today-distraction') || '0';
+  const todayTaskCount = window.localStorage.getItem('today-task-count') || '0';
 
   // calculating daily stats with extracted data and displaying to UI
   todayPomoElem.textContent = todayPomoCount;

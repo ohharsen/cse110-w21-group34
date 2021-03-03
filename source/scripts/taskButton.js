@@ -30,11 +30,11 @@ function formatDate (toFormat) {
 function taskComplete (clearStorage, today) {
   taskPomoCount = 0;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
-  if (clearStorage) localStorage.clear();
+  if (clearStorage) window.localStorage.clear();
 
-  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
-  let weekCounter = Number(localStorage.getItem(WEEK_TASK_ID));
-  let dayCounter = Number(localStorage.getItem(TODAY_TASK_ID));
+  const todayStorage = window.localStorage.getItem(TODAY_DATE_ID);
+  let weekCounter = Number(window.localStorage.getItem(WEEK_TASK_ID));
+  let dayCounter = Number(window.localStorage.getItem(TODAY_TASK_ID));
 
   if (formatDate(today) !== todayStorage) {
     if (isSameWeek(today)) { // different day, same week
@@ -43,7 +43,7 @@ function taskComplete (clearStorage, today) {
       weekCounter = 1;
     }
     dayCounter = 1;
-    localStorage.setItem(TODAY_DATE_ID, formatDate(today));
+    window.localStorage.setItem(TODAY_DATE_ID, formatDate(today));
   } else { // same day, same week
     dayCounter++;
     weekCounter++;
@@ -59,7 +59,7 @@ function taskComplete (clearStorage, today) {
    */
 function isSameWeek (today) {
   const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const weekStorage = localStorage.getItem(WEEK_START_ID);
+  const weekStorage = window.localStorage.getItem(WEEK_START_ID);
   let mondayDate;
   let difference = 0;
 
@@ -70,7 +70,7 @@ function isSameWeek (today) {
 
     // not the same week
     if (++difference === LENGTH_OF_WEEK) {
-      localStorage.setItem(WEEK_START_ID, mondayDate);
+      window.localStorage.setItem(WEEK_START_ID, mondayDate);
       return false;
     }
   }
@@ -84,13 +84,13 @@ function isSameWeek (today) {
    * @returns local storage for debug
    */
 function updateLocalStorage (dayCounter, weekCounter) {
-  localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
-  localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
+  window.localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
+  window.localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
 
-  const totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
-  localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
+  const totalTasks = Number(window.localStorage.getItem(TOTAL_TASK_ID)) + 1;
+  window.localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 
-  return localStorage;
+  return window.localStorage;
 }
 
 // Sets the color of the timer

@@ -68,9 +68,9 @@ function beginCountdown (duration, textDisplay) {
         currentTime(stdBreak, textDisplay);
       }
       // current pomos cycles completed today
-      const todayPomos = Number(localStorage.getItem(TODAY_POMO_ID));
+      const todayPomos = Number(window.localStorage.getItem(TODAY_POMO_ID));
       // Today's date
-      const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+      const todayStorage = window.localStorage.getItem(TODAY_DATE_ID);
       // incrementing daily pomo cycle count
       updatePomoCount(todayPomos, todayStorage);
       taskPomoCount++;
@@ -93,14 +93,14 @@ function updatePomoCount (todayPomos, todayStorage) {
     todayPomos++;
   } else { // case if we are on different day
     todayPomos = 1;
-    localStorage.setItem(TODAY_DATE_ID, today);
-    const prevDayPomo = localStorage.getItem(TODAY_POMO_ID);
-    if (Number(localStorage.getItem(BEST_DAILY_POMO_ID)) < Number(prevDayPomo)) {
-      localStorage.setItem(BEST_DAILY_POMO_ID, prevDayPomo);
+    window.localStorage.setItem(TODAY_DATE_ID, today);
+    const prevDayPomo = window.localStorage.getItem(TODAY_POMO_ID);
+    if (Number(window.localStorage.getItem(BEST_DAILY_POMO_ID)) < Number(prevDayPomo)) {
+      window.localStorage.setItem(BEST_DAILY_POMO_ID, prevDayPomo);
     }
   }
-  localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
-  localStorage.setItem(TOTAL_POMO_ID, String(Number(localStorage.getItem(TOTAL_POMO_ID)) + 1));
+  window.localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+  window.localStorage.setItem(TOTAL_POMO_ID, String(Number(window.localStorage.getItem(TOTAL_POMO_ID)) + 1));
   return todayPomos;
 }
 
@@ -162,8 +162,8 @@ function resetTimer () {
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
   }
-  const todayDistractions = Number(localStorage.getItem(TODAY_DISTRACTION));
-  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+  const todayDistractions = Number(window.localStorage.getItem(TODAY_DISTRACTION));
+  const todayStorage = window.localStorage.getItem(TODAY_DATE_ID);
   updateDistractions(todayDistractions, todayStorage);
   return [pomoState, BEGIN_BTN_TXT];
 }
@@ -171,13 +171,13 @@ function resetTimer () {
 /**
    * Updates distractions in local storage
    * @param {Number} todayDistractions The number of distractions today
-   * @param {String} todayStorage Today's date currently in localStorage
+   * @param {String} todayStorage Today's date currently in window.localStorage
    * @return The updated number of distractions
    */
 function updateDistractions (todayDistractions, todayStorage) {
   // Total distractions
-  const distractions = Number(localStorage.getItem(TOTAL_DISTRACTION)) + 1;
-  localStorage.setItem(TOTAL_DISTRACTION, String(distractions));
+  const distractions = Number(window.localStorage.getItem(TOTAL_DISTRACTION)) + 1;
+  window.localStorage.setItem(TOTAL_DISTRACTION, String(distractions));
 
   // Today's distractions
   const today = formatDate(new Date());
@@ -186,9 +186,9 @@ function updateDistractions (todayDistractions, todayStorage) {
   } else {
     // Update
     todayDistractions = 1;
-    localStorage.setItem(TODAY_DATE_ID, today);
+    window.localStorage.setItem(TODAY_DATE_ID, today);
   }
-  localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
+  window.localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
 
   return todayDistractions;
 }
