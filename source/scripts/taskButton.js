@@ -6,6 +6,7 @@ let taskPomoCount = 0;
 
 if (taskButton) {
   const today = new Date();
+  toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {
     taskComplete(false, today);
     event.preventDefault();
@@ -13,8 +14,17 @@ if (taskButton) {
 }
 
 /**
+ * Disables or enables task button
+ * @param {Boolean} disabled parameter
+ */
+
+export function toggleTaskButtonDisabled (disabled) {
+  taskButton.disabled = disabled;
+}
+
+/**
    * Reformat Date() variable to mm:dd:yyyy
-   * @param Date() variable
+   * @param {Date} toFormat date object to change
    * @returns formatted string
    */
 export function formatDate (toFormat) {
