@@ -136,7 +136,6 @@ export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
 
   const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY));
   ++weekHistory[dayOfWeek];
-  console.log(weekHistory);
   window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
 
   return window.localStorage;
