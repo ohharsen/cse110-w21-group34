@@ -26,9 +26,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>require('./startResetButton');
-
-const timerBlock = document.getElementsByClassName('center-container')[0];
+            <pre class="prettyprint source linenums"><code>const timerBlock = document.getElementsByClassName('center-container')[0];
 const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
@@ -42,13 +40,22 @@ statsCloseButton.onclick = closeStatsPane;
  * Opens the statistics pane.
  */
 function openStatsPane () {
-  displayTotalStats();
+  /* we have
+    toal task count
+    today task count,
+    week task count,
+    week start
+
+    need
+    total/day/week interuptions
+    total pomos
+    way to store daily weekly
+  */
   displayTodayStats();
 
   timerBlock.classList.remove('slide-close');
   counterBlock.classList.remove('slide-close');
   statsPane.classList.remove('slide-close');
-
   timerBlock.classList.add('slide-open');
   counterBlock.classList.add('slide-open');
   statsPane.classList.add('slide-open');
@@ -62,38 +69,9 @@ function closeStatsPane () {
   timerBlock.classList.remove('slide-open');
   counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
-
   timerBlock.classList.add('slide-close');
   counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
-}
-
-/**
- * Displays the user's current all-time statistics on the statistics pane.
- * Total statistics include:
- *    - Total pomodoros completed
- *    - Total avg. distractions per pomodoro
- *    - Total tasks completed
- *    - Most pomodoros completed in a single day
- */
-function displayTotalStats () {
-  const totalPomoElem = document.getElementById('total-pomodoros');
-  const totalDistractElem = document.getElementById('total-distractions');
-  const bestPomoElem = document.getElementById('total-best-pomo');
-  const bestTimeElem = document.getElementById('total-best-time');
-  const totalTasksElem = document.getElementById('total-tasks');
-
-  const totalPomoCount = window.localStorage.getItem(TOTAL_POMO_ID) || '0';
-  const totalDistractCount = window.localStorage.getItem(TOTAL_DISTRACTION) || '0';
-  const bestPomoCount = window.localStorage.getItem(BEST_DAILY_POMO_ID) || '0';
-  const totalTaskCount = window.localStorage.getItem(TOTAL_TASK_ID) || '0';
-
-  totalPomoElem.textContent = totalPomoCount;
-  totalDistractElem.textContent = (Number(totalDistractCount) / (Number(totalPomoCount) || 1)).toFixed(2);
-  bestPomoElem.textContent = bestPomoCount;
-  bestTimeElem.textContent = (Number(bestPomoCount) * (stdWork / 60)).toFixed(2);
-  totalTasksElem.textContent = totalTaskCount;
-  // TODO: Display most pomodoros completed in a single day
 }
 
 /**
@@ -104,27 +82,22 @@ function displayTotalStats () {
  *    - Today's tasks completed
  *    - Most pomodoros completed in a single day
  */
-function displayTodayStats () {
+export function displayTodayStats () {
   // setting variables for html elements to modify
   const todayPomoElem = document.getElementById('today-pomodoros');
   const todayTasksElem = document.getElementById('today-tasks');
   const todayDistractElem = document.getElementById('today-distractions');
 
   // extracting daily stats data to be used for calculation
-  const todayPomoCount = window.localStorage.getItem('today-pomo-count') || '0';
-  const todayDistractCount = window.localStorage.getItem('today-distraction') || '0';
-  const todayTaskCount = window.localStorage.getItem('today-task-count') || '0';
+  const todayPomoCount = localStorage.getItem('today-pomo-count') || '0';
+  const todayDistractCount = localStorage.getItem('today-distraction') || '0';
+  const todayTaskCount = localStorage.getItem('today-task-count') || '0';
 
   // calculating daily stats with extracted data and displaying to UI
   todayPomoElem.textContent = todayPomoCount;
   todayDistractElem.textContent = todayDistractCount;
   todayTasksElem.textContent = todayTaskCount;
 }
-
-module.exports = {
-  displayTotalStats: displayTotalStats,
-  displayTodayStats: displayTodayStats
-};
 </code></pre>
         </article>
     </section>
@@ -135,13 +108,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginBreak">beginBreak</a></li><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginBreak">beginBreak</a></li><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Mar 03 2021 23:23:51 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Mar 04 2021 00:32:52 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
