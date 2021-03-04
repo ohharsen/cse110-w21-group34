@@ -120,7 +120,7 @@ export function togglePomoBreak (onBreak) {
    */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   toggleTaskButtonDisabled(true);
-  
+
   const timerAudio = document.getElementById('timer-sound');
   if (!timerAudio.paused) {
     timerAudio.pause();
@@ -158,7 +158,7 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
 export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
-  
+
   if (startStopButton) {
     startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
     clearInterval(interval);
