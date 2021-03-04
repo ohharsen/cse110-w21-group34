@@ -1,3 +1,4 @@
 node_modules
-source/scripts/index.test.js
+source/tests
+source/bundle.js
 /home/runner/work/_actions/**
