@@ -6,6 +6,7 @@ export const TASK_BTN_ID = 'task';
 export const TOTAL_TASK_ID = 'total-task-count';
 export const TODAY_TASK_ID = 'today-task-count';
 export const WEEK_TASK_ID = 'week-task-count';
+export const WEEK_HISTORY = 'week-history';
 export const TODAY_DATE_ID = 'today';
 export const WEEK_START_ID = 'week-start';
 export const TODAY_POMO_ID = 'today-pomo-count';
