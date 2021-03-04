@@ -56,11 +56,17 @@ export function taskComplete (clearStorage, today) {
   return updateLocalStorage(dayCounter, weekCounter);
 }
 
+/**
+ * Increases the number of pomodoros completed for the current task.
+ */
 export function increaseTaskPomo () {
   taskPomoCount++;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
 }
 
+/**
+ * Resets the number of pomodoros completed to 0 for the current task.
+ */
 export function resetTaskPomo () {
   taskPomoCount = 0;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;

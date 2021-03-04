@@ -84,3 +84,6 @@ test('checks updateLocalStorage', () => {
   expect(storage.getItem("today")).toStrictEqual("02/18/2021");
   expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
 });
+
+test.todo('test increaseTaskPomo()');
+test.todo('test resetTaskPomo()');
