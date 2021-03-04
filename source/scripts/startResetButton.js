@@ -98,13 +98,12 @@ export function updatePomoCount (todayPomos, todayStorage) {
   } else { // case if we are on different day
     todayPomos = 1;
     window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
-    const prevDayPomo = window.localStorage.getItem(Constants.TODAY_POMO_ID);
-    if (Number(window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID)) < Number(prevDayPomo)) {
-      window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, prevDayPomo);
-    }
   }
   window.localStorage.setItem(Constants.TODAY_POMO_ID, String(todayPomos));
   window.localStorage.setItem(Constants.TOTAL_POMO_ID, String(Number(window.localStorage.getItem(Constants.TOTAL_POMO_ID)) + 1));
+  if (Number(window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID)) < todayPomos) {
+    window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, todayPomos);
+  }
   return todayPomos;
 }
 
