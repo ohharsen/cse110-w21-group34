@@ -56,12 +56,12 @@ export function taskComplete (clearStorage, today) {
   return updateLocalStorage(dayCounter, weekCounter);
 }
 
-export function increaseTaskPomo() {
+export function increaseTaskPomo () {
   taskPomoCount++;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
 }
 
-export function resetTaskPomo() {
+export function resetTaskPomo () {
   taskPomoCount = 0;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
 }

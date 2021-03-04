@@ -1,5 +1,3 @@
-import * as Constants from './constants.js';
-
 const timerBlock = document.getElementsByClassName('center-container')[0];
 const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
