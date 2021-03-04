@@ -1,9 +1,9 @@
-const { 
+import { 
   formatDate,
   taskComplete,
   isSameWeek, 
   updateLocalStorage 
-} = require('../scripts/taskButton');
+} from '../scripts/taskButton';
 
 test('checks updateLocalStorage', () => {
   let storage = taskComplete(true, new Date(2021, 1, 18));
