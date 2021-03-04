@@ -152,200 +152,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line23">line 23</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="timerOptions"><span class="type-signature">(constant) </span>timerOptions<span class="type-signature"> :string</span></h4>
-
-
-
-
-<div class="description">
-    Enumerated timer states
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>STOPPED</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>POMO</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>SHORT</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>LONG</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line29">line 29</a>
+        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -745,7 +552,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line40">line 40</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -905,7 +712,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line201">line 201</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line205">line 205</a>
     </li></ul></dd>
     
 
@@ -993,7 +800,95 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line57">line 57</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line78">line 78</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="displayTotalStats"><span class="type-signature"></span>displayTotalStats<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Displays the user's current all-time statistics on the statistics pane.Total statistics include:   - Total pomodoros completed   - Total avg. distractions per pomodoro   - Total tasks completed   - Most pomodoros completed in a single day
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -1171,6 +1066,94 @@
     
 
     
+    <h4 class="name" id="increaseTaskPomo"><span class="type-signature"></span>increaseTaskPomo<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Increases the number of pomodoros completed for the current task.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="isSameWeek"><span class="type-signature"></span>isSameWeek<span class="signature">(today)</span><span class="type-signature"></span></h4>
     
 
@@ -1267,7 +1250,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line74">line 74</a>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -1365,7 +1348,95 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line14">line 14</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="resetTaskPomo"><span class="type-signature"></span>resetTaskPomo<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Resets the number of pomodoros completed to 0 for the current task.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -1453,7 +1524,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line154">line 154</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line159">line 159</a>
     </li></ul></dd>
     
 
@@ -1551,7 +1622,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line119">line 119</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line124">line 124</a>
     </li></ul></dd>
     
 
@@ -1871,7 +1942,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line216">line 216</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line220">line 220</a>
     </li></ul></dd>
     
 
@@ -1959,7 +2030,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line109">line 109</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -2119,7 +2190,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line176">line 176</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line181">line 181</a>
     </li></ul></dd>
     
 
@@ -2279,7 +2350,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line100">line 100</a>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -2505,13 +2576,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginBreak">beginBreak</a></li><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginBreak">beginBreak</a></li><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Mar 04 2021 05:01:31 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Mar 04 2021 06:00:39 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
