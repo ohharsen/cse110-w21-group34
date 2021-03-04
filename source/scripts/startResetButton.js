@@ -1,5 +1,5 @@
 import * as Constants from './constants.js';
-import { increaseTaskPomo, formatDate } from './taskButton.js';
+import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskButton.js';
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
 
@@ -61,6 +61,8 @@ export function beginCountdown (duration, textDisplay) {
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
     if (timer < 0) {
+      toggleTaskButtonDisabled(false);
+
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
       document.getElementById('timer-sound').play();
@@ -117,6 +119,8 @@ export function togglePomoBreak (onBreak) {
    * Starts timer upon button click
    */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
+  toggleTaskButtonDisabled(true);
+  
   const timerAudio = document.getElementById('timer-sound');
   if (!timerAudio.paused) {
     timerAudio.pause();
@@ -153,6 +157,8 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
    */
 export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
+  toggleTaskButtonDisabled(true);
+  
   if (startStopButton) {
     startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
     clearInterval(interval);
@@ -164,6 +170,7 @@ export function resetTimer () {
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
   updateDistractions(todayDistractions, todayStorage);
+
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
