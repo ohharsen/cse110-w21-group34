@@ -28,5 +28,3 @@ export const timerOptions = {
   SHORT: 'short break',
   LONG: 'long break'
 };
-
-export const localStorage = window.localStorage;
