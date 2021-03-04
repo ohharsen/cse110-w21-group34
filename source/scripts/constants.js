@@ -1,3 +1,4 @@
+/* Constants */
 export const START_STOP_ID = 'start-stop-button';
 export const RESET_BTN_TXT = '✖ Reset';
 export const BEGIN_BTN_TXT = '▶ Begin';
@@ -17,11 +18,6 @@ export const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
 export const stdBreak = 300; // # of seconds in a short break (orig. 300)
 export const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
 
-// Variables
-export const onBreak = false;
-export const pomoCount = 0; // # of pomos covered so far (orig. 0)
-export const taskPomoCount = 0; // # of pomos for current task (orig. 0)
-
 /**
  * Enumerated timer states
  * @enum {string}
@@ -32,3 +28,5 @@ export const timerOptions = {
   SHORT: 'short break',
   LONG: 'long break'
 };
+
+export const localStorage = window.localStorage;
