@@ -1,12 +1,17 @@
-const { formatDate } = require('./taskButton');
-const startStopButton = document.getElementById(START_STOP_ID);
-let pomoState = timerOptions.STOPPED;
+import * as Constants from './constants.js';
+import { increaseTaskPomo, formatDate } from './taskButton.js';
+
+const startStopButton = document.getElementById(Constants.START_STOP_ID);
+
+let pomoCount = 0; // # of pomos covered so far (orig. 0)
+let pomoState = Constants.timerOptions.STOPPED;
+let onBreak = false;
 let interval;
 
 if (startStopButton) {
   startStopButton.classList.toggle('break-button');
   startStopButton.addEventListener('click', function () {
-    if (pomoState === timerOptions.STOPPED) {
+    if (pomoState === Constants.timerOptions.STOPPED) {
       startTimer();
     } else {
       resetTimer();
@@ -20,7 +25,7 @@ if (startStopButton) {
    * @param {*} duration The duration of the countdown
    * @param {*} textDisplay The component on which the remaining time is outputted
    */
-function beginBreak (duration, textDisplay) {
+export function beginBreak (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
@@ -31,12 +36,12 @@ function beginBreak (duration, textDisplay) {
     if (timer < 0) {
       clearInterval(interval);
       document.getElementById('timer-sound').play();
-      startStopButton.innerHTML = BEGIN_BTN_TXT;
-      pomoState = timerOptions.STOPPED;
+      startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+      pomoState = Constants.timerOptions.STOPPED;
       onBreak = togglePomoBreak(onBreak);
       // Changes the color of the timer
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
-      currentTime(stdWork, textDisplay);
+      currentTime(Constants.stdWork, textDisplay);
     }
   }, 1000);
 }
@@ -47,7 +52,7 @@ function beginBreak (duration, textDisplay) {
    * @param {*} duration The duration of the countdown
    * @param {*} textDisplay The component on which the remaining time is outputted
    */
-function beginCountdown (duration, textDisplay) {
+export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
@@ -60,21 +65,20 @@ function beginCountdown (duration, textDisplay) {
       clearInterval(interval);
       document.getElementById('timer-sound').play();
       onBreak = togglePomoBreak(onBreak);
-      startStopButton.innerHTML = BEGIN_BTN_TXT;
-      pomoState = timerOptions.STOPPED;
+      startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+      pomoState = Constants.timerOptions.STOPPED;
       if (pomoCount === 3) {
-        currentTime(stdExtBreak, textDisplay);
+        currentTime(Constants.stdExtBreak, textDisplay);
       } else {
-        currentTime(stdBreak, textDisplay);
+        currentTime(Constants.stdBreak, textDisplay);
       }
       // current pomos cycles completed today
-      const todayPomos = Number(localStorage.getItem(TODAY_POMO_ID));
+      const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
       // Today's date
-      const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+      const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
       // incrementing daily pomo cycle count
       updatePomoCount(todayPomos, todayStorage);
-      taskPomoCount++;
-      document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+      increaseTaskPomo();
     }
   }, 1000);
 }
@@ -85,7 +89,7 @@ function beginCountdown (duration, textDisplay) {
    * @param {String} todayStorage updatePomoCount the local storage date for the current day
    * @return number of pomos completed today
    */
-function updatePomoCount (todayPomos, todayStorage) {
+export function updatePomoCount (todayPomos, todayStorage) {
   // update pomo cycle day count
   const today = formatDate(new Date());
   // case if we are on same day
@@ -93,16 +97,16 @@ function updatePomoCount (todayPomos, todayStorage) {
     todayPomos++;
   } else { // case if we are on different day
     todayPomos = 1;
-    localStorage.setItem(TODAY_DATE_ID, today);
+    window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
   }
-  localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+  window.localStorage.setItem(Constants.TODAY_POMO_ID, String(todayPomos));
   return todayPomos;
 }
 
 /**
    * Toggles break styling in start-stop-button
    */
-function togglePomoBreak (onBreak) {
+export function togglePomoBreak (onBreak) {
   if (startStopButton) {
     startStopButton.classList.toggle('break-button');
   }
@@ -112,31 +116,31 @@ function togglePomoBreak (onBreak) {
 /**
    * Starts timer upon button click
    */
-function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
+export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   const timerAudio = document.getElementById('timer-sound');
   if (!timerAudio.paused) {
     timerAudio.pause();
     timerAudio.currentTime = 0;
   }
   if (startStopButton) {
-    startStopButton.innerHTML = RESET_BTN_TXT;
+    startStopButton.innerHTML = Constants.RESET_BTN_TXT;
 
     const display = document.querySelector('#countdownText');
     if (!localOnBreak) {
-      pomoState = timerOptions.POMO;
+      pomoState = Constants.timerOptions.POMO;
       document.getElementById('cycle-pomo-counter').innerHTML = pomoCount + 1;
-      beginCountdown(stdWork, display);
+      beginCountdown(Constants.stdWork, display);
     } else {
       if (localPomoCount === 3) {
         pomoCount = 0;
         localPomoCount = 0;
-        pomoState = timerOptions.LONG;
-        beginBreak(stdExtBreak, display);
+        pomoState = Constants.timerOptions.LONG;
+        beginBreak(Constants.stdExtBreak, display);
       } else {
         pomoCount++;
         localPomoCount++;
-        pomoState = timerOptions.SHORT;
-        beginBreak(stdBreak, display);
+        pomoState = Constants.timerOptions.SHORT;
+        beginBreak(Constants.stdBreak, display);
       }
     }
   }
@@ -147,33 +151,33 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
    * Resets timer upon button click
    * @return An array containing the stopped timer state and begin button text
    */
-function resetTimer () {
-  pomoState = timerOptions.STOPPED;
+export function resetTimer () {
+  pomoState = Constants.timerOptions.STOPPED;
   if (startStopButton) {
-    startStopButton.innerHTML = BEGIN_BTN_TXT;
+    startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
     clearInterval(interval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
-    currentTime(stdWork, document.querySelector('#countdownText'));
+    currentTime(Constants.stdWork, document.querySelector('#countdownText'));
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
   }
-  const todayDistractions = Number(localStorage.getItem(TODAY_DISTRACTION));
-  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
+  const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
+  const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
   updateDistractions(todayDistractions, todayStorage);
-  return [pomoState, BEGIN_BTN_TXT];
+  return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
 /**
    * Updates distractions in local storage
    * @param {Number} todayDistractions The number of distractions today
-   * @param {String} todayStorage Today's date currently in localStorage
+   * @param {String} todayStorage Today's date currently in window.localStorage
    * @return The updated number of distractions
    */
-function updateDistractions (todayDistractions, todayStorage) {
+export function updateDistractions (todayDistractions, todayStorage) {
   // Total distractions
-  let distractions = Number(localStorage.getItem(DISTRACTION));
+  let distractions = Number(window.localStorage.getItem(Constants.DISTRACTION));
   distractions++;
-  localStorage.setItem(DISTRACTION, String(distractions));
+  window.localStorage.setItem(Constants.DISTRACTION, String(distractions));
 
   // Today's distractions
   const today = formatDate(new Date());
@@ -182,9 +186,9 @@ function updateDistractions (todayDistractions, todayStorage) {
   } else {
     // Update
     todayDistractions = 1;
-    localStorage.setItem(TODAY_DATE_ID, today);
+    window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
   }
-  localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
+  window.localStorage.setItem(Constants.TODAY_DISTRACTION, String(todayDistractions));
 
   return todayDistractions;
 }
@@ -194,7 +198,7 @@ function updateDistractions (todayDistractions, todayStorage) {
    * @param {*} timer The time to be displayed
    * @param {*} textDisplay The component on which the remaining time is displayed
    */
-function currentTime (timer, textDisplay) {
+export function currentTime (timer, textDisplay) {
   let minutes, seconds;
   minutes = parseInt(timer / 60, 10);
   seconds = parseInt(timer % 60, 10);
@@ -209,24 +213,12 @@ function currentTime (timer, textDisplay) {
    * @param {*} timer The amont of time on the timer
    * @param {*} pomoState The current state of the pomodoro
    */
-function timeFraction (timer, pomoState) {
-  if (pomoState === timerOptions.POMO) {
-    return timer / stdWork;
-  } else if (pomoState === timerOptions.LONG) {
-    return timer / stdExtBreak;
+export function timeFraction (timer, pomoState) {
+  if (pomoState === Constants.timerOptions.POMO) {
+    return timer / Constants.stdWork;
+  } else if (pomoState === Constants.timerOptions.LONG) {
+    return timer / Constants.stdExtBreak;
   } else {
-    return timer / stdBreak;
+    return timer / Constants.stdBreak;
   }
 }
-
-module.exports = {
-  beginBreak,
-  beginCountdown,
-  togglePomoBreak,
-  startTimer,
-  resetTimer,
-  updateDistractions,
-  currentTime,
-  timeFraction,
-  updatePomoCount
-};

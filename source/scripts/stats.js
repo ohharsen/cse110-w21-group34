@@ -1,4 +1,3 @@
-require('./startResetButton');
 const timerBlock = document.getElementsByClassName('center-container')[0];
 const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
@@ -55,7 +54,7 @@ function closeStatsPane () {
  *    - Today's tasks completed
  *    - Most pomodoros completed in a single day
  */
-function displayTodayStats () {
+export function displayTodayStats () {
   // setting variables for html elements to modify
   const todayPomoElem = document.getElementById('today-pomodoros');
   const todayTasksElem = document.getElementById('today-tasks');
@@ -71,7 +70,3 @@ function displayTodayStats () {
   todayDistractElem.textContent = todayDistractCount;
   todayTasksElem.textContent = todayTaskCount;
 }
-
-module.exports = {
-  displayTodayStats: displayTodayStats
-};
