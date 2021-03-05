@@ -23,7 +23,7 @@ aspects, so both are used.
 $ npm run test
 ```
 
-- To run E2E tests, host the server using `npm run host`, thenrun Cypress in the
+- To run E2E tests, host the server using `npm run host`, then run Cypress in the
 project directory:
 ```
 $ npm run cypress
