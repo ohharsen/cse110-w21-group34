@@ -4,11 +4,17 @@ const taskButton = document.getElementById(Constants.TASK_BTN_ID);
 
 let taskPomoCount = 0;
 
+/**
+ * Increases the number of pomodoros completed for the current task.
+ */
 export function increaseTaskPomo () {
   taskPomoCount++;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
 }
 
+/**
+ * Resets the number of pomodoros completed to 0 for the current task.
+ */
 export function resetTaskPomo () {
   taskPomoCount = 0;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;

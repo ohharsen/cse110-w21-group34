@@ -44,9 +44,9 @@
         </div>
     </main>
     
-    <div id="stats-container" class="stats-container">
+    <aside id="stats-container" class="stats-container">
         <button id="stats-close-button" type="button"><img width="15px" height="15px" src ="./images/xbutton.png" /></button>
-        <div id="stats-pane">
+        <section id="stats-pane">
             <h1>User Statistics</h1>
 
             <div id="stats-today" class="stats-box">
@@ -73,17 +73,21 @@
                     <h2>Totals</h2>
                 </div>
                 <div class="stats-flex">
-                    <div class='stats-row'>
+                    <div class="stats-row">
                         <div>Pomos cycles:</div>
-                        <div>____ po.</div>
+                        <div><span id="total-pomodoros">____</span> po.</div>
                     </div>
-                    <div class='stats-row'>
+                    <div class="stats-row">
+                        <div>Avg. Distractions:</div>
+                        <div><span id="total-distractions">____</span> per po.</div>
+                    </div>
+                    <div class="stats-row">
                         <div>Best Day:</div>
-                        <div>____ po. | ____ min.</div>
+                        <div><span id="total-best-pomo">____</span> po. | <span id="total-best-time">____</span> min.</div>
                     </div>
-                    <div class='stats-row'>
+                    <div class="stats-row">
                         <div>Total Tasks:</div>
-                        <div>____ tasks</div>
+                        <div><span id="total-tasks">____</span> tasks</div>
                     </div>
                 </div>
             </div>
@@ -97,8 +101,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </aside>
     <script src="./scripts/startResetButton.js" type="module"></script>
     <script src="./scripts/taskButton.js" type="module"></script>
     <script src="./scripts/stats.js" type="module"></script>
