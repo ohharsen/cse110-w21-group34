@@ -40,9 +40,6 @@ jobs:
       - name: Run Jest Tests
         run: npm run test
 
-      - name: Run Cypress Tests
-        run: npm run cypress
-      
       - name: Create Coverage
         run: node ./node_modules/jest/bin/jest.js --coverage
 
@@ -50,7 +47,13 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      
+
+      - name: Run Node Server
+        run: nohup npm run host &
+
+      - name: Run Cypress Tests
+        run: npm run cypress
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
