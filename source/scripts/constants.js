@@ -9,6 +9,7 @@ export const WEEK_TASK_ID = 'week-task-count';
 export const TODAY_DATE_ID = 'today';
 export const WEEK_START_ID = 'week-start';
 export const TODAY_POMO_ID = 'today-pomo-count';
+export const TOTAL_CYCLE_ID = 'total-cycle-count';
 export const DISTRACTION = 'total-distraction';
 export const TODAY_DISTRACTION = 'today-distraction';
 export const LENGTH_OF_WEEK = 7;

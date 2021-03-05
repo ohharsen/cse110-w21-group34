@@ -32,8 +32,7 @@ export function formatDate (toFormat) {
    * @returns local storage for debug
    */
 export function taskComplete (clearStorage, today) {
-  taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  resetTaskPomo();
   if (clearStorage) window.localStorage.clear();
 
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);

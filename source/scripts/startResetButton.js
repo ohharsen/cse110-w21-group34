@@ -42,6 +42,11 @@ export function beginBreak (duration, textDisplay) {
       // Changes the color of the timer
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
       currentTime(Constants.stdWork, textDisplay);
+      // Update total cycle count at end of cycle
+      if (duration === Constants.stdExtBreak) {
+        const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
+        window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+      }
     }
   }, 1000);
 }
