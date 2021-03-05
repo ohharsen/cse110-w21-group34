@@ -27,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import * as Constants from './constants.js';
-import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskButton.js';
+import { increaseTaskPomo, formatDate } from './taskButton.js';
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
 
@@ -70,6 +70,11 @@ export function beginBreak (duration, textDisplay) {
       // Changes the color of the timer
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
       currentTime(Constants.stdWork, textDisplay);
+      // Update total cycle count at end of cycle
+      if (duration === Constants.stdExtBreak) {
+        const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
+        window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+      }
     }
   }, 1000);
 }
@@ -89,8 +94,6 @@ export function beginCountdown (duration, textDisplay) {
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
     if (timer &lt; 0) {
-      toggleTaskButtonDisabled(false);
-
       document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
       document.getElementById('timer-sound').play();
@@ -147,8 +150,6 @@ export function togglePomoBreak (onBreak) {
    * Starts timer upon button click
    */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
-  toggleTaskButtonDisabled(true);
-
   const timerAudio = document.getElementById('timer-sound');
   if (!timerAudio.paused) {
     timerAudio.pause();
@@ -185,8 +186,6 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
    */
 export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
-  toggleTaskButtonDisabled(true);
-
   if (startStopButton) {
     startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
     clearInterval(interval);
@@ -198,7 +197,6 @@ export function resetTimer () {
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
   updateDistractions(todayDistractions, todayStorage);
-
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
@@ -267,13 +265,13 @@ export function timeFraction (timer, pomoState) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginBreak">beginBreak</a></li><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginBreak">beginBreak</a></li><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Mar 04 2021 07:51:12 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Mar 05 2021 05:27:39 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

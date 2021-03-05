@@ -32,19 +32,8 @@ const taskButton = document.getElementById(Constants.TASK_BTN_ID);
 
 let taskPomoCount = 0;
 
-export function increaseTaskPomo () {
-  taskPomoCount++;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
-}
-
-export function resetTaskPomo () {
-  taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
-}
-
 if (taskButton) {
   const today = new Date();
-  toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {
     taskComplete(false, today);
     event.preventDefault();
@@ -52,17 +41,8 @@ if (taskButton) {
 }
 
 /**
- * Disables or enables task button
- * @param {Boolean} disabled parameter
- */
-
-export function toggleTaskButtonDisabled (disabled) {
-  taskButton.disabled = disabled;
-}
-
-/**
    * Reformat Date() variable to mm:dd:yyyy
-   * @param {Date} toFormat date object to change
+   * @param Date() variable
    * @returns formatted string
    */
 export function formatDate (toFormat) {
@@ -80,30 +60,18 @@ export function formatDate (toFormat) {
    * @returns local storage for debug
    */
 export function taskComplete (clearStorage, today) {
-  taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
-  if (clearStorage) {
-    window.localStorage.clear();
-    resetWeekArray();
-  }
+  resetTaskPomo();
+  if (clearStorage) window.localStorage.clear();
 
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
   let weekCounter = Number(window.localStorage.getItem(Constants.WEEK_TASK_ID));
   let dayCounter = Number(window.localStorage.getItem(Constants.TODAY_TASK_ID));
-  let dayOfWeek = today.getDay();
-
-  if (dayOfWeek === 0) {
-    dayOfWeek = Constants.LENGTH_OF_WEEK;
-  }
-
-  dayOfWeek--;
 
   if (formatDate(today) !== todayStorage) {
     if (isSameWeek(today)) { // different day, same week
       weekCounter++;
     } else { // different week
       weekCounter = 1;
-      resetWeekArray();
     }
     dayCounter = 1;
     window.localStorage.setItem(Constants.TODAY_DATE_ID, formatDate(today));
@@ -112,7 +80,17 @@ export function taskComplete (clearStorage, today) {
     weekCounter++;
   }
 
-  return updateLocalStorage(dayCounter, weekCounter, dayOfWeek);
+  return updateLocalStorage(dayCounter, weekCounter);
+}
+
+export function increaseTaskPomo () {
+  taskPomoCount++;
+  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+}
+
+export function resetTaskPomo () {
+  taskPomoCount = 0;
+  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
 }
 
 /**
@@ -141,30 +119,17 @@ export function isSameWeek (today) {
 }
 
 /**
-   * Reset week history array to zeros
-   */
-export function resetWeekArray () {
-  const zeros = [0, 0, 0, 0, 0, 0, 0];
-  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(zeros));
-}
-
-/**
    * Update local storage with finished task information
    * @param dayCounter today total task count
    * @param weekCounter week total task count
-   * @param dayOfWeek the day of the week (0 --> Monday, 1 --> Tuesday, ... etc)
    * @returns local storage for debug
    */
-export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
+export function updateLocalStorage (dayCounter, weekCounter) {
   window.localStorage.setItem(Constants.TODAY_TASK_ID, String(dayCounter));
   window.localStorage.setItem(Constants.WEEK_TASK_ID, String(weekCounter));
 
   const totalTasks = Number(window.localStorage.getItem(Constants.TOTAL_TASK_ID)) + 1;
   window.localStorage.setItem(Constants.TOTAL_TASK_ID, String(totalTasks));
-
-  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY));
-  ++weekHistory[dayOfWeek];
-  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
 
   return window.localStorage;
 }
@@ -181,13 +146,13 @@ document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginBreak">beginBreak</a></li><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginBreak">beginBreak</a></li><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Mar 04 2021 07:51:12 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Mar 05 2021 05:27:39 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
