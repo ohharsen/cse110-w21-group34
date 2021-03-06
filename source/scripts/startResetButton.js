@@ -107,6 +107,10 @@ export function updatePomoCount (todayPomos, todayStorage) {
     window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
   }
   window.localStorage.setItem(Constants.TODAY_POMO_ID, String(todayPomos));
+  window.localStorage.setItem(Constants.TOTAL_POMO_ID, String(Number(window.localStorage.getItem(Constants.TOTAL_POMO_ID)) + 1));
+  if (Number(window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID)) < todayPomos) {
+    window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, todayPomos);
+  }
   return todayPomos;
 }
 
@@ -187,9 +191,8 @@ export function resetTimer () {
    */
 export function updateDistractions (todayDistractions, todayStorage) {
   // Total distractions
-  let distractions = Number(window.localStorage.getItem(Constants.DISTRACTION));
-  distractions++;
-  window.localStorage.setItem(Constants.DISTRACTION, String(distractions));
+  const distractions = Number(window.localStorage.getItem(Constants.TOTAL_DISTRACTION));
+  window.localStorage.setItem(Constants.TOTAL_DISTRACTION, String(distractions + 1));
 
   // Today's distractions
   const today = formatDate(new Date());

@@ -7,7 +7,7 @@ import {
     resetTimer,
     updateDistractions,
     currentTime,
-    timeFraction
+    timeFraction,
 } from '../scripts/startResetButton';
 
 import { formatDate } from '../scripts/taskButton';
