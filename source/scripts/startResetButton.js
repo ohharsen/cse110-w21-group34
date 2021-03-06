@@ -19,11 +19,10 @@ if (startStopButton) {
   });
 }
 
-/* istanbul ignore next */
 /**
    * Begins the timer countdown for a cycle
    * @param {Number} duration The duration of the countdown
-   * @param {*} textDisplay The component on which the remaining time is outputted
+   * @param {Object} textDisplay The component on which the remaining time is outputted
    */
 export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
@@ -192,7 +191,7 @@ export function updateDistractions (todayDistractions, todayStorage) {
 /**
    * Displays the amount of time remaining
    * @param {Number} timer The time to be displayed
-   * @param {*} textDisplay The component on which the remaining time is displayed
+   * @param {Object} textDisplay The component on which the remaining time is displayed
    */
 export function currentTime (timer, textDisplay) {
   let minutes, seconds;

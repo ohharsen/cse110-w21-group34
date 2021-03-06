@@ -15,9 +15,9 @@ export const TODAY_POMO_ID = 'today-pomo-count';
 export const TOTAL_DISTRACTION = 'total-distraction';
 export const TODAY_DISTRACTION = 'today-distraction';
 export const LENGTH_OF_WEEK = 7;
-export const stdWork = 1500; // # of seconds in a work pomo (orig. 1500)
-export const stdBreak = 300; // # of seconds in a short break (orig. 300)
-export const stdExtBreak = 900; // # of seconds in a long break (orig. 900)
+export const WORK_LENGTH = 1500; // # of seconds in a work pomo (orig. 1500)
+export const SHORT_BREAK = 300; // # of seconds in a short break (orig. 300)
+export const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
 
 /**
  * Enumerated timer states
