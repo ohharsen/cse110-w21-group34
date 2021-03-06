@@ -21,7 +21,7 @@ if (startStopButton) {
 
 /* istanbul ignore next */
 /**
-   * Begins the timer countdown for a cycle 
+   * Begins the timer countdown for a cycle
    * @param {Number} duration The duration of the countdown
    * @param {*} textDisplay The component on which the remaining time is outputted
    */
@@ -106,7 +106,7 @@ export function togglePomoBreak (onBreak) {
    * Starts timer upon button click
    * @param {Boolean} localOnBreak Boolean to check if the timer is on break
    * @param {Number} localPomoCount Number storing which pomo the timer is ons
-   * @return An array containing the pomoState and the pomoCount 
+   * @return An array containing the pomoState and the pomoCount
    */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   toggleTaskButtonDisabled(true);
