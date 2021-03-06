@@ -19,39 +19,11 @@ if (startStopButton) {
   });
 }
 
-/* istanbul ignore next */
 /**
-   * Begins the countdown for a break cycle
-   * @param {*} duration The duration of the countdown
-   * @param {*} textDisplay The component on which the remaining time is outputted
-   */
-export function beginBreak (duration, textDisplay) {
-  let timer = duration; // minutes, seconds;
-  currentTime(--timer, textDisplay);
-  document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-  interval = setInterval(function () {
-    --timer;
-    currentTime(timer, textDisplay);
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
-    if (timer < 0) {
-      clearInterval(interval);
-      document.getElementById('timer-sound').play();
-      startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
-      pomoState = Constants.timerOptions.STOPPED;
-      onBreak = togglePomoBreak(onBreak);
-      // Changes the color of the timer
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
-      currentTime(Constants.stdWork, textDisplay);
-    }
-  }, 1000);
-}
-
-/* istanbul ignore next */
-/**
-   * Begins the countdown for a work cycle
-   * @param {*} duration The duration of the countdown
-   * @param {*} textDisplay The component on which the remaining time is outputted
-   */
+  * Begins the countdown for a work cycle
+  * @param {*} duration The duration of the countdown
+  * @param {*} textDisplay The component on which the remaining time is outputted
+  */
 export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
@@ -61,30 +33,37 @@ export function beginCountdown (duration, textDisplay) {
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
     if (timer < 0) {
-      toggleTaskButtonDisabled(false);
-
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
       clearInterval(interval);
       document.getElementById('timer-sound').play();
-      onBreak = togglePomoBreak(onBreak);
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
-      if (pomoCount === 3) {
-        currentTime(Constants.stdExtBreak, textDisplay);
+      if (!onBreak) {
+        toggleTaskButtonDisabled(false);
+        // Changes the color of the timer
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
+        // Dispalys the next cycle without beggining it
+        if (pomoCount === 3) {
+          currentTime(Constants.stdExtBreak, textDisplay);
+        } else {
+          currentTime(Constants.stdBreak, textDisplay);
+        }
+        // current pomos cycles completed today
+        const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
+        // Today's date
+        const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
+        // incrementing daily pomo cycle count
+        updatePomoCount(todayPomos, todayStorage);
+        increaseTaskPomo();
       } else {
-        currentTime(Constants.stdBreak, textDisplay);
+        // Changes the color of the timer
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+        // Dispalys the next cycle without beggining it
+        currentTime(Constants.stdWork, textDisplay);
       }
-      // current pomos cycles completed today
-      const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
-      // Today's date
-      const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
-      // incrementing daily pomo cycle count
-      updatePomoCount(todayPomos, todayStorage);
-      increaseTaskPomo();
+      onBreak = togglePomoBreak(onBreak);
     }
   }, 1000);
 }
-
 
 /**
    * Update's pomo count for today in local storage
@@ -144,12 +123,12 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
         pomoCount = 0;
         localPomoCount = 0;
         pomoState = Constants.timerOptions.LONG;
-        beginBreak(Constants.stdExtBreak, display);
+        beginCountdown(Constants.stdExtBreak, display);
       } else {
         pomoCount++;
         localPomoCount++;
         pomoState = Constants.timerOptions.SHORT;
-        beginBreak(Constants.stdBreak, display);
+        beginCountdown(Constants.stdBreak, display);
       }
     }
   }

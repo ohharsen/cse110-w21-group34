@@ -60,8 +60,3 @@ test('Test timer fraction', () => {
     expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
 });
-
-describe('Timer Countdown Functions', () =>{
-    test.todo('Check beginCountdown() method for work cycles');
-    test.todo('Check beginBreak() method for breaks');
-});
