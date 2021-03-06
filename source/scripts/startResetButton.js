@@ -19,11 +19,12 @@ if (startStopButton) {
   });
 }
 
+/* istanbul ignore next */
 /**
-  * Begins the countdown for a work cycle
-  * @param {*} duration The duration of the countdown
-  * @param {*} textDisplay The component on which the remaining time is outputted
-  */
+   * Begins the timer countdown for a cycle 
+   * @param {Number} duration The duration of the countdown
+   * @param {*} textDisplay The component on which the remaining time is outputted
+   */
 export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
@@ -91,6 +92,8 @@ export function updatePomoCount (todayPomos, todayStorage) {
 
 /**
    * Toggles break styling in start-stop-button
+   * @param {Boolean} onBreak Boolean to check if the timer is on break
+   * @return Negation of onBreak
    */
 export function togglePomoBreak (onBreak) {
   if (startStopButton) {
@@ -101,6 +104,9 @@ export function togglePomoBreak (onBreak) {
 
 /**
    * Starts timer upon button click
+   * @param {Boolean} localOnBreak Boolean to check if the timer is on break
+   * @param {Number} localPomoCount Number storing which pomo the timer is ons
+   * @return An array containing the pomoState and the pomoCount 
    */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   toggleTaskButtonDisabled(true);
@@ -185,7 +191,7 @@ export function updateDistractions (todayDistractions, todayStorage) {
 
 /**
    * Displays the amount of time remaining
-   * @param {*} timer The time to be displayed
+   * @param {Number} timer The time to be displayed
    * @param {*} textDisplay The component on which the remaining time is displayed
    */
 export function currentTime (timer, textDisplay) {
@@ -200,8 +206,8 @@ export function currentTime (timer, textDisplay) {
 
 /**
    * Returns the fraction of the time remaining for the current countdown
-   * @param {*} timer The amont of time on the timer
-   * @param {*} pomoState The current state of the pomodoro
+   * @param {Number} timer The amont of time on the timer
+   * @param {String} pomoState The current state of the pomodoro
    */
 export function timeFraction (timer, pomoState) {
   if (pomoState === Constants.timerOptions.POMO) {
