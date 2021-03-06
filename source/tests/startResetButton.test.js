@@ -1,7 +1,5 @@
 import * as Constants from '../scripts/constants';
 import {
-    beginBreak,
-    beginCountdown,
     togglePomoBreak,
     startTimer,
     resetTimer,

@@ -59,6 +59,12 @@ export function beginCountdown (duration, textDisplay) {
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
+
+        // Update total cycle count at end of cycle
+        if (duration === Constants.LONG_BREAK) {
+          const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
+          window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+        }
       }
       onBreak = togglePomoBreak(onBreak);
     }
