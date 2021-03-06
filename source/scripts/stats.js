@@ -63,7 +63,7 @@ export function displayTotalStats () {
   totalPomoElem.textContent = totalPomoCount;
   totalDistractElem.textContent = (Number(totalDistractCount) / (Number(totalPomoCount) || 1)).toFixed(2);
   bestPomoElem.textContent = bestPomoCount;
-  bestTimeElem.textContent = (Number(bestPomoCount) * (Constants.stdWork / 60)).toFixed(2);
+  bestTimeElem.textContent = (Number(bestPomoCount) * (Constants.WORK_LENGTH / 60)).toFixed(2);
   totalTasksElem.textContent = totalTaskCount;
 }
 
