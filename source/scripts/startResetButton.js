@@ -151,10 +151,10 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
    * @return An array containing the stopped timer state and begin button text
    */
 export function resetTimer () {
-  let userConfirm = confirm("This action will count as an interruption.");
+  const userConfirm = confirm('This action will count as an interruption.');
   if (!userConfirm) {
     return;
-  } 
+  }
 
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
