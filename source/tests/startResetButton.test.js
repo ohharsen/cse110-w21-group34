@@ -1,15 +1,14 @@
-const {
-    beginBreak,
-    beginCountdown,
+import * as Constants from '../scripts/constants';
+import {
     togglePomoBreak,
     startTimer,
     resetTimer,
     updateDistractions,
     currentTime,
-    timeFraction
-} = require('../scripts/startResetButton');
+    timeFraction,
+} from '../scripts/startResetButton';
 
-const { formatDate } = require('../scripts/taskButton');
+import { formatDate } from '../scripts/taskButton';
 
 
 test('checks break toggle', () => {
@@ -30,7 +29,7 @@ test('checks start state', () => {
 });
     
 test('checks reset state', () => {
-    expect(resetTimer()).toStrictEqual([timerOptions.STOPPED, "▶ Begin"]);
+    expect(resetTimer()).toStrictEqual([Constants.timerOptions.STOPPED, "▶ Begin"]);
 });
   
 test('checks distraction updates', () => {
@@ -52,15 +51,10 @@ test('Check current time display', () => {
 });
   
 test('Test timer fraction', () => {
-    expect(timeFraction(150, timerOptions.POMO)).toStrictEqual(0.1);
-    expect(timeFraction(1500, timerOptions.POMO)).toStrictEqual(1);
-    expect(timeFraction(150, timerOptions.SHORT)).toStrictEqual(0.5);
-    expect(timeFraction(60, timerOptions.SHORT)).toStrictEqual(0.2);
-    expect(timeFraction(810, timerOptions.LONG)).toStrictEqual(0.9);
-    expect(timeFraction(450, timerOptions.LONG)).toStrictEqual(0.5);
-});
-
-describe('Timer Countdown Functions', () =>{
-    test.todo('Check beginCountdown() method for work cycles');
-    test.todo('Check beginBreak() method for breaks');
+    expect(timeFraction(150, Constants.timerOptions.POMO)).toStrictEqual(0.1);
+    expect(timeFraction(1500, Constants.timerOptions.POMO)).toStrictEqual(1);
+    expect(timeFraction(150, Constants.timerOptions.SHORT)).toStrictEqual(0.5);
+    expect(timeFraction(60, Constants.timerOptions.SHORT)).toStrictEqual(0.2);
+    expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
+    expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
 });

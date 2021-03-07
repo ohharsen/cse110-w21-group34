@@ -1,7 +1,28 @@
+import * as Constants from './constants.js';
 
-require('./index');
+const taskButton = document.getElementById(Constants.TASK_BTN_ID);
+
+let taskPomoCount = 0;
+
+/**
+ * Increases the number of pomodoros completed for the current task.
+ */
+export function increaseTaskPomo () {
+  taskPomoCount++;
+  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+}
+
+/**
+ * Resets the number of pomodoros completed to 0 for the current task.
+ */
+export function resetTaskPomo () {
+  taskPomoCount = 0;
+  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+}
+
 if (taskButton) {
   const today = new Date();
+  toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {
     taskComplete(false, today);
     event.preventDefault();
@@ -9,11 +30,20 @@ if (taskButton) {
 }
 
 /**
+ * Disables or enables task button
+ * @param {Boolean} disabled parameter
+ */
+
+export function toggleTaskButtonDisabled (disabled) {
+  taskButton.disabled = disabled;
+}
+
+/**
    * Reformat Date() variable to mm:dd:yyyy
-   * @param Date() variable
+   * @param {Date} toFormat date object to change
    * @returns formatted string
    */
-function formatDate (toFormat) {
+export function formatDate (toFormat) {
   const dd = String(toFormat.getDate()).padStart(2, '0'); // date
   const mm = String(toFormat.getMonth() + 1).padStart(2, '0'); // month
   const yyyy = toFormat.getFullYear(); // year
@@ -27,29 +57,40 @@ function formatDate (toFormat) {
    * @param today current date
    * @returns local storage for debug
    */
-function taskComplete (clearStorage, today) {
+export function taskComplete (clearStorage, today) {
   taskPomoCount = 0;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
-  if (clearStorage) localStorage.clear();
+  if (clearStorage) {
+    window.localStorage.clear();
+    resetWeekArray();
+  }
 
-  const todayStorage = localStorage.getItem(TODAY_DATE_ID);
-  let weekCounter = Number(localStorage.getItem(WEEK_TASK_ID));
-  let dayCounter = Number(localStorage.getItem(TODAY_TASK_ID));
+  const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
+  let weekCounter = Number(window.localStorage.getItem(Constants.WEEK_TASK_ID));
+  let dayCounter = Number(window.localStorage.getItem(Constants.TODAY_TASK_ID));
+  let dayOfWeek = today.getDay();
+
+  if (dayOfWeek === 0) {
+    dayOfWeek = Constants.LENGTH_OF_WEEK;
+  }
+
+  dayOfWeek--;
 
   if (formatDate(today) !== todayStorage) {
     if (isSameWeek(today)) { // different day, same week
       weekCounter++;
     } else { // different week
       weekCounter = 1;
+      resetWeekArray();
     }
     dayCounter = 1;
-    localStorage.setItem(TODAY_DATE_ID, formatDate(today));
+    window.localStorage.setItem(Constants.TODAY_DATE_ID, formatDate(today));
   } else { // same day, same week
     dayCounter++;
     weekCounter++;
   }
 
-  return updateLocalStorage(dayCounter, weekCounter);
+  return updateLocalStorage(dayCounter, weekCounter, dayOfWeek);
 }
 
 /**
@@ -57,9 +98,9 @@ function taskComplete (clearStorage, today) {
    * @param today current date
    * @returns boolean is it the same week
    */
-function isSameWeek (today) {
+export function isSameWeek (today) {
   const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const weekStorage = localStorage.getItem(WEEK_START_ID);
+  const weekStorage = window.localStorage.getItem(Constants.WEEK_START_ID);
   let mondayDate;
   let difference = 0;
 
@@ -69,8 +110,8 @@ function isSameWeek (today) {
     if (checkDate.getDay() === 1) mondayDate = formatDate(checkDate);
 
     // not the same week
-    if (++difference === LENGTH_OF_WEEK) {
-      localStorage.setItem(WEEK_START_ID, mondayDate);
+    if (++difference === Constants.LENGTH_OF_WEEK) {
+      window.localStorage.setItem(Constants.WEEK_START_ID, mondayDate);
       return false;
     }
   }
@@ -78,27 +119,33 @@ function isSameWeek (today) {
 }
 
 /**
+   * Reset week history array to zeros
+   */
+export function resetWeekArray () {
+  const zeros = [0, 0, 0, 0, 0, 0, 0];
+  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(zeros));
+}
+
+/**
    * Update local storage with finished task information
    * @param dayCounter today total task count
    * @param weekCounter week total task count
+   * @param dayOfWeek the day of the week (0 --> Monday, 1 --> Tuesday, ... etc)
    * @returns local storage for debug
    */
-function updateLocalStorage (dayCounter, weekCounter) {
-  localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
-  localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
+export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
+  window.localStorage.setItem(Constants.TODAY_TASK_ID, String(dayCounter));
+  window.localStorage.setItem(Constants.WEEK_TASK_ID, String(weekCounter));
 
-  const totalTasks = Number(localStorage.getItem(TOTAL_TASK_ID)) + 1;
-  localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
+  const totalTasks = Number(window.localStorage.getItem(Constants.TOTAL_TASK_ID)) + 1;
+  window.localStorage.setItem(Constants.TOTAL_TASK_ID, String(totalTasks));
 
-  return localStorage;
+  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY));
+  ++weekHistory[dayOfWeek];
+  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
+
+  return window.localStorage;
 }
 
 // Sets the color of the timer
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
-
-module.exports = {
-  formatDate,
-  taskComplete,
-  isSameWeek,
-  updateLocalStorage
-};
