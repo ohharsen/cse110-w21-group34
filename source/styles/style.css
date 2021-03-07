@@ -159,6 +159,10 @@ main{
     outline: 0;
 }
 
+.task-button:disabled{
+    background:rgba(255, 255, 255, 0.2);
+}
+
 .task-button:focus{
     outline: 0;
 }
