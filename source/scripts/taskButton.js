@@ -24,6 +24,7 @@ if (taskButton) {
   const today = new Date();
   toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {
+    document.getElementById("confetti-overlay").style.display = "block";
     taskComplete(false, today);
     event.preventDefault();
   }); // upon click
