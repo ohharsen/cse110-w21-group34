@@ -24,7 +24,6 @@ export const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
 
 export const HOST_ADDRESS = 'http://127.0.0.1:5500/';
 
-
 /**
  * Enumerated keydown event possible keys
  * @enum {string}
@@ -38,12 +37,12 @@ export const events = {
  * Enumerated keydown event possible keys
  * @enum {string}
  */
-export const keys = { 
- SPACE: 'Space',
- ENTER: 'Enter',
- LEFT_ARROW: 'ArrowLeft',
- RIGHT_ARROW: 'ArrowRight',
-}
+export const keys = {
+  SPACE: 'Space',
+  ENTER: 'Enter',
+  LEFT_ARROW: 'ArrowLeft',
+  RIGHT_ARROW: 'ArrowRight'
+};
 
 /**
  * Enumerated timer states
