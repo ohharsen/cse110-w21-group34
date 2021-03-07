@@ -1,6 +1,6 @@
-const { startResetController } = require('./startResetButton');
-const { taskComplete } = require('./taskButton');
-const { openStatsPane, closeStatsPane } = require('./stats');
+import { startResetController } from './startResetButton.js';
+import * as Constants from './constants.js';
+import { openStatsPane, closeStatsPane } from './stats.js';
 
 document.onkeydown = function (e) {
   if (e.code === 'ArrowLeft') {
@@ -14,7 +14,6 @@ document.onkeydown = function (e) {
     startResetController();
   } else if (e.code === 'Enter') {
     e.preventDefault();
-    const today = new Date();
-    taskComplete(false, today);
+    document.getElementById(Constants.TASK_BTN_ID).click();
   }
 };
