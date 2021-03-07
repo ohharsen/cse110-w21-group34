@@ -140,7 +140,7 @@ export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
   const totalTasks = Number(window.localStorage.getItem(Constants.TOTAL_TASK_ID)) + 1;
   window.localStorage.setItem(Constants.TOTAL_TASK_ID, String(totalTasks));
 
-  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY));
+  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
   ++weekHistory[dayOfWeek];
   window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
 
