@@ -1,12 +1,12 @@
 import * as Constants from './constants.js';
-import { displayGraph } from './graph.js';
+import { drawGraph } from './graph.js';
 
 const timerBlock = document.getElementsByClassName('center-container')[0];
 const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
-const 
+const graphCanvas = document.getElementById('weekly-graph');
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
@@ -18,7 +18,7 @@ statsCloseButton.onclick = closeStatsPane;
 function openStatsPane () {
   displayTotalStats();
   displayTodayStats();
-  displayGraph(graphCanvas, window.localStorage.getItem(Constants.WEEK_HISTORY));
+  drawGraph(graphCanvas, JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)));
 
   timerBlock.classList.remove('slide-close');
   counterBlock.classList.remove('slide-close');
