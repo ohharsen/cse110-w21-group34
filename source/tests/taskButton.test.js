@@ -1,3 +1,5 @@
+import * as Constants from '../scripts/constants';
+
 import { 
   formatDate,
   taskComplete,
@@ -20,12 +22,12 @@ test('checks local storage 0', () => { // test empty storage
   let storage = taskComplete(true, new Date(2021, 1, 18)); // 2-18-2021
   let weekHistory = JSON.stringify([0, 0, 0, 1, 0, 0, 0]); // Thursday
 
-  expect(storage.getItem("total-task-count")).toStrictEqual("1");
-  expect(storage.getItem("today-task-count")).toStrictEqual("1");
-  expect(storage.getItem("week-task-count")).toStrictEqual("1");
-  expect(storage.getItem("today")).toStrictEqual("02/18/2021");
-  expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
-  expect(storage.getItem("week-history")).toStrictEqual(weekHistory);
+  expect(storage.getItem(Constants.TOTAL_TASK_ID)).toStrictEqual("1");
+  expect(storage.getItem(Constants.TODAY_TASK_ID)).toStrictEqual("1");
+  expect(storage.getItem(Constants.WEEK_TASK_ID)).toStrictEqual("1");
+  expect(storage.getItem(Constants.TODAY_DATE_ID)).toStrictEqual("02/18/2021");
+  expect(storage.getItem(Constants.WEEK_START_ID)).toStrictEqual("02/15/2021");
+  expect(storage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
 });
 
 test('checks local storage 1', () => { // test different week
@@ -33,12 +35,12 @@ test('checks local storage 1', () => { // test different week
   storage = taskComplete(false, new Date(2021, 1, 16)); // 2-16-2021
   let weekHistory = JSON.stringify([0, 1, 0, 0, 0, 0, 0]); // Tuesday
 
-  expect(storage.getItem("total-task-count")).toStrictEqual("2");
-  expect(storage.getItem("today-task-count")).toStrictEqual("1");
-  expect(storage.getItem("week-task-count")).toStrictEqual("1");
-  expect(storage.getItem("today")).toStrictEqual("02/16/2021");
-  expect(storage.getItem("week-start")).toStrictEqual("02/15/2021"); // should update to new week start
-  expect(storage.getItem("week-history")).toStrictEqual(weekHistory);
+  expect(storage.getItem(Constants.TOTAL_TASK_ID)).toStrictEqual("2");
+  expect(storage.getItem(Constants.TODAY_TASK_ID)).toStrictEqual("1");
+  expect(storage.getItem(Constants.WEEK_TASK_ID)).toStrictEqual("1");
+  expect(storage.getItem(Constants.TODAY_DATE_ID)).toStrictEqual("02/16/2021");
+  expect(storage.getItem(Constants.WEEK_START_ID)).toStrictEqual("02/15/2021"); // should update to new week start
+  expect(storage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
 });
 
 test('checks local storage 2', () => { // test different day, same week
@@ -46,12 +48,12 @@ test('checks local storage 2', () => { // test different day, same week
   storage = taskComplete(false, new Date(2021, 1, 18)); // 2-18-2021
   let weekHistory = JSON.stringify([0, 0, 1, 1, 0, 0, 0]); // Tuesday, Wednesday
 
-  expect(storage.getItem("total-task-count")).toStrictEqual("2");
-  expect(storage.getItem("today-task-count")).toStrictEqual("1");
-  expect(storage.getItem("week-task-count")).toStrictEqual("2");
-  expect(storage.getItem("today")).toStrictEqual("02/18/2021");
-  expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
-  expect(storage.getItem("week-history")).toStrictEqual(weekHistory);
+  expect(storage.getItem(Constants.TOTAL_TASK_ID)).toStrictEqual("2");
+  expect(storage.getItem(Constants.TODAY_TASK_ID)).toStrictEqual("1");
+  expect(storage.getItem(Constants.WEEK_TASK_ID)).toStrictEqual("2");
+  expect(storage.getItem(Constants.TODAY_DATE_ID)).toStrictEqual("02/18/2021");
+  expect(storage.getItem(Constants.WEEK_START_ID)).toStrictEqual("02/15/2021");
+  expect(storage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
 });
 
 test('checks local storage 3', () => { // test same day, same week
@@ -59,12 +61,12 @@ test('checks local storage 3', () => { // test same day, same week
   storage = taskComplete(false, new Date(2021, 1, 18)); // 2-18-2021
   let weekHistory = JSON.stringify([0, 0, 0, 2, 0, 0, 0]); // Wednesday x2
 
-  expect(storage.getItem("total-task-count")).toStrictEqual("2");
-  expect(storage.getItem("today-task-count")).toStrictEqual("2");
-  expect(storage.getItem("week-task-count")).toStrictEqual("2");
-  expect(storage.getItem("today")).toStrictEqual("02/18/2021");
-  expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
-  expect(storage.getItem("week-history")).toStrictEqual(weekHistory);
+  expect(storage.getItem(Constants.TOTAL_TASK_ID)).toStrictEqual("2");
+  expect(storage.getItem(Constants.TODAY_TASK_IDs)).toStrictEqual("2");
+  expect(storage.getItem(Constants.WEEK_TASK_ID)).toStrictEqual("2");
+  expect(storage.getItem(Constants.TODAY_DATE_ID)).toStrictEqual("02/18/2021");
+  expect(storage.getItem(Constants.WEEK_START_ID)).toStrictEqual("02/15/2021");
+  expect(storage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
 });
 
 test('checks isSameWeek 0', () => { // is same week
@@ -82,7 +84,7 @@ test('checks resetWeekArray', () => {
   resetWeekArray();
   let weekHistory = JSON.stringify([0, 0, 0, 0, 0, 0, 0]); // reset
 
-  expect(storage.getItem("week-history")).toStrictEqual(weekHistory);
+  expect(storage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
 });
 
 test('checks updateLocalStorage', () => {
@@ -90,10 +92,10 @@ test('checks updateLocalStorage', () => {
   updateLocalStorage(2, 2, 6);
   let weekHistory = JSON.stringify([0, 0, 0, 1, 0, 0, 1]); // Wednesday, Sunday
 
-  expect(storage.getItem("total-task-count")).toStrictEqual("2");
-  expect(storage.getItem("today-task-count")).toStrictEqual("2");
-  expect(storage.getItem("week-task-count")).toStrictEqual("2");
-  expect(storage.getItem("today")).toStrictEqual("02/18/2021");
-  expect(storage.getItem("week-start")).toStrictEqual("02/15/2021");
-  expect(storage.getItem("week-history")).toStrictEqual(weekHistory);
+  expect(storage.getItem(Constants.TOTAL_TASK_ID)).toStrictEqual("2");
+  expect(storage.getItem(Constants.TODAY_TASK_IDs)).toStrictEqual("2");
+  expect(storage.getItem(Constants.WEEK_TASK_ID)).toStrictEqual("2");
+  expect(storage.getItem(Constants.TODAY_DATE_ID)).toStrictEqual("02/18/2021");
+  expect(storage.getItem(Constants.WEEK_START_ID)).toStrictEqual("02/15/2021");
+  expect(storage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
 });

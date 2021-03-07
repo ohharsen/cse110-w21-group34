@@ -16,22 +16,22 @@ test('checks break toggle', () => {
   });
     
 test('checks start state', () => {
-    expect(startTimer(false, 0)).toStrictEqual(["pomo", 0]);
-    expect(startTimer(true, 0)).toStrictEqual(["short break", 1]);
-    expect(startTimer(false, 1)).toStrictEqual(["pomo", 1]);
-    expect(startTimer(true, 1)).toStrictEqual(["short break", 2]);
-    expect(startTimer(false, 2)).toStrictEqual(["pomo", 2]);
-    expect(startTimer(true, 2)).toStrictEqual(["short break", 3]);
-    expect(startTimer(false, 3)).toStrictEqual(["pomo",3]);
-    expect(startTimer(true, 3)).toStrictEqual(["long break", 0]);
-    expect(startTimer(false, 0)).toStrictEqual(["pomo", 0]);
+    expect(startTimer(false, 0)).toStrictEqual([Constants.timerOptions.POMO, 0]);
+    expect(startTimer(true, 0)).toStrictEqual([Constants.timerOptions.SHORT, 1]);
+    expect(startTimer(false, 1)).toStrictEqual([Constants.timerOptions.POMO, 1]);
+    expect(startTimer(true, 1)).toStrictEqual([Constants.timerOptions.SHORT, 2]);
+    expect(startTimer(false, 2)).toStrictEqual([Constants.timerOptions.POMO, 2]);
+    expect(startTimer(true, 2)).toStrictEqual([Constants.timerOptions.SHORT, 3]);
+    expect(startTimer(false, 3)).toStrictEqual([Constants.timerOptions.POMO,3]);
+    expect(startTimer(true, 3)).toStrictEqual([Constants.timerOptions.LONG, 0]);
+    expect(startTimer(false, 0)).toStrictEqual([Constants.timerOptions.POMO, 0]);
 });
     
 test('checks reset state', () => {
     window.confirm = function () {
         return true;
     };
-    expect(resetTimer()).toStrictEqual([Constants.timerOptions.STOPPED, "▶ Begin"]);
+    expect(resetTimer()).toStrictEqual([Constants.timerOptions.STOPPED, Constants.BEGIN_BTN_TXT]);
 
     window.confirm = function () {
         return false;
