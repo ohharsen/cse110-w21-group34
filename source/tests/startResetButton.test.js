@@ -10,7 +10,6 @@ import {
 
 import { formatDate } from '../scripts/taskButton';
 
-
 test('checks break toggle', () => {
     expect(togglePomoBreak(true)).toBe(false);
     expect(togglePomoBreak(false)).toBe(true);
@@ -29,7 +28,15 @@ test('checks start state', () => {
 });
     
 test('checks reset state', () => {
+    window.confirm = function () {
+        return true;
+    };
     expect(resetTimer()).toStrictEqual([Constants.timerOptions.STOPPED, "▶ Begin"]);
+
+    window.confirm = function () {
+        return false;
+    };
+    expect(resetTimer()).toStrictEqual();
 });
   
 test('checks distraction updates', () => {
