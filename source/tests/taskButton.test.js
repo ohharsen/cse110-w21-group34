@@ -93,7 +93,7 @@ test('checks updateLocalStorage', () => {
   let weekHistory = JSON.stringify([0, 0, 0, 1, 0, 0, 1]); // Wednesday, Sunday
 
   expect(storage.getItem(Constants.TOTAL_TASK_ID)).toStrictEqual("2");
-  expect(storage.getItem(Constants.TODAY_TASK_IDs)).toStrictEqual("2");
+  expect(storage.getItem(Constants.TODAY_TASK_ID)).toStrictEqual("2");
   expect(storage.getItem(Constants.WEEK_TASK_ID)).toStrictEqual("2");
   expect(storage.getItem(Constants.TODAY_DATE_ID)).toStrictEqual("02/18/2021");
   expect(storage.getItem(Constants.WEEK_START_ID)).toStrictEqual("02/15/2021");
