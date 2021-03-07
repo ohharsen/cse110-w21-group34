@@ -7,8 +7,8 @@ const X_LABELS = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
 
 /**
  * Draws a graph to the given canvas element with the given data points.
- * @param {HTMLCanvasElement} canvas 
- * @param {Array} data An array 
+ * @param {HTMLCanvasElement} canvas Target canvas
+ * @param {number[]} data An array
  */
 export function drawGraph(canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
     if (!canvas) return;
@@ -22,12 +22,15 @@ export function drawGraph(canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
 
 /**
  * 
- * @param {*} data 
+ * @param {CanvasRenderingContext2D} ctx 
+ * @param {number} canvasHeight 
+ * @param {number} canvasWidth 
+ * @param {number[]} axes 
  */
 function drawAxes(ctx, canvasHeight, canvasWidth, axes) {
     // draw axes
     // draw y-labels
-    
+
     // draw x-labels
     ctx.font = TEXT_FONT;
     ctx.textAlign = 'center';
@@ -38,7 +41,13 @@ function drawAxes(ctx, canvasHeight, canvasWidth, axes) {
     }
 }
 
-
+/**
+ * 
+ * @param {CanvasRenderingContext2D} ctx The canvas' 2d rendering context
+ * @param {number} canvasHeight The canvas' height
+ * @param {number[]} data 
+ * @param {number[]} axes 
+ */
 function drawBars(ctx, canvasHeight, data, axes) {
     const maxAxis = axes[axes.length - 1];
     const maxHeight = canvasHeight - 32;
@@ -55,8 +64,8 @@ function drawBars(ctx, canvasHeight, data, axes) {
 /**
  * Calculate and return 4 y-axes used in the graph. The first axis will always
  * be 0.
- * @param {*} data The weekly data to scale the axes by.
- * @return {*} The axes in array form, from first axis to last axis.
+ * @param {number[]} data The weekly data to scale the axes by.
+ * @return {number[]} The axes in array form, from first axis to last axis.
  */
 function calculateAxes(data) {
     // if max data
@@ -64,12 +73,14 @@ function calculateAxes(data) {
     //      4 - 10 => round max up 1
     //      11 - 30 => round max up 2
     // spacing = max axis / 4
+    
     // distribute the spacing
     const axes = [0, 1, 2, 3];
     
+    // Calculating current max pomo cycles within week 
     let max = Math.max(...data);
 
-    // Checking max value to determine what top line value will be
+    // Checking max value to determine axes values 
     if (max < 4) {
         return axes;
     }
@@ -80,7 +91,7 @@ function calculateAxes(data) {
         max += 2;
     }
 
-    // Setting axes values 
+    // Setting axes values and rounding to one decimal place 
     axes[1] = (max/3).toFixed(1);
     axes[2] = (2*max/3).toFixed(1);
     axes[3] = max;
@@ -88,8 +99,18 @@ function calculateAxes(data) {
     return axes;
 }
 
-
-function drawBar(ctx, x, y, w, h, color) {
+/**
+ * Draws a bar centered at (x, y) with w width (horizontal) and h height
+ * (vertical), using the given canvas' context.
+ * Default color is black (#000000).
+ * @param {CanvasRenderingContext2D} ctx Target canvas' context
+ * @param {number} x horizontal position of upper-left corner
+ * @param {number} y vertical position of upper-left corner
+ * @param {number} w width
+ * @param {number} h height
+ * @param {?string} color hex color (e.g. #fafefc)
+ */
+function drawBar(ctx, x, y, w, h, color = '#000000') {
     ctx.save();
     ctx.fillStyle = color;
     ctx.fillRect(x - Math.round(w/2), y, w, h);
