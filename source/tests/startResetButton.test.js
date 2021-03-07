@@ -1,7 +1,5 @@
 import * as Constants from '../scripts/constants';
 import {
-    beginBreak,
-    beginCountdown,
     togglePomoBreak,
     startTimer,
     resetTimer,
@@ -59,9 +57,4 @@ test('Test timer fraction', () => {
     expect(timeFraction(60, Constants.timerOptions.SHORT)).toStrictEqual(0.2);
     expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
-});
-
-describe('Timer Countdown Functions', () =>{
-    test.todo('Check beginCountdown() method for work cycles');
-    test.todo('Check beginBreak() method for breaks');
 });
