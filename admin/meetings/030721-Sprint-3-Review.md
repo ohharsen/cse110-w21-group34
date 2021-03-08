@@ -2,16 +2,11 @@
 - Team: Teddy Bears
 - Date: 3/7/21
 - Time: 9:00pm (Sunday)
-- Duration: -------------------------------------------
+- Duration: 30 min.
 - Location: Zoom (Online)
 - Written by: Michael Brown
 - Attendance: 9/9
 ```
-
-# Meeting/notes, screen captures,
-
-# MMDDYY-sprint-X-review.md
-
 
 # Sprint Review Meeting (15 min.)
 
