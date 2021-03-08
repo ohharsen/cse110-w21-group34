@@ -10,9 +10,18 @@
 
 With the final stretch of development in sight, our team has reconvened once more to reflect upon our past achievements and remaining areas of improvement. The images and action plans (as shown below) were documented from a live Retrium session. Keep note that these discussions took place after a 15 minute standup overview of weeks 8 and 9.
 
+-------
+
 # Retrium - Start, Stop, Continue
 
-<FIT IN IMAGES OF RETROSPECTIVE MEETING HERE>
+### Anonymous Thoughts:
+![](./RetroNotes-Part2/Retrium-OpenThoughts.png)
+
+### Organized Reflections:
+![](./RetroNotes-Part2/Retrium-Organization.png)
+
+### Cycling Through:
+![](./RetroNotes-Part2/Retrium-CycleThrough.png)
 
 *Side notes*
 - We want to be attentative and CAREFUL (fast PRs may cause last-minute collisions and slow our progress)
