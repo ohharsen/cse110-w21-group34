@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.settings-button:active {
+    opacity: 90%;
+    /* background: var(--white-a2); */
+}
+
+#settings-container {
+    position: fixed;
+    height: calc(100vh - 36px);
+    width: 400px;
+    margin: 18px 18px 18px 18px;
+    top: 0;
+    left: 418px;
+    font-family: Roboto;
+}
+
+#settings-container h1 {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+#settings-container h2 {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid black;
+}
+
+#settings-container.slide-open {
+    animation: slide-left-out 0.5s ease-out forwards;
+}
+#settings-container.slide-close {
+    animation: slide-left-in 0.5s ease-out forwards;
+}
+
+.settings-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    background: var(--white-a1);
+    border-radius: 15px;
+    outline: 0;
+}
+
+.settings-button:active {
+    opacity: 90%;
+    /* background: var(--white-a2); */
+}
+
+#settings-close-button {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 30px;
+    height: 30px;
+    background: var(--white-a1);
+    border-radius: 16px;
+    outline: 0;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 800px) {
+    #settings-container {
+        height: calc(100vh - 36px);
+        width: calc(100vw - 36px);
+        margin: 18px 18px 18px 18px;
+        right: calc(-100vw + -18px);
+    }
+    
+}
+
+@media (max-width: 480px) {
+    #settings-container {
+        height: calc(100vh - 16px);
+        width: calc(100vw - 16px);
+        margin: 8px 8px 8px 8px;
+        right: calc(-100vw + -8px);
+    }
+
+    #settings-pane {
+        padding: 12px 24px 12px 24px;
+    }
+
+    .settings-button {
+        top: 12px;
+        right: 12px;
+    }
+}
+
+@keyframes slide-left-out {
+    to { left: 0 }
+}
+
+@keyframes slide-left-in {
+    from { left: 0 }
+}
+
+@keyframes slide-center-out {
+    from { transform: translate(0, 0) }
+    to { transform: translate(15vw, 0) }
+}
+
+@keyframes slide-center-in {
+    from { transform: translate(15vw, 0) }
+    to { transform: translate(0, 0) }
+}
