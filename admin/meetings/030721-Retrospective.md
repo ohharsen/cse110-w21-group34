@@ -8,7 +8,7 @@
 - Attendance: 9/9
 ```
 
-As our application enters the final stretch of development, our team has reconvened once more to reflect upon our previous achievements and remaining areas of improvement. The images and action plans (as shown below) were documented from a live Retrium session. These discussions took place after a 15 minute standup meeting in which members disclosed their progress across weeks 8 and 9 to one-another.
+With the final stretch of development in sight, our team has reconvened once more to reflect upon our past achievements and remaining areas of improvement. The images and action plans (as shown below) were documented from a live Retrium session. Keep note that these discussions took place after a 15 minute standup overview of weeks 8 and 9.
 
 # Retrium - Start, Stop, Continue
 
@@ -23,6 +23,7 @@ As our application enters the final stretch of development, our team has reconve
   - Week 9 --> great improvement
     - Extensive reviews and frequent PRs (must retain!)
 
+-------
 
 # Responsive Action plans
 
