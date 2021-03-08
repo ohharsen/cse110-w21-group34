@@ -73,7 +73,7 @@ export function beginCountdown (duration, textDisplay) {
       if (!onBreak) {
         toggleTaskButtonDisabled(false);
         // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
         // Dispalys the next cycle without beggining it
         if (pomoCount === 3) {
           currentTime(Constants.LONG_BREAK, textDisplay);
@@ -89,7 +89,7 @@ export function beginCountdown (duration, textDisplay) {
         increaseTaskPomo();
       } else {
         // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
 
@@ -198,7 +198,7 @@ export function resetTimer () {
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
   }
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
@@ -271,13 +271,13 @@ export function timeFraction (timer, pomoState) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#.onclick">.onclick</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Mon Mar 08 2021 05:14:07 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Mon Mar 08 2021 06:21:49 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
