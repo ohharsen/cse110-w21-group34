@@ -8,15 +8,20 @@ let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
 let interval;
 
+/**
+ * The callback for events that trigger the start or stop of timer
+ */
+export function startResetController () {
+  if (pomoState === Constants.timerOptions.STOPPED) {
+    startTimer();
+  } else {
+    resetTimer();
+  }
+}
+
 if (startStopButton) {
   startStopButton.classList.toggle('break-button');
-  startStopButton.addEventListener('click', function () {
-    if (pomoState === Constants.timerOptions.STOPPED) {
-      startTimer();
-    } else {
-      resetTimer();
-    }
-  });
+  startStopButton.addEventListener('click', startResetController);
 }
 
 /**
