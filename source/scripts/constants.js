@@ -16,7 +16,7 @@ export const TOTAL_CYCLE_ID = 'total-cycle-count';
 export const TOTAL_DISTRACTION = 'total-distraction';
 export const TODAY_DISTRACTION = 'today-distraction';
 export const LENGTH_OF_WEEK = 7;
-export const WORK_LENGTH = 10; // # of seconds in a work pomo (orig. 1500)
+export const WORK_LENGTH = 1500; // # of seconds in a work pomo (orig. 1500)
 export const SHORT_BREAK = 300; // # of seconds in a short break (orig. 300)
 export const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
 
