@@ -19,15 +19,15 @@ describe('Countdown Test', ()=>{
         cy.tick(60000);
         cy.get('#countdownText').contains('23:59');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke','#DB2E2E');
+            expect($el).to.have.attr('stroke','var(--red)');
         });
         cy.tick(1439000);
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.tick(1000);
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#34DBB3');
+            expect($el).to.have.attr('stroke', 'var(--green)');
         });
     });
 
@@ -37,7 +37,7 @@ describe('Countdown Test', ()=>{
         cy.tick(1500000);
         cy.get('#countdownText').contains('05:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#34DBB3');
+            expect($el).to.have.attr('stroke', 'var(--green)');
         });
         cy.get('#cycle-pomo-counter').contains('1');
 
@@ -45,7 +45,7 @@ describe('Countdown Test', ()=>{
         cy.tick(300000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#cycle-pomo-counter').contains('1');
 
@@ -53,7 +53,7 @@ describe('Countdown Test', ()=>{
         cy.tick(1500000);
         cy.get('#countdownText').contains('05:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#34DBB3');
+            expect($el).to.have.attr('stroke', 'var(--green)');
         });
         cy.get('#cycle-pomo-counter').contains('2');
 
@@ -61,7 +61,7 @@ describe('Countdown Test', ()=>{
         cy.tick(300000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#cycle-pomo-counter').contains('2');
 
@@ -69,7 +69,7 @@ describe('Countdown Test', ()=>{
         cy.tick(1500000);
         cy.get('#countdownText').contains('05:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#34DBB3');
+            expect($el).to.have.attr('stroke', 'var(--green)');
         });
         cy.get('#cycle-pomo-counter').contains('3');
 
@@ -77,7 +77,7 @@ describe('Countdown Test', ()=>{
         cy.tick(300000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#cycle-pomo-counter').contains('3');
 
@@ -85,7 +85,7 @@ describe('Countdown Test', ()=>{
         cy.tick(1500000);
         cy.get('#countdownText').contains('15:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#34DBB3');
+            expect($el).to.have.attr('stroke', 'var(--green)');
         });
         cy.get('#cycle-pomo-counter').contains('4');
 
@@ -93,7 +93,7 @@ describe('Countdown Test', ()=>{
         cy.tick(900000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#cycle-pomo-counter').contains('4');
 
@@ -101,7 +101,7 @@ describe('Countdown Test', ()=>{
         cy.tick(1500000);
         cy.get('#countdownText').contains('05:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#34DBB3');
+            expect($el).to.have.attr('stroke', 'var(--green)');
         });
         cy.get('#cycle-pomo-counter').contains('1');
 
@@ -109,7 +109,7 @@ describe('Countdown Test', ()=>{
         cy.tick(300000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#cycle-pomo-counter').contains('1');
     });
@@ -128,13 +128,13 @@ describe('Countdown Test', ()=>{
         cy.get('#cycle-pomo-counter').contains('2');
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#start-stop-button').trigger('click'); // Begin
         cy.tick(1400000);
         cy.get('#cycle-pomo-counter').contains('2'); 
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#start-stop-button').trigger('click'); // Reset
         cy.get('#start-stop-button').trigger('click'); // Begin
@@ -149,7 +149,7 @@ describe('Countdown Test', ()=>{
 
         cy.get('#start-stop-button').trigger('click'); //Begin
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', '#DB2E2E');
+            expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#cycle-pomo-counter').contains('3');
     });
