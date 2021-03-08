@@ -36,7 +36,7 @@ With the final stretch of development in sight, our team has reconvened once mor
 
 # Responsive Action plans
 
-<LINK TO ACTION ITEMS HERE>
+[Link to Action Items](./RetroNotes-Part2/Retrospective2.csv)
 
 - *Moving string literals into constants*
   - If constant file too big, can consider creating separate Strings file/folder
