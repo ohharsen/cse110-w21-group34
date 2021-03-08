@@ -20,6 +20,7 @@
     --green: #34DBB3;
     --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
+    --button-text-size: 18px;
 }
 
 html{
@@ -122,7 +123,7 @@ main{
     border-radius: 40px;
     font-family: Roboto;
     color: white;
-    font-size: 18px;
+    font-size: var(--button-text-size);
 }
 
 #start-stop-button:focus{
@@ -151,7 +152,7 @@ main{
     height: 50px;
     font-family: Roboto;
     color: white;
-    font-size: 18px;
+    font-size: var(--button-text-size);
 }
 
 .task-button:active{
@@ -327,7 +328,7 @@ main{
 
 .counters-container {
     font-family: "Roboto";
-    font-size: 18px;
+    font-size: var(--button-text-size);
     color: white;
     width: 25%;
     min-width: 300px;
