@@ -28,7 +28,6 @@ function toggleAccessibility () {
     // Background
     root.style.setProperty('--bacgkround-source', 'url("../images/background_hi_contrast.png")');
   } else {
-
     // Colors
     root.style.setProperty('--green', '#34DBB3');
     root.style.setProperty('--red', '#DB2E2E');
@@ -41,18 +40,17 @@ function toggleAccessibility () {
     root.style.setProperty('--green-grad-1', 'linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%)');
     root.style.setProperty('--white-a1', 'rgba(255, 255, 255, 0.7)');
     root.style.setProperty('--counter-color', 'white');
-    
+
     // Texts
     root.style.setProperty('font-size', '1em');
     root.style.setProperty('--button-text-size', '18px');
     root.style.setProperty('font-weight', 'normal');
 
-    // Background 
+    // Background
     root.style.setProperty('--bacgkround-source', 'url("../images/background.png")');
   }
   accessibleMode = !accessibleMode;
 }
 
 /** redundant, used for linting */
-toggleAccessibility();
-toggleAccessibility();
+document.getElementById('toggle-accessibility').onclick = toggleAccessibility;
