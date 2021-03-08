@@ -15,7 +15,7 @@ function toggleAccessibility () {
     root.style.setProperty('--orange-dark-grad', 'linear-gradient(180deg, #AA2500 0%, #575757 100%)');
     root.style.setProperty('--orange-dark-grad-1', 'linear-gradient(180deg, #575757 0%, #AA2500 100%)');
     root.style.setProperty('--green-grad', 'linear-gradient(180deg,  #575757 0%, #00644e 100%)');
-    root.style.setProperty('--green-grad-1', 'linear-gradient(180deg,  #00644e 0%, #57575700 100%)');
+    root.style.setProperty('--green-grad-1', 'linear-gradient(180deg,  #00644e 0%, #575757 100%)');
     root.style.setProperty('--white-a1', 'rgba(255, 255, 255, 0.9)');
     root.style.setProperty('--button-text-size', '22px');
     root.style.setProperty('font-size', '1.1em');
