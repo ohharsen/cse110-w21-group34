@@ -118,7 +118,10 @@ Arsen
 -------
 
 **Michael B.**
-
+- Collaboration with Keshab
+- Solving prevalent bugs in timer functionality from previous PRs
+- Continuing documentation in admin file (group notes for back-track of team progress)
+- Attempting stretch goal feature for settings tab
 
 -------
 
