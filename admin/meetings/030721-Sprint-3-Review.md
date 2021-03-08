@@ -8,6 +8,25 @@
 - Attendance: 9/9
 ```
 
+# A Brief Introduction
+
+After the conclusion of Sprint 2, our team had successfully developed an MVP (Minimum Viable Product). The skeleton code of our HTML, CSS, and JS files were established and  populated with functional components. These implementations included a functioning timer, start/stop button, animated UI, and more. Our project's steady progression was heavily influenced by the ways in which we organized ourselves into sub-groups to tackle specific challenges. This success was also attributed by everyone's timely dedication (whether in-person via Zoom or asynchronously across Slack and GitHub).
+
+This level of effort continued into Weeks 8 and 9 for our third Sprint of the quarter. With the MVP out of the way, much of our focus was dedicated to the extensive reorganization and overall improvement of our code. Our previous PRs had left some bugs that were inevitably squashed while testing became more prevelant across future implementations. These improvements created a safer foundation for our members to develop more advanced features. Our sub-groups from Sprint 2 were kept the same to maintain our members' familiarity with the components they had created.
+
+The section below entails the unique contributions of our members as well as the groups they worked with. Take note that there was more cross-pollination in everyone's work this time around in comparison to earlier sprints. This was especially prevalent in Week 9 as most of our prioritized features were finalized, leaving us with room to explore our original stretch goals.
+
+# Team Contributions
+
+### Statistics
+- Contributors: **Joshua Narezo, Michael Khanzadeh, Vedparkash Singh**
+
+
+### Local Storage
+
+### 
+
+
 # Sprint Review Meeting (15 min.)
 
 **Viren**
