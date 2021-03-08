@@ -24,41 +24,37 @@ With the final stretch of development in sight, our team has reconvened once mor
 ![](./RetroNotes-Part2/Retrium-CycleThrough.png)
 
 *Side notes*
-- We want to be attentative and CAREFUL (fast PRs may cause last-minute collisions and slow our progress)
-  - Functional quality before visual qu
-- Tuesday: "Bug bashing!"
+- We want to be as attentative as possible with our final implementations 
+  - Fast PRs may cause last-minute collisions and impede our progress
+- Functional quality before visual quality
+  - Albeit most features already installed, working incrementally is key
+- Meeting adjustment for Tuesday (3/9/21): "Bug bashing!"
   - Try to break each other's code to find remaining errors
-- Development practices
-  - Week 9 --> great improvement
-    - Extensive reviews and frequent PRs (must retain!)
+- Overall: consistent effort across Week 8 with greater improvement throughout Week 9!
 
 -------
 
-# Responsive Action plans
+# Responsive Action Plans
 
 [Link to Action Items](./RetroNotes-Part2/Retrospective2.csv)
 
+### Additional Notes for Remaining Items
 - *Moving string literals into constants*
-  - If constant file too big, can consider creating separate Strings file/folder
+  - If JS file for constants becoming too big, can consider creating a separate Strings file/folder
   - For handling "internationalization" of passed variables across all files
 -------
 - *Detailed reviews of each other's PRs and code*
-  - Careful overview; prevent any last-minute collisions
+  - Careful and consistent reviews from all members
+  - To prevent any last-minute collisions
 -------
 - *JSDocs*
-  - Function headers/variable declarations must be reviewed to meet doc standards
+  - Function headers/variable declarations must be reviewed to meet documentation standards
 -------
-- *README*
-  - Detailed project pipeline and installation instructions
-  - Link to our JSDocs
+- *READMEs*
+  - Write out detailed project pipeline and installation instructions
+  - Implmement links to our JSDocs
 -------
 - *ADRs*
   - Each sub-group should create one for choices made / features built
-    - ie. all decisions to how we are setting up our stats graph
-  - Use early ADRs by Viren, Arsen, and Amy as reference
--------
-- *Testing*
-  - Breaking each other's code on purpose
-  - To identify remaining bugs
--------
-- *Development Practices*
+    - Example: document the decision process for designing the stats graph
+  - Use early ADRs written by Viren, Arsen, and Amy as references for formatting
