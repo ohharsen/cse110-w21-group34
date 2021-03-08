@@ -8,7 +8,9 @@
 - Attendance: 9/9
 ```
 
-# Retrium Discussion
+As our application enters the final stretch of development, our team has reconvened once more to reflect upon our previous achievements and remaining areas of improvement. The images and action plans (as shown below) were documented from a live Retrium session. These discussions took place after a 15 minute standup meeting in which members disclosed their progress across weeks 8 and 9 to one-another.
+
+# Retrium - Start, Stop, Continue
 
 <FIT IN IMAGES OF RETROSPECTIVE MEETING HERE>
 
