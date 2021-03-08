@@ -21,10 +21,12 @@
     --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
+    --bacgkround-source: url('../images/background.png');
+    --counter-color: white;
 }
 
 html{
-    background: url('../images/background.png') no-repeat center center fixed; 
+    background: var(--bacgkround-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -329,13 +331,15 @@ main{
 .counters-container {
     font-family: "Roboto";
     font-size: var(--button-text-size);
-    color: white;
+    color: var(--counter-color);
     width: 25%;
     min-width: 300px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 50px;
     top: 6.5%;
 }
 

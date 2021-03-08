@@ -7,6 +7,7 @@ const root = document.documentElement;
    */
 function toggleAccessibility () {
   if (!accessibleMode) {
+    // Colors
     root.style.setProperty('--green', '#006646');
     root.style.setProperty('--red', '#B50014');
     root.style.setProperty('--orange', '#AA2500');
@@ -17,9 +18,18 @@ function toggleAccessibility () {
     root.style.setProperty('--green-grad', 'linear-gradient(180deg,  #575757 0%, #00644e 100%)');
     root.style.setProperty('--green-grad-1', 'linear-gradient(180deg,  #00644e 0%, #575757 100%)');
     root.style.setProperty('--white-a1', 'rgba(255, 255, 255, 0.9)');
-    root.style.setProperty('--button-text-size', '22px');
+    root.style.setProperty('--counter-color', 'black');
+
+    // Texts
     root.style.setProperty('font-size', '1.1em');
+    root.style.setProperty('--button-text-size', '22px');
+    root.style.setProperty('font-weight', 'bolder');
+
+    // Background
+    root.style.setProperty('--bacgkround-source', 'url("../images/background_hi_contrast.png")');
   } else {
+
+    // Colors
     root.style.setProperty('--green', '#34DBB3');
     root.style.setProperty('--red', '#DB2E2E');
     root.style.setProperty('--orange', '#E95D31');
@@ -30,8 +40,15 @@ function toggleAccessibility () {
     root.style.setProperty('--green-grad', 'linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%)');
     root.style.setProperty('--green-grad-1', 'linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%)');
     root.style.setProperty('--white-a1', 'rgba(255, 255, 255, 0.7)');
-    root.style.setProperty('--button-text-size', '18px');
+    root.style.setProperty('--counter-color', 'white');
+    
+    // Texts
     root.style.setProperty('font-size', '1em');
+    root.style.setProperty('--button-text-size', '18px');
+    root.style.setProperty('font-weight', 'normal');
+
+    // Background 
+    root.style.setProperty('--bacgkround-source', 'url("../images/background.png")');
   }
   accessibleMode = !accessibleMode;
 }
