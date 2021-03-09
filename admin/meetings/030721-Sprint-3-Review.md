@@ -16,18 +16,74 @@ This level of effort continued into Weeks 8 and 9 for our third Sprint of the qu
 
 The section below entails the unique contributions of our members as well as the groups they worked with. Take note that there was more cross-pollination in everyone's work this time around in comparison to earlier sprints. This was especially prevalent in Week 9 as most of our prioritized features were finalized, leaving us with room to explore our original stretch goals.
 
+-------
+
 # Team Contributions
 
 ### Statistics
 - Contributors: **Joshua Narezo, Michael Khanzadeh, Vedparkash Singh**
 
+Main points:
+- phases of stats development (back-end localStorage/data retrieval, front-end display population and graphical appearances)
 
-### Local Storage
+-------
 
-### 
+### Pomo Counter + localStorage
+- Contributor: **Amy Shen**
+- pomo cycle tweaks (ie. cycle pomo movement, synchronized with user interactions)
+- 
+
+-------
+
+### Task Button
+- Contributors: **Viren Abhyankar, William Sun**
+
+-------
+
+### Timer
+- Contributors: **Keshab Agarwal, Michael Brown**
+
+Due to a high number of PRs at the end of Sprint 2, a collision in our code was seemingly inevitable. Thankfully, the timer team responded quickly and resolved a UI glitch in the center of our clock due to a mistakenly deleted portion of CSS code. In addition to this and other design tweaks, Michael B. and Keshab collaborated to resolve several more bugs. These optimizations resided in our JS files, such as updating the interval of our timer countdown function to respond to user input immediatly rather than via 1-second intervals. Another improvement involved simplifying the timer JS functionality from two separate functions (a timer and break counter) into a single function with proper conditionals.
+
+Following Arsen's introduction of Cypress testing to the group project, Michael and Keshab created a new file to increase code coverage. This testing file overlooked the functionality of our start/stop button, proper text display, pomo cycle tracker, and more.
+
+Near the end of the sprint, the Timer Team engaged with new stretch goal features as some of the images below entail a WIP settings pane. Michael utilized the HTML and CSS code written by the statistics team (Joshua, Vedparkash, Michael K.) to clone a left-hand page whereas Keshab's goal will be to help populate its inner panes.
+
+- *Example of written Cypress testing:*
+![](./sprint3Files/Countdown-Cypress.gif)
+
+- *Early WIP build of left pane:*
+![](./sprint3Files/Left-Pane.PNG)
+
+-------
 
 
-# Sprint Review Meeting (15 min.)
+### Features + Cleanup
+
+- Contributor: **Arsen Ohanyan**
+
+- accessibility features, linting automated tests, code cleanup
+
+
+*Example of visual tweak for accessibility:*
+Original Appearance        |  Color Brightness/Modification
+:-------------------------:|:-------------------------:
+![](./sprint3Files/color-original.png)  |  ![](./sprint3Files/color-accessibility.png)
+
+-------
+
+# Demo Overview (w/ Sprint 2 MVP Comparison)
+- Take note that the timer durations in both GIFs are shortened for simplified demonstration.
+
+## Before:
+![](./sprint2Files/MVP-Sprint-2.gif)
+
+## After:
+
+
+
+
+
 
 **Viren**
 - Configure task button disable
