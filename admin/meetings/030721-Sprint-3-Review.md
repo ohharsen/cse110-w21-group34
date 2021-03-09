@@ -68,6 +68,14 @@ As the timer team remodeled their code and created newer PRs, Amy was quick to a
 - Contributors: **Viren Abhyankar, William Sun**
 
 
+completing task button, expanding its purposes and functionality
+- configuring a disable feature during break periods
+- improving readability over the code
+- prep of code for localStorage back-end retrieval
+- Work on user prompt for interupting a pomo cycle
+
+William - testing in local storage
+
 -------
 
 ### Timer
