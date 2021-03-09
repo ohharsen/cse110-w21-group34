@@ -5,15 +5,23 @@ const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
-
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
+const settingsPane = document.getElementById('settings-container');
+const settingsOpenButton = document.getElementById('settings-open-button');
+const settingsCloseButton = document.getElementById('settings-close-button');
+settingsOpenButton.onclick = openSettingsPane;
+settingsCloseButton.onclick = closeSettingsPane;
 
 /* istanbul ignore next */
 /**
  * Opens the statistics pane.
  */
 function openStatsPane () {
+  if(timerBlock.classList.contains('slide-open-settings')) {
+    closeSettingsPane();
+  }
+
   displayTotalStats();
   displayTodayStats();
 
@@ -38,6 +46,38 @@ function closeStatsPane () {
   timerBlock.classList.add('slide-close');
   counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
+}
+
+/* istanbul ignore next */
+/**
+ * Opens the statistics pane.
+ */
+function openSettingsPane () {
+  if(timerBlock.classList.contains('slide-open')) {
+    closeStatsPane();
+  }
+
+  timerBlock.classList.remove('slide-close-settings');
+  counterBlock.classList.remove('slide-close-settings');
+  settingsPane.classList.remove('slide-close-settings');
+
+  timerBlock.classList.add('slide-open-settings');
+  counterBlock.classList.add('slide-open-settings');
+  settingsPane.classList.add('slide-open-settings');
+}
+
+/* istanbul ignore next */
+/**
+ * Opens the statistics pane.
+ */
+function closeSettingsPane () {
+  timerBlock.classList.remove('slide-open-settings');
+  counterBlock.classList.remove('slide-open-settings');
+  settingsPane.classList.remove('slide-open-settings');
+
+  timerBlock.classList.add('slide-close-settings');
+  counterBlock.classList.add('slide-close-settings');
+  settingsPane.classList.add('slide-close-settings');
 }
 
 /**
