@@ -11,19 +11,22 @@
     --white-a3: rgba(255, 255, 255, 0.2);
     --red: #DB2E2E;
     --pink-grad: linear-gradient(0deg, #FFD1D1 0%, #EEEEEE 100%);
-    --pink-dark-grad: linear-gradient(180deg, rgba(255, 255, 255, 0.69) 99.99%, rgba(255, 209, 209, 0.69) 100%, rgba(255, 209, 209, 0.69) 100%);
+    --pink-dark-grad: linear-gradient(180deg, #ffffffb0 99.99%, #ffd1d1b0 100%, #ffd1d1b0 100%);
     --orange: #E95D31;
-    --orangered-grad: linear-gradient(180deg, rgba(255, 0, 0, 0.78) 0%, #E8582B 100%);
-    --orange-light-grad: linear-gradient(180deg, rgba(255, 0, 0, 0.21) 0%, #E8582B 100%), conic-gradient(from 1.14deg at 42.54% 1226.03%, #BDD915 -22.72deg, rgba(25, 21, 217, 0.887755) 160.22deg, rgba(189, 217, 21, 0) 163.43deg, #BDD915 337.28deg, rgba(25, 21, 217, 0.887755) 520.22deg);
+    --orangered-grad: linear-gradient(180deg, #ff0000c7 0%, #E8582B 100%);
+    --orange-light-grad: linear-gradient(180deg, #ff000036 0%, #E8582B 100%), conic-gradient(from 1.14deg at 42.54% 1226.03%, #BDD915 -22.72deg, #1915d9e2 160.22deg, #bdd91500 163.43deg, #BDD915 337.28deg, #1915d9e2 520.22deg);
     --orange-dark-grad: linear-gradient(180deg, #E95D31 0%, rgba(255, 255, 255, 0) 100%);
     --orange-dark-grad-1: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%);
     --green: #34DBB3;
-    --green-grad: linear-gradient(180deg,  rgba(255, 255, 255, 0) 0%, #0D927A 100%);
+    --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
+    --button-text-size: 18px;
+    --bacgkround-source: url('../images/background.png');
+    --counter-color: white;
 }
 
 html{
-    background: url('../images/background.png') no-repeat center center fixed; 
+    background: var(--bacgkround-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -122,7 +125,7 @@ main{
     border-radius: 40px;
     font-family: Roboto;
     color: white;
-    font-size: 18px;
+    font-size: var(--button-text-size);
 }
 
 #start-stop-button:focus{
@@ -151,12 +154,16 @@ main{
     height: 50px;
     font-family: Roboto;
     color: white;
-    font-size: 18px;
+    font-size: var(--button-text-size);
 }
 
 .task-button:active{
     background: var(--orangered-grad), white;
     outline: 0;
+}
+
+.task-button:disabled{
+    background:rgba(255, 255, 255, 0.2);
 }
 
 .task-button:focus{
@@ -342,14 +349,16 @@ main{
 
 .counters-container {
     font-family: "Roboto";
-    font-size: 18px;
-    color: white;
+    font-size: var(--button-text-size);
+    color: var(--counter-color);
     width: 25%;
     min-width: 300px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 50px;
     top: 6.5%;
 }
 
