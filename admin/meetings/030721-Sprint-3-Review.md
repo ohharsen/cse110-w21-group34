@@ -23,6 +23,11 @@ The sections below entails the unique contributions of our members as well as th
 ### Statistics
 - Contributors: **Joshua Narezo, Michael Khanzadeh, Vedparkash Singh**
 
+As our team transitioned from Sprint 2, a majority of our MVP's front-end was already complete. However, our statistics pane was still a blank slate, yet to be populated with important user data. For this sprint, Joshua, Michael K., and Vedparkash continued their collective effort to extract information from our back-end and display it on our app's interface.
+
+
+
+
 Main points:
 - phases of stats development (back-end localStorage/data retrieval, front-end display population and graphical appearances)
 
@@ -33,6 +38,10 @@ Main points:
 - *Additional snapshot of Figma drafts*
 
 ![](./sprint3Files/Stats-drafts.png)
+
+- *Glimpse of reorganized code*
+
+![](./sprint3Files/Stats-glimpse.gif)
 
 -------
 
@@ -70,7 +79,7 @@ Following Arsen's introduction of Cypress testing to the group project, Michael 
 
 Near the end of the sprint, the Timer Team engaged with new stretch goal features as some of the images below entail a WIP settings pane. Michael utilized the HTML and CSS code written by the statistics team (Joshua, Vedparkash, Michael K.) to clone a left-hand page whereas Keshab's goal will be to help populate its inner panes.
 
-- *Example of written Cypress testing:*
+- *Glimpse of written Cypress testing:*
 
 ![](./sprint3Files/Countdown-Cypress.gif)
 
