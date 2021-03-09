@@ -9,15 +9,18 @@
     --white-a1: rgba(255, 255, 255, 0.7);
     --white-a2: rgba(255, 255, 255, 0.5);
     --white-a3: rgba(255, 255, 255, 0.2);
-    --red: #DB2E2E;
+    --red: #ee3737;
+    --dark-red: #ce0119;
     --pink-grad: linear-gradient(0deg, #FFD1D1 0%, #EEEEEE 100%);
     --pink-dark-grad: linear-gradient(180deg, #ffffffb0 99.99%, #ffd1d1b0 100%, #ffd1d1b0 100%);
-    --orange: #E95D31;
+    --orange: orange;
+    --dark-orange: #E95D31;
     --orangered-grad: linear-gradient(180deg, #ff0000c7 0%, #E8582B 100%);
     --orange-light-grad: linear-gradient(180deg, #ff000036 0%, #E8582B 100%), conic-gradient(from 1.14deg at 42.54% 1226.03%, #BDD915 -22.72deg, #1915d9e2 160.22deg, #bdd91500 163.43deg, #BDD915 337.28deg, #1915d9e2 520.22deg);
     --orange-dark-grad: linear-gradient(180deg, #E95D31 0%, rgba(255, 255, 255, 0) 100%);
     --orange-dark-grad-1: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%);
     --green: #34DBB3;
+    --dark-green: #0D927A;
     --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
@@ -49,6 +52,10 @@ main{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+button {
+    border: 0;
 }
 
 .center-container{
@@ -122,7 +129,7 @@ main{
 #start-stop-button{
     width: 40%;
     height: 60px;
-    border-radius: 40px;
+    border-radius: 32px;
     font-family: Roboto;
     color: white;
     font-size: var(--button-text-size);
@@ -133,32 +140,45 @@ main{
 }
 
 .pomodoro-button{
-    background: var(--orange-dark-grad), var(--red);
+    background: var(--red);
+}
+
+.pomodoro-button:hover{
+    background: var(--dark-red);
 }
 
 .pomodoro-button:active{
-    background: var(--orange-dark-grad-1), var(--red);
+    background: var(--red);
 }
 
 .break-button{
-    background: var(--green-grad), var(--green);
+    background: var(--green);
+}
+
+.break-button:hover{
+    background: var(--dark-green);
 }
 
 .break-button:active{
-    background: var(--green-grad-1), var(--green); 
+    background: var(--green); 
 }
 
 .task-button{
-    background: var(--orange-light-grad);
-    border-radius: 5px;
+    background: var(--orange);
+    border-radius: 22px;
     height: 50px;
     font-family: Roboto;
     color: white;
     font-size: var(--button-text-size);
 }
 
+.task-button:hover{
+    background: var(--dark-orange);
+    outline: 0;
+}
+
 .task-button:active{
-    background: var(--orangered-grad), white;
+    background: var(--orange);
     outline: 0;
 }
 
@@ -190,6 +210,7 @@ main{
 #stats-container h1 {
     margin-top: 4px;
     margin-bottom: 4px;
+    font-size: 1.8em;
 }
 
 #stats-container h2 {
@@ -223,7 +244,7 @@ main{
     padding: 12px 12px 12px 12px;
     border-radius: 8px;
     background-color: white;
-    box-shadow: 5px 4px 4px 2px var(--black-a3);
+    box-shadow: 0px 0px 10px 0px var(--black-a3);
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -249,6 +270,10 @@ main{
     justify-content: space-between;
 }
 
+.stats-row div:nth-child(2) {
+    font-weight: bolder;
+}
+
 .stats-button {
     position: fixed;
     top: 20px;
@@ -260,22 +285,35 @@ main{
     outline: 0;
 }
 
-.stats-button:active {
+.stats-button:hover {
     opacity: 90%;
-    /* background: var(--white-a2); */
 }
+
+.stats-button:active {
+    opacity: 100%;
+}
+
 
 #stats-close-button {
     position: absolute;
     top: 12px;
     right: 12px;
-    width: 30px;
+    width: 29px;
     height: 30px;
     background: var(--white-a1);
+    box-shadow: 0px 0px 10px 0px var(--black-a3);
     border-radius: 16px;
     outline: 0;
     display: flex;
     align-items: center;
+}
+
+#stats-close-button:hover {
+    background: var(--white-a3);
+}
+
+#stats-close-button:active {
+    background: var(--white-a1);
 }
 
 @media (max-width: 800px) {
