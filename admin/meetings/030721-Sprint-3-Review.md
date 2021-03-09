@@ -31,20 +31,19 @@ Main points:
 ### Pomodoro Counter + localStorage
 - Contributor: **Amy Shen**
 
-It's without a doubt that our stats display depend on specific data to read from and calculate. Hence, Amy's work was crucial as her implementations provided a pomodoro counter that tracks user behavior. Building off of our app's timer functionality, Amy's function 
+It's without a doubt that our stats display depends on specific data to read from and calculate. Hence, Amy's work was crucial as her implementations provided a pomodoro counter that tracks user behavior. This feature was first augmented to the timer team's earliest iteration of "beginCountdown", a function that updates the visual timer live depending on user input. Behind the scenes, this function utilizes a variable that tracks the current stages of a pomo cycle to verify when a long or short break should be entered. Amy's feature traces this information and feeds it into localStorage for the functions by our stats team to retrieve.
 
+In addition, this information is displayed on-screen and below the start/stop button (below is a GIF that demonstrates this). There are two unique trackers: the first displays the number of work periods passed until the user presses "Complete Task" whereas the second displays the current stage of the entire pomo cycle. The first counter resets by user input and the second resets once the user finishes their extended break (after 4 work periods).
 
-Amy's work builds off of our application's timer functionality and tracks/provides data for our stats team to utilize.
+As the timer team remodeled their code and created newer PRs, Amy was quick to assess any sudden bugs and glitches that would appear in the counters. Her immediate fixtures helped solidify our code and allowed our team to progress more confidently towards future stretch stories.
 
-- pomo cycle tweaks (ie. cycle pomo movement, synchronized with user interactions)
+- *Live example (take note that timer settings are shortened for the sake of showcasing)*
 
+![](./sprint3Files/counter.gif)
 
-- Worked on pomo counter for task
-- Implementing cycle tracker 
-  - ironing out further bugs from PR merging conflicts
+- *Glimpse of implementation*
 
-- Week 9, adapted code to later PRs
-  - Total cycle count updated in congruence with local storage
+![](./sprint3Files/PomoCounts.PNG)
 
 -------
 
