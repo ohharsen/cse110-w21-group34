@@ -17,57 +17,57 @@ const LEFT_PADDING = 48;
  * @param {HTMLCanvasElement} canvas Target canvas
  * @param {number[]} data An array
  */
-export function drawGraph(canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    const axes = calculateAxes(data);
-    drawAxes(ctx, canvas.height, canvas.width, axes);
-    drawBars(ctx, canvas.height, data, axes);
-    ctx.save();
+export function drawGraph (canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const axes = calculateAxes(data);
+  drawAxes(ctx, canvas.height, canvas.width, axes);
+  drawBars(ctx, canvas.height, data, axes);
+  ctx.save();
 }
 
 /**
- * 
- * @param {CanvasRenderingContext2D} ctx 
- * @param {number} canvasHeight 
- * @param {number} canvasWidth 
- * @param {number[]} axes 
+ *
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} canvasHeight
+ * @param {number} canvasWidth
+ * @param {number[]} axes
  */
-function drawAxes(ctx, canvasHeight, canvasWidth, axes) {
-    const maxHeight = canvasHeight - BOTTOM_PADDING;
-    const maxWidth = canvasWidth - RIGHT_PADDING;
+function drawAxes (ctx, canvasHeight, canvasWidth, axes) {
+  const maxHeight = canvasHeight - BOTTOM_PADDING;
+  const maxWidth = canvasWidth - RIGHT_PADDING;
 
-    // Draw y-axes
-    ctx.font = TEXT_FONT;
-    ctx.textAlign = 'center';
-    for (const [i, axis] of axes.entries()) {
-      const x = LEFT_PADDING;
-      const y = TOP_PADDING + maxHeight - Math.round(maxHeight * (i / (axes.length - 1)));
-      drawLine(ctx, x, y, maxWidth, y);
-      ctx.fillText(axis, x - 16, y + 4);
-    }
-    
-    // Draw y-label
-    ctx.save();
-    ctx.translate(16, Math.round((TOP_PADDING + maxHeight) / 2));
-    ctx.rotate(-Math.PI/2);
-    ctx.fillText(Y_LABEL, 0, 0);
-    ctx.restore();
-    
-    // Draw x-labels
-    for (const [i, label] of X_LABELS.entries()) {
-        const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
-        const y = TOP_PADDING + maxHeight + 8 + (TEXT_HEIGHT / 2);
-        ctx.fillText(label, x, y);
-    }
-    drawLine(ctx, LEFT_PADDING, 0, LEFT_PADDING, TOP_PADDING + maxHeight);
+  // Draw y-axes
+  ctx.font = TEXT_FONT;
+  ctx.textAlign = 'center';
+  for (const [i, axis] of axes.entries()) {
+    const x = LEFT_PADDING;
+    const y = TOP_PADDING + maxHeight - Math.round(maxHeight * (i / (axes.length - 1)));
+    drawLine(ctx, x, y, maxWidth, y);
+    ctx.fillText(axis, x - 16, y + 4);
+  }
+
+  // Draw y-label
+  ctx.save();
+  ctx.translate(16, Math.round((TOP_PADDING + maxHeight) / 2));
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText(Y_LABEL, 0, 0);
+  ctx.restore();
+
+  // Draw x-labels
+  for (const [i, label] of X_LABELS.entries()) {
+    const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
+    const y = TOP_PADDING + maxHeight + 8 + (TEXT_HEIGHT / 2);
+    ctx.fillText(label, x, y);
+  }
+  drawLine(ctx, LEFT_PADDING, 0, LEFT_PADDING, TOP_PADDING + maxHeight);
 }
 
 /**
  * Calculate and return 4 y-axes used in the graph. The first axis will always
  * be 0.
- * 
+ *
  * If max data is:
  *      0  - 3  => dont change max
  *      4  - 10 => round max up 1
@@ -77,13 +77,12 @@ function drawAxes(ctx, canvasHeight, canvasWidth, axes) {
  * @return {number[]} The axes in array form, from first axis to last axis.
  */
 function calculateAxes (data) {
-  
   // distribute the spacing
   const axes = INITIAL_Y_AXES;
-  
+
   // Calculating current max pomo cycles within week
   let max = Math.max(...data);
-  
+
   // Checking max value to determine axes values
   if (max < 4) {
     return axes;
@@ -92,12 +91,12 @@ function calculateAxes (data) {
   } else {
     max += 2;
   }
-  
+
   // Setting axes values and rounding to one decimal place
   axes[1] = (max / 3).toFixed(1);
   axes[2] = (2 * max / 3).toFixed(1);
   axes[3] = max;
-  
+
   return axes;
 }
 
@@ -109,17 +108,17 @@ function calculateAxes (data) {
  * @param {number[]} data x-data
  * @param {number[]} axes y-axis values
  */
-function drawBars(ctx, canvasHeight, data, axes) {
-    const maxAxis = Math.max(...axes);
-    const maxHeight = canvasHeight - BOTTOM_PADDING;
-    for (const [i, d] of data.entries()) {
-        const barHeight = Math.round(maxHeight * (d / maxAxis));
-        if (barHeight > 0) {
-            const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
-            const y = TOP_PADDING + maxHeight - barHeight;
-            drawBar(ctx, x, y, BAR_WIDTH, barHeight, BAR_COLOR);
-        }
+function drawBars (ctx, canvasHeight, data, axes) {
+  const maxAxis = Math.max(...axes);
+  const maxHeight = canvasHeight - BOTTOM_PADDING;
+  for (const [i, d] of data.entries()) {
+    const barHeight = Math.round(maxHeight * (d / maxAxis));
+    if (barHeight > 0) {
+      const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
+      const y = TOP_PADDING + maxHeight - barHeight;
+      drawBar(ctx, x, y, BAR_WIDTH, barHeight, BAR_COLOR);
     }
+  }
 }
 
 /**
@@ -133,9 +132,9 @@ function drawBars(ctx, canvasHeight, data, axes) {
  * @param {number} h height
  * @param {?string} color hex color (e.g. #fafefc)
  */
-function drawBar(ctx, x, y, w, h, color = '#000000') {
-    ctx.fillStyle = color;
-    ctx.fillRect(x - Math.round(w / 2), y, w, h);
+function drawBar (ctx, x, y, w, h, color = '#000000') {
+  ctx.fillStyle = color;
+  ctx.fillRect(x - Math.round(w / 2), y, w, h);
 }
 
 /**
@@ -146,9 +145,9 @@ function drawBar(ctx, x, y, w, h, color = '#000000') {
  * @param {number} x2 horizontal position of end point
  * @param {number} y2 vertical position of end point
  */
-function drawLine(ctx, x1, y1, x2, y2) {
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
+function drawLine (ctx, x1, y1, x2, y2) {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
 }
