@@ -3,6 +3,8 @@ import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskBu
 import { updateStats } from './stats.js';
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
+const COLORED_POT_SOURCE = 'images/honey-pot-color.png';
+const GRAY_POT_SOURCE = 'images/honey-pot-gray.png';
 
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
@@ -60,7 +62,7 @@ export function beginCountdown (duration, textDisplay) {
         // Today's date
         const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
         // incrementing daily pomo cycle count
-        
+
         updatePomoCount(todayPomos, todayStorage);
         increaseTaskPomo();
         updateStats();
@@ -158,12 +160,10 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
 /**
  * Update pot icons to show number of pomos completed for the cycle
  */
-export function updatePots(){
-  for(let i = 1; i < pomoCount+1; i++)
-    document.getElementById("pot"+i).src = "images/honey-pot-color.png";
- 
-  for(let i = pomoCount+1; i <= 3; i++)
-    document.getElementById("pot"+i).src = "images/honey-pot-gray.png";
+export function updatePots () {
+  for (let i = 1; i < pomoCount + 1; i++) { document.getElementById('pot' + i).src = COLORED_POT_SOURCE; }
+
+  for (let i = pomoCount + 1; i <= 3; i++) { document.getElementById('pot' + i).src = GRAY_POT_SOURCE; }
 }
 
 /**
