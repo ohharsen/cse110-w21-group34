@@ -36,8 +36,9 @@
                 <button id="start-stop-button" class="pomodoro-button break-button">▶ Begin</button>
             </div>
             <button id="task" class="task-button">Complete Task</button>
+            <button id="toggle-accessibility">Go Accessible! (Placeholder)</button>
         </div>
-        <audio id = "timer-sound" src = "./sounds/timer.mp3"></audio>
+        <audio id = "timer-sound" src = "./sounds/quite-impressed-565.mp3"></audio>
         <button id="stats-open-button" class="stats-button" type="button"><img width="80px" height="80px" src="./images/test.png" /></button>
         <button id="settings-open-button" class="settings-button" type="button"><img width="80px" height="80px" src="./images/test.png" /></button>
         <div class="counters-container">
@@ -50,6 +51,7 @@
         <button id="stats-close-button" type="button"><img width="15px" height="15px" src ="./images/xbutton.png" /></button>
         <section id="stats-pane">
             <h1>User Statistics</h1>
+
             <div id="stats-today" class="stats-box">
                 <div>
                     <h2>Today</h2>
@@ -159,9 +161,10 @@
             </div>
         </section>
     </aside>
-
     <script src="./scripts/startResetButton.js" type="module"></script>
     <script src="./scripts/taskButton.js" type="module"></script>
     <script src="./scripts/stats.js" type="module"></script>
+    <script src="./scripts/accessibility.js" type="module"></script>
+    <script src="./scripts/keystrokeAccess.js" type="module"></script>
   </body>
 </html>
