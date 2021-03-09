@@ -50,9 +50,11 @@ Following Arsen's introduction of Cypress testing to the group project, Michael 
 Near the end of the sprint, the Timer Team engaged with new stretch goal features as some of the images below entail a WIP settings pane. Michael utilized the HTML and CSS code written by the statistics team (Joshua, Vedparkash, Michael K.) to clone a left-hand page whereas Keshab's goal will be to help populate its inner panes.
 
 - *Example of written Cypress testing:*
+
 ![](./sprint3Files/Countdown-Cypress.gif)
 
 - *Early WIP build of left pane:*
+
 ![](./sprint3Files/Left-Pane.PNG)
 
 -------
