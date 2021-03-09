@@ -1,4 +1,6 @@
-const X_LABELS = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
+const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
+const Y_LABEL = 'Pomodoros Completed';
+const INITIAL_Y_AXES = [0, 1, 2, 3];
 const TEXT_FONT = '12px Roboto';
 const BAR_COLOR = '#eb4000';
 const BAR_WIDTH = 20;
@@ -17,8 +19,7 @@ const LEFT_PADDING = 48;
  */
 export function drawGraph(canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
     if (!canvas) return;
-    // Shift data from MTWThFSaSu -> SuMTWThFSa
-    data.unshift(data.pop());
+    
     const ctx = canvas.getContext('2d');
     const axes = calculateAxes(data);
     drawAxes(ctx, canvas.height, canvas.width, axes);
@@ -36,25 +37,25 @@ export function drawGraph(canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
 function drawAxes(ctx, canvasHeight, canvasWidth, axes) {
     const maxHeight = canvasHeight - BOTTOM_PADDING;
     const maxWidth = canvasWidth - RIGHT_PADDING;
-    
-    // draw y-axes
-    
-    // draw y-labels
+
+    // Draw y-axes
     ctx.font = TEXT_FONT;
     ctx.textAlign = 'center';
     for (const [i, axis] of axes.entries()) {
-        const x = LEFT_PADDING;
-        const y = TOP_PADDING + maxHeight - Math.round(maxHeight * (i / (axes.length - 1)));
-        drawLine(ctx, x, y, maxWidth, y);
-        ctx.fillText(axis, x - 16, y + 4);
+      const x = LEFT_PADDING;
+      const y = TOP_PADDING + maxHeight - Math.round(maxHeight * (i / (axes.length - 1)));
+      drawLine(ctx, x, y, maxWidth, y);
+      ctx.fillText(axis, x - 16, y + 4);
     }
+    
+    // Draw y-label
     ctx.save();
     ctx.translate(16, Math.round((TOP_PADDING + maxHeight) / 2));
     ctx.rotate(-Math.PI/2);
-    ctx.fillText('Pomodoros Completed', 0, 0);
+    ctx.fillText(Y_LABEL, 0, 0);
     ctx.restore();
-
-    // draw x-labels
+    
+    // Draw x-labels
     for (const [i, label] of X_LABELS.entries()) {
         const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
         const y = TOP_PADDING + maxHeight + 8 + (TEXT_HEIGHT / 2);
@@ -64,15 +65,53 @@ function drawAxes(ctx, canvasHeight, canvasWidth, axes) {
 }
 
 /**
+ * Calculate and return 4 y-axes used in the graph. The first axis will always
+ * be 0.
  * 
+ * If max data is:
+ *      0  - 3  => dont change max
+ *      4  - 10 => round max up 1
+ *      11 - 30 => round max up 2
+ * spacing = max axis / 4
+ * @param {number[]} data The weekly data to scale the axes by.
+ * @return {number[]} The axes in array form, from first axis to last axis.
+ */
+function calculateAxes (data) {
+  
+  // distribute the spacing
+  const axes = INITIAL_Y_AXES;
+  
+  // Calculating current max pomo cycles within week
+  let max = Math.max(...data);
+  
+  // Checking max value to determine axes values
+  if (max < 4) {
+    return axes;
+  } else if (max < 11) {
+    max += 1;
+  } else {
+    max += 2;
+  }
+  
+  // Setting axes values and rounding to one decimal place
+  axes[1] = (max / 3).toFixed(1);
+  axes[2] = (2 * max / 3).toFixed(1);
+  axes[3] = max;
+  
+  return axes;
+}
+
+/**
+ * Draws bars for each datapoint in data, relative to the highest valued
+ * axis given in axes.
  * @param {CanvasRenderingContext2D} ctx The canvas' 2d rendering context
  * @param {number} canvasHeight The canvas' height
- * @param {number[]} data 
- * @param {number[]} axes 
+ * @param {number[]} data x-data
+ * @param {number[]} axes y-axis values
  */
 function drawBars(ctx, canvasHeight, data, axes) {
-    const maxAxis = axes[axes.length - 1];
-    const maxHeight = canvasHeight - 32;
+    const maxAxis = Math.max(...axes);
+    const maxHeight = canvasHeight - BOTTOM_PADDING;
     for (const [i, d] of data.entries()) {
         const barHeight = Math.round(maxHeight * (d / maxAxis));
         if (barHeight > 0) {
@@ -81,44 +120,6 @@ function drawBars(ctx, canvasHeight, data, axes) {
             drawBar(ctx, x, y, BAR_WIDTH, barHeight, BAR_COLOR);
         }
     }
-}
-
-/**
- * Calculate and return 4 y-axes used in the graph. The first axis will always
- * be 0.
- * @param {number[]} data The weekly data to scale the axes by.
- * @return {number[]} The axes in array form, from first axis to last axis.
- */
-function calculateAxes(data) {
-    // if max data
-    //      0 - 3 => just dont change max
-    //      4 - 10 => round max up 1
-    //      11 - 30 => round max up 2
-    // spacing = max axis / 4
-    
-    // distribute the spacing
-    const axes = [0, 1, 2, 3];
-    
-    // Calculating current max pomo cycles within week 
-    let max = Math.max(...data);
-
-    // Checking max value to determine axes values 
-    if (max < 4) {
-        return axes;
-    }
-    else if (max < 11) {
-        max += 1;
-    }
-    else {
-        max += 2;
-    }
-
-    // Setting axes values and rounding to one decimal place 
-    axes[1] = (max/3).toFixed(1);
-    axes[2] = (2*max/3).toFixed(1);
-    axes[3] = max;
-
-    return axes;
 }
 
 /**
@@ -134,7 +135,7 @@ function calculateAxes(data) {
  */
 function drawBar(ctx, x, y, w, h, color = '#000000') {
     ctx.fillStyle = color;
-    ctx.fillRect(x - Math.round(w/2), y, w, h);
+    ctx.fillRect(x - Math.round(w / 2), y, w, h);
 }
 
 /**

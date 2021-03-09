@@ -13,9 +13,19 @@ statsCloseButton.onclick = closeStatsPane;
 
 /* istanbul ignore next */
 /**
+ * Updates today and total stats when pomo cycle is complete,
+ * task is complete, or distraction occurs
+ */
+export function updateStats () {
+  displayTodayStats();
+  displayTotalStats();
+}
+
+/* istanbul ignore next */
+/**
  * Opens the statistics pane.
  */
-function openStatsPane () {
+export function openStatsPane () {
   displayTotalStats();
   displayTodayStats();
   drawGraph(graphCanvas, JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)));
@@ -33,7 +43,7 @@ function openStatsPane () {
 /**
  * Closes the statistics pane.
  */
-function closeStatsPane () {
+export function closeStatsPane () {
   timerBlock.classList.remove('slide-open');
   counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
