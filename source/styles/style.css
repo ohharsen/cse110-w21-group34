@@ -88,7 +88,7 @@ button {
 
 .timer{
     width: 75%;
-    height: 70%;
+    height: 40%;
 }
 
 .timer_circle_container {
@@ -390,4 +390,18 @@ button {
 }
 .counters-container.slide-close {
     animation: slide-center-in 0.5s ease-out forwards;
+}
+
+.pots-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 30%;
+    width: 50%;
+}
+
+.pots-container img{
+    height: 30px;
+    width: 30px;
 }
