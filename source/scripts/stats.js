@@ -11,7 +11,7 @@ statsCloseButton.onclick = closeStatsPane;
 
 /* istanbul ignore next */
 /**
- * Updates today and total stats when pomo cycle is complete, 
+ * Updates today and total stats when pomo cycle is complete,
  * task is complete, or distraction occurs
  */
 export function updateStats () {
