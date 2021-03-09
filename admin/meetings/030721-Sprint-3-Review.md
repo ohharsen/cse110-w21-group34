@@ -1,4 +1,3 @@
-```
 - Team: Teddy Bears
 - Date: 3/7/21
 - Time: 9:00pm (Sunday)
@@ -6,7 +5,8 @@
 - Location: Zoom (Online)
 - Written by: Michael Brown
 - Attendance: 9/9
-```
+
+-------
 
 # A Brief Introduction
 
@@ -14,7 +14,7 @@ After the conclusion of Sprint 2, our team had successfully developed an MVP (Mi
 
 This level of effort continued into Weeks 8 and 9 for our third Sprint of the quarter. With the MVP out of the way, much of our focus was dedicated to the extensive reorganization and overall improvement of our code. Our previous PRs had left some bugs that were inevitably squashed while testing became more prevelant across future implementations. These improvements created a safer foundation for our members to develop more advanced features. Our sub-groups from Sprint 2 were kept the same to maintain our members' familiarity with the components they had created.
 
-The section below entails the unique contributions of our members as well as the groups they worked with. Take note that there was more cross-pollination in everyone's work this time around in comparison to earlier sprints. This was especially prevalent in Week 9 as most of our prioritized features were finalized, leaving us with room to explore our original stretch goals.
+The sections below entails the unique contributions of our members as well as the groups they worked with.
 
 -------
 
@@ -30,8 +30,19 @@ Main points:
 
 ### Pomo Counter + localStorage
 - Contributor: **Amy Shen**
+
+It's without a doubt that our statistical implementations depend on data to absorb and calculate. Hence, our application's localStorage was prevalent to our success.
+
+
 - pomo cycle tweaks (ie. cycle pomo movement, synchronized with user interactions)
-- 
+
+
+- Worked on pomo counter for task
+- Implementing cycle tracker 
+  - ironing out further bugs from PR merging conflicts
+
+- Week 9, adapted code to later PRs
+  - Total cycle count updated in congruence with local storage
 
 -------
 
@@ -59,15 +70,21 @@ Near the end of the sprint, the Timer Team engaged with new stretch goal feature
 
 -------
 
-
-### Features + Cleanup
-
+### Code Cleanup + Accessibility
 - Contributor: **Arsen Ohanyan**
 
-- accessibility features, linting automated tests, code cleanup
+As a technical project grows, so too does its level of complexity. Arsen took upon the challenge to delve into our MVP from Sprint 2 and reorganize our work before the rest of our teams commenced. This rehaul took place in our JS code as most of our original implementations were within a single file. Arsen thus divided our work into separate files based on our sub-groups (ie. startResetButton.js, stats.js, and taskButton.js). Additionally, a JS file called constants.js was implemented to divide "read-only" constants from "writable" variables. This action was necessary to "internationalize" our variable usage across all other files to enable easier access, readability, and testing.
 
+Arsen then created a lint action for our GitHub repository. Whenever a team would create a PR for our main branch, linting would run to check for and flag any bugs or stylistic errors. This was especially necessary for encouraging our team members' writing styles to "normalize" over time so that individuals could review each other's code more clearly.
 
-*Example of visual tweak for accessibility:*
+As we neared the end of this sprint, Arsen focused on accessibility stretch goals. Colorblindness and keystroke accessibility, as of now, stand as the two current features that are being implemmented. An image below features a snapshot of this WIP.
+
+- *Glimpse of code-cleanup*
+
+![](./sprint3Files/Constants.PNG)
+
+- *Example of visual tweak for accessibility:*
+
 Original Appearance        |  Color Brightness/Modification
 :-------------------------:|:-------------------------:
 ![](./sprint3Files/color-original.png)  |  ![](./sprint3Files/color-accessibility.png)
@@ -129,14 +146,6 @@ Original Appearance        |  Color Brightness/Modification
 Future: Working to figure out / complete further CSS responsiveness
 
 -------
-
-Arsen
-- Worked on keystroke/accessibility features/stretch goals
-- ie. toggles for color changes for colorblindness accessibility
-- further testing improvements
-
-
--------
 **Ved**
 - Collaboration with Michael K. and Josh
 - Setup for extraction of data in back-end
@@ -158,37 +167,5 @@ Arsen
 
 (screenshot of the local storage and (
 
--------
 
-**Keshab**
 
-- Collaboration with Michael B.
-- Implementation of design changes/improvements
-  - Fixing font and time container on center of screen
-  - Resizing bugs fixed
-
-- Implementation of timer notification sound effect (when timer goes off)
-- Further bug issues completing with Micahel B.
-
-- PRs made in week 9
-- Cypress testing written out
-
--------
-
-**Michael B.**
-- Collaboration with Keshab
-- Solving prevalent bugs in timer functionality from previous PRs
-- Continuing documentation in admin file (group notes for back-track of team progress)
-- Attempting stretch goal feature for settings tab
-
--------
-
-**Amy**
-- Worked on pomo counter for task
-- Implementing cycle tracker 
-  - ironing out further bugs from PR merging conflicts
-
-- Week 9, adapted code to later PRs
-  - Total cycle count updated in congruence with local storage
-
--- SCREENSHOT OF LOWER LOCATION OF POMO COUNT (BOTTOM OF SCREEN) --
