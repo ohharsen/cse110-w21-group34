@@ -13,14 +13,14 @@ const X_LABELS = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
 export function drawGraph (canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
   if (!canvas) return;
   // Shift data from MTWThFSaSu -> SuMTWThFSa
-    data.unshift(data.pop());
+  data.unshift(data.pop());
   const ctx = canvas.getContext('2d');
   const axes = calculateAxes(data);
   drawAxes(ctx, canvas.height, canvas.width, axes);
   drawBars(ctx, canvas.height, data, axes);
 }
 
-/**
+/** 
 * @param {CanvasRenderingContext2D} ctx 
 * @param {number} canvasHeight 
 * @param {number} canvasWidth 
@@ -95,7 +95,21 @@ function calculateAxes (data) {
   axes[2] = (2*max/3).toFixed(1);
   axes[3] = max;
 
+  // Checking max value to determine axes values
+  if (max < 4) {
     return axes;
+  } else if (max < 11) {
+    max += 1;
+  } else {
+    max += 2;
+  }
+
+  // Setting axes values and rounding to one decimal place
+  axes[1] = (max / 3).toFixed(1);
+  axes[2] = (2 * max / 3).toFixed(1);
+  axes[3] = max;
+
+  return axes;
 }
 
 /**
