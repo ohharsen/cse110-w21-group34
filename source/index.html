@@ -32,16 +32,19 @@
                     <text id="countdownText" x = "26" y = "50">25:00</text>
                   </svg>
                 </div>
+                <div class = "pots-container">
+                    <img id="pot1" src="images/honey-pot-gray.png" />
+                    <img id="pot2" src="images/honey-pot-gray.png" />
+                    <img id="pot3" src="images/honey-pot-gray.png" />
+                </div>
                 <button id="start-stop-button" class="pomodoro-button break-button">▶ Begin</button>
             </div>
-            <button id="task" class="task-button">Complete Task</button>
-            <button id="toggle-accessibility">Go Accessible! (Placeholder)</button>
+            <button id="task" class="task-button">Complete Task: <span id="task-pomo-counter">0</span> Pomos</button>
+            <!-- <button id="toggle-accessibility">Go Accessible! (Placeholder)</button> -->
         </div>
         <audio id = "timer-sound" src = "./sounds/quite-impressed-565.mp3"></audio>
         <button id="stats-open-button" class="stats-button" type="button"><img width="80px" height="80px" src="./images/test.png" /></button>
-        <div class="counters-container">
-            <div class="task-pomo-container">Current Task: <span id="task-pomo-counter">0</span> Pomos</div>
-            <div class="cycle-pomo-container">Current Cycle: Pomo <span id="cycle-pomo-counter">0</span> of 4</div>
+        <div class="counters-container"></div>
         </div>
     </main>
     

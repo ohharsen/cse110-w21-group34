@@ -49,8 +49,10 @@ export function beginCountdown (duration, textDisplay) {
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
         // Dispalys the next cycle without beggining it
         if (pomoCount === 3) {
+          pomoCount = 0;
           currentTime(Constants.LONG_BREAK, textDisplay);
         } else {
+          pomoCount++;
           currentTime(Constants.SHORT_BREAK, textDisplay);
         }
         // current pomos cycles completed today
@@ -58,6 +60,7 @@ export function beginCountdown (duration, textDisplay) {
         // Today's date
         const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
         // incrementing daily pomo cycle count
+        
         updatePomoCount(todayPomos, todayStorage);
         increaseTaskPomo();
         updateStats();
@@ -73,6 +76,7 @@ export function beginCountdown (duration, textDisplay) {
           window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
         }
       }
+      updatePots();
       onBreak = togglePomoBreak(onBreak);
     }
   }, 1000);
@@ -134,7 +138,6 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     const display = document.querySelector('#countdownText');
     if (!localOnBreak) {
       pomoState = Constants.timerOptions.POMO;
-      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount + 1;
       beginCountdown(Constants.WORK_LENGTH, display);
     } else {
       if (localPomoCount === 3) {
@@ -143,7 +146,6 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
         pomoState = Constants.timerOptions.LONG;
         beginCountdown(Constants.LONG_BREAK, display);
       } else {
-        pomoCount++;
         localPomoCount++;
         pomoState = Constants.timerOptions.SHORT;
         beginCountdown(Constants.SHORT_BREAK, display);
@@ -151,6 +153,17 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     }
   }
   return [pomoState, localPomoCount];
+}
+
+/**
+ * Update pot icons to show number of pomos completed for the cycle
+ */
+export function updatePots(){
+  for(let i = 1; i < pomoCount+1; i++)
+    document.getElementById("pot"+i).src = "images/honey-pot-color.png";
+ 
+  for(let i = pomoCount+1; i <= 3; i++)
+    document.getElementById("pot"+i).src = "images/honey-pot-gray.png";
 }
 
 /**
