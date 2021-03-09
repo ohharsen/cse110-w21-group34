@@ -1,6 +1,6 @@
 import * as Constants from './constants.js';
 import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskButton.js';
-import { update } from './stats.js';
+import { updateStats } from './stats.js';
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
 
@@ -60,7 +60,7 @@ export function beginCountdown (duration, textDisplay) {
         // incrementing daily pomo cycle count
         updatePomoCount(todayPomos, todayStorage);
         increaseTaskPomo();
-        update();
+        updateStats();
       } else {
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
@@ -177,7 +177,7 @@ export function resetTimer () {
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
   updateDistractions(todayDistractions, todayStorage);
-  update();
+  updateStats();
 
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
