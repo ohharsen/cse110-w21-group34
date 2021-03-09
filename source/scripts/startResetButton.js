@@ -8,15 +8,20 @@ let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
 let interval;
 
+/**
+ * The callback for events that trigger the start or stop of timer
+ */
+export function startResetController () {
+  if (pomoState === Constants.timerOptions.STOPPED) {
+    startTimer();
+  } else {
+    resetTimer();
+  }
+}
+
 if (startStopButton) {
   startStopButton.classList.toggle('break-button');
-  startStopButton.addEventListener('click', function () {
-    if (pomoState === Constants.timerOptions.STOPPED) {
-      startTimer();
-    } else {
-      resetTimer();
-    }
-  });
+  startStopButton.addEventListener('click', startResetController);
 }
 
 /**
@@ -40,7 +45,7 @@ export function beginCountdown (duration, textDisplay) {
       if (!onBreak) {
         toggleTaskButtonDisabled(false);
         // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#34DBB3');
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
         // Dispalys the next cycle without beggining it
         if (pomoCount === 3) {
           currentTime(Constants.LONG_BREAK, textDisplay);
@@ -56,7 +61,7 @@ export function beginCountdown (duration, textDisplay) {
         increaseTaskPomo();
       } else {
         // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
 
@@ -151,6 +156,11 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
    * @return An array containing the stopped timer state and begin button text
    */
 export function resetTimer () {
+  const userConfirm = confirm('This action will count as an interruption.');
+  if (!userConfirm) {
+    return;
+  }
+
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
 
@@ -160,7 +170,7 @@ export function resetTimer () {
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
   }
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);

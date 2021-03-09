@@ -18,6 +18,7 @@ export function increaseTaskPomo () {
 export function resetTaskPomo () {
   taskPomoCount = 0;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  toggleTaskButtonDisabled(true);
 }
 
 if (taskButton) {
@@ -28,6 +29,10 @@ if (taskButton) {
     taskComplete(false, today);
     event.preventDefault();
   }); // upon click
+
+  if (localStorage.getItem(Constants.WEEK_HISTORY) === null) {
+    resetWeekArray();
+  }
 }
 
 /**
@@ -149,4 +154,4 @@ export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
 }
 
 // Sets the color of the timer
-document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
