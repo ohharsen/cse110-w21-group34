@@ -68,6 +68,7 @@ As the timer team remodeled their code and created newer PRs, Amy was quick to a
 - Contributors: **Viren Abhyankar, William Sun**
 
 
+
 completing task button, expanding its purposes and functionality
 - configuring a disable feature during break periods
 - improving readability over the code
@@ -75,6 +76,8 @@ completing task button, expanding its purposes and functionality
 - Work on user prompt for interupting a pomo cycle
 
 William - testing in local storage
+
+
 
 -------
 
@@ -125,74 +128,3 @@ Original Appearance        |  Color Brightness/Modification
 ![](./sprint2Files/MVP-Sprint-2.gif)
 
 ## After:
-
-
-
-
-
-
-**Viren**
-- Configure task button disable
-- Completing task button with William
-- Local storage function back-end completion
-- Improving readability of code for simplistic testing
-- Completing prompt to user for tracking interuption
-
-- Future: go over testing; make sure nothing is a "dummy test"
-
--------
-
-**Michael K.**
-- Collaborating with Josh and Ved
-- Completing the Graph implementation
-  - Formatting the graph; cleaner UI appearance
-- Splitting data via x/y axis labels; implmeneting spacing, organization, etc.
-
-- Wrote axis formula for scaling
-  - Writing out necessary functions
-
-- Next: implementing storage graph to update automatically
-- Creating more Jest/Cypress tests with group for complete coverage
-
--- Fit in image of graph overview with group here --
-
--------
-
-**Josh**
-- Exploring new visual improvements (for higher-res monitors)
-- Collaborating with Michael K. and Ved
-- Lots of progress in live mob session
-
-- Planning; created Figma design for graph
-  - ie. axes, behavior, organization
-  - Sketching module to divide work simultaneously
-
-- Completed drawing for the bars + x-axis labels
-- Experimenting with pixel scaling for consistent transformation of app UI
-
-Future: Working to figure out / complete further CSS responsiveness
-
--------
-**Ved**
-- Collaboration with Michael K. and Josh
-- Setup for extraction of data in back-end
-- Animations and visuals (in Week 8)
-
-- Week 9 --> applying everything to final website (making PRs)
-  - Connecting the JS to the HTML
-
-- Focusing on the testing side of the group completion
-- Completing daily stats with Michael K.
-
--------
-
-**William**
-- Breaking down large local storage function with Viren (week 8)
-- Creating more tests in local storage and writing out
-
-- Smooth week progression 
-
-(screenshot of the local storage and (
-
-
-
