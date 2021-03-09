@@ -5,9 +5,30 @@ const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
+const timer = document.getElementById('start-stop-button');
+const completeTask = document.getElementById('task');
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
+completeTask.onclick = taskButtonClicked; 
+
+/* istanbul ignore next */
+/**
+ * Updates today and total task when pomo cycle is complete or distraction occurs
+ */
+export function update(){
+  displayTodayStats();
+  displayTotalStats();
+}
+
+/* istanbul ignore next */
+/**
+ * Checks if compelte task button is pressed
+ */
+function taskButtonClicked(){
+  displayTodayStats();
+  displayTotalStats();
+}
 
 /* istanbul ignore next */
 /**
