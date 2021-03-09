@@ -122,7 +122,7 @@ Original Appearance        |  Color Brightness/Modification
 -------
 
 # Demo Overview (w/ Sprint 2 MVP Comparison)
-- Take note that the timer durations in both GIFs are shortened for simplified demonstration.
+- Take note that the timer durations in the first example was shortened for simplified demonstration.
 
 ## Before:
 ![](./sprint2Files/MVP-Sprint-2.gif)
