@@ -1,4 +1,5 @@
 import * as Constants from './constants.js';
+import { updateStats } from './stats.js';
 
 const taskButton = document.getElementById(Constants.TASK_BTN_ID);
 
@@ -18,6 +19,7 @@ export function increaseTaskPomo () {
 export function resetTaskPomo () {
   taskPomoCount = 0;
   document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  toggleTaskButtonDisabled(true);
 }
 
 if (taskButton) {
@@ -27,6 +29,10 @@ if (taskButton) {
     taskComplete(false, today);
     event.preventDefault();
   }); // upon click
+
+  if (localStorage.getItem(Constants.WEEK_HISTORY) === null) {
+    resetWeekArray();
+  }
 }
 
 /**
@@ -143,9 +149,9 @@ export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
   const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
   ++weekHistory[dayOfWeek];
   window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
-
+  updateStats();
   return window.localStorage;
 }
 
 // Sets the color of the timer
-document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
