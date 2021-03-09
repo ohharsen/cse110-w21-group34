@@ -26,6 +26,14 @@ The sections below entails the unique contributions of our members as well as th
 Main points:
 - phases of stats development (back-end localStorage/data retrieval, front-end display population and graphical appearances)
 
+- *Snapshot of dynamic stats pane w/ graphical interface*
+
+![](./sprint3Files/Graph-UI.png)
+
+- *Additional snapshot of Figma drafts*
+
+![](./sprint3Files/Stats-drafts.png)
+
 -------
 
 ### Pomodoro Counter + localStorage
@@ -49,6 +57,7 @@ As the timer team remodeled their code and created newer PRs, Amy was quick to a
 
 ### Task Button
 - Contributors: **Viren Abhyankar, William Sun**
+
 
 -------
 
