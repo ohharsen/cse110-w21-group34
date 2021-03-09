@@ -67,8 +67,7 @@ export function beginCountdown (duration, textDisplay) {
 
         // Update total cycle count at end of cycle
         if (duration === Constants.LONG_BREAK) {
-          const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
-          window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+          updateTotalCycles();
         }
       }
       onBreak = togglePomoBreak(onBreak);
@@ -232,4 +231,14 @@ export function timeFraction (timer, pomoState) {
   } else {
     return timer / Constants.SHORT_BREAK;
   }
+}
+
+/**
+ * Updates total cycles in local storage
+ * @returns the updated number of total cycles
+ */
+export function updateTotalCycles () {
+  const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
+  window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+  return window.localStorage.getItem(Constants.TOTAL_CYCLE_ID);
 }

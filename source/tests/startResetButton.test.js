@@ -6,6 +6,7 @@ import {
     updateDistractions,
     currentTime,
     timeFraction,
+    updateTotalCycles
 } from '../scripts/startResetButton';
 
 import { formatDate } from '../scripts/taskButton';
@@ -64,4 +65,9 @@ test('Test timer fraction', () => {
     expect(timeFraction(60, Constants.timerOptions.SHORT)).toStrictEqual(0.2);
     expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
+});
+
+test('checks total cycle count updates', () => {
+    window.localStorage.setItem('total-cycle-count', '1');
+    expect(updateTotalCycles()).toStrictEqual('2');
 });
