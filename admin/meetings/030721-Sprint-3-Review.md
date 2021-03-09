@@ -23,13 +23,13 @@ The sections below entails the unique contributions of our members as well as th
 ### Statistics
 - Contributors: **Joshua Narezo, Michael Khanzadeh, Vedparkash Singh**
 
-As our team transitioned from Sprint 2, a majority of our MVP's front-end was already complete. However, our statistics pane was still a blank slate, yet to be populated with important user data. For this sprint, Joshua, Michael K., and Vedparkash continued their collective effort to extract information from our back-end and display it on our app's interface.
+As our team transitioned from Sprint 2, a majority of our MVP's front-end was already complete. However, our statistics pane was still a blank slate, needing to be populated with important user data. For this sprint, Joshua, Michael K., and Vedparkash continued their collective effort to extract information from our back-end and display it on our app's interface. Each of the members cross-pollinated their efforts between each other, but most importantly focused on a unique component for the stats pane.
 
+Michael K. was able to develop several functions in JS to calculate user statistics (ie. total time spent focusing and average distractions per pomo). Other functions simply retrieved from localStorage (such as Amy's implementation of the pomo counter) and even the timer's text display itself. The toughest of these functions were those that formatted the graphical chart in which Michael prepared formulas for axis scaling and other modifications for visual cleanliness.
 
+In congruence to implementations, Joshua led a series of Figma designs for the team to collaborate from scratch and simplify their vision. Joshua's planning allowed everyone to clarify important key aspects such as the graph's axes, behavior, organization, and more prior to their programming. In addition, Joshua then experimented with functions in pixel scaling to find solutions that would make the UI scaling more consistent across different resolution monitors.
 
-
-Main points:
-- phases of stats development (back-end localStorage/data retrieval, front-end display population and graphical appearances)
+As these functions were completed incrementally, Vedparkash connected the group's JS files to our team's HTML. In addition to setting up the back-end for extraction, Ved returned to the front-end to finalize any remaining animations and visual components from Week 8 of our sprint. Due to the scope of the statistics pane, Vedparkash then delved into Cypress testing to expand the team's coverage over all of their technical implementations.
 
 - *Snapshot of dynamic stats pane w/ graphical interface*
 
