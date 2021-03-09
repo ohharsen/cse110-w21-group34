@@ -128,3 +128,10 @@ Original Appearance        |  Color Brightness/Modification
 ![](./sprint2Files/MVP-Sprint-2.gif)
 
 ## After:
+![](./sprint3Files/after-recording.gif)
+
+-------
+
+# Overall
+
+Our team has made an impressive amount of progress so far. As of now, we are continuing our efforts to optimize our code and clean up the details of our UI. Meanwhile, some of us are prepping to integrate new stretch goal features. However, the scale of these improvements will depend upon the appropriate time that remains once all of our required implementations are written, tested, and merged.
