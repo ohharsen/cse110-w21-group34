@@ -1,7 +1,7 @@
 - Team: Teddy Bears
 - Date: 3/7/21
 - Time: 9:00pm (Sunday)
-- Duration: 30 min.
+- Duration: 40 min.
 - Location: Zoom (Online)
 - Written by: Michael Brown
 - Attendance: 9/9
@@ -67,17 +67,17 @@ As the timer team remodeled their code and created newer PRs, Amy was quick to a
 ### Task Button
 - Contributors: **Viren Abhyankar, William Sun**
 
+Similarly to the experiences of other teams, Viren and William began Sprint 3 by reexploring their previous code to consider what needed to be reorganized or simplified. Given that the work of multiple groups was beginning to intertwine, the pair collaborated to break apart our local storage functions into granular subjects for improved usability. In addition, any sudden or prevalent bugs (such as the start/reset button accidentally resetting an entire pomo cycle) were fixed instantly.
 
+As for the button itself, it remained crucial that every piece of our final app would be as user-friendly as possible. Given that the user is expected to primarily interact with the start/stop button, Viren and William decided to expand its capabilities in JS. A visual aid was devloped to appear on-screen whenever a user would choose to click and reset the pomo cycle. Our entire team originally believed that a single "Reset" text prompt was too vague and that the user could accidentally break their progress. Hence, this feature was a necessity. In addition, we were concerned that a user would accidentally reset their break cycle; this action would contradict the point of having a break in teh first place. To resolve this, Viren and William enhanced the button with a disable feature to stop its event listener and even grayed out the box for a more distinct appearance. Lastly, the two overviewed their code in Cypress via extensive testing to ensure that no other bugs remained.
 
-completing task button, expanding its purposes and functionality
-- configuring a disable feature during break periods
-- improving readability over the code
-- prep of code for localStorage back-end retrieval
-- Work on user prompt for interupting a pomo cycle
+- *Example of button appearance during a break cycle*
 
-William - testing in local storage
+![](./sprint3Files/button-disable.png)
 
+- *Glimpse of Cypress testing implementations*
 
+![](./sprint3Files/start-stop-testing.gif)
 
 -------
 
