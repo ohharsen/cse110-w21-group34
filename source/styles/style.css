@@ -344,3 +344,7 @@ main{
 .counters-container.slide-close {
     animation: slide-center-in 0.5s ease-out forwards;
 }
+
+#weekly-graph {
+    width: 100%;
+}

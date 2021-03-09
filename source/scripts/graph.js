@@ -1,9 +1,14 @@
-const BAR_WIDTH = 28;
-const BAR_PADDING = 16;
-const BAR_COLOR = '#eb4000';
-const TEXT_HEIGHT = 14;
-const TEXT_FONT = '12px Roboto';
 const X_LABELS = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
+const TEXT_FONT = '12px Roboto';
+const BAR_COLOR = '#eb4000';
+const BAR_WIDTH = 20;
+const BAR_PADDING = 12;
+const BAR_LEFT_MARGIN = 24;
+const TEXT_HEIGHT = 14;
+const TOP_PADDING = 16;
+const RIGHT_PADDING = 16;
+const BOTTOM_PADDING = 32;
+const LEFT_PADDING = 48;
 
 /**
  * Draws a graph to the given canvas element with the given data points.
@@ -18,6 +23,7 @@ export function drawGraph(canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
     const axes = calculateAxes(data);
     drawAxes(ctx, canvas.height, canvas.width, axes);
     drawBars(ctx, canvas.height, data, axes);
+    ctx.save();
 }
 
 /**
@@ -28,17 +34,33 @@ export function drawGraph(canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
  * @param {number[]} axes 
  */
 function drawAxes(ctx, canvasHeight, canvasWidth, axes) {
-    // draw axes
+    const maxHeight = canvasHeight - BOTTOM_PADDING;
+    const maxWidth = canvasWidth - RIGHT_PADDING;
+    
+    // draw y-axes
+    
     // draw y-labels
-
-    // draw x-labels
     ctx.font = TEXT_FONT;
     ctx.textAlign = 'center';
+    for (const [i, axis] of axes.entries()) {
+        const x = LEFT_PADDING;
+        const y = TOP_PADDING + maxHeight - Math.round(maxHeight * (i / (axes.length - 1)));
+        drawLine(ctx, x, y, maxWidth, y);
+        ctx.fillText(axis, x - 16, y + 4);
+    }
+    ctx.save();
+    ctx.translate(16, Math.round((TOP_PADDING + maxHeight) / 2));
+    ctx.rotate(-Math.PI/2);
+    ctx.fillText('Pomodoros Completed', 0, 0);
+    ctx.restore();
+
+    // draw x-labels
     for (const [i, label] of X_LABELS.entries()) {
-        const x = 32 + i * (BAR_WIDTH + BAR_PADDING);
-        const y = canvasHeight - 32 + 8 + (TEXT_HEIGHT / 2);
+        const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
+        const y = TOP_PADDING + maxHeight + 8 + (TEXT_HEIGHT / 2);
         ctx.fillText(label, x, y);
     }
+    drawLine(ctx, LEFT_PADDING, 0, LEFT_PADDING, TOP_PADDING + maxHeight);
 }
 
 /**
@@ -54,8 +76,8 @@ function drawBars(ctx, canvasHeight, data, axes) {
     for (const [i, d] of data.entries()) {
         const barHeight = Math.round(maxHeight * (d / maxAxis));
         if (barHeight > 0) {
-            const x = 32 + i * (BAR_WIDTH + BAR_PADDING);
-            const y = maxHeight - barHeight;
+            const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
+            const y = TOP_PADDING + maxHeight - barHeight;
             drawBar(ctx, x, y, BAR_WIDTH, barHeight, BAR_COLOR);
         }
     }
@@ -111,8 +133,21 @@ function calculateAxes(data) {
  * @param {?string} color hex color (e.g. #fafefc)
  */
 function drawBar(ctx, x, y, w, h, color = '#000000') {
-    ctx.save();
     ctx.fillStyle = color;
     ctx.fillRect(x - Math.round(w/2), y, w, h);
-    ctx.restore();
+}
+
+/**
+ * Draws a line from (x1, y1) to (x2, y2) on the given canvas' context.
+ * @param {CanvasRenderingContext2D} ctx Target canvas' context
+ * @param {number} x1 horizontal position of start point
+ * @param {number} y1 vertical position of start point
+ * @param {number} x2 horizontal position of end point
+ * @param {number} y2 vertical position of end point
+ */
+function drawLine(ctx, x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
 }
