@@ -31,7 +31,7 @@ Main points:
 ### Pomodoro Counter + localStorage
 - Contributor: **Amy Shen**
 
-It's without a doubt that our statistical implementations depend on sources of data to read from and calculate. Hence, Amy's work was crucial as her implementations provided a pomodoro tracker of user behavior. Building off of our app's timer functionality, Amy's function 
+It's without a doubt that our stats display depend on specific data to read from and calculate. Hence, Amy's work was crucial as her implementations provided a pomodoro counter that tracks user behavior. Building off of our app's timer functionality, Amy's function 
 
 
 Amy's work builds off of our application's timer functionality and tracks/provides data for our stats team to utilize.
