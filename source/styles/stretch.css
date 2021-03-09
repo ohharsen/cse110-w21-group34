@@ -130,11 +130,11 @@
 
 @keyframes slide-center-out-settings {
     from { transform: translate(0, 0) }
-    to { transform: translate(21.7vw, 0) }
+    to { transform: translate(15vw, 0) }
 }
 
 @keyframes slide-center-in-settings {
-    from { transform: translate(21.7vw, 0) }
+    from { transform: translate(15vw, 0) }
     to { transform: translate(0, 0) }
 }
 

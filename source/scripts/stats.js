@@ -28,7 +28,7 @@ export function updateStats () {
  * Opens the statistics pane.
  */
 function openStatsPane () {
-  if(timerBlock.classList.contains('slide-open-settings')) {
+  if (timerBlock.classList.contains('slide-open-settings')) {
     closeSettingsPane();
   }
 
@@ -63,7 +63,7 @@ export function closeStatsPane () {
  * Opens the statistics pane.
  */
 function openSettingsPane () {
-  if(timerBlock.classList.contains('slide-open')) {
+  if (timerBlock.classList.contains('slide-open')) {
     closeStatsPane();
   }
 
