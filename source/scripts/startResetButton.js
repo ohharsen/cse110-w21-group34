@@ -1,6 +1,6 @@
 import * as Constants from './constants.js';
 import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskButton.js';
-import {update} from './stats.js'; 
+import { update } from './stats.js';
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
 
