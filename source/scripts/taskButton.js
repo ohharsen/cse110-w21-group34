@@ -25,9 +25,12 @@ if (taskButton) {
   const today = new Date();
   toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {
-    document.getElementById("confetti-overlay").style.display = "block";
     taskComplete(false, today);
     event.preventDefault();
+    document.getElementById("animation-overlay").style.display = "flex";
+    setTimeout(function(){
+      document.getElementById("animation-overlay").style.display = "none";
+    }, 3000);
   }); // upon click
 
   if (localStorage.getItem(Constants.WEEK_HISTORY) === null) {
