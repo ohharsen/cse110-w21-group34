@@ -50,8 +50,10 @@ export function beginCountdown (duration, textDisplay) {
         // Dispalys the next cycle without beggining it
         if (pomoCount === 3) {
           currentTime(Constants.LONG_BREAK, textDisplay);
+          timerTypeIndicator(Constants.LONG_BREAK);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
+          timerTypeIndicator(Constants.SHORT_BREAK);
         }
         // current pomos cycles completed today
         const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
@@ -66,7 +68,7 @@ export function beginCountdown (duration, textDisplay) {
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
-
+        timerTypeIndicator(Constants.WORK_LENGTH);
         // Update total cycle count at end of cycle
         if (duration === Constants.LONG_BREAK) {
           updateTotalCycles();
@@ -172,6 +174,7 @@ export function resetTimer () {
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+    timerTypeIndicator(Constants.WORK_LENGTH);
   }
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
@@ -244,4 +247,23 @@ export function updateTotalCycles () {
   const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
   window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
   return window.localStorage.getItem(Constants.TOTAL_CYCLE_ID);
+}
+
+/**
+ * Displays the textual indicator of the current timer type
+ * @param {Number} type the timer type (work, long break, or short break)
+ */
+export function timerTypeIndicator (type) {
+  document.getElementById('work-indicator').style.borderStyle = 'hidden';
+  document.getElementById('long-break-indicator').style.borderStyle = 'hidden';
+  document.getElementById('short-break-indicator').style.borderStyle = 'hidden';
+  if (type === Constants.LONG_BREAK) {
+    document.getElementById('long-break-indicator').style.borderStyle = 'solid';
+  }
+  else if (type === Constants.SHORT_BREAK) {
+    document.getElementById('short-break-indicator').style.borderStyle = 'solid';
+  }
+  else {
+    document.getElementById('work-indicator').style.borderStyle = 'solid';
+  }
 }

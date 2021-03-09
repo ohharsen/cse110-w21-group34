@@ -356,7 +356,7 @@ main{
 
 .pomo-indicator-container {
     font-family: "Roboto";
-    font-size: var(--button-text-size);
+    font-size: 18px;
     color: var(--counter-color);
     position: relative;
     display: flex;
@@ -369,7 +369,8 @@ main{
 
 .pomo-indicator {
     border: 2px hidden var(--counter-color);
-    padding: 5px;
+    text-align: center;
+    padding: 5px 5px 0px 5px;
 }
 
 #work-indicator {
