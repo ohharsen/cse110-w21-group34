@@ -81,7 +81,7 @@ As we neared the end of this sprint, Arsen focused on accessibility stretch goal
 
 - *Glimpse of code-cleanup*
 
-![](./sprint3Files/Constants.PNG)
+![](./sprint3Files/Constants.gif)
 
 - *Example of visual tweak for accessibility:*
 
