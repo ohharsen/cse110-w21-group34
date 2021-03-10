@@ -159,7 +159,7 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
    * @return An array containing the stopped timer state and begin button text
    */
 export function resetTimer () {
-  const userConfirm = confirm('This action will count as an interruption.');
+  const userConfirm = confirm('This action will count as a distraction.');
   if (!userConfirm) {
     return;
   }
