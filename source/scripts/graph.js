@@ -1,5 +1,5 @@
 const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
-const Y_LABEL = 'Tasks Completed';
+const Y_LABEL = 'Pomodoros Completed';
 const INITIAL_Y_AXES = [0, 1, 2, 3];
 const TEXT_FONT = '12px Roboto';
 const BAR_COLOR = '#eb4000';
