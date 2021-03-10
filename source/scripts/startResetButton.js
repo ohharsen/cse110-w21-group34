@@ -50,8 +50,10 @@ export function beginCountdown (duration, textDisplay) {
         // Dispalys the next cycle without beggining it
         if (pomoCount === 3) {
           currentTime(Constants.LONG_BREAK, textDisplay);
+          timerTypeIndicator(Constants.timerOptions.LONG);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
+          timerTypeIndicator(Constants.timerOptions.SHORT);
         }
         // current pomos cycles completed today
         const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
@@ -67,11 +69,10 @@ export function beginCountdown (duration, textDisplay) {
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
-
+        timerTypeIndicator(Constants.timerOptions.POMO);
         // Update total cycle count at end of cycle
         if (duration === Constants.LONG_BREAK) {
-          const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
-          window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+          updateTotalCycles();
         }
       }
       onBreak = togglePomoBreak(onBreak);
@@ -186,6 +187,7 @@ export function resetTimer () {
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+    timerTypeIndicator(Constants.WORK_LENGTH);
   }
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
@@ -247,5 +249,32 @@ export function timeFraction (timer, pomoState) {
     return timer / Constants.LONG_BREAK;
   } else {
     return timer / Constants.SHORT_BREAK;
+  }
+}
+
+/**
+ * Updates total cycles in local storage
+ * @returns the updated number of total cycles
+ */
+export function updateTotalCycles () {
+  const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
+  window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+  return window.localStorage.getItem(Constants.TOTAL_CYCLE_ID);
+}
+
+/**
+ * Displays the textual indicator of the current timer type
+ * @param {String} type the timer type indicating work, long break, or short break
+ */
+export function timerTypeIndicator (type) {
+  document.getElementById('work-indicator').style.borderStyle = 'hidden';
+  document.getElementById('long-break-indicator').style.borderStyle = 'hidden';
+  document.getElementById('short-break-indicator').style.borderStyle = 'hidden';
+  if (type === Constants.timerOptions.LONG) {
+    document.getElementById('long-break-indicator').style.borderStyle = 'solid';
+  } else if (type === Constants.timerOptions.SHORT) {
+    document.getElementById('short-break-indicator').style.borderStyle = 'solid';
+  } else {
+    document.getElementById('work-indicator').style.borderStyle = 'solid';
   }
 }

@@ -1,6 +1,4 @@
 ```
-Standard heading bullets; change
-
 - Team: Teddy Bears
 - Date: 2/18/21
 - Time: 12:15pm (Sunday)
