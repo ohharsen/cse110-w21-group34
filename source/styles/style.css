@@ -196,6 +196,7 @@ button {
     font-family: Roboto;
     color: white;
     font-size: var(--button-text-size);
+    margin-top: 5px;
 }
 
 .task-button:hover {
@@ -388,6 +389,13 @@ button {
     .stats-button {
         top: 12px;
         right: 12px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .stats-button img {
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -444,4 +452,34 @@ button {
     margin-left: 4px;
     height: 30px;
     width: 30px;
+}
+
+.pomo-indicator-container {
+    font-family: "Roboto";
+    font-size: 18px;
+    color: var(--counter-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 13%;
+    width: 90%;
+    align-self: center;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 1300px){
+    .pomo-indicator-container {
+        font-size: 0.99rem;
+    }
+}
+
+.pomo-indicator {
+    border: 2px hidden var(--counter-color);
+    text-align: center;
+    padding: 5px 5px 0px 5px;
+}
+
+#work-indicator {
+    border-style: solid;
 }
