@@ -7,6 +7,8 @@ import {
     updateDistractions,
     currentTime,
     timeFraction,
+    updateTotalCycles,
+    timerTypeIndicator
 } from '../scripts/startResetButton';
 import { formatDate } from '../scripts/taskButton';
 
@@ -66,6 +68,7 @@ test('Test timer fraction', () => {
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
 });
 
+
 describe('Local Storage', () => {
     test('Updates pomodoro weekly history', () => {
         const weekData = [0, 0, 0, 0, 0, 0, 0];
@@ -77,4 +80,26 @@ describe('Local Storage', () => {
         
         expect(localStorage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
     });
+});
+
+test('checks total cycle count updates', () => {
+    window.localStorage.setItem('total-cycle-count', '1');
+    expect(updateTotalCycles()).toStrictEqual('2');
+});
+
+test('test timerTypeIndicator', () => {
+    timerTypeIndicator(Constants.timerOptions.LONG);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('solid');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
+
+    timerTypeIndicator(Constants.timerOptions.SHORT);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('solid');
+
+    timerTypeIndicator(Constants.timerOptions.POMO);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('solid');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
 });
