@@ -46,15 +46,16 @@ export function beginCountdown (duration, textDisplay) {
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
       if (!onBreak) {
+        pomoCount++;
+        updatePots();
         toggleTaskButtonDisabled(false);
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
         // Dispalys the next cycle without beggining it
-        if (pomoCount === 3) {
+        if (pomoCount === 4) {
           pomoCount = 0;
           currentTime(Constants.LONG_BREAK, textDisplay);
         } else {
-          pomoCount++;
           currentTime(Constants.SHORT_BREAK, textDisplay);
         }
         // current pomos cycles completed today
@@ -67,6 +68,7 @@ export function beginCountdown (duration, textDisplay) {
         increaseTaskPomo();
         updateStats();
       } else {
+        updatePots();
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
@@ -78,7 +80,6 @@ export function beginCountdown (duration, textDisplay) {
           window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
         }
       }
-      updatePots();
       onBreak = togglePomoBreak(onBreak);
     }
   }, 1000);
@@ -143,7 +144,6 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
       beginCountdown(Constants.WORK_LENGTH, display);
     } else {
       if (localPomoCount === 3) {
-        pomoCount = 0;
         localPomoCount = 0;
         pomoState = Constants.timerOptions.LONG;
         beginCountdown(Constants.LONG_BREAK, display);
@@ -163,7 +163,7 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
 export function updatePots () {
   for (let i = 1; i < pomoCount + 1; i++) { document.getElementById('pot' + i).src = COLORED_POT_SOURCE; }
 
-  for (let i = pomoCount + 1; i <= 3; i++) { document.getElementById('pot' + i).src = GRAY_POT_SOURCE; }
+  for (let i = pomoCount + 1; i <= 4; i++) { document.getElementById('pot' + i).src = GRAY_POT_SOURCE; }
 }
 
 /**

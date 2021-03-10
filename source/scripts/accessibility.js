@@ -53,4 +53,6 @@ function toggleAccessibility () {
 }
 
 /** redundant, used for linting */
-document.getElementById('toggle-accessibility').onclick = toggleAccessibility;
+toggleAccessibility();
+toggleAccessibility();
+// document.getElementById('toggle-accessibility').onclick = toggleAccessibility;
