@@ -143,7 +143,7 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
       pomoState = Constants.timerOptions.POMO;
       beginCountdown(Constants.WORK_LENGTH, display);
     } else {
-      if (localPomoCount === 3) {
+      if (localPomoCount === 4) {
         localPomoCount = 0;
         pomoState = Constants.timerOptions.LONG;
         beginCountdown(Constants.LONG_BREAK, display);
