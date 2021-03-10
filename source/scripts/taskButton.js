@@ -96,7 +96,7 @@ export function taskComplete (clearStorage, today) {
     weekCounter++;
   }
 
-  return updateLocalStorage(dayCounter, weekCounter, dayOfWeek);
+  return updateLocalStorage(dayCounter, weekCounter);
 }
 
 /**
@@ -125,8 +125,8 @@ export function isSameWeek (today) {
 }
 
 /**
-   * Reset week history array to zeros
-   */
+ * Reset week history array to zeros
+ */
 export function resetWeekArray () {
   const zeros = [0, 0, 0, 0, 0, 0, 0];
   window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(zeros));
@@ -136,19 +136,15 @@ export function resetWeekArray () {
    * Update local storage with finished task information
    * @param dayCounter today total task count
    * @param weekCounter week total task count
-   * @param dayOfWeek the day of the week (0 --> Monday, 1 --> Tuesday, ... etc)
    * @returns local storage for debug
    */
-export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
+export function updateLocalStorage (dayCounter, weekCounter) {
   window.localStorage.setItem(Constants.TODAY_TASK_ID, String(dayCounter));
   window.localStorage.setItem(Constants.WEEK_TASK_ID, String(weekCounter));
 
   const totalTasks = Number(window.localStorage.getItem(Constants.TOTAL_TASK_ID)) + 1;
   window.localStorage.setItem(Constants.TOTAL_TASK_ID, String(totalTasks));
 
-  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
-  ++weekHistory[dayOfWeek];
-  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
   updateStats();
   return window.localStorage;
 }
