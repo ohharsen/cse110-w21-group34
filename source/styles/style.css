@@ -353,3 +353,26 @@ main{
 .counters-container.slide-close {
     animation: slide-center-in 0.5s ease-out forwards;
 }
+
+.pomo-indicator-container {
+    font-family: "Roboto";
+    font-size: 18px;
+    color: var(--counter-color);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 13%;
+    width: 90%;
+}
+
+.pomo-indicator {
+    border: 2px hidden var(--counter-color);
+    text-align: center;
+    padding: 5px 5px 0px 5px;
+}
+
+#work-indicator {
+    border-style: solid;
+}
