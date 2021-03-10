@@ -50,10 +50,10 @@ export function beginCountdown (duration, textDisplay) {
         // Dispalys the next cycle without beggining it
         if (pomoCount === 3) {
           currentTime(Constants.LONG_BREAK, textDisplay);
-          timerTypeIndicator(Constants.LONG_BREAK);
+          timerTypeIndicator(Constants.timerOptions.LONG);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
-          timerTypeIndicator(Constants.SHORT_BREAK);
+          timerTypeIndicator(Constants.timerOptions.SHORT);
         }
         // current pomos cycles completed today
         const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
@@ -68,7 +68,7 @@ export function beginCountdown (duration, textDisplay) {
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
-        timerTypeIndicator(Constants.WORK_LENGTH);
+        timerTypeIndicator(Constants.timerOptions.POMO);
         // Update total cycle count at end of cycle
         if (duration === Constants.LONG_BREAK) {
           updateTotalCycles();
@@ -251,15 +251,15 @@ export function updateTotalCycles () {
 
 /**
  * Displays the textual indicator of the current timer type
- * @param {Number} type the timer type (work, long break, or short break)
+ * @param {String} type the timer type indicating work, long break, or short break
  */
 export function timerTypeIndicator (type) {
   document.getElementById('work-indicator').style.borderStyle = 'hidden';
   document.getElementById('long-break-indicator').style.borderStyle = 'hidden';
   document.getElementById('short-break-indicator').style.borderStyle = 'hidden';
-  if (type === Constants.LONG_BREAK) {
+  if (type === Constants.timerOptions.LONG) {
     document.getElementById('long-break-indicator').style.borderStyle = 'solid';
-  } else if (type === Constants.SHORT_BREAK) {
+  } else if (type === Constants.timerOptions.SHORT) {
     document.getElementById('short-break-indicator').style.borderStyle = 'solid';
   } else {
     document.getElementById('work-indicator').style.borderStyle = 'solid';

@@ -74,17 +74,17 @@ test('checks total cycle count updates', () => {
 });
 
 test('test timerTypeIndicator', () => {
-    timerTypeIndicator(Constants.LONG_BREAK);
+    timerTypeIndicator(Constants.timerOptions.LONG);
     expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
     expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('solid');
     expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
 
-    timerTypeIndicator(Constants.SHORT_BREAK);
+    timerTypeIndicator(Constants.timerOptions.SHORT);
     expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
     expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
     expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('solid');
 
-    timerTypeIndicator(Constants.WORK_LENGTH);
+    timerTypeIndicator(Constants.timerOptions.POMO);
     expect(document.getElementById('work-indicator').style.borderStyle).toBe('solid');
     expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
     expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
