@@ -7,6 +7,7 @@ const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
+
 const settingsPane = document.getElementById('settings-container');
 const settingsOpenButton = document.getElementById('settings-open-button');
 const settingsCloseButton = document.getElementById('settings-close-button');
@@ -27,7 +28,7 @@ export function updateStats () {
 /**
  * Opens the statistics pane.
  */
-function openStatsPane () {
+export function openStatsPane () {
   if (timerBlock.classList.contains('slide-open-settings')) {
     closeSettingsPane();
   }
@@ -62,7 +63,7 @@ export function closeStatsPane () {
 /**
  * Opens the statistics pane.
  */
-function openSettingsPane () {
+export function openSettingsPane () {
   if (timerBlock.classList.contains('slide-open')) {
     closeStatsPane();
   }
@@ -80,7 +81,7 @@ function openSettingsPane () {
 /**
  * Opens the statistics pane.
  */
-function closeSettingsPane () {
+export function closeSettingsPane () {
   timerBlock.classList.remove('slide-open-settings');
   counterBlock.classList.remove('slide-open-settings');
   settingsPane.classList.remove('slide-open-settings');
