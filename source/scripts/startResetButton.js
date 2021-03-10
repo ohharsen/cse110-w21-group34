@@ -48,6 +48,11 @@ export function beginCountdown (duration, textDisplay) {
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
         // Dispalys the next cycle without beggining it
         if (pomoCount === 3) {
+          document.getElementById('task-celebration').src = "./images/longBreak.png";
+          document.getElementById('animation-overlay').style.display = 'flex';
+          setTimeout(function () {
+            document.getElementById('animation-overlay').style.display = 'none';
+          }, 3000);
           currentTime(Constants.LONG_BREAK, textDisplay);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
