@@ -36,7 +36,7 @@ if (countdownText) {
 export function startResetController () {
   if (pomoState === Constants.timerOptions.STOPPED) {
     startTimer();
-  } else {  
+  } else {
     resetTimer();
   }
 }
