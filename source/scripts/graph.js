@@ -1,5 +1,5 @@
 const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
-const Y_LABEL = 'Pomodoros Completed';
+const Y_LABEL = 'Tasks Completed';
 const INITIAL_Y_AXES = [0, 1, 2, 3];
 const TEXT_FONT = '12px Roboto';
 const BAR_COLOR = '#eb4000';
@@ -79,13 +79,12 @@ function drawAxes (ctx, canvasHeight, canvasWidth, axes) {
  * @param {number[]} data The weekly data to scale the axes by.
  * @return {number[]} The axes in array form, from first axis to last axis.
  */
-function calculateAxes (data) {
-  // distribute the spacing
-  const axes = INITIAL_Y_AXES;
+export function calculateAxes (data) {
+  // distribute the spacing and use slice to copy array
+  const axes = INITIAL_Y_AXES.slice();
 
   // Calculating current max pomo cycles within week
   let max = Math.max(...data);
-
   // Checking max value to determine axes values
   if (max < 4) {
     return axes;
@@ -96,8 +95,8 @@ function calculateAxes (data) {
   }
 
   // Setting axes values and rounding to one decimal place
-  axes[1] = (max / 3).toFixed(1);
-  axes[2] = (2 * max / 3).toFixed(1);
+  axes[1] = Number((max / 3).toFixed(1));
+  axes[2] = Number((2 * max / 3).toFixed(1));
   axes[3] = max;
 
   return axes;
