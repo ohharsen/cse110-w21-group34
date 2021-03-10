@@ -78,8 +78,10 @@ export function beginCountdown (duration, textDisplay) {
         // Dispalys the next cycle without beggining it
         if (pomoCount === 3) {
           currentTime(Constants.LONG_BREAK, textDisplay);
+          timerTypeIndicator(Constants.timerOptions.LONG);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
+          timerTypeIndicator(Constants.timerOptions.SHORT);
         }
         // current pomos cycles completed today
         const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
@@ -87,7 +89,6 @@ export function beginCountdown (duration, textDisplay) {
         const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
         // incrementing daily pomo cycle count
         updatePomoCount(todayPomos, todayStorage);
-        updateDailyPomoCount();
         increaseTaskPomo();
         updateStats();
       } else {
@@ -95,11 +96,10 @@ export function beginCountdown (duration, textDisplay) {
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
-
+        timerTypeIndicator(Constants.timerOptions.POMO);
         // Update total cycle count at end of cycle
         if (duration === Constants.LONG_BREAK) {
-          const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
-          window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+          updateTotalCycles();
         }
       }
       onBreak = togglePomoBreak(onBreak);
@@ -128,19 +128,7 @@ export function updatePomoCount (todayPomos, todayStorage) {
   if (Number(window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID)) &lt; todayPomos) {
     window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, todayPomos);
   }
-
   return todayPomos;
-}
-
-/**
- * Updates the pomo count for the current day of the week in local storage.
- */
-export function updateDailyPomoCount () {
-  const dayIdx = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK;
-  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
-
-  weekHistory[dayIdx]++;
-  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
 }
 
 /**
@@ -214,6 +202,7 @@ export function resetTimer () {
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+    timerTypeIndicator(Constants.WORK_LENGTH);
   }
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
@@ -277,6 +266,33 @@ export function timeFraction (timer, pomoState) {
     return timer / Constants.SHORT_BREAK;
   }
 }
+
+/**
+ * Updates total cycles in local storage
+ * @returns the updated number of total cycles
+ */
+export function updateTotalCycles () {
+  const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
+  window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+  return window.localStorage.getItem(Constants.TOTAL_CYCLE_ID);
+}
+
+/**
+ * Displays the textual indicator of the current timer type
+ * @param {String} type the timer type indicating work, long break, or short break
+ */
+export function timerTypeIndicator (type) {
+  document.getElementById('work-indicator').style.borderStyle = 'hidden';
+  document.getElementById('long-break-indicator').style.borderStyle = 'hidden';
+  document.getElementById('short-break-indicator').style.borderStyle = 'hidden';
+  if (type === Constants.timerOptions.LONG) {
+    document.getElementById('long-break-indicator').style.borderStyle = 'solid';
+  } else if (type === Constants.timerOptions.SHORT) {
+    document.getElementById('short-break-indicator').style.borderStyle = 'solid';
+  } else {
+    document.getElementById('work-indicator').style.borderStyle = 'solid';
+  }
+}
 </code></pre>
         </article>
     </section>
@@ -287,13 +303,13 @@ export function timeFraction (timer, pomoState) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#.onclick">.onclick</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li><li><a href="global.html#.onclick">.onclick</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Mar 10 2021 00:46:49 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Mar 10 2021 02:08:57 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
