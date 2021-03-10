@@ -372,6 +372,16 @@ button {
     #stats-pane {
         padding: 16px 32px 16px 32px;
     }
+
+    .stats-button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .stats-button img {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -391,12 +401,7 @@ button {
         right: 12px;
         width: 80px;
         height: 80px;
-    }
-
-    .stats-button img {
-        width: 60px;
-        height: 60px;
-    }
+    }   
 }
 
 @keyframes slide-right-out {
