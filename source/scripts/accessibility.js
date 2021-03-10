@@ -1,5 +1,6 @@
 let accessibleMode = false;
 const root = document.documentElement;
+
 /**
    * Function to toggle the accessibility colors and fonts
    * Darkens backgrounds for better readibility of text
@@ -54,3 +55,12 @@ function toggleAccessibility () {
 
 /** redundant, used for linting */
 document.getElementById('toggle-accessibility').onclick = toggleAccessibility;
+
+/**
+ * Getter function to retrieve accessibleMode variable,
+ * which indicates whether accessibility mode is on
+ * @return {boolean} true when accessibility mode is on, false if off
+ */
+export function modeGetter () {
+  return accessibleMode;
+}
