@@ -6,7 +6,8 @@ import {
     updateDistractions,
     currentTime,
     timeFraction,
-    updateTotalCycles
+    updateTotalCycles,
+    timerTypeIndicator
 } from '../scripts/startResetButton';
 
 import { formatDate } from '../scripts/taskButton';
@@ -70,4 +71,21 @@ test('Test timer fraction', () => {
 test('checks total cycle count updates', () => {
     window.localStorage.setItem('total-cycle-count', '1');
     expect(updateTotalCycles()).toStrictEqual('2');
+});
+
+test('test timerTypeIndicator', () => {
+    timerTypeIndicator(Constants.LONG_BREAK);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('solid');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
+
+    timerTypeIndicator(Constants.SHORT_BREAK);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('solid');
+
+    timerTypeIndicator(Constants.WORK_LENGTH);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('solid');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
 });

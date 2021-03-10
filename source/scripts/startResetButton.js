@@ -259,11 +259,9 @@ export function timerTypeIndicator (type) {
   document.getElementById('short-break-indicator').style.borderStyle = 'hidden';
   if (type === Constants.LONG_BREAK) {
     document.getElementById('long-break-indicator').style.borderStyle = 'solid';
-  }
-  else if (type === Constants.SHORT_BREAK) {
+  } else if (type === Constants.SHORT_BREAK) {
     document.getElementById('short-break-indicator').style.borderStyle = 'solid';
-  }
-  else {
+  } else {
     document.getElementById('work-indicator').style.borderStyle = 'solid';
   }
 }
