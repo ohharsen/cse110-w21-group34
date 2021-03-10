@@ -3,13 +3,30 @@ import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskBu
 import { updateStats } from './stats.js';
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
-const COLORED_POT_SOURCE = 'images/honey-pot-color.png';
-const GRAY_POT_SOURCE = 'images/honey-pot-gray.png';
+const countdownText = document.getElementById('countdownText');
+const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
+const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
 
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
 let interval;
+
+if (startStopButton) {
+  startStopButton.classList.toggle('break-button');
+  startStopButton.addEventListener('click', startResetController);
+}
+
+// Toggles countdown text on click
+if (countdownText) {
+  countdownText.addEventListener('click', () => {
+    if (countdownText.classList.contains('hover-text')) {
+      countdownText.classList.remove('hover-text');
+    } else if (pomoState != Constants.timerOptions.STOPPED) {
+      countdownText.classList.add('hover-text');
+    }
+  });
+}
 
 /**
  * The callback for events that trigger the start or stop of timer
@@ -22,11 +39,6 @@ export function startResetController () {
   }
 }
 
-if (startStopButton) {
-  startStopButton.classList.toggle('break-button');
-  startStopButton.addEventListener('click', startResetController);
-}
-
 /**
    * Begins the timer countdown for a cycle
    * @param {Number} duration The duration of the countdown
@@ -35,6 +47,7 @@ if (startStopButton) {
 export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
+  document.getElementById('countdownText').classList.add('hover-text');
   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
   interval = setInterval(function () {
     --timer;
@@ -43,6 +56,7 @@ export function beginCountdown (duration, textDisplay) {
     if (timer < 0) {
       clearInterval(interval);
       document.getElementById('timer-sound').play();
+      document.getElementById('countdownText').classList.remove('hover-text');
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
       if (!onBreak) {
@@ -176,6 +190,7 @@ export function resetTimer () {
     return;
   }
 
+  document.getElementById('countdownText').classList.remove('hover-text');
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
 
