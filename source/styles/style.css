@@ -28,7 +28,7 @@
     --counter-color: white;
 }
 
-html{
+html {
     background: var(--bacgkround-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -44,21 +44,27 @@ body {
     margin: 0;
 }
 
-main{
+main {
     width: 100%;
     min-height: 100%;
     height: 100%;
     display: flex;
     align-items: center;
+    align-content: center;
+    justify-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+img {
+    user-select: none;
 }
 
 button {
     border: 0;
 }
 
-.center-container{
+.center-container {
     width: 25%;
     min-width: 300px;
     height: 70%;
@@ -68,14 +74,24 @@ button {
     justify-content: space-evenly;
 }
 
+@media only screen and (max-width: 800px) {
+    .center-container {
+        width: 80%;
+        min-width: 120px;
+    }
+}
+
 .center-container.slide-open {
     animation: slide-center-out 0.5s ease-out forwards;
 }
+
 .center-container.slide-close {
     animation: slide-center-in 0.5s ease-out forwards;
 }
 
-.timer-container{
+.timer-container {
+    box-sizing: border-box;
+    padding: 16px;
     background: var(--white-a1);
     height: 80%;
     width: 100%;
@@ -83,50 +99,60 @@ button {
     border-radius: 21px;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
 }
 
-.timer{
-    width: 75%;
+.timer {
+    width: 100%;
     height: 40%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
 }
 
 .timer_circle_container {
     background-color: white;
     stroke: none;
-  }
+}
 
-  .timer_basic {
-      fill : none;
-      stroke: none;
-  }
+.timer_basic {
+    fill : none;
+    stroke: none;
+}
 
-  /*The SVG path that displays the timer's progress */
-  .timer_path_elapsed {
+/*The SVG path that displays the timer's progress */
+.timer_path_elapsed {
     fill: none;
-    stroke-width: 2px;
-    /* stroke: #DB2E2E; */
     transform: rotate(90deg) scale(1, -1) ;
     transform-origin: center;
-    transition: 1s linear all;
+    /* stroke: #DB2E2E; */
+    stroke-width: 2px;
     stroke-linecap: round;
-  }
+    transition: stroke-dasharray 1s linear, stroke 0.25s linear;
+}
   
-  #countdownText {
+#countdownText {
     /** Organization of text and positioning. **/
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-size: 20px;
-
-    opacity: 1.0;
-    transition: 1.0s;
-
     display: flex;
-    justify-content: center;
     align-items: center;
-  }
+    justify-content: center;
+    transition: opacity 250ms linear;
+}
 
-#start-stop-button{
+.hover-text {
+    opacity: 0;
+    transition: opacity 250ms linear;
+}
+
+.hover-text:hover {
+    opacity: 1.0;
+}
+
+#start-stop-button {
     width: 40%;
     height: 60px;
     border-radius: 32px;
@@ -135,35 +161,35 @@ button {
     font-size: var(--button-text-size);
 }
 
-#start-stop-button:focus{
+#start-stop-button:focus {
     outline: 0;
 }
 
-.pomodoro-button{
+.pomodoro-button {
     background: var(--red);
 }
 
-.pomodoro-button:hover{
+.pomodoro-button:hover {
     background: var(--dark-red);
 }
 
-.pomodoro-button:active{
+.pomodoro-button:active {
     background: var(--red);
 }
 
-.break-button{
+.break-button {
     background: var(--green);
 }
 
-.break-button:hover{
+.break-button:hover {
     background: var(--dark-green);
 }
 
-.break-button:active{
+.break-button:active {
     background: var(--green); 
 }
 
-.task-button{
+.task-button {
     background: var(--orange);
     border-radius: 22px;
     height: 50px;
@@ -172,21 +198,21 @@ button {
     font-size: var(--button-text-size);
 }
 
-.task-button:hover{
+.task-button:hover {
     background: var(--dark-orange);
     outline: 0;
 }
 
-.task-button:active{
+.task-button:active {
     background: var(--orange);
     outline: 0;
 }
 
-.task-button:disabled{
+.task-button:disabled {
     background:rgba(255, 255, 255, 0.2);
 }
 
-.task-button:focus{
+.task-button:focus {
     outline: 0;
 }
 
@@ -293,6 +319,13 @@ button {
     opacity: 100%;
 }
 
+#stats-open-button {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+}
 
 #stats-close-button {
     position: absolute;
@@ -308,6 +341,12 @@ button {
     align-items: center;
 }
 
+#stats-close-button {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
 #stats-close-button:hover {
     background: var(--white-a3);
 }
@@ -316,7 +355,7 @@ button {
     background: var(--white-a1);
 }
 
-@media (max-width: 800px) {
+@media only screen and (max-width: 800px) {
     #stats-container {
         height: calc(100vh - 36px);
         width: calc(100vw - 36px);
@@ -334,7 +373,7 @@ button {
     }
 }
 
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     #stats-container {
         height: calc(100vh - 16px);
         width: calc(100vw - 16px);
@@ -392,16 +431,17 @@ button {
     animation: slide-center-in 0.5s ease-out forwards;
 }
 
-.pots-container{
+.pots-container {
+    width: 100%;
+    padding-bottom: 16px;
     display: flex;
-    flex-direction: row;
     align-items: flex-end;
-    justify-content: space-around;
-    height: 30%;
-    width: 50%;
+    justify-items: flex-end;
+    justify-content: flex-end;
 }
 
-.pots-container img{
+.pots-container img {
+    margin-left: 4px;
     height: 30px;
     width: 30px;
 }
