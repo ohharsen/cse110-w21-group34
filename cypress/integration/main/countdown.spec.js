@@ -1,3 +1,5 @@
+import * as Constants from '../../../source/scripts/constants.js';
+
 describe('Countdown Test', ()=>{
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/');
@@ -5,12 +7,12 @@ describe('Countdown Test', ()=>{
 
     it('Starting the timer', () => {
         cy.get('#start-stop-button').trigger('click')
-        .contains('✖ Reset');
+        .contains('Reset');
     });
 
     it('Resetting the timer', () => {
         cy.get('#start-stop-button').trigger('click')
-        .trigger('click').contains('▶ Begin');
+        .trigger('click').contains('Begin');
     });
 
     it('Check display in middle of work period', () => {
