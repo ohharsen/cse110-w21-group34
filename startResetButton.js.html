@@ -31,8 +31,6 @@ import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskBu
 import { updateStats } from './stats.js';
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
-const COLORED_POT_SOURCE = 'images/honey-pot-color.png';
-const GRAY_POT_SOURCE = 'images/honey-pot-gray.png';
 
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
@@ -74,14 +72,11 @@ export function beginCountdown (duration, textDisplay) {
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
       if (!onBreak) {
-        pomoCount++;
-        updatePots();
         toggleTaskButtonDisabled(false);
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
         // Dispalys the next cycle without beggining it
-        if (pomoCount === 4) {
-          pomoCount = 0;
+        if (pomoCount === 3) {
           currentTime(Constants.LONG_BREAK, textDisplay);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
@@ -91,12 +86,11 @@ export function beginCountdown (duration, textDisplay) {
         // Today's date
         const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
         // incrementing daily pomo cycle count
-
         updatePomoCount(todayPomos, todayStorage);
+        updateDailyPomoCount();
         increaseTaskPomo();
         updateStats();
       } else {
-        updatePots();
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
@@ -134,7 +128,19 @@ export function updatePomoCount (todayPomos, todayStorage) {
   if (Number(window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID)) &lt; todayPomos) {
     window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, todayPomos);
   }
+
   return todayPomos;
+}
+
+/**
+ * Updates the pomo count for the current day of the week in local storage.
+ */
+export function updateDailyPomoCount () {
+  const dayIdx = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK;
+  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
+
+  weekHistory[dayIdx]++;
+  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
 }
 
 /**
@@ -169,13 +175,16 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     const display = document.querySelector('#countdownText');
     if (!localOnBreak) {
       pomoState = Constants.timerOptions.POMO;
+      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount + 1;
       beginCountdown(Constants.WORK_LENGTH, display);
     } else {
-      if (localPomoCount === 4) {
+      if (localPomoCount === 3) {
+        pomoCount = 0;
         localPomoCount = 0;
         pomoState = Constants.timerOptions.LONG;
         beginCountdown(Constants.LONG_BREAK, display);
       } else {
+        pomoCount++;
         localPomoCount++;
         pomoState = Constants.timerOptions.SHORT;
         beginCountdown(Constants.SHORT_BREAK, display);
@@ -183,15 +192,6 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     }
   }
   return [pomoState, localPomoCount];
-}
-
-/**
- * Update pot icons to show number of pomos completed for the cycle
- */
-export function updatePots () {
-  for (let i = 1; i &lt; pomoCount + 1; i++) { document.getElementById('pot' + i).src = COLORED_POT_SOURCE; }
-
-  for (let i = pomoCount + 1; i &lt;= 4; i++) { document.getElementById('pot' + i).src = GRAY_POT_SOURCE; }
 }
 
 /**
@@ -287,13 +287,13 @@ export function timeFraction (timer, pomoState) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#.onclick">.onclick</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Mar 10 2021 00:42:13 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Mar 10 2021 00:46:49 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
