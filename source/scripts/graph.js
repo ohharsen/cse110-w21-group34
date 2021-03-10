@@ -12,21 +12,24 @@ const RIGHT_PADDING = 16;
 const BOTTOM_PADDING = 32;
 const LEFT_PADDING = 48;
 
+/* istanbul ignore next */
 /**
  * Draws a graph to the given canvas element with the given data points.
  * @param {HTMLCanvasElement} canvas Target canvas
  * @param {number[]} data An array
  */
 export function drawGraph (canvas, data = [0, 0, 0, 0, 0, 0, 0]) {
-  if (!canvas) return;
+  if (!canvas || (typeof process === 'object' && process.env.NODE_ENV === 'test')) return;
 
   const ctx = canvas.getContext('2d');
   const axes = calculateAxes(data);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawAxes(ctx, canvas.height, canvas.width, axes);
   drawBars(ctx, canvas.height, data, axes);
   ctx.save();
 }
 
+/* istanbul ignore next */
 /**
  *
  * @param {CanvasRenderingContext2D} ctx
@@ -100,6 +103,7 @@ function calculateAxes (data) {
   return axes;
 }
 
+/* istanbul ignore next */
 /**
  * Draws bars for each datapoint in data, relative to the highest valued
  * axis given in axes.
@@ -121,6 +125,7 @@ function drawBars (ctx, canvasHeight, data, axes) {
   }
 }
 
+/* istanbul ignore next */
 /**
  * Draws a bar centered at (x, y) with w width (horizontal) and h height
  * (vertical), using the given canvas' context.
@@ -133,10 +138,13 @@ function drawBars (ctx, canvasHeight, data, axes) {
  * @param {?string} color hex color (e.g. #fafefc)
  */
 function drawBar (ctx, x, y, w, h, color = '#000000') {
+  ctx.save();
   ctx.fillStyle = color;
   ctx.fillRect(x - Math.round(w / 2), y, w, h);
+  ctx.restore();
 }
 
+/* istanbul ignore next */
 /**
  * Draws a line from (x1, y1) to (x2, y2) on the given canvas' context.
  * @param {CanvasRenderingContext2D} ctx Target canvas' context

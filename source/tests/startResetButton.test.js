@@ -3,11 +3,11 @@ import {
     togglePomoBreak,
     startTimer,
     resetTimer,
+    updateDailyPomoCount,
     updateDistractions,
     currentTime,
     timeFraction,
 } from '../scripts/startResetButton';
-
 import { formatDate } from '../scripts/taskButton';
 
 test('checks break toggle', () => {
@@ -64,4 +64,17 @@ test('Test timer fraction', () => {
     expect(timeFraction(60, Constants.timerOptions.SHORT)).toStrictEqual(0.2);
     expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
+});
+
+describe('Local Storage', () => {
+    test('Updates pomodoro weekly history', () => {
+        const weekData = [0, 0, 0, 0, 0, 0, 0];
+        const dotwk = ((new Date()).getDay() || 7) - 1;
+        weekData[dotwk] = 1;
+        const weekHistory = JSON.stringify(weekData);
+
+        updateDailyPomoCount();
+        
+        expect(localStorage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
+    });
 });
