@@ -27,7 +27,7 @@ if (taskButton) {
   taskButton.addEventListener('click', function (event) {
     taskComplete(false, today);
     event.preventDefault();
-    document.getElementById('task-celebration').src = "./images/taskComplete.gif";
+    document.getElementById('task-celebration').src = './images/taskComplete.gif';
     document.getElementById('animation-overlay').style.display = 'flex';
     setTimeout(function () {
       document.getElementById('animation-overlay').style.display = 'none';
