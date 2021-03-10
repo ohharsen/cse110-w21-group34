@@ -20,10 +20,12 @@ if (startStopButton) {
 // Toggles countdown text on click
 if (countdownText) {
   countdownText.addEventListener('click', () => {
-    if (countdownText.classList.contains('hover-text')) {
-      countdownText.classList.remove('hover-text');
-    } else if (pomoState !== Constants.timerOptions.STOPPED) {
-      countdownText.classList.add('hover-text');
+    if (pomoState !== Constants.timerOptions.STOPPED) {
+      if (countdownText.classList.contains('hover-text')) {
+        countdownText.classList.remove('hover-text');
+      } else {
+        countdownText.classList.add('hover-text');
+      }
     }
   });
 }
@@ -34,7 +36,7 @@ if (countdownText) {
 export function startResetController () {
   if (pomoState === Constants.timerOptions.STOPPED) {
     startTimer();
-  } else {
+  } else {  
     resetTimer();
   }
 }
@@ -47,7 +49,6 @@ export function startResetController () {
 export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
-  document.getElementById('countdownText').classList.add('hover-text');
   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
   interval = setInterval(function () {
     --timer;
