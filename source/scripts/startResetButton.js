@@ -22,7 +22,7 @@ if (countdownText) {
   countdownText.addEventListener('click', () => {
     if (countdownText.classList.contains('hover-text')) {
       countdownText.classList.remove('hover-text');
-    } else if (pomoState != Constants.timerOptions.STOPPED) {
+    } else if (pomoState !== Constants.timerOptions.STOPPED) {
       countdownText.classList.add('hover-text');
     }
   });
