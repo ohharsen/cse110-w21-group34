@@ -1,8 +1,12 @@
+import { modeGetter } from '../scripts/accessibility.js';
+
 const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
 const Y_LABEL = 'Pomodoros Completed';
 const INITIAL_Y_AXES = [0, 1, 2, 3];
 const TEXT_FONT = '12px Roboto';
+const TEXT_FONT_ACCESSIBILITY = 'bold 15px Roboto';
 const BAR_COLOR = '#eb4000';
+const BAR_COLOR_ACCESSIBILITY = '#B50014';
 const BAR_WIDTH = 20;
 const BAR_PADDING = 12;
 const BAR_LEFT_MARGIN = 24;
@@ -42,7 +46,11 @@ function drawAxes (ctx, canvasHeight, canvasWidth, axes) {
   const maxWidth = canvasWidth - RIGHT_PADDING;
 
   // Draw y-axes
+  // If accessibibility mode is on we use larger font
   ctx.font = TEXT_FONT;
+  if (modeGetter()) {
+    ctx.font = TEXT_FONT_ACCESSIBILITY;
+  }
   ctx.textAlign = 'center';
   for (const [i, axis] of axes.entries()) {
     const x = LEFT_PADDING;
@@ -119,7 +127,12 @@ function drawBars (ctx, canvasHeight, data, axes) {
     if (barHeight > 0) {
       const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
       const y = TOP_PADDING + maxHeight - barHeight;
-      drawBar(ctx, x, y, BAR_WIDTH, barHeight, BAR_COLOR);
+      // If accessibibility mode is on we use darker shade of red for rectangle
+      let barColor = BAR_COLOR;
+      if (modeGetter()) {
+        barColor = BAR_COLOR_ACCESSIBILITY;
+      }
+      drawBar(ctx, x, y, BAR_WIDTH, barHeight, barColor);
     }
   }
 }
