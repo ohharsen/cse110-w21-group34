@@ -88,7 +88,7 @@ describe('Countdown Test', ()=>{
             expect($el).to.have.attr('stroke', 'var(--green)');
         });
         cy.get('#cycle-pomo-counter').contains('4');
-
+        cy.tick(3000);  // Required for long break animation
         cy.get('#start-stop-button').trigger('click');
         cy.tick(900000);
         cy.get('#countdownText').contains('25:00');
