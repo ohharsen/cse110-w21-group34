@@ -1,4 +1,5 @@
 import * as Constants from './constants.js';
+import { updateStats } from './stats.js';
 
 const taskButton = document.getElementById(Constants.TASK_BTN_ID);
 
@@ -9,7 +10,7 @@ let taskPomoCount = 0;
  */
 export function increaseTaskPomo () {
   taskPomoCount++;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 }
 
 /**
@@ -17,7 +18,7 @@ export function increaseTaskPomo () {
  */
 export function resetTaskPomo () {
   taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
   toggleTaskButtonDisabled(true);
 }
 
@@ -69,7 +70,7 @@ export function formatDate (toFormat) {
    */
 export function taskComplete (clearStorage, today) {
   taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
   if (clearStorage) {
     window.localStorage.clear();
     resetWeekArray();
@@ -99,6 +100,8 @@ export function taskComplete (clearStorage, today) {
     dayCounter++;
     weekCounter++;
   }
+
+  toggleTaskButtonDisabled(true);
 
   return updateLocalStorage(dayCounter, weekCounter, dayOfWeek);
 }
@@ -153,7 +156,7 @@ export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
   const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY));
   ++weekHistory[dayOfWeek];
   window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
-
+  updateStats();
   return window.localStorage;
 }
 

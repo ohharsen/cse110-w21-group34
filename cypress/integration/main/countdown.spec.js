@@ -1,3 +1,5 @@
+import * as Constants from '../../../source/scripts/constants.js';
+
 describe('Countdown Test', ()=>{
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/');
@@ -5,12 +7,12 @@ describe('Countdown Test', ()=>{
 
     it('Starting the timer', () => {
         cy.get('#start-stop-button').trigger('click')
-        .contains('✖ Reset');
+        .contains('Reset');
     });
 
     it('Resetting the timer', () => {
         cy.get('#start-stop-button').trigger('click')
-        .trigger('click').contains('▶ Begin');
+        .trigger('click').contains('Begin');
     });
 
     it('Check display in middle of work period', () => {
@@ -39,7 +41,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--green)');
         });
-        cy.get('#cycle-pomo-counter').contains('1');
+        cy.get('#pot1').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
         cy.tick(300000);
@@ -47,7 +49,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
-        cy.get('#cycle-pomo-counter').contains('1');
+        cy.get('#pot1').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
         cy.tick(1500000);
@@ -55,7 +57,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--green)');
         });
-        cy.get('#cycle-pomo-counter').contains('2');
+        cy.get('#pot2').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
         cy.tick(300000);
@@ -63,7 +65,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
-        cy.get('#cycle-pomo-counter').contains('2');
+        cy.get('#pot2').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
         cy.tick(1500000);
@@ -71,7 +73,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--green)');
         });
-        cy.get('#cycle-pomo-counter').contains('3');
+        cy.get('#pot2').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
         cy.tick(300000);
@@ -79,7 +81,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
-        cy.get('#cycle-pomo-counter').contains('3');
+        cy.get('#pot3').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
         cy.tick(1500000);
@@ -87,15 +89,15 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--green)');
         });
-        cy.get('#cycle-pomo-counter').contains('4');
-        cy.tick(3000);  // Required for long break animation
+        cy.get('#pot4').should('have.attr', 'src').should('include','color');
+
         cy.get('#start-stop-button').trigger('click');
         cy.tick(900000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
-        cy.get('#cycle-pomo-counter').contains('4');
+        cy.get('#pot4').should('have.attr', 'src').should('include','gray');
 
         cy.get('#start-stop-button').trigger('click');
         cy.tick(1500000);
@@ -103,7 +105,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--green)');
         });
-        cy.get('#cycle-pomo-counter').contains('1');
+        cy.get('#pot1').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
         cy.tick(300000);
@@ -111,7 +113,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
-        cy.get('#cycle-pomo-counter').contains('1');
+        cy.get('#pot1').should('have.attr', 'src').should('include','color');
     });
 
     it('Multiple resets in middle of cycle', ()=>{
@@ -123,16 +125,18 @@ describe('Countdown Test', ()=>{
 
         cy.get('#start-stop-button').trigger('click'); // Begin
         cy.tick(750000);
-        cy.get('#cycle-pomo-counter').contains('2');
+        cy.get('#pot1').should('have.attr', 'src').should('include','color');
+        cy.get('#pot2').should('have.attr', 'src').should('include','gray');
         cy.get('#start-stop-button').trigger('click'); // Reset
-        cy.get('#cycle-pomo-counter').contains('2');
+        cy.get('#pot1').should('have.attr', 'src').should('include','color');
+        cy.get('#pot2').should('have.attr', 'src').should('include','gray');
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
         cy.get('#start-stop-button').trigger('click'); // Begin
         cy.tick(1400000);
-        cy.get('#cycle-pomo-counter').contains('2'); 
+        cy.get('#pot2').should('have.attr', 'src').should('include','gray');
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
@@ -142,7 +146,7 @@ describe('Countdown Test', ()=>{
         cy.get('#start-stop-button').trigger('click'); // Begin
         cy.get('#start-stop-button').trigger('click'); // Reset
         cy.get('#start-stop-button').trigger('click'); // Begin
-        cy.get('#cycle-pomo-counter').contains('2');
+        cy.get('#pot2').should('have.attr', 'src').should('include','gray');
         cy.tick(1500000);
         cy.get('#start-stop-button').trigger('click');
         cy.tick(300000);
@@ -151,7 +155,7 @@ describe('Countdown Test', ()=>{
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
-        cy.get('#cycle-pomo-counter').contains('3');
+        cy.get('#pot2').should('have.attr', 'src').should('include','color');
     });
 
 });

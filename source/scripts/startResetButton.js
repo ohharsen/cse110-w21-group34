@@ -1,12 +1,34 @@
 import * as Constants from './constants.js';
 import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskButton.js';
+import { updateStats } from './stats.js';
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
+const countdownText = document.getElementById('countdownText');
+const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
+const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
 
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
 let interval;
+
+if (startStopButton) {
+  startStopButton.classList.toggle('break-button');
+  startStopButton.addEventListener('click', startResetController);
+}
+
+// Toggles countdown text on click
+if (countdownText) {
+  countdownText.addEventListener('click', () => {
+    if (pomoState !== Constants.timerOptions.STOPPED) {
+      if (countdownText.classList.contains('hover-text')) {
+        countdownText.classList.remove('hover-text');
+      } else {
+        countdownText.classList.add('hover-text');
+      }
+    }
+  });
+}
 
 /**
  * The callback for events that trigger the start or stop of timer
@@ -17,11 +39,6 @@ export function startResetController () {
   } else {
     resetTimer();
   }
-}
-
-if (startStopButton) {
-  startStopButton.classList.toggle('break-button');
-  startStopButton.addEventListener('click', startResetController);
 }
 
 /**
@@ -40,40 +57,43 @@ export function beginCountdown (duration, textDisplay) {
     if (timer < 0) {
       clearInterval(interval);
       document.getElementById('timer-sound').play();
+      document.getElementById('countdownText').classList.remove('hover-text');
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
       if (!onBreak) {
+        pomoCount++;
+        updatePots();
         toggleTaskButtonDisabled(false);
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
         // Dispalys the next cycle without beggining it
-        if (pomoCount === 3) {
-          document.getElementById('task-celebration').src = './images/longBreak.png';
-          document.getElementById('animation-overlay').style.display = 'flex';
-          setTimeout(function () {
-            document.getElementById('animation-overlay').style.display = 'none';
-          }, 3000);
+        if (pomoCount === 4) {
+          pomoCount = 0;
           currentTime(Constants.LONG_BREAK, textDisplay);
+          timerTypeIndicator(Constants.timerOptions.LONG);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
+          timerTypeIndicator(Constants.timerOptions.SHORT);
         }
         // current pomos cycles completed today
         const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
         // Today's date
         const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
         // incrementing daily pomo cycle count
+
         updatePomoCount(todayPomos, todayStorage);
         increaseTaskPomo();
+        updateStats();
       } else {
+        updatePots();
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
-
+        timerTypeIndicator(Constants.timerOptions.POMO);
         // Update total cycle count at end of cycle
         if (duration === Constants.LONG_BREAK) {
-          const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
-          window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+          updateTotalCycles();
         }
       }
       onBreak = togglePomoBreak(onBreak);
@@ -137,16 +157,13 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     const display = document.querySelector('#countdownText');
     if (!localOnBreak) {
       pomoState = Constants.timerOptions.POMO;
-      document.getElementById('cycle-pomo-counter').innerHTML = pomoCount + 1;
       beginCountdown(Constants.WORK_LENGTH, display);
     } else {
-      if (localPomoCount === 3) {
-        pomoCount = 0;
+      if (localPomoCount === 4) {
         localPomoCount = 0;
         pomoState = Constants.timerOptions.LONG;
         beginCountdown(Constants.LONG_BREAK, display);
       } else {
-        pomoCount++;
         localPomoCount++;
         pomoState = Constants.timerOptions.SHORT;
         beginCountdown(Constants.SHORT_BREAK, display);
@@ -157,15 +174,25 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
 }
 
 /**
+ * Update pot icons to show number of pomos completed for the cycle
+ */
+export function updatePots () {
+  for (let i = 1; i < pomoCount + 1; i++) { document.getElementById('pot' + i).src = COLORED_POT_SOURCE; }
+
+  for (let i = pomoCount + 1; i <= 4; i++) { document.getElementById('pot' + i).src = GRAY_POT_SOURCE; }
+}
+
+/**
    * Resets timer upon button click
    * @return An array containing the stopped timer state and begin button text
    */
 export function resetTimer () {
-  const userConfirm = confirm('This action will count as an interruption.');
+  const userConfirm = confirm('This action will count as a distraction.');
   if (!userConfirm) {
     return;
   }
 
+  document.getElementById('countdownText').classList.remove('hover-text');
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
 
@@ -176,10 +203,12 @@ export function resetTimer () {
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+    timerTypeIndicator(Constants.WORK_LENGTH);
   }
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
   updateDistractions(todayDistractions, todayStorage);
+  updateStats();
 
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
@@ -236,5 +265,32 @@ export function timeFraction (timer, pomoState) {
     return timer / Constants.LONG_BREAK;
   } else {
     return timer / Constants.SHORT_BREAK;
+  }
+}
+
+/**
+ * Updates total cycles in local storage
+ * @returns the updated number of total cycles
+ */
+export function updateTotalCycles () {
+  const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
+  window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
+  return window.localStorage.getItem(Constants.TOTAL_CYCLE_ID);
+}
+
+/**
+ * Displays the textual indicator of the current timer type
+ * @param {String} type the timer type indicating work, long break, or short break
+ */
+export function timerTypeIndicator (type) {
+  document.getElementById('work-indicator').style.borderStyle = 'hidden';
+  document.getElementById('long-break-indicator').style.borderStyle = 'hidden';
+  document.getElementById('short-break-indicator').style.borderStyle = 'hidden';
+  if (type === Constants.timerOptions.LONG) {
+    document.getElementById('long-break-indicator').style.borderStyle = 'solid';
+  } else if (type === Constants.timerOptions.SHORT) {
+    document.getElementById('short-break-indicator').style.borderStyle = 'solid';
+  } else {
+    document.getElementById('work-indicator').style.borderStyle = 'solid';
   }
 }
