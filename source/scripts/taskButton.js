@@ -142,7 +142,7 @@ export function resetWeekArray () {
    * @param dayOfWeek the day of the week (0 --> Monday, 1 --> Tuesday, ... etc)
    * @returns local storage for debug
    */
- export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
+export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
   window.localStorage.setItem(Constants.TODAY_TASK_ID, String(dayCounter));
   window.localStorage.setItem(Constants.WEEK_TASK_ID, String(weekCounter));
 
@@ -155,7 +155,6 @@ export function resetWeekArray () {
   updateStats();
   return window.localStorage;
 }
-
 
 // Sets the color of the timer
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
