@@ -28,6 +28,10 @@ if (taskButton) {
   taskButton.addEventListener('click', function (event) {
     taskComplete(false, today);
     event.preventDefault();
+    document.getElementById('animation-overlay').style.display = 'flex';
+    setTimeout(function () {
+      document.getElementById('animation-overlay').style.display = 'none';
+    }, 3000);
   }); // upon click
 
   if (localStorage.getItem(Constants.WEEK_HISTORY) === null) {
