@@ -11,6 +11,16 @@ statsCloseButton.onclick = closeStatsPane;
 
 /* istanbul ignore next */
 /**
+ * Updates today and total stats when pomo cycle is complete,
+ * task is complete, or distraction occurs
+ */
+export function updateStats () {
+  displayTodayStats();
+  displayTotalStats();
+}
+
+/* istanbul ignore next */
+/**
  * Opens the statistics pane.
  */
 export function openStatsPane () {

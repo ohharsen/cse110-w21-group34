@@ -6,6 +6,8 @@ import {
     updateDistractions,
     currentTime,
     timeFraction,
+    updateTotalCycles,
+    timerTypeIndicator
 } from '../scripts/startResetButton';
 
 import { formatDate } from '../scripts/taskButton';
@@ -23,8 +25,7 @@ test('checks start state', () => {
     expect(startTimer(false, 2)).toStrictEqual([Constants.timerOptions.POMO, 2]);
     expect(startTimer(true, 2)).toStrictEqual([Constants.timerOptions.SHORT, 3]);
     expect(startTimer(false, 3)).toStrictEqual([Constants.timerOptions.POMO,3]);
-    expect(startTimer(true, 3)).toStrictEqual([Constants.timerOptions.LONG, 0]);
-    expect(startTimer(false, 0)).toStrictEqual([Constants.timerOptions.POMO, 0]);
+    expect(startTimer(true, 3)).toStrictEqual([Constants.timerOptions.SHORT, 4]);
 });
     
 test('checks reset state', () => {
@@ -64,4 +65,26 @@ test('Test timer fraction', () => {
     expect(timeFraction(60, Constants.timerOptions.SHORT)).toStrictEqual(0.2);
     expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
+});
+
+test('checks total cycle count updates', () => {
+    window.localStorage.setItem('total-cycle-count', '1');
+    expect(updateTotalCycles()).toStrictEqual('2');
+});
+
+test('test timerTypeIndicator', () => {
+    timerTypeIndicator(Constants.timerOptions.LONG);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('solid');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
+
+    timerTypeIndicator(Constants.timerOptions.SHORT);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('solid');
+
+    timerTypeIndicator(Constants.timerOptions.POMO);
+    expect(document.getElementById('work-indicator').style.borderStyle).toBe('solid');
+    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
 });
