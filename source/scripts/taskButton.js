@@ -132,8 +132,8 @@ export function isSameWeek (today) {
 }
 
 /**
-   * Reset week history array to zeros
-   */
+ * Reset week history array to zeros
+ */
 export function resetWeekArray () {
   const zeros = [0, 0, 0, 0, 0, 0, 0];
   window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(zeros));
