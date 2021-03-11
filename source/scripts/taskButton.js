@@ -1,4 +1,5 @@
 import * as Constants from './constants.js';
+import { updateStats } from './stats.js';
 
 const taskButton = document.getElementById(Constants.TASK_BTN_ID);
 
@@ -9,7 +10,7 @@ let taskPomoCount = 0;
  */
 export function increaseTaskPomo () {
   taskPomoCount++;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 }
 
 /**
@@ -17,7 +18,8 @@ export function increaseTaskPomo () {
  */
 export function resetTaskPomo () {
   taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
+  toggleTaskButtonDisabled(true);
 }
 
 if (taskButton) {
@@ -26,7 +28,15 @@ if (taskButton) {
   taskButton.addEventListener('click', function (event) {
     taskComplete(false, today);
     event.preventDefault();
+    document.getElementById('animation-overlay').style.display = 'flex';
+    setTimeout(function () {
+      document.getElementById('animation-overlay').style.display = 'none';
+    }, 3000);
   }); // upon click
+
+  if (localStorage.getItem(Constants.WEEK_HISTORY) === null) {
+    resetWeekArray();
+  }
 }
 
 /**
@@ -35,6 +45,7 @@ if (taskButton) {
  */
 
 export function toggleTaskButtonDisabled (disabled) {
+  if (taskPomoCount === 0) disabled = true;
   taskButton.disabled = disabled;
 }
 
@@ -59,7 +70,7 @@ export function formatDate (toFormat) {
    */
 export function taskComplete (clearStorage, today) {
   taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
   if (clearStorage) {
     window.localStorage.clear();
     resetWeekArray();
@@ -89,6 +100,8 @@ export function taskComplete (clearStorage, today) {
     dayCounter++;
     weekCounter++;
   }
+
+  toggleTaskButtonDisabled(true);
 
   return updateLocalStorage(dayCounter, weekCounter, dayOfWeek);
 }
@@ -143,9 +156,9 @@ export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
   const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY));
   ++weekHistory[dayOfWeek];
   window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
-
+  updateStats();
   return window.localStorage;
 }
 
 // Sets the color of the timer
-document.getElementById('base-timer-path-remaining').setAttribute('stroke', '#DB2E2E');
+document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
