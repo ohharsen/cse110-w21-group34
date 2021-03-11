@@ -63,7 +63,6 @@ export function beginCountdown (duration, textDisplay) {
       if (!onBreak) {
         pomoCount++;
         updatePots();
-        toggleTaskButtonDisabled(false);
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
         // Dispalys the next cycle without beggining it
@@ -96,6 +95,7 @@ export function beginCountdown (duration, textDisplay) {
           updateTotalCycles();
         }
       }
+      toggleTaskButtonDisabled(false);
       onBreak = togglePomoBreak(onBreak);
     }
   }, 1000);
