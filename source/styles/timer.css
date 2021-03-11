@@ -1,0 +1,197 @@
+.center-container {
+    width: 25%;
+    min-width: 300px;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 800px) {
+    .center-container {
+        width: 80%;
+        min-width: 120px;
+    }
+}
+
+.center-container .slide-open {
+    animation: slide-center-out 0.5s ease-out forwards;
+}
+
+.center-container .slide-close {
+    animation: slide-center-in 0.5s ease-out forwards;
+}
+
+.timer-container {
+    box-sizing: border-box;
+    padding: 16px;
+    background: var(--white-a1);
+    height: 80%;
+    width: 100%;
+    display: flex;
+    border-radius: 21px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer {
+    width: 100%;
+    height: 40%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.timer_circle_container {
+    background-color: white;
+    stroke: none;
+}
+
+.timer_basic {
+    fill : none;
+    stroke: none;
+}
+
+/*The SVG path that displays the timer's progress */
+.timer_path_elapsed {
+    fill: none;
+    transform: rotate(90deg) scale(1, -1) ;
+    transform-origin: center;
+    /* stroke: #DB2E2E; */
+    stroke-width: 2px;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1s linear, stroke 0.25s linear;
+}
+  
+#countdownText {
+    /** Organization of text and positioning. **/
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 250ms linear;
+}
+
+.hover-text {
+    opacity: 0;
+    transition: opacity 250ms linear;
+}
+
+.hover-text:hover {
+    opacity: 1.0;
+}
+
+#start-stop-button {
+    width: 40%;
+    height: 60px;
+    border-radius: 32px;
+    font-family: Roboto;
+    color: white;
+    font-size: var(--button-text-size);
+}
+
+#start-stop-button:focus {
+    outline: 0;
+}
+
+.pomodoro-button {
+    background: var(--red);
+}
+
+.pomodoro-button:hover {
+    background: var(--dark-red);
+}
+
+.pomodoro-button:active {
+    background: var(--red);
+}
+
+.break-button {
+    background: var(--green);
+}
+
+.break-button:hover {
+    background: var(--dark-green);
+}
+
+.break-button:active {
+    background: var(--green); 
+}
+
+.task-button {
+    background: var(--orange);
+    border-radius: 22px;
+    height: 50px;
+    font-family: Roboto;
+    color: white;
+    font-size: var(--button-text-size);
+    margin-top: 5px;
+}
+
+.task-button:hover {
+    background: var(--dark-orange);
+    outline: 0;
+}
+
+.task-button:active {
+    background: var(--orange);
+    outline: 0;
+}
+
+.task-button:disabled {
+    background:rgba(255, 255, 255, 0.2);
+}
+
+.task-button:focus {
+    outline: 0;
+}
+
+.pots-container {
+    width: 100%;
+    padding-bottom: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-items: flex-end;
+    justify-content: flex-end;
+}
+
+.pots-container img {
+    margin-left: 4px;
+    height: 30px;
+    width: 30px;
+}
+
+.pomo-indicator-container {
+    font-family: "Roboto";
+    font-size: 18px;
+    color: var(--counter-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 13%;
+    width: 90%;
+    align-self: center;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 1300px){
+    .pomo-indicator-container {
+        font-size: 0.99rem;
+    }
+}
+
+.pomo-indicator {
+    border: 2px hidden var(--counter-color);
+    text-align: center;
+    padding: 5px 5px 0px 5px;
+}
+
+#work-indicator {
+    border-style: solid;
+}
