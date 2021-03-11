@@ -96,10 +96,6 @@
     font-size: var(--button-text-size);
 }
 
-#start-stop-button:focus {
-    outline: 0;
-}
-
 .pomodoro-button {
     background: var(--red);
 }
@@ -146,10 +142,6 @@
 
 .task-button:disabled {
     background:rgba(255, 255, 255, 0.2);
-}
-
-.task-button:focus {
-    outline: 0;
 }
 
 .pots-container {
