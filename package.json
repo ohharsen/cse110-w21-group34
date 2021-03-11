@@ -7,7 +7,7 @@
     "lint": "./node_modules/.bin/eslint ./source/scripts --ext .js --ignore-path .eslintignore",
     "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
     "test": "jest",
-    "host": "http-server ./source -a 127.0.0.1 -p 5500",
+    "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
     "cypress": "./node_modules/.bin/cypress run"
   },
   "repository": {
