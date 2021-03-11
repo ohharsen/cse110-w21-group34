@@ -4,11 +4,11 @@
   "description": "Package",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./source/scripts --ext .js --ignore-path .eslintignore",
-    "lint-fix": "eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
+    "lint": "./node_modules/.bin/eslint ./source/scripts --ext .js --ignore-path .eslintignore",
+    "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
     "test": "jest",
     "host": "http-server ./source -a 127.0.0.1 -p 5500",
-    "cypress": "cypress run"
+    "cypress": "./node_modules/.bin/cypress run"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,5 @@
     "@babel/core": "^7.12.17",
     "@babel/preset-env": "^7.12.17",
     "babel-jest": "^26.6.3"
-  },
-  "keywords": []
+  }
 }
