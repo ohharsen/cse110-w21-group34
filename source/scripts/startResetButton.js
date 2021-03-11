@@ -65,9 +65,8 @@ export function beginCountdown (duration, textDisplay) {
         updatePots();
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
-        // Dispalys the next cycle without beggining it
+        // Dispalys the next cycle without beginning it
         if (pomoCount === 4) {
-          pomoCount = 0;
           currentTime(Constants.LONG_BREAK, textDisplay);
           timerTypeIndicator(Constants.timerOptions.LONG);
         } else {
@@ -161,6 +160,7 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     } else {
       if (localPomoCount === 4) {
         localPomoCount = 0;
+        pomoCount = 0;
         pomoState = Constants.timerOptions.LONG;
         beginCountdown(Constants.LONG_BREAK, display);
       } else {
