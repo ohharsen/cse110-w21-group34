@@ -37,13 +37,6 @@ const statsCloseButton = document.getElementById('stats-close-button');
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
 
-const settingsPane = document.getElementById('settings-container');
-const settingsOpenButton = document.getElementById('settings-open-button');
-const settingsCloseButton = document.getElementById('settings-close-button');
-
-settingsOpenButton.onclick = openSettingsPane;
-settingsCloseButton.onclick = closeSettingsPane;
-
 /* istanbul ignore next */
 /**
  * Updates today and total stats when pomo cycle is complete,
@@ -62,15 +55,9 @@ export function openStatsPane () {
   displayTotalStats();
   displayTodayStats();
 
-  removeAll();
-
-  if (timerBlock.classList.contains('slide-open-settings')) {
-    closeSettingsPane();
-
-    timerBlock.classList.add('slide-across-left');
-    counterBlock.classList.add('slide-across-left');
-    settingsPane.classList.add('slide-across-left');
-  }
+  timerBlock.classList.remove('slide-close');
+  counterBlock.classList.remove('slide-close');
+  statsPane.classList.remove('slide-close');
 
   timerBlock.classList.add('slide-open');
   counterBlock.classList.add('slide-open');
@@ -78,82 +65,17 @@ export function openStatsPane () {
 }
 
 /* istanbul ignore next */
-
 /**
  * Closes the statistics pane.
  */
 export function closeStatsPane () {
-  timerBlock.classList.remove('slide-across-left');
-  counterBlock.classList.remove('slide-across-left');
-  settingsPane.classList.remove('slide-across-left');
-
   timerBlock.classList.remove('slide-open');
   counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
 
-  timerBlock.classList.remove('slide-close-settings');
-  counterBlock.classList.remove('slide-close-settings');
-  settingsPane.classList.remove('slide-close-settings');
-
   timerBlock.classList.add('slide-close');
   counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
-}
-
-/* istanbul ignore next */
-/**
- * Opens the statistics pane.
- */
-export function openSettingsPane () {
-  removeAll();
-
-  if (timerBlock.classList.contains('slide-open')) {
-    closeStatsPane();
-
-    timerBlock.classList.add('slide-across-right');
-    counterBlock.classList.add('slide-across-right');
-    settingsPane.classList.add('slide-across-right');
-  }
-
-  timerBlock.classList.add('slide-open-settings');
-  counterBlock.classList.add('slide-open-settings');
-  settingsPane.classList.add('slide-open-settings');
-}
-
-/* istanbul ignore next */
-/**
- * Opens the statistics pane.
- */
-export function closeSettingsPane () {
-  timerBlock.classList.remove('slide-across-right');
-  counterBlock.classList.remove('slide-across-right');
-  settingsPane.classList.remove('slide-across-right');
-
-  timerBlock.classList.remove('slide-open-settings');
-  counterBlock.classList.remove('slide-open-settings');
-  settingsPane.classList.remove('slide-open-settings');
-
-  timerBlock.classList.add('slide-close-settings');
-  counterBlock.classList.add('slide-close-settings');
-  settingsPane.classList.add('slide-close-settings');
-}
-
-export function removeAll () {
-  timerBlock.classList.remove('slide-close');
-  counterBlock.classList.remove('slide-close');
-  statsPane.classList.remove('slide-close');
-
-  timerBlock.classList.remove('slide-close-settings');
-  counterBlock.classList.remove('slide-close-settings');
-  settingsPane.classList.remove('slide-close-settings');
-
-  timerBlock.classList.remove('slide-across-left');
-  counterBlock.classList.remove('slide-across-left');
-  settingsPane.classList.remove('slide-across-left');
-
-  timerBlock.classList.remove('slide-across-right');
-  counterBlock.classList.remove('slide-across-right');
-  settingsPane.classList.remove('slide-across-right');
 }
 
 /**
@@ -217,13 +139,13 @@ export function displayTodayStats () {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Mar 11 2021 06:17:23 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Mar 11 2021 06:35:24 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
