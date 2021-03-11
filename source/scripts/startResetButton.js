@@ -80,7 +80,6 @@ export function beginCountdown (duration, textDisplay) {
         // incrementing daily pomo cycle count
 
         updatePomoCount(todayPomos, todayStorage);
-        updateDailyPomoCount();
         increaseTaskPomo();
         updateStats();
       } else {
@@ -122,19 +121,7 @@ export function updatePomoCount (todayPomos, todayStorage) {
   if (Number(window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID)) < todayPomos) {
     window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, todayPomos);
   }
-
   return todayPomos;
-}
-
-/**
- * Updates the pomo count for the current day of the week in local storage.
- */
-export function updateDailyPomoCount () {
-  const dayIdx = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK;
-  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
-
-  weekHistory[dayIdx]++;
-  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
 }
 
 /**

@@ -1,12 +1,10 @@
 import * as Constants from './constants.js';
-import { drawGraph } from './graph.js';
 
 const timerBlock = document.getElementsByClassName('center-container')[0];
 const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
-const graphCanvas = document.getElementById('weekly-graph');
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
@@ -19,7 +17,6 @@ statsCloseButton.onclick = closeStatsPane;
 export function updateStats () {
   displayTodayStats();
   displayTotalStats();
-  drawGraph(graphCanvas, JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)));
 }
 
 /* istanbul ignore next */
@@ -27,7 +24,8 @@ export function updateStats () {
  * Opens the statistics pane.
  */
 export function openStatsPane () {
-  updateStats();
+  displayTotalStats();
+  displayTodayStats();
 
   timerBlock.classList.remove('slide-close');
   counterBlock.classList.remove('slide-close');
@@ -52,7 +50,6 @@ export function closeStatsPane () {
   statsPane.classList.add('slide-close');
 }
 
-/* istanbul ignore next */
 /**
  * Displays the user's current all-time statistics on the statistics pane.
  * Total statistics include:
@@ -80,7 +77,6 @@ export function displayTotalStats () {
   totalTasksElem.textContent = totalTaskCount;
 }
 
-/* istanbul ignore next */
 /**
  * Displays the user's statistics for the day on the statistics pane.
  * Today statistics include:
