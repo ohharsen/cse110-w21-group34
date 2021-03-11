@@ -76,10 +76,9 @@ export function closeStatsPane () {
 /**
  * Opens the statistics pane.
  */
- export function openSettingsPane () {
-  
+export function openSettingsPane () {
   removeAll();
-  
+
   if (timerBlock.classList.contains('slide-open')) {
     closeStatsPane();
 
@@ -87,7 +86,7 @@ export function closeStatsPane () {
     counterBlock.classList.add('slide-across-right');
     settingsPane.classList.add('slide-across-right');
   }
-  
+
   timerBlock.classList.add('slide-open-settings');
   counterBlock.classList.add('slide-open-settings');
   settingsPane.classList.add('slide-open-settings');
