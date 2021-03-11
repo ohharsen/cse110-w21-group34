@@ -36,14 +36,14 @@ export function openStatsPane () {
   timerBlock.classList.remove('slide-close');
   counterBlock.classList.remove('slide-close');
   statsPane.classList.remove('slide-close');
-  
+
   timerBlock.classList.add('slide-open');
   counterBlock.classList.add('slide-open');
   statsPane.classList.add('slide-open');
 
-  statsOpenButton.tabIndex= -1;
-  statsCloseButton.tabIndex = 0;
-  if (document.activeElement == statsOpenButton) statsCloseButton.focus();
+  statsCloseButton.removeAttribute('disabled');
+  if (document.activeElement === statsOpenButton) statsCloseButton.focus();
+  statsOpenButton.setAttribute('disabled', '');
   isPaneOpen = true;
 }
 
@@ -53,18 +53,18 @@ export function openStatsPane () {
  */
 export function closeStatsPane () {
   if (!isPaneOpen) return;
-  
+
   timerBlock.classList.remove('slide-open');
   counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
-  
+
   timerBlock.classList.add('slide-close');
   counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
-  
-  statsOpenButton.tabIndex= 0;
-  statsCloseButton.tabIndex = -1;
-  if (document.activeElement == statsCloseButton) statsOpenButton.focus();
+
+  statsOpenButton.removeAttribute('disabled');
+  if (document.activeElement === statsCloseButton) statsOpenButton.focus();
+  statsCloseButton.setAttribute('disabled', '');
   isPaneOpen = false;
 }
 

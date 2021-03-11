@@ -43,6 +43,22 @@ describe('Stats Pane Test', ()=>{
             return classList.includes(STATS_SLIDE_CLOSE);
         });
     });
+
+    it('Escape closes Stats Pane', () => {
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
+        .get('.' + Constants.CENTER_CONTAINER)
+        .should('satisfy', ($el) => {
+            const classList = Array.from($el[0].classList); 
+            return classList.includes(STATS_SLIDE_OPEN);
+        });
+
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.ESCAPE, force: true})
+        .get('.' + Constants.CENTER_CONTAINER)
+        .should('satisfy', ($el) => {
+            const classList = Array.from($el[0].classList); 
+            return classList.includes(STATS_SLIDE_CLOSE);
+        });
+    });
 });
 
 describe('Enter Complete Task Tests', () => {
@@ -51,16 +67,16 @@ describe('Enter Complete Task Tests', () => {
         cy.visit(Constants.HOST_ADDRESS);
     });
 
-    it('During Break ENTER completes a task', () => {
+    it('During Break T completes a task', () => {
         cy.clock();
         cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true});
         cy.tick(1500000);
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.ENTER, force: true})
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.T, force: true})
         .get('#' + Constants.TASK_POMO_COUNTER)
         .contains(TASK_COUNT_VALID_ENTER);
     });
 
-    it('During Break ENTER does noting', () => {
+    it('During Break T does nothing', () => {
         cy.clock();
         cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true});
         cy.tick(1500000);
@@ -68,7 +84,29 @@ describe('Enter Complete Task Tests', () => {
         cy.tick(300000);
         cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true});
         cy.tick(8000);
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.ENTER, force: true})
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.T, force: true})
+        .get('#' + Constants.TASK_POMO_COUNTER)
+        .contains(TASK_COUNT_INVALID_ENTER);
+    });
+
+    it('During Break Down Arrow completes a task', () => {
+        cy.clock();
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true});
+        cy.tick(1500000);
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.DOWN_ARROW, force: true})
+        .get('#' + Constants.TASK_POMO_COUNTER)
+        .contains(TASK_COUNT_VALID_ENTER);
+    });
+
+    it('During Break Down Arrow does nothing', () => {
+        cy.clock();
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true});
+        cy.tick(1500000);
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true});
+        cy.tick(300000);
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true});
+        cy.tick(8000);
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.DOWN_ARROW, force: true})
         .get('#' + Constants.TASK_POMO_COUNTER)
         .contains(TASK_COUNT_INVALID_ENTER);
     });
