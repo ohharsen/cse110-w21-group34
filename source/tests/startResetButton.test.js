@@ -25,8 +25,7 @@ test('checks start state', () => {
     expect(startTimer(false, 2)).toStrictEqual([Constants.timerOptions.POMO, 2]);
     expect(startTimer(true, 2)).toStrictEqual([Constants.timerOptions.SHORT, 3]);
     expect(startTimer(false, 3)).toStrictEqual([Constants.timerOptions.POMO,3]);
-    expect(startTimer(true, 3)).toStrictEqual([Constants.timerOptions.LONG, 0]);
-    expect(startTimer(false, 0)).toStrictEqual([Constants.timerOptions.POMO, 0]);
+    expect(startTimer(true, 3)).toStrictEqual([Constants.timerOptions.SHORT, 4]);
 });
     
 test('checks reset state', () => {

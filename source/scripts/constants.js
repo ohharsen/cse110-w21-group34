@@ -1,7 +1,7 @@
 /* Constants */
 export const START_STOP_ID = 'start-stop-button';
-export const RESET_BTN_TXT = '✖ Reset';
-export const BEGIN_BTN_TXT = '▶ Begin';
+export const RESET_BTN_TXT = 'Reset';
+export const BEGIN_BTN_TXT = 'Begin';
 export const TASK_BTN_ID = 'task';
 export const BEST_DAILY_POMO_ID = 'best-daily-pomo-count';
 export const TOTAL_POMO_ID = 'total-pomo-count';
