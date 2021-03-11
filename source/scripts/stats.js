@@ -1,7 +1,6 @@
 import * as Constants from './constants.js';
 
 const timerBlock = document.getElementsByClassName('center-container')[0];
-const counterBlock = document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
@@ -40,12 +39,10 @@ export function openStatsPane () {
     closeSettingsPane();
 
     timerBlock.classList.add('slide-across-left');
-    counterBlock.classList.add('slide-across-left');
     settingsPane.classList.add('slide-across-left');
   }
 
   timerBlock.classList.add('slide-open');
-  counterBlock.classList.add('slide-open');
   statsPane.classList.add('slide-open');
 }
 
@@ -56,19 +53,15 @@ export function openStatsPane () {
  */
 export function closeStatsPane () {
   timerBlock.classList.remove('slide-across-left');
-  counterBlock.classList.remove('slide-across-left');
   settingsPane.classList.remove('slide-across-left');
 
   timerBlock.classList.remove('slide-open');
-  counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
 
   timerBlock.classList.remove('slide-close-settings');
-  counterBlock.classList.remove('slide-close-settings');
   settingsPane.classList.remove('slide-close-settings');
 
   timerBlock.classList.add('slide-close');
-  counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
 }
 
@@ -83,12 +76,10 @@ export function openSettingsPane () {
     closeStatsPane();
 
     timerBlock.classList.add('slide-across-right');
-    counterBlock.classList.add('slide-across-right');
     settingsPane.classList.add('slide-across-right');
   }
 
   timerBlock.classList.add('slide-open-settings');
-  counterBlock.classList.add('slide-open-settings');
   settingsPane.classList.add('slide-open-settings');
 }
 
@@ -98,33 +89,26 @@ export function openSettingsPane () {
  */
 export function closeSettingsPane () {
   timerBlock.classList.remove('slide-across-right');
-  counterBlock.classList.remove('slide-across-right');
   settingsPane.classList.remove('slide-across-right');
 
   timerBlock.classList.remove('slide-open-settings');
-  counterBlock.classList.remove('slide-open-settings');
   settingsPane.classList.remove('slide-open-settings');
 
   timerBlock.classList.add('slide-close-settings');
-  counterBlock.classList.add('slide-close-settings');
   settingsPane.classList.add('slide-close-settings');
 }
 
 export function removeAll () {
   timerBlock.classList.remove('slide-close');
-  counterBlock.classList.remove('slide-close');
   statsPane.classList.remove('slide-close');
 
   timerBlock.classList.remove('slide-close-settings');
-  counterBlock.classList.remove('slide-close-settings');
   settingsPane.classList.remove('slide-close-settings');
 
   timerBlock.classList.remove('slide-across-left');
-  counterBlock.classList.remove('slide-across-left');
   settingsPane.classList.remove('slide-across-left');
 
   timerBlock.classList.remove('slide-across-right');
-  counterBlock.classList.remove('slide-across-right');
   settingsPane.classList.remove('slide-across-right');
 }
 

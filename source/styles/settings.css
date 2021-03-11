@@ -123,19 +123,6 @@
     animation: slide-across-left 0.5s ease-out forwards;
 }
 
-.counters-container.slide-open-settings {
-    animation: slide-center-out-settings 0.5s ease-out forwards;
-}
-.counters-container.slide-close-settings {
-    animation: slide-center-in-settings 0.5s ease-out forwards;
-}
-.counters-container.slide-across-right {
-    animation: slide-across-right 0.5s ease-out forwards;
-}
-.counters-container.slide-across-left {
-    animation: slide-across-left 0.5s ease-out forwards;
-}
-
 @keyframes slide-left-out {
     to { left: 0 }
 }

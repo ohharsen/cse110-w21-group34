@@ -422,7 +422,7 @@ button {
     to { transform: translate(0, 0) }
 }
 
-.counters-container {
+/* .counters-container {
     font-family: "Roboto";
     font-size: var(--button-text-size);
     color: var(--counter-color);
@@ -435,14 +435,14 @@ button {
     justify-content: center;
     height: 50px;
     top: 6.5%;
-}
+} */
 
-.counters-container.slide-open {
+/* .counters-container.slide-open {
     animation: slide-center-out 0.5s ease-out forwards;
 }
 .counters-container.slide-close {
     animation: slide-center-in 0.5s ease-out forwards;
-}
+} */
 
 .pots-container {
     width: 100%;
