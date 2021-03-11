@@ -31,16 +31,18 @@ export function updateStats () {
  * Opens the statistics pane.
  */
 export function openStatsPane () {
-  if (timerBlock.classList.contains('slide-open-settings')) {
-    closeSettingsPane();
-  }
-
   displayTotalStats();
   displayTodayStats();
 
-  timerBlock.classList.remove('slide-close');
-  counterBlock.classList.remove('slide-close');
-  statsPane.classList.remove('slide-close');
+  removeAll();
+
+  if (timerBlock.classList.contains('slide-open-settings')) {
+    closeSettingsPane();
+
+    timerBlock.classList.add('slide-across-left');
+    counterBlock.classList.add('slide-across-left');
+    settingsPane.classList.add('slide-across-left');
+  }
 
   timerBlock.classList.add('slide-open');
   counterBlock.classList.add('slide-open');
@@ -48,13 +50,22 @@ export function openStatsPane () {
 }
 
 /* istanbul ignore next */
+
 /**
  * Closes the statistics pane.
  */
 export function closeStatsPane () {
+  timerBlock.classList.remove('slide-across-left');
+  counterBlock.classList.remove('slide-across-left');
+  settingsPane.classList.remove('slide-across-left');
+
   timerBlock.classList.remove('slide-open');
   counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
+
+  timerBlock.classList.remove('slide-close-settings');
+  counterBlock.classList.remove('slide-close-settings');
+  settingsPane.classList.remove('slide-close-settings');
 
   timerBlock.classList.add('slide-close');
   counterBlock.classList.add('slide-close');
@@ -66,14 +77,17 @@ export function closeStatsPane () {
  * Opens the statistics pane.
  */
  export function openSettingsPane () {
+  
+  removeAll();
+  
   if (timerBlock.classList.contains('slide-open')) {
     closeStatsPane();
+
+    timerBlock.classList.add('slide-across-right');
+    counterBlock.classList.add('slide-across-right');
+    settingsPane.classList.add('slide-across-right');
   }
-
-  timerBlock.classList.remove('slide-close-settings');
-  counterBlock.classList.remove('slide-close-settings');
-  settingsPane.classList.remove('slide-close-settings');
-
+  
   timerBlock.classList.add('slide-open-settings');
   counterBlock.classList.add('slide-open-settings');
   settingsPane.classList.add('slide-open-settings');
@@ -84,6 +98,10 @@ export function closeStatsPane () {
  * Opens the statistics pane.
  */
 export function closeSettingsPane () {
+  timerBlock.classList.remove('slide-across-right');
+  counterBlock.classList.remove('slide-across-right');
+  settingsPane.classList.remove('slide-across-right');
+
   timerBlock.classList.remove('slide-open-settings');
   counterBlock.classList.remove('slide-open-settings');
   settingsPane.classList.remove('slide-open-settings');
@@ -91,6 +109,24 @@ export function closeSettingsPane () {
   timerBlock.classList.add('slide-close-settings');
   counterBlock.classList.add('slide-close-settings');
   settingsPane.classList.add('slide-close-settings');
+}
+
+export function removeAll () {
+  timerBlock.classList.remove('slide-close');
+  counterBlock.classList.remove('slide-close');
+  statsPane.classList.remove('slide-close');
+
+  timerBlock.classList.remove('slide-close-settings');
+  counterBlock.classList.remove('slide-close-settings');
+  settingsPane.classList.remove('slide-close-settings');
+
+  timerBlock.classList.remove('slide-across-left');
+  counterBlock.classList.remove('slide-across-left');
+  settingsPane.classList.remove('slide-across-left');
+
+  timerBlock.classList.remove('slide-across-right');
+  counterBlock.classList.remove('slide-across-right');
+  settingsPane.classList.remove('slide-across-right');
 }
 
 /**

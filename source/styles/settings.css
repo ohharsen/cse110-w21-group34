@@ -18,6 +18,7 @@
 #settings-container h1 {
     margin-top: 4px;
     margin-bottom: 4px;
+    font-size: 1.8em;
 }
 
 #settings-container h2 {
@@ -115,12 +116,24 @@
 .center-container.slide-close-settings {
     animation: slide-center-in-settings 0.5s ease-out forwards;
 }
+.center-container.slide-across-right {
+    animation: slide-across-right 0.5s ease-out forwards;
+}
+.center-container.slide-across-left {
+    animation: slide-across-left 0.5s ease-out forwards;
+}
 
 .counters-container.slide-open-settings {
     animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 .counters-container.slide-close-settings {
     animation: slide-center-in-settings 0.5s ease-out forwards;
+}
+.counters-container.slide-across-right {
+    animation: slide-across-right 0.5s ease-out forwards;
+}
+.counters-container.slide-across-left {
+    animation: slide-across-left 0.5s ease-out forwards;
 }
 
 @keyframes slide-left-out {
@@ -139,4 +152,14 @@
 @keyframes slide-center-in-settings {
     from { transform: translate(15vw, 0) }
     to { transform: translate(0, 0) }
+}
+
+@keyframes slide-across-right {
+    from { transform: translate(-15vw, 0) }
+    to { transform: translate(15vw, 0) }
+}
+
+@keyframes slide-across-left {
+    from { transform: translate(15vw, 0) }
+    to { transform: translate(-15vw, 0) }
 }
