@@ -237,17 +237,6 @@ button {
     height: 100%;
     z-index: 2;
 }
-#task-celebration {
-    display: flex;
-    position: fixed;
-    width: 25%;
-    min-width: 300px;
-    height: 50%;
-    align-items: center;
-    justify-content: stretch;
-    flex-direction: column;
-    z-index: 3;
-}
 
 #stats-container {
     position: fixed;
