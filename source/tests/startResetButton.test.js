@@ -3,13 +3,13 @@ import {
     togglePomoBreak,
     startTimer,
     resetTimer,
-    updateDailyPomoCount,
     updateDistractions,
     currentTime,
     timeFraction,
     updateTotalCycles,
     timerTypeIndicator
 } from '../scripts/startResetButton';
+
 import { formatDate } from '../scripts/taskButton';
 
 test('checks break toggle', () => {
@@ -25,8 +25,7 @@ test('checks start state', () => {
     expect(startTimer(false, 2)).toStrictEqual([Constants.timerOptions.POMO, 2]);
     expect(startTimer(true, 2)).toStrictEqual([Constants.timerOptions.SHORT, 3]);
     expect(startTimer(false, 3)).toStrictEqual([Constants.timerOptions.POMO,3]);
-    expect(startTimer(true, 3)).toStrictEqual([Constants.timerOptions.LONG, 0]);
-    expect(startTimer(false, 0)).toStrictEqual([Constants.timerOptions.POMO, 0]);
+    expect(startTimer(true, 3)).toStrictEqual([Constants.timerOptions.SHORT, 4]);
 });
     
 test('checks reset state', () => {
@@ -66,20 +65,6 @@ test('Test timer fraction', () => {
     expect(timeFraction(60, Constants.timerOptions.SHORT)).toStrictEqual(0.2);
     expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
-});
-
-
-describe('Local Storage', () => {
-    test('Updates pomodoro weekly history', () => {
-        const weekData = [0, 0, 0, 0, 0, 0, 0];
-        const dotwk = ((new Date()).getDay() || 7) - 1;
-        weekData[dotwk] = 1;
-        const weekHistory = JSON.stringify(weekData);
-
-        updateDailyPomoCount();
-        
-        expect(localStorage.getItem(Constants.WEEK_HISTORY)).toStrictEqual(weekHistory);
-    });
 });
 
 test('checks total cycle count updates', () => {

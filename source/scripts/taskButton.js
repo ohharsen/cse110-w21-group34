@@ -10,7 +10,7 @@ let taskPomoCount = 0;
  */
 export function increaseTaskPomo () {
   taskPomoCount++;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 }
 
 /**
@@ -18,7 +18,7 @@ export function increaseTaskPomo () {
  */
 export function resetTaskPomo () {
   taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
   toggleTaskButtonDisabled(true);
 }
 
@@ -41,6 +41,7 @@ if (taskButton) {
  */
 
 export function toggleTaskButtonDisabled (disabled) {
+  if (taskPomoCount === 0) disabled = true;
   taskButton.disabled = disabled;
 }
 
@@ -65,7 +66,7 @@ export function formatDate (toFormat) {
    */
 export function taskComplete (clearStorage, today) {
   taskPomoCount = 0;
-  document.getElementById('task-pomo-counter').innerHTML = taskPomoCount;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
   if (clearStorage) {
     window.localStorage.clear();
     resetWeekArray();
@@ -96,7 +97,9 @@ export function taskComplete (clearStorage, today) {
     weekCounter++;
   }
 
-  return updateLocalStorage(dayCounter, weekCounter);
+  toggleTaskButtonDisabled(true);
+
+  return updateLocalStorage(dayCounter, weekCounter, dayOfWeek);
 }
 
 /**
@@ -136,18 +139,23 @@ export function resetWeekArray () {
    * Update local storage with finished task information
    * @param dayCounter today total task count
    * @param weekCounter week total task count
+   * @param dayOfWeek the day of the week (0 --> Monday, 1 --> Tuesday, ... etc)
    * @returns local storage for debug
    */
-export function updateLocalStorage (dayCounter, weekCounter) {
+ export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
   window.localStorage.setItem(Constants.TODAY_TASK_ID, String(dayCounter));
   window.localStorage.setItem(Constants.WEEK_TASK_ID, String(weekCounter));
 
   const totalTasks = Number(window.localStorage.getItem(Constants.TOTAL_TASK_ID)) + 1;
   window.localStorage.setItem(Constants.TOTAL_TASK_ID, String(totalTasks));
 
+  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY));
+  ++weekHistory[dayOfWeek];
+  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
   updateStats();
   return window.localStorage;
 }
+
 
 // Sets the color of the timer
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
