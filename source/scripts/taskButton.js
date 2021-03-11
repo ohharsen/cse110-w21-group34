@@ -41,6 +41,7 @@ if (taskButton) {
  */
 
 export function toggleTaskButtonDisabled (disabled) {
+  if (taskPomoCount === 0) disabled = true;
   taskButton.disabled = disabled;
 }
 
