@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+    --black: #000000;
+    --black-a1: rgba(0, 0, 0, 0.7);
+    --black-a2: rgba(0, 0, 0, 0.5);
+    --black-a3: rgba(0, 0, 0, 0.2);
+    --white: #FFFFFF;
+    --white-a1: rgba(255, 255, 255, 0.7);
+    --white-a2: rgba(255, 255, 255, 0.5);
+    --white-a3: rgba(255, 255, 255, 0.2);
+    --red: #ee3737;
+    --dark-red: #ce0119;
+    --pink-grad: linear-gradient(0deg, #FFD1D1 0%, #EEEEEE 100%);
+    --pink-dark-grad: linear-gradient(180deg, #ffffffb0 99.99%, #ffd1d1b0 100%, #ffd1d1b0 100%);
+    --orange: orange;
+    --dark-orange: #E95D31;
+    --orangered-grad: linear-gradient(180deg, #ff0000c7 0%, #E8582B 100%);
+    --orange-light-grad: linear-gradient(180deg, #ff000036 0%, #E8582B 100%), conic-gradient(from 1.14deg at 42.54% 1226.03%, #BDD915 -22.72deg, #1915d9e2 160.22deg, #bdd91500 163.43deg, #BDD915 337.28deg, #1915d9e2 520.22deg);
+    --orange-dark-grad: linear-gradient(180deg, #E95D31 0%, rgba(255, 255, 255, 0) 100%);
+    --orange-dark-grad-1: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%);
+    --green: #34DBB3;
+    --dark-green: #0D927A;
+    --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
+    --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
+    --button-text-size: 18px;
+    --bacgkround-source: url('../images/background.png');
+    --counter-color: white;
+}
+
+html {
+    background: var(--bacgkround-source) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+img {
+    user-select: none;
+}
+
+button {
+    border: 0;
+}
+
+
+
+@keyframes slide-right-out {
+    to { right: 0 }
+}
+
+@keyframes slide-right-in {
+    from { right: 0 }
+}
+
+@keyframes slide-center-out {
+    from { transform: translate(0, 0) }
+    to { transform: translate(-15vw, 0) }
+}
+
+@keyframes slide-center-in {
+    from { transform: translate(-15vw, 0) }
+    to { transform: translate(0, 0) }
+}
+
