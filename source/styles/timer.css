@@ -15,11 +15,12 @@
     }
 }
 
-.center-container .slide-open {
+.center-container.slide-open {
     animation: slide-center-out 0.5s ease-out forwards;
 }
 
-.center-container .slide-close {
+.center-container.slide-close {
+
     animation: slide-center-in 0.5s ease-out forwards;
 }
 
