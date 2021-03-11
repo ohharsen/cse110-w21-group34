@@ -1,4 +1,4 @@
-# Broad Problem Focus
+# Allow Reset on Break
 
 * Status: accepted
 * Deciders: all members of the team

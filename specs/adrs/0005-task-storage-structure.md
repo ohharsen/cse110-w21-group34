@@ -1,4 +1,4 @@
-# Broad Problem Focus
+# Task Storage Structure
 
 * Status: accepted
 * Deciders: all members of the team
@@ -34,3 +34,4 @@ Pomos per task
 
 * Pro: keeps track of total pomos per task completed
 * Con: messier to parse data from list and contains less information about week history
+* Con: tracks the day for each task, but more logic needs to be implemented for the graph in statistics

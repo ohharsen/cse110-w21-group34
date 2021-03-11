@@ -1,4 +1,4 @@
-# Broad Problem Focus
+# Timer Animation Design
 
 * Status: accepted
 * Deciders: all members of the team
@@ -11,7 +11,11 @@ We were deciding on how to implement the timer animation.
 ## Considered Options
 
 * Curved linear transition
+  - Smooth continuous change
+  - Calculate length using fraction of time remaining
 * Bit by bit decrement
+  - Linear decrement
+  - Count down from total to zero
 
 ## Decision Outcome
 
