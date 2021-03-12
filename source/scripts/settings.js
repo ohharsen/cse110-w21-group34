@@ -13,7 +13,7 @@ settingsCloseButton.onclick = closeSettingsPane;
  */
 export function openSettingsPane () {
   removeAll();
-  
+
   if (Stats.statsPane.classList.contains('slide-open')) {
     Stats.closeStatsPane();
 
@@ -24,7 +24,7 @@ export function openSettingsPane () {
   }
   settingsPane.classList.add('slide-open-settings');
 }
-  
+
 /* istanbul ignore next */
 /**
  * Opens the statistics pane.
@@ -38,7 +38,7 @@ export function closeSettingsPane () {
   Stats.timerBlock.classList.add('slide-close-settings');
   settingsPane.classList.add('slide-close-settings');
 }
-  
+
 export function removeAll () {
   Stats.timerBlock.classList.remove('slide-close');
   Stats.statsPane.classList.remove('slide-close');
