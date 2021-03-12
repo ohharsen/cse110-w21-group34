@@ -1,20 +1,29 @@
 import { startResetController } from './startResetButton.js';
 import * as Constants from './constants.js';
-import { openStatsPane, closeStatsPane } from './stats.js';
+import {
+  openStatsPane,
+  closeStatsPane,
+  openPane,
+  openSettingsPane,
+  closeSettingsPane,
+  removeAll
+} from './stats.js';
 
 document.onkeydown = function (e) {
   switch (e.code) {
     case 'Escape':
       e.preventDefault();
-      closeStatsPane();
+      openPane === 'settings' ? closeSettingsPane() : openPane === 'stats' ? closeStatsPane() : (() => {})();
       break;
     case 'ArrowLeft':
       e.preventDefault();
-      openStatsPane();
+      removeAll();
+      openPane === 'settings' ? closeSettingsPane() : openStatsPane();
       break;
     case 'ArrowRight':
       e.preventDefault();
-      closeStatsPane();
+      removeAll();
+      openPane === 'stats' ? closeStatsPane() : openSettingsPane();
       break;
     case 'Space':
       e.preventDefault();
