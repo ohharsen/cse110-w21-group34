@@ -1,5 +1,5 @@
 import * as Constants from './constants.js';
-import { drawGraph } from './graph.js';
+import { drawGraph } from './util/graph.js';
 
 const timerBlock = document.getElementsByClassName('center-container')[0];
 const counterBlock = document.getElementsByClassName('counters-container')[0];

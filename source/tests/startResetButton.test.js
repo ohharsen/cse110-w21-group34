@@ -8,9 +8,8 @@ import {
     timeFraction,
     updateTotalCycles,
     timerTypeIndicator
-} from '../scripts/startResetButton';
-
-import { formatDate } from '../scripts/taskButton';
+} from '../scripts/timer';
+import { formatDate } from '../scripts/tasks';
 
 test('checks break toggle', () => {
     expect(togglePomoBreak(true)).toBe(false);

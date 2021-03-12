@@ -1,5 +1,5 @@
-import { startResetController } from './startResetButton.js';
 import * as Constants from './constants.js';
+import { startResetController } from './timer.js';
 import { openStatsPane, closeStatsPane } from './stats.js';
 
 document.onkeydown = function (e) {
