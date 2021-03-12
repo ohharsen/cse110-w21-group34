@@ -137,6 +137,10 @@
     background: var(--white-a1);
 }
 
+#weekly-graph {
+    width: 100%;
+}
+
 @media only screen and (max-width: 800px) {
     #stats-container {
         height: calc(100vh - 36px);
