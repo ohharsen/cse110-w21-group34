@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 .settings-button:active {
-    opacity: 0%;
-    /* background: var(--white-a2); */
+    opacity: 100%;
 }
 
 #settings-container {
@@ -77,20 +76,20 @@
     outline: 0;
 }
 
-#settings-open-button {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-items: center;
-    justify-content: center;
-}
-
 .settings-button:hover {
     opacity: 90%;
 }
 
 .settings-button:active {
     opacity: 100%;
+}
+
+#settings-open-button {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
 }
 
 #settings-close-button {
@@ -113,6 +112,54 @@
 
 #break-text {
     color: #34DBB3;
+}
+
+@media only screen and (max-width: 800px) {
+    /* #settings-container {
+        height: calc(100vh - 36px);
+        width: calc(100vw - 36px);
+        margin: 18px 18px 18px 18px;
+        right: calc(-100vw + -18px);
+    }
+    
+    #settings-container h2 {
+        margin-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    #settings-pane {
+        padding: 16px 32px 16px 32px;
+    } */
+
+    .settings-button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .settings-button img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /* #settings-container {
+        height: calc(100vh - 16px);
+        width: calc(100vw - 16px);
+        margin: 8px 8px 8px 8px;
+        right: calc(-100vw + -8px);
+    }
+
+    #settings-pane {
+        padding: 12px 24px 12px 24px;
+    } */
+
+    .settingts-button {
+        top: 12px;
+        right: 12px;
+        width: 80px;
+        height: 80px;
+    }   
 }
 
 #settings-container.slide-open-settings {
