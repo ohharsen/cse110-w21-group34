@@ -1,13 +1,11 @@
 import * as Constants from '../scripts/constants';
+import { updatePomoCount, updateDistractions } from '../scripts/util/storage';
 import * as Stats from '../scripts/stats';
-import { taskComplete } from '../scripts/taskButton';
-import { updatePomoCount, updateDistractions } from '../scripts/startResetButton';
+import { taskComplete } from '../scripts/tasks';
  
 describe('Daily Statistics', () => {
   beforeEach(() => {
-    localStorage.removeItem(Constants.TODAY_POMO_ID);
-    localStorage.removeItem(Constants.TODAY_TASK_ID);
-    localStorage.removeItem(Constants.TODAY_DISTRACTION);
+    localStorage.clear();
   });
 
   // Tests on Pomodoro cycles 

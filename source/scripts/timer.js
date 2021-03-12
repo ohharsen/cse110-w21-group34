@@ -1,11 +1,12 @@
 import * as Constants from './constants.js';
-import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskButton.js';
+import * as Storage from './util/storage.js'
+import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
 
-const startStopButton = document.getElementById(Constants.START_STOP_ID);
-const countdownText = document.getElementById('countdownText');
 const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
 const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
+const startStopButton = document.getElementById(Constants.START_STOP_ID);
+const countdownText = document.getElementById('countdownText');
 
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
@@ -74,13 +75,13 @@ export function beginCountdown (duration, textDisplay) {
           timerTypeIndicator(Constants.timerOptions.SHORT);
         }
         // current pomos cycles completed today
-        const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
+        const todayPomos = Number(window.localStorage.getItem(Storage.TODAY_POMO_ID));
         // Today's date
-        const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
+        const todayStorage = window.localStorage.getItem(Storage.TODAY_DATE_ID);
         // incrementing daily pomo cycle count
 
-        updatePomoCount(todayPomos, todayStorage);
-        updateDailyPomoCount();
+        Storage.updatePomoCount(todayPomos, todayStorage);
+        Storage.updateDailyPomoCount();
         increaseTaskPomo();
         updateStats();
       } else {
@@ -92,49 +93,13 @@ export function beginCountdown (duration, textDisplay) {
         timerTypeIndicator(Constants.timerOptions.POMO);
         // Update total cycle count at end of cycle
         if (duration === Constants.LONG_BREAK) {
-          updateTotalCycles();
+          Storage.updateTotalCycles();
         }
       }
       toggleTaskButtonDisabled(false);
       onBreak = togglePomoBreak(onBreak);
     }
   }, 1000);
-}
-
-/**
-   * Update's pomo count for today in local storage
-   * @param {Number} todayPomos The number of daily current pomos completed
-   * @param {String} todayStorage updatePomoCount the local storage date for the current day
-   * @return number of pomos completed today
-   */
-export function updatePomoCount (todayPomos, todayStorage) {
-  // update pomo cycle day count
-  const today = formatDate(new Date());
-  // case if we are on same day
-  if (today === todayStorage) {
-    todayPomos++;
-  } else { // case if we are on different day
-    todayPomos = 1;
-    window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
-  }
-  window.localStorage.setItem(Constants.TODAY_POMO_ID, String(todayPomos));
-  window.localStorage.setItem(Constants.TOTAL_POMO_ID, String(Number(window.localStorage.getItem(Constants.TOTAL_POMO_ID)) + 1));
-  if (Number(window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID)) < todayPomos) {
-    window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, todayPomos);
-  }
-
-  return todayPomos;
-}
-
-/**
- * Updates the pomo count for the current day of the week in local storage.
- */
-export function updateDailyPomoCount () {
-  const dayIdx = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK;
-  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
-
-  weekHistory[dayIdx]++;
-  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
 }
 
 /**
@@ -190,9 +155,13 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
  * Update pot icons to show number of pomos completed for the cycle
  */
 export function updatePots () {
-  for (let i = 1; i < pomoCount + 1; i++) { document.getElementById('pot' + i).src = COLORED_POT_SOURCE; }
+  for (let i = 1; i < pomoCount + 1; i++) {
+    document.getElementById('pot' + i).src = COLORED_POT_SOURCE;
+  }
 
-  for (let i = pomoCount + 1; i <= 4; i++) { document.getElementById('pot' + i).src = GRAY_POT_SOURCE; }
+  for (let i = pomoCount + 1; i <= 4; i++) {
+    document.getElementById('pot' + i).src = GRAY_POT_SOURCE;
+  }
 }
 
 /**
@@ -218,37 +187,12 @@ export function resetTimer () {
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
-  const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
-  const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
-  updateDistractions(todayDistractions, todayStorage);
+  const todayDistractions = Number(window.localStorage.getItem(Storage.TODAY_DISTRACTION));
+  const todayStorage = window.localStorage.getItem(Storage.TODAY_DATE_ID);
+  Storage.updateDistractions(todayDistractions, todayStorage);
   updateStats();
 
   return [pomoState, Constants.BEGIN_BTN_TXT];
-}
-
-/**
-   * Updates distractions in local storage
-   * @param {Number} todayDistractions The number of distractions today
-   * @param {String} todayStorage Today's date currently in window.localStorage
-   * @return The updated number of distractions
-   */
-export function updateDistractions (todayDistractions, todayStorage) {
-  // Total distractions
-  const distractions = Number(window.localStorage.getItem(Constants.TOTAL_DISTRACTION));
-  window.localStorage.setItem(Constants.TOTAL_DISTRACTION, String(distractions + 1));
-
-  // Today's distractions
-  const today = formatDate(new Date());
-  if (today === todayStorage) {
-    todayDistractions++;
-  } else {
-    // Update
-    todayDistractions = 1;
-    window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
-  }
-  window.localStorage.setItem(Constants.TODAY_DISTRACTION, String(todayDistractions));
-
-  return todayDistractions;
 }
 
 /**
@@ -279,16 +223,6 @@ export function timeFraction (timer, pomoState) {
   } else {
     return timer / Constants.SHORT_BREAK;
   }
-}
-
-/**
- * Updates total cycles in local storage
- * @returns the updated number of total cycles
- */
-export function updateTotalCycles () {
-  const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
-  window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
-  return window.localStorage.getItem(Constants.TOTAL_CYCLE_ID);
 }
 
 /**
