@@ -1,5 +1,5 @@
 import * as Constants from './constants.js';
-import * as Settings from "./settings.js";
+import * as Settings from './settings.js';
 import { drawGraph } from './graph.js';
 
 export const timerBlock = document.getElementsByClassName('center-container')[0];
@@ -36,8 +36,7 @@ export function openStatsPane () {
     Settings.closeSettingsPane();
 
     timerBlock.classList.add('slide-across-left');
-  }
-  else {
+  } else {
     timerBlock.classList.add('slide-open');
   }
   statsPane.classList.add('slide-open');
