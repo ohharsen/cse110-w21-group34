@@ -13,17 +13,17 @@ document.onkeydown = function (e) {
   switch (e.code) {
     case 'Escape':
       e.preventDefault();
-      openPane === 'settings' ? closeSettingsPane() : openPane === 'stats' ? closeStatsPane() : (() => {})();
+      (openPane === 'settings') ? closeSettingsPane() : (openPane === 'stats') ? closeStatsPane() : undefined;
       break;
     case 'ArrowLeft':
       e.preventDefault();
       removeAll();
-      openPane === 'settings' ? closeSettingsPane() : openStatsPane();
+      (openPane === 'settings') ? closeSettingsPane() : openStatsPane();
       break;
     case 'ArrowRight':
       e.preventDefault();
       removeAll();
-      openPane === 'stats' ? closeStatsPane() : openSettingsPane();
+      (openPane === 'stats') ? closeStatsPane() : openSettingsPane();
       break;
     case 'Space':
       e.preventDefault();

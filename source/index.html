@@ -58,8 +58,8 @@
             <!-- <button id="toggle-accessibility">Go Accessible! (Placeholder)</button> -->
         </div>
         <audio id = "timer-sound" src = "./sounds/quite-impressed-565.mp3"></audio>
-        <button id="stats-open-button" class="stats-button" type="button"><img width="80px" height="80px" src="./images/test.png" /></button>
         <button id="settings-open-button" class="settings-button" type="button"><img width="80px" height="80px" src="./images/test.png" draggable="false"/></button>
+        <button id="stats-open-button" class="stats-button" type="button"><img width="80px" height="80px" src="./images/test.png" /></button>
     </main>
     
     <aside id="stats-container" class="stats-container">
@@ -123,7 +123,7 @@
     </aside>
     <!-- Left-side info pane. -->
     <aside id="settings-container" class="settings-container">
-        <button id="settings-close-button" type="button"><img width="15px" height="15px" src ="./images/xbutton.png" /></button>
+        <button id="settings-close-button" type="button" disabled><img width="15px" height="15px" src ="./images/xbutton.png" /></button>
         <section id="settings-pane">
             <h1>Settings</h1>
             <div id="information" class="settings-box">
@@ -144,10 +144,10 @@
                 </div>
                 <div class="stats-flex">
                     <div class="stats-row">
-                        <div id="tutorial-text">Once you are ready, click the "<b>▶ Begin</b>" button. The outer ring's color will 
+                        <div id="tutorial-text">Once you are ready, click the "<b>Begin</b>" button. The outer ring's color will 
                             change to signal a <span id="work-text">work</span> or <span id="break-text">break</span> period.
                             When completing an assignment, click "<b>Complete Task</b>." If you want to exit a Pomo 
-                            session, click "<b>✖ Reset</b>" when prompted. Lastly, be sure to check out the Statistics panel to look 
+                            session, click "<b>Reset</b>" when prompted. Lastly, be sure to check out the Statistics panel to look 
                             back at your recorded performance.
                         </div>
                     </div>
