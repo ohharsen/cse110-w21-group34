@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 .settings-button:active {
-    opacity: 90%;
+    opacity: 0%;
     /* background: var(--white-a2); */
 }
 
@@ -77,18 +77,30 @@
     outline: 0;
 }
 
-.settings-button:active {
+#settings-open-button {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+.settings-button:hover {
     opacity: 90%;
-    /* background: var(--white-a2); */
+}
+
+.settings-button:active {
+    opacity: 100%;
 }
 
 #settings-close-button {
     position: absolute;
     top: 12px;
     left: 12px;
-    width: 30px;
+    width: 29px;
     height: 30px;
     background: var(--white-a1);
+    box-shadow: 0px 0px 10px 0px var(--black-a3);
     border-radius: 16px;
     outline: 0;
     display: flex;
