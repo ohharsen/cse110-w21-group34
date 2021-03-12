@@ -29,7 +29,7 @@ describe('Countdown Test', ()=>{
         });
         cy.tick(1000);
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--green)');
+            expect($el).to.have.attr('stroke', 'none');
         });
     });
 
@@ -39,79 +39,106 @@ describe('Countdown Test', ()=>{
         cy.tick(1500000);
         cy.get('#countdownText').contains('05:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--green)');
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#pot1').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'var(--green)');
+        });
         cy.tick(300000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--red)');
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#pot1').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
-        cy.tick(1500000);
-        cy.get('#countdownText').contains('05:00');
-        cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--green)');
-        });
-        cy.get('#pot2').should('have.attr', 'src').should('include','color');
-
-        cy.get('#start-stop-button').trigger('click');
-        cy.tick(300000);
-        cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
         });
-        cy.get('#pot2').should('have.attr', 'src').should('include','color');
-
-        cy.get('#start-stop-button').trigger('click');
         cy.tick(1500000);
         cy.get('#countdownText').contains('05:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--green)');
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#pot2').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'var(--green)');
+        });
         cy.tick(300000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'none');
+        });
+        cy.get('#pot2').should('have.attr', 'src').should('include','color');
+
+        cy.get('#start-stop-button').trigger('click');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
             expect($el).to.have.attr('stroke', 'var(--red)');
+        });
+        cy.tick(1500000);
+        cy.get('#countdownText').contains('05:00');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'none');
+        });
+        cy.get('#pot2').should('have.attr', 'src').should('include','color');
+
+        cy.get('#start-stop-button').trigger('click');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'var(--green)');
+        });
+        cy.tick(300000);
+        cy.get('#countdownText').contains('25:00');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#pot3').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'var(--red)');
+        });
         cy.tick(1500000);
         cy.get('#countdownText').contains('15:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--green)');
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#pot4').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'var(--green)');
+        });
         cy.tick(900000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--red)');
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#pot4').should('have.attr', 'src').should('include','gray');
 
         cy.get('#start-stop-button').trigger('click');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'var(--red)');
+        });
         cy.tick(1500000);
         cy.get('#countdownText').contains('05:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--green)');
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#pot1').should('have.attr', 'src').should('include','color');
 
         cy.get('#start-stop-button').trigger('click');
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'var(--green)');
+        });
         cy.tick(300000);
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--red)');
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#pot1').should('have.attr', 'src').should('include','color');
     });
@@ -132,9 +159,12 @@ describe('Countdown Test', ()=>{
         cy.get('#pot2').should('have.attr', 'src').should('include','gray');
         cy.get('#countdownText').contains('25:00');
         cy.get('#base-timer-path-remaining').then(($el)=>{
-            expect($el).to.have.attr('stroke', 'var(--red)');
+            expect($el).to.have.attr('stroke', 'none');
         });
         cy.get('#start-stop-button').trigger('click'); // Begin
+        cy.get('#base-timer-path-remaining').then(($el)=>{
+            expect($el).to.have.attr('stroke', 'var(--red)');
+        });
         cy.tick(1400000);
         cy.get('#pot2').should('have.attr', 'src').should('include','gray');
         cy.get('#base-timer-path-remaining').then(($el)=>{
