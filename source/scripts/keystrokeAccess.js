@@ -13,7 +13,7 @@ document.onkeydown = function (e) {
   switch (e.code) {
     case 'Escape':
       e.preventDefault();
-      (openPane === 'settings') ? closeSettingsPane() : (openPane === 'stats') ? closeStatsPane() : undefined;
+      (openPane === 'settings') ? closeSettingsPane() : (openPane === 'stats') ? closeStatsPane() : (()=>{})();
       break;
     case 'ArrowLeft':
       e.preventDefault();
