@@ -66,7 +66,7 @@ export function beginCountdown (duration, textDisplay) {
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
       // Mutes timer color
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'none');
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--grey)');
       if (!onBreak) {
         pomoCount++;
         updatePots();
@@ -217,8 +217,8 @@ export function resetTimer () {
     clearInterval(interval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--grey)');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'none');
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
