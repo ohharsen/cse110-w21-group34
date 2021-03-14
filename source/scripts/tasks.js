@@ -30,7 +30,7 @@ if (taskButton) {
   const today = new Date();
   toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {
-    taskComplete(false, today);
+    taskComplete(today);
     event.preventDefault();
     document.getElementById('animation-overlay').style.display = 'flex';
     setTimeout(function () {
@@ -58,9 +58,9 @@ export function taskComplete (today) {
   taskPomoCount = 0;
   document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 
-  const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
-  let weekCounter = Number(window.localStorage.getItem(Constants.WEEK_TASK_ID));
-  let dayCounter = Number(window.localStorage.getItem(Constants.TODAY_TASK_ID));
+  const todayStorage = Storage.getTodayStorageDate();
+  let weekCounter = Storage.getWeekCounter();
+  let dayCounter = Storage.getDayCounter();
   let dayOfWeek = today.getDay();
 
   if (dayOfWeek === 0) {
@@ -69,7 +69,7 @@ export function taskComplete (today) {
 
   dayOfWeek--;
 
-  if (formatDate(today) !== todayStorage) {
+  if (today !== todayStorage) {
     if (isSameWeek(today)) { // different day, same week
       weekCounter++;
     } else { // different week
@@ -77,14 +77,13 @@ export function taskComplete (today) {
       Storage.clearWeeklyHistory();
     }
     dayCounter = 1;
-    window.localStorage.setItem(Constants.TODAY_DATE_ID, formatDate(today));
+    Storage.setTodayStorageDate(today);
   } else { // same day, same week
     dayCounter++;
     weekCounter++;
   }
 
   toggleTaskButtonDisabled(true);
-
   return Storage.updateTasks(dayCounter, weekCounter, dayOfWeek);
 }
 
@@ -95,33 +94,20 @@ export function taskComplete (today) {
    */
 export function isSameWeek (today) {
   const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const weekStorage = window.localStorage.getItem(Constants.WEEK_START_ID);
+  const weekStorage = Storage.getWeekStorageDate();
   let mondayDate;
   let difference = 0;
 
   // iterate until previous week start is reached
-  while (formatDate(checkDate) !== weekStorage) {
+  while (checkDate !== weekStorage) {
     checkDate.setDate(checkDate.getDate() - 1); // previous day
-    if (checkDate.getDay() === 1) mondayDate = formatDate(checkDate);
+    if (checkDate.getDay() === 1) mondayDate = checkDate;
 
     // not the same week
     if (++difference === Constants.LENGTH_OF_WEEK) {
-      window.localStorage.setItem(Constants.WEEK_START_ID, mondayDate);
+      Storage.setWeekStorageDate(mondayDate);
       return false;
     }
   }
   return true;
-}
-
-/**
-   * Reformat Date() variable to mm:dd:yyyy
-   * @param {Date} toFormat date object to change
-   * @returns formatted string
-   */
- export function formatDate (toFormat) {
-  const dd = String(toFormat.getDate()).padStart(2, '0'); // date
-  const mm = String(toFormat.getMonth() + 1).padStart(2, '0'); // month
-  const yyyy = toFormat.getFullYear(); // year
-  const formatted = mm + '/' + dd + '/' + yyyy;
-  return formatted;
 }
