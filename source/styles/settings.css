@@ -39,7 +39,7 @@
     align-items: center;
     align-content: space-around;
     justify-items: flex-start;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .settings-box {
@@ -54,7 +54,20 @@
     align-items: stretch;
     align-content: stretch;
     justify-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-around;
+    margin-bottom: 5px;
+}
+
+#information{
+    flex-grow: 1;
+}
+
+#tutorial{
+    flex-grow: 1;
+}
+
+#accessibility-overview{
+    height: initial;
 }
 
 .stats-flex {
@@ -64,6 +77,15 @@
     align-items: stretch;
     align-content: center;
     justify-content: space-between;
+}
+
+.settings-row {
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    align-content:center;
+    justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .settings-button {
