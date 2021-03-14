@@ -49,6 +49,11 @@ export function startResetController () {
 export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
+  if (onBreak) {
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
+  } else {
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+  }
   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
   interval = setInterval(function () {
     --timer;
@@ -60,11 +65,11 @@ export function beginCountdown (duration, textDisplay) {
       document.getElementById('countdownText').classList.remove('hover-text');
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
+      // Mutes timer color
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--grey)');
       if (!onBreak) {
         pomoCount++;
         updatePots();
-        // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
         // Dispalys the next cycle without beginning it
         if (pomoCount === 4) {
           currentTime(Constants.LONG_BREAK, textDisplay);
@@ -85,8 +90,6 @@ export function beginCountdown (duration, textDisplay) {
         updateStats();
       } else {
         updatePots();
-        // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
         timerTypeIndicator(Constants.timerOptions.POMO);
@@ -214,8 +217,8 @@ export function resetTimer () {
     clearInterval(interval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--grey)');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
   const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
