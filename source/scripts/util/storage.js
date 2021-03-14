@@ -15,11 +15,22 @@ export const TODAY_DISTRACTION = 'today-distraction';
 
 /**
  * Update local storage with finished task information
- * @param {number} dayCounter today total task count
- * @param {number} weekCounter week total task count
- * @param {number} dayOfWeek the day of the week (0 --> Monday, 1 --> Tuesday, ... etc)
  */
-export function updateTasks (dayCounter, weekCounter, dayOfWeek) {
+export function incrTasks () {
+  const todayStorage = Storage.getTodayStorageDate();
+  let weekCounter = Storage.getWeekCounter();
+  let dayCounter = Storage.getDayCounter();
+  let dayOfWeek = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK; // Day of week starting on Mon
+
+  if (isSameDay(today, todayStorage)) {
+    if (!isSameWeek(today)) Storage.clearWeeklyHistory();
+    dayCounter = 1;
+    Storage.setTodayStorageDate(today);
+  } else { // same day, same week
+    dayCounter++;
+    weekCounter++;
+  }
+
   // Update today's task count
   window.localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
   window.localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
@@ -29,12 +40,16 @@ export function updateTasks (dayCounter, weekCounter, dayOfWeek) {
   window.localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 }
 
+export function getTasksCount() {
+  return window.localStorage.getItem(TODAY_TASK_ID) || '0';
+}
+
 /**
  * 
  * @returns Total tasks completed
  */
 export function getTotalTasksCount () {
-  return window.localStorage.getItem(Constants.TOTAL_TASK_ID) || '0';
+  return window.localStorage.getItem(TOTAL_TASK_ID) || '0';
 }
 
 /**
@@ -184,19 +199,18 @@ function isSameDay (date1, date2) {
  * @param {Date} date2 
  * @returns boolean is it the same week
  */
-export function isSameWeek (date1, date2) {
+function isSameWeek (date1, date2) {
   const checkDate = new Date(date1);
-  const weekStorage = window.localStorage.getItem(Constants.WEEK_START_ID);
-  let mondayDate;
+  let lastMonday;
   let difference = 0;
 
   // iterate until previous week start is reached
   while (!isSameDay(date1, date2)) {
     checkDate.setDate(checkDate.getDate() - 1);
     if (checkDate.getDay() === 1) mondayDate = new Date(checkDate);
-
-    // not the same week
-    if (++difference === Constants.LENGTH_OF_WEEK) {
+    difference++;
+    if (difference === Constants.LENGTH_OF_WEEK) {
+      // TODO: move this somewhere else
       window.localStorage.setItem(Constants.WEEK_START_ID, mondayDate);
       return false;
     }
