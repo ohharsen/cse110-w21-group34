@@ -83,8 +83,8 @@ export function beginCountdown (duration, textDisplay) {
         const todayStorage = window.localStorage.getItem(Storage.TODAY_DATE_ID);
         // incrementing daily pomo cycle count
 
-        Storage.updatePomoCount(todayPomos, todayStorage);
-        Storage.updateDailyPomoCount();
+        Storage.setPomoCount(todayPomos, todayStorage);
+        Storage.incrDailyPomoCount();
         increaseTaskPomo();
         updateStats();
       } else {
@@ -192,7 +192,7 @@ export function resetTimer () {
   }
   const todayDistractions = Number(window.localStorage.getItem(Storage.TODAY_DISTRACTION));
   const todayStorage = window.localStorage.getItem(Storage.TODAY_DATE_ID);
-  Storage.updateDistractions(todayDistractions, todayStorage);
+  Storage.setDistractions(todayDistractions, todayStorage);
   updateStats();
 
   return [pomoState, Constants.BEGIN_BTN_TXT];

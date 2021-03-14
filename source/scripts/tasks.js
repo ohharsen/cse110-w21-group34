@@ -55,9 +55,9 @@ export function completeTask () {
   taskPomoCount = 0;
   document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 
-  const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
-  let weekCounter = Number(window.localStorage.getItem(Constants.WEEK_TASK_ID));
-  let dayCounter = Number(window.localStorage.getItem(Constants.TODAY_TASK_ID));
+  const todayStorage = Storage.getTodayStorageDate();
+  let weekCounter = Storage.getWeekCounter();
+  let dayCounter = Storage.getDayCounter();
   let dayOfWeek = today.getDay();
 
   if (dayOfWeek === 0) {
@@ -74,7 +74,7 @@ export function completeTask () {
       Storage.clearWeeklyHistory();
     }
     dayCounter = 1;
-    window.localStorage.setItem(Constants.TODAY_DATE_ID, formatDate(today));
+    Storage.setTodayStorageDate(today);
   } else { // same day, same week
     dayCounter++;
     weekCounter++;
@@ -91,18 +91,18 @@ export function completeTask () {
  */
 export function isSameWeek (today) {
   const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const weekStorage = window.localStorage.getItem(Constants.WEEK_START_ID);
+  const weekStorage = Storage.getWeekStorageDate();
   let mondayDate;
   let difference = 0;
 
   // iterate until previous week start is reached
-  while (formatDate(checkDate) !== weekStorage) {
+  while (checkDate !== weekStorage) {
     checkDate.setDate(checkDate.getDate() - 1); // previous day
-    if (checkDate.getDay() === 1) mondayDate = formatDate(checkDate);
+    if (checkDate.getDay() === 1) mondayDate = checkDate;
 
     // not the same week
     if (++difference === Constants.LENGTH_OF_WEEK) {
-      window.localStorage.setItem(Constants.WEEK_START_ID, mondayDate);
+      Storage.setWeekStorageDate(mondayDate);
       return false;
     }
   }
