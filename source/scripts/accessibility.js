@@ -1,6 +1,6 @@
 let accessibleMode = false;
 const root = document.documentElement;
-
+const ACCESSIBLE_CLASS = 'accessible';
 /**
    * Function to toggle the accessibility colors and fonts
    * Darkens backgrounds for better readibility of text
@@ -8,9 +8,9 @@ const root = document.documentElement;
    */
 function toggleAccessibility () {
   if (!accessibleMode) {
-    root.classList.add('accessible');
+    root.classList.add(ACCESSIBLE_CLASS);
   } else {
-    root.classList.remove('accessible');
+    root.classList.remove(ACCESSIBLE_CLASS);
   }
   accessibleMode = !accessibleMode;
 }

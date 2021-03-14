@@ -16,22 +16,17 @@ export const TODAY_DISTRACTION = 'today-distraction';
  * Update local storage with finished task information
  */
 export function incrTasks () {
-  const todayStorage = Storage.getTodayStorageDate();
-  let weekCounter = Storage.getWeekCounter();
-  let dayCounter = Storage.getDayCounter();
-  let dayOfWeek = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK; // Day of week starting on Mon
+  let todaysTasks = getTasksCount();
 
-  if (isSameDay(today, todayStorage)) {
-    if (!isSameWeek(today)) Storage.clearWeeklyHistory();
-    dayCounter = 1;
-    Storage.setTodayStorageDate(today);
+  if (todayEqualsStorage()) {
+    todaysTasks++;
   } else { // same day, same week
-    dayCounter++;
-    weekCounter++;
+    todaysTasks = 1;
+    setTodayStorageDate();
   }
 
   // Update today's task count
-  window.localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
+  window.localStorage.setItem(TODAY_TASK_ID, String(todaysTasks));
 
   // Update total task count
   const totalTasks = Number(window.localStorage.getItem(TOTAL_TASK_ID)) + 1;
@@ -39,7 +34,7 @@ export function incrTasks () {
 }
 
 export function getTasksCount() {
-  return window.localStorage.getItem(TODAY_TASK_ID) || '0';
+  return Number(window.localStorage.getItem(TODAY_TASK_ID));
 }
 
 /**
@@ -47,50 +42,53 @@ export function getTasksCount() {
  * @returns Total tasks completed
  */
 export function getTotalTasksCount () {
-  return window.localStorage.getItem(TOTAL_TASK_ID) || '0';
+  return Number(window.localStorage.getItem(TOTAL_TASK_ID));
 }
 
 /**
- * Update's pomo count for today in local storage
- * @param {Number} todayPomos The number of daily current pomos completed
+ * Increments completed Pomodoros for today, the current week, and total in
+ * local storage.
  * @return number of pomos completed today
  */
-export function setPomoCount (todayPomos) {
-  // update pomo cycle day count
-  const storageDate = new Date(window.localStorage.getItem(TODAY_DATE_ID));
-  const today = new Date();
+export function incrPomoCount () {
+  let todayPomos = getPomoCount();
+
+  // Update today's pomo count
   if (todayEqualsStorage()) {
     todayPomos++;
   } else {
     todayPomos = 1;
-    window.localStorage.setItem(TODAY_DATE_ID, today.toString());
+    setTodayStorageDate();
   }
   window.localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+
+  // Update total pomo count
   window.localStorage.setItem(TOTAL_POMO_ID, String(Number(window.localStorage.getItem(TOTAL_POMO_ID)) + 1));
   if (Number(window.localStorage.getItem(BEST_DAILY_POMO_ID)) < todayPomos) {
     window.localStorage.setItem(BEST_DAILY_POMO_ID, todayPomos);
   }
 
+  // Update weekly history
+  const today = new Date();
+  if (!isSameWeek(getTodayStorageDate(), today)) clearWeeklyHistory();
+  const dayIdx = (today.getDay() - 1) % Constants.LENGTH_OF_WEEK;
+  const weekHistory = JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
+  weekHistory[dayIdx]++;
+  window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(weekHistory));
+
   return todayPomos;
 }
 
 export function getPomoCount () {
-  return window.localStorage.getItem(TODAY_POMO_ID) || '0';
+  return Number(window.localStorage.getItem(TODAY_POMO_ID));
+}
+
+export function getTotalPomoCount () {
+  return Number(window.localStorage.getItem(TOTAL_POMO_ID));
 }
 
 export function getBestDailyPomoCount() {
-  return window.localStorage.getItem(BEST_DAILY_POMO_ID) || '0';
-}
-
-/**
- * Updates the pomo count for the current day of the week in local storage.
- */
-export function incrPomoCount () {
-  const dayIdx = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK;
-  const weekHistory = JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
-
-  weekHistory[dayIdx]++;
-  window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(weekHistory));
+  return Number(window.localStorage.getItem(BEST_DAILY_POMO_ID));
 }
 
 /**
@@ -109,38 +107,25 @@ export function clearWeeklyHistory () {
 }
 
 /**
- * Updates total cycles in local storage
- * @returns the updated number of total cycles
- */
-export function incrTotalCycles () {
-  const totalCycles = Number(window.localStorage.getItem(TOTAL_CYCLE_ID)) + 1;
-  window.localStorage.setItem(TOTAL_CYCLE_ID, String(totalCycles));
-  return window.localStorage.getItem(TOTAL_CYCLE_ID);
-}
-
-/**
  * Updates distractions in local storage
- * @param {Number} todayDistractions The number of distractions today
+ * @param {Number} amount The number of distractions today
  * @return The updated number of distractions
  */
-export function setDistractions (todayDistractions) {
-  // Update total distractions
-  const distractions = Number(window.localStorage.getItem(TOTAL_DISTRACTION));
-  window.localStorage.setItem(TOTAL_DISTRACTION, String(distractions + 1));
+export function incrDistractions () {
+  let todayDistractions = getDistractions();
 
   // Update today's distractions
-  const storageDate = new Date(window.localStorage.getItem(TODAY_DATE_ID));
-  const today = new Date();
   if (todayEqualsStorage()) {
     todayDistractions++;
   } else {
-    // Update
     todayDistractions = 1;
-    window.localStorage.setItem(TODAY_DATE_ID, today.toString());
+    setTodayStorageDate();
   }
   window.localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
 
-  return todayDistractions;
+  // Update total distractions
+  const distractions = Number(window.localStorage.getItem(TOTAL_DISTRACTION));
+  window.localStorage.setItem(TOTAL_DISTRACTION, String(distractions + 1));
 }
 
 /**
@@ -148,7 +133,7 @@ export function setDistractions (todayDistractions) {
  * @return Today's distractions
  */
 export function getDistractions () {
-  return window.localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
+  return Number(window.localStorage.getItem(TODAY_DISTRACTION));
 }
 
 /**
@@ -156,11 +141,11 @@ export function getDistractions () {
  * @return Today's distractions
  */
  export function getTotalDistractions () {
-  return window.localStorage.setItem(TOTAL_DISTRACTION) || 0;
+  return Number(window.localStorage.getItem(TOTAL_DISTRACTION));
 }
 
 export function getTodayStorageDate () {
-  return new Date(window.localStorage.getItem(Constants.TODAY_DATE_ID));
+  return new Date(window.localStorage.getItem(TODAY_DATE_ID) || new Date(0));
 }
 
 export function setTodayStorageDate () {
@@ -168,11 +153,7 @@ export function setTodayStorageDate () {
   window.localStorage.setItem(TODAY_DATE_ID, today.toString());
 }
 
-export function getDayCounter () {
-  return Number(window.localStorage.getItem(TODAY_TASK_ID));
-}
-
-export function todayEqualsStorage() {
+export function todayEqualsStorage () {
   return isSameDay(new Date(), getTodayStorageDate());
 }
 
@@ -190,23 +171,18 @@ export function isSameDay (date1, date2) {
 
 /**
  * Check if today is in the same week as week start
- * @param {Date} date1 
- * @param {Date} date2 
+ * @param {Date} date1 The earlier date
+ * @param {Date} date2 The later date
  * @returns boolean is it the same week
  */
 function isSameWeek (date1, date2) {
-  const checkDate = new Date(date1);
-  let lastMonday;
-  let difference = 0;
+  const checkDate = new Date(date2);
 
   // iterate until previous week start is reached
   while (!isSameDay(date1, date2)) {
     checkDate.setDate(checkDate.getDate() - 1);
-    if (checkDate.getDay() === 1) mondayDate = new Date(checkDate);
-    difference++;
-    if (difference === Constants.LENGTH_OF_WEEK) {
-      // TODO: move this somewhere else
-      window.localStorage.setItem(Constants.WEEK_START_ID, mondayDate);
+    if (checkDate.getDay() === 1) {
+      window.localStorage.setItem(WEEK_START_ID, checkDate.toString());
       return false;
     }
   }

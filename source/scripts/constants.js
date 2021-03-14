@@ -4,7 +4,8 @@ export const TASK_BTN_ID = 'task';
 export const TASK_POMO_COUNTER = 'task-pomo-counter';
 export const CENTER_CONTAINER = 'center-container';
 export const LENGTH_OF_WEEK = 7;
-export const WORK_LENGTH = 1500; // # of seconds in a work pomo (orig. 1500)
+export const POMO_CYCLE_LENGTH = 4;
+export const WORK_LENGTH = 1; // # of seconds in a work pomo (orig. 1500)
 export const SHORT_BREAK = 300; // # of seconds in a short break (orig. 300)
 export const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
 

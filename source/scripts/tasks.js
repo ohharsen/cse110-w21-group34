@@ -54,15 +54,7 @@ export function completeTask () {
   taskPomoCount = 0;
   document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 
-  let dayCounter = Storage.getDayCounter();
-
-  if (Storage.todayEqualsStorage()) {
-    dayCounter++;
-  } else { // same day, same week
-    dayCounter = 1;
-    Storage.setTodayStorageDate();
-  }
-
+  Storage.incrTasks();
   toggleTaskButtonDisabled(true);
-  Storage.updateTasks(dayCounter);
+  updateStats();
 }
