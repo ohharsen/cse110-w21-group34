@@ -21,12 +21,12 @@ export const TODAY_DISTRACTION = 'today-distraction';
  */
 export function updateTasks (dayCounter, weekCounter, dayOfWeek) {
   // Update today's task count
-  window.localStorage.setItem(Constants.TODAY_TASK_ID, String(dayCounter));
-  window.localStorage.setItem(Constants.WEEK_TASK_ID, String(weekCounter));
+  window.localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
+  window.localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
 
   // Update total task count
-  const totalTasks = Number(window.localStorage.getItem(Constants.TOTAL_TASK_ID)) + 1;
-  window.localStorage.setItem(Constants.TOTAL_TASK_ID, String(totalTasks));
+  const totalTasks = Number(window.localStorage.getItem(TOTAL_TASK_ID)) + 1;
+  window.localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 }
 
 /**
@@ -62,11 +62,11 @@ export function setPomoCount (todayPomos) {
 }
 
 export function getPomoCount () {
-  return window.localStorage.getItem(Constants.TODAY_POMO_ID) || '0';
+  return window.localStorage.getItem(TODAY_POMO_ID) || '0';
 }
 
 export function getBestDailyPomoCount() {
-  return window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID) || '0';
+  return window.localStorage.getItem(BEST_DAILY_POMO_ID) || '0';
 }
 
 /**
@@ -74,7 +74,8 @@ export function getBestDailyPomoCount() {
  */
 export function incrPomoCount () {
   const dayIdx = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK;
-  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
+  const weekHistory = JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
+
   weekHistory[dayIdx]++;
   window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(weekHistory));
 }
@@ -83,7 +84,7 @@ export function incrPomoCount () {
  * Updates the pomo count for the current day of the week in local storage.
  */
 export function getWeeklyHistory () {
-  return JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
+  return JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
 }
 
 /**
@@ -145,17 +146,24 @@ export function getDistractions () {
   return window.localStorage.setItem(TOTAL_DISTRACTION) || 0;
 }
 
-/**
-   * Reformat Date() variable to mm:dd:yyyy
-   * @param {Date} toFormat date object to change
-   * @returns formatted string
-   */
-export function formatDate (toFormat) {
-  const dd = String(toFormat.getDate()).padStart(2, '0'); // date
-  const mm = String(toFormat.getMonth() + 1).padStart(2, '0'); // month
-  const yyyy = toFormat.getFullYear(); // year
-  const formatted = mm + '/' + dd + '/' + yyyy;
-  return formatted;
+export function getTodayStorageDate () {
+  return new Date(window.localStorage.getItem(Constants.TODAY_DATE_ID));
+}
+
+export function setTodayStorageDate (today) {
+  window.localStorage.setItem(TODAY_DATE_ID, today.toString());
+}
+
+export function getWeekStorageDate () {
+  return new Date(window.localStorage.getItem(WEEK_START_ID));
+}
+
+export function setWeekStorageDate (mondayDate) {
+  window.localStorage.setItem(WEEK_START_ID, mondayDate.toString());
+}
+
+export function getDayCounter () {
+  return Number(window.localStorage.getItem(TODAY_TASK_ID));
 }
 
 /**
