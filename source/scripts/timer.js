@@ -3,6 +3,9 @@ import * as Storage from './util/storage.js'
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
 
+const STOP_TIMER_COLOR = 'var(--redorange)';
+const WORK_TIMER_COLOR = 'var(--red)';
+const BREAK_TIMER_COLOR = 'var(--green)';
 const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
 const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
@@ -65,7 +68,7 @@ export function beginCountdown (duration, textDisplay) {
         pomoCount++;
         updatePots();
         // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', BREAK_TIMER_COLOR);
         // Dispalys the next cycle without beginning it
         if (pomoCount === 4) {
           currentTime(Constants.LONG_BREAK, textDisplay);
@@ -87,7 +90,7 @@ export function beginCountdown (duration, textDisplay) {
       } else {
         updatePots();
         // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+        document.getElementById('base-timer-path-remaining').setAttribute('stroke', WORK_TIMER_COLOR);
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
         timerTypeIndicator(Constants.timerOptions.POMO);
@@ -184,7 +187,7 @@ export function resetTimer () {
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', STOP_TIMER_COLOR);
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
   const todayDistractions = Number(window.localStorage.getItem(Storage.TODAY_DISTRACTION));
