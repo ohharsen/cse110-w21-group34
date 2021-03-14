@@ -121,7 +121,7 @@
         margin: 18px 18px 18px 18px;
         left: calc(-100vw + -18px);
     }
-    
+
     #settings-container h2 {
         margin-top: 4px;
         padding-bottom: 4px;
@@ -143,16 +143,16 @@
 }
 
 @media only screen and (max-width: 480px) {
-    /* #settings-container {
+    #settings-container {
         height: calc(100vh - 16px);
         width: calc(100vw - 16px);
         margin: 8px 8px 8px 8px;
-        right: calc(-100vw + -8px);
+        left: calc(-100vw + -8px);
     }
 
     #settings-pane {
         padding: 12px 24px 12px 24px;
-    } */
+    }
 
     .settingts-button {
         top: 12px;
