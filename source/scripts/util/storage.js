@@ -48,7 +48,7 @@ export function updateTasks (dayCounter, weekCounter, dayOfWeek) {
     todayPomos++;
   } else { // case if we are on different day
     todayPomos = 1;
-    window.localStorage.setItem(TODAY_DATE_ID, JSON.stringify(today));
+    window.localStorage.setItem(TODAY_DATE_ID, today.toString());
   }
   window.localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
   window.localStorage.setItem(TOTAL_POMO_ID, String(Number(window.localStorage.getItem(TOTAL_POMO_ID)) + 1));
@@ -106,7 +106,7 @@ export function setDistractions (todayDistractions, todayStorage) {
   } else {
     // Update
     todayDistractions = 1;
-    window.localStorage.setItem(TODAY_DATE_ID, JSON.stringify(today));
+    window.localStorage.setItem(TODAY_DATE_ID, today.toString());
   }
   window.localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
 
@@ -114,19 +114,19 @@ export function setDistractions (todayDistractions, todayStorage) {
 }
 
 export function getTodayStorageDate () {
-  return new Date(JSON.parse(window.localStorage.getItem(Constants.TODAY_DATE_ID)));
+  return new Date(window.localStorage.getItem(Constants.TODAY_DATE_ID));
 }
 
 export function setTodayStorageDate (today) {
-  window.localStorage.setItem(TODAY_DATE_ID, JSON.stringify(today));
+  window.localStorage.setItem(TODAY_DATE_ID, today.toString());
 }
 
 export function getWeekStorageDate () {
-  return new Date(JSON.parse(window.localStorage.getItem(WEEK_START_ID)));
+  return new Date(window.localStorage.getItem(WEEK_START_ID));
 }
 
 export function setWeekStorageDate (mondayDate) {
-  window.localStorage.setItem(WEEK_START_ID, JSON.stringify(mondayDate));
+  window.localStorage.setItem(WEEK_START_ID, mondayDate.toString());
 }
 
 export function getWeekCounter () {
