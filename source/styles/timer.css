@@ -98,25 +98,20 @@
     background:rgba(255, 255, 255, 0.2);
 }
 
-#reset-yes-button {
-    order: 1;
-    width: 20%;
+.prompt-button{
+    width: 40%;
     height: 60px;
     border-radius: 32px;
     font-family: Roboto;
     color: white;
     font-size: var(--button-text-size);
-    background: var(--red);
+}
+
+#reset-yes-button {
+    background: grey;
 }
 #reset-no-button {
-    order: 2;
-    width: 20%;
-    height: 60px;
-    border-radius: 32px;
-    font-family: Roboto;
-    color: white;
-    font-size: var(--button-text-size);
-    background: var(--green);
+    background: var(--red);
 }
 #prompt {
     display: flex;
@@ -173,6 +168,11 @@
 
 .task-button:focus {
     outline: 0;
+}
+
+#prompt {
+    display: flex;
+    width: 100%;
 }
 
 .pots-container {
