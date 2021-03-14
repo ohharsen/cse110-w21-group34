@@ -1,5 +1,12 @@
 # cse110-w21-group34
 
+## Source Documentation (JSDocs)
+
+[https://4r53n.github.io/cse110-w21-group34/](https://4r53n.github.io/cse110-w21-group34/)
+
+JSDocs for main are automatically generated and hosted to GitHub Pages to
+the link above or [here](https://4r53n.github.io/cse110-w21-group34/).
+
 ## Running
 The application uses *ES modules* which require CORS. Therefore, the server
 needs to be hosted to add all script functionality.

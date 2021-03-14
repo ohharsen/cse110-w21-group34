@@ -1,26 +1,18 @@
 import * as Constants from './constants.js';
+import * as Settings from './settings.js';
 import { drawGraph } from './graph.js';
 
-const timerBlock = document.getElementsByClassName('center-container')[0];
-// const counterBlock = document.getElementsByClassName('counters-container')[0];
-const statsPane = document.getElementById('stats-container');
-const statsOpenButton = document.getElementById('stats-open-button');
-const statsCloseButton = document.getElementById('stats-close-button');
-const graphCanvas = document.getElementById('weekly-graph');
+export const timerBlock = document.getElementsByClassName('center-container')[0];
+export const statsPane = document.getElementById('stats-container');
+export const statsOpenButton = document.getElementById('stats-open-button');
+export const statsCloseButton = document.getElementById('stats-close-button');
 
-let isPaneOpen = false;
+const graphCanvas = document.getElementById('weekly-graph');
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
 
-const settingsPane = document.getElementById('settings-container');
-const settingsOpenButton = document.getElementById('settings-open-button');
-const settingsCloseButton = document.getElementById('settings-close-button');
-
-settingsOpenButton.onclick = openSettingsPane;
-settingsCloseButton.onclick = closeSettingsPane;
-
-export let openPane = null;
+export let isOpenStatsPane = false;
 
 /* istanbul ignore next */
 /**
@@ -38,30 +30,20 @@ export function updateStats () {
  * Opens the statistics pane.
  */
 export function openStatsPane () {
-  if (isPaneOpen) return;
-
   updateStats();
 
-  removeAll();
+  Settings.removeAll();
 
-  if (timerBlock.classList.contains('slide-open-settings')) {
-    closeSettingsPane();
+  if (Settings.settingsPane.classList.contains('slide-open-settings')) {
+    Settings.closeSettingsPane();
 
     timerBlock.classList.add('slide-across-left');
-    // counterBlock.classList.add('slide-across-left');
-    settingsPane.classList.add('slide-across-left');
+  } else {
+    timerBlock.classList.add('slide-open');
   }
-
-  timerBlock.classList.add('slide-open');
-  // counterBlock.classList.add('slide-open');
   statsPane.classList.add('slide-open');
 
-  statsCloseButton.removeAttribute('disabled');
-  if (document.activeElement === statsOpenButton) statsCloseButton.focus();
-  statsOpenButton.setAttribute('disabled', '');
-  isPaneOpen = true;
-
-  openPane = 'stats';
+  isOpenStatsPane = true;
 }
 
 /* istanbul ignore next */
@@ -70,89 +52,17 @@ export function openStatsPane () {
  * Closes the statistics pane.
  */
 export function closeStatsPane () {
-  timerBlock.classList.remove('slide-across-left');
-  // counterBlock.classList.remove('slide-across-left');
-  settingsPane.classList.remove('slide-across-left');
-
   timerBlock.classList.remove('slide-open');
-  // counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
 
-  timerBlock.classList.remove('slide-close-settings');
-  // counterBlock.classList.remove('slide-close-settings');
-  settingsPane.classList.remove('slide-close-settings');
+  timerBlock.classList.remove('slide-across-left');
 
   timerBlock.classList.add('slide-close');
-  // counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
-
-  statsOpenButton.removeAttribute('disabled');
-  if (document.activeElement === statsCloseButton) statsOpenButton.focus();
-  statsCloseButton.setAttribute('disabled', '');
-  isPaneOpen = false;
-  openPane = null;
+  isOpenStatsPane = false;
 }
 
 /* istanbul ignore next */
-/**
- * Opens the statistics pane.
- */
-export function openSettingsPane () {
-  removeAll();
-
-  if (timerBlock.classList.contains('slide-open')) {
-    closeStatsPane();
-
-    timerBlock.classList.add('slide-across-right');
-    // counterBlock.classList.add('slide-across-right');
-    settingsPane.classList.add('slide-across-right');
-  }
-
-  timerBlock.classList.add('slide-open-settings');
-  // counterBlock.classList.add('slide-open-settings');
-  settingsPane.classList.add('slide-open-settings');
-
-  openPane = 'settings';
-}
-
-/* istanbul ignore next */
-/**
- * Opens the statistics pane.
- */
-export function closeSettingsPane () {
-  timerBlock.classList.remove('slide-across-right');
-  // counterBlock.classList.remove('slide-across-right');
-  settingsPane.classList.remove('slide-across-right');
-
-  timerBlock.classList.remove('slide-open-settings');
-  // counterBlock.classList.remove('slide-open-settings');
-  settingsPane.classList.remove('slide-open-settings');
-
-  timerBlock.classList.add('slide-close-settings');
-  // counterBlock.classList.add('slide-close-settings');
-  settingsPane.classList.add('slide-close-settings');
-
-  openPane = null;
-}
-
-export function removeAll () {
-  timerBlock.classList.remove('slide-close');
-  // counterBlock.classList.remove('slide-close');
-  statsPane.classList.remove('slide-close');
-
-  timerBlock.classList.remove('slide-close-settings');
-  // counterBlock.classList.remove('slide-close-settings');
-  settingsPane.classList.remove('slide-close-settings');
-
-  timerBlock.classList.remove('slide-across-left');
-  // counterBlock.classList.remove('slide-across-left');
-  settingsPane.classList.remove('slide-across-left');
-
-  timerBlock.classList.remove('slide-across-right');
-  // counterBlock.classList.remove('slide-across-right');
-  settingsPane.classList.remove('slide-across-right');
-}
-
 /**
  * Displays the user's current all-time statistics on the statistics pane.
  * Total statistics include:

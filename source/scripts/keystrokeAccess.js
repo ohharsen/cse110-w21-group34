@@ -3,27 +3,38 @@ import * as Constants from './constants.js';
 import {
   openStatsPane,
   closeStatsPane,
-  openPane,
-  openSettingsPane,
-  closeSettingsPane,
-  removeAll
+  isOpenStatsPane
 } from './stats.js';
 
-document.onkeydown = function (e) {
+import {
+  openSettingsPane,
+  closeSettingsPane,
+  isOpenSettingsPane,
+  removeAll
+} from './settings.js';
+
+let keystrokeMode = true;
+
+/**
+ * The event listener for whenever keys are pressed
+ * Listens only to specific keys and lets other keys perform default action
+ * @param {Event} e the fired event object
+ */
+function keyControls (e) {
   switch (e.code) {
     case 'Escape':
       e.preventDefault();
-      (openPane === 'settings') ? closeSettingsPane() : (openPane === 'stats') ? closeStatsPane() : (() => {})();
+      isOpenSettingsPane ? closeSettingsPane() : isOpenStatsPane ? closeStatsPane() : (() => {})();
       break;
     case 'ArrowLeft':
       e.preventDefault();
       removeAll();
-      (openPane === 'settings') ? closeSettingsPane() : openStatsPane();
+      isOpenSettingsPane ? closeSettingsPane() : openStatsPane();
       break;
     case 'ArrowRight':
       e.preventDefault();
       removeAll();
-      (openPane === 'stats') ? closeStatsPane() : openSettingsPane();
+      isOpenStatsPane ? closeStatsPane() : openSettingsPane();
       break;
     case 'Space':
       e.preventDefault();
@@ -37,4 +48,16 @@ document.onkeydown = function (e) {
     default:
       break;
   }
-};
+}
+
+document.onkeydown = keyControls;
+
+/**
+ * Function to toggle keystroke access. Called whenever the user toggles the setting switch
+ */
+function toggleKeystroke () {
+  keystrokeMode = !keystrokeMode;
+  document.onkeydown = keystrokeMode ? keyControls : undefined;
+}
+
+document.getElementById('keystroke-switch').onclick = toggleKeystroke;

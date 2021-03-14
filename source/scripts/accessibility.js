@@ -45,6 +45,4 @@ export function modeGetter () {
 }
 
 /** redundant, used for linting */
-toggleAccessibility();
-toggleAccessibility();
-// document.getElementById('toggle-accessibility').onclick = toggleAccessibility;
+document.getElementById('colors-switch').onclick = toggleAccessibility;
