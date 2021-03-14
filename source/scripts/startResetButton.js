@@ -50,6 +50,7 @@ export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
   if (onBreak) {
+    startStopButton.disabled = true;
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
   } else {
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
@@ -90,6 +91,7 @@ export function beginCountdown (duration, textDisplay) {
         updateStats();
       } else {
         updatePots();
+        startStopButton.disabled = false;
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
         timerTypeIndicator(Constants.timerOptions.POMO);
@@ -203,10 +205,7 @@ export function updatePots () {
    * @return An array containing the stopped timer state and begin button text
    */
 export function resetTimer () {
-  const userConfirm = confirm('This action will count as a distraction.');
-  if (!userConfirm) {
-    return;
-  }
+  console.log(document.getElementsByClassName("cd-popup-container").classList);
 
   document.getElementById('countdownText').classList.remove('hover-text');
   pomoState = Constants.timerOptions.STOPPED;

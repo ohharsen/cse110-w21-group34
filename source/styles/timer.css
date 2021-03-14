@@ -81,6 +81,7 @@
 }
 
 #start-stop-button {
+    display: none;
     width: 40%;
     height: 60px;
     border-radius: 32px;
@@ -91,6 +92,35 @@
 
 #start-stop-button:focus {
     outline: 0;
+}
+
+#start-stop-button:disabled {
+    background:rgba(255, 255, 255, 0.2);
+}
+
+#reset-yes-button {
+    order: 1;
+    width: 20%;
+    height: 60px;
+    border-radius: 32px;
+    font-family: Roboto;
+    color: white;
+    font-size: var(--button-text-size);
+    background: var(--red);
+}
+#reset-no-button {
+    order: 2;
+    width: 20%;
+    height: 60px;
+    border-radius: 32px;
+    font-family: Roboto;
+    color: white;
+    font-size: var(--button-text-size);
+    background: var(--green);
+}
+#prompt {
+    display: flex;
+    justify-content: space-around;
 }
 
 .pomodoro-button {
