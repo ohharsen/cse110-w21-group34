@@ -125,7 +125,7 @@
     border-radius: 22px;
     height: 50px;
     font-family: Roboto;
-    color: white;
+    color: var(--counter-color);
     font-size: var(--button-text-size);
     margin-top: 5px;
 }
