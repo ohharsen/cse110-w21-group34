@@ -10,10 +10,9 @@ let taskPomoCount = 0;
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
 
 if (taskButton) {
-  const today = new Date();
   toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {
-    completeTask(false, today);
+    completeTask();
     event.preventDefault();
     document.getElementById('animation-overlay').style.display = 'flex';
     setTimeout(function () {
@@ -55,56 +54,7 @@ export function completeTask () {
   taskPomoCount = 0;
   document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 
-  const todayStorage = Storage.getTodayStorageDate();
-  let weekCounter = Storage.getWeekCounter();
-  let dayCounter = Storage.getDayCounter();
-  let dayOfWeek = today.getDay();
-
-  if (dayOfWeek === 0) {
-    dayOfWeek = Constants.LENGTH_OF_WEEK;
-  }
-
-  dayOfWeek--;
-
-  if (isSameDay(today, todayStorage)) {
-    if (isSameWeek(today)) { // different day, same week
-      weekCounter++;
-    } else { // different week
-      weekCounter = 1;
-      Storage.clearWeeklyHistory();
-    }
-    dayCounter = 1;
-    Storage.setTodayStorageDate(today);
-  } else { // same day, same week
-    dayCounter++;
-    weekCounter++;
-  }
-
+  Storage.incrTasks();
   toggleTaskButtonDisabled(true);
-  Storage.updateTasks(dayCounter, weekCounter, dayOfWeek);
-}
-
-/**
- * Check if today is in the same week as week start
- * @param {Date} today current date
- * @returns boolean is it the same week
- */
-export function isSameWeek (today) {
-  const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const weekStorage = Storage.getWeekStorageDate();
-  let mondayDate;
-  let difference = 0;
-
-  // iterate until previous week start is reached
-  while (checkDate !== weekStorage) {
-    checkDate.setDate(checkDate.getDate() - 1); // previous day
-    if (checkDate.getDay() === 1) mondayDate = checkDate;
-
-    // not the same week
-    if (++difference === Constants.LENGTH_OF_WEEK) {
-      Storage.setWeekStorageDate(mondayDate);
-      return false;
-    }
-  }
-  return true;
+  updateStats();
 }

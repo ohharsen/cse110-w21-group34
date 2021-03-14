@@ -3,7 +3,7 @@ import * as Storage from './util/storage.js'
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
 
-const STOP_TIMER_COLOR = 'var(--redorange)';
+const STOP_TIMER_COLOR = 'var(--dark-orange)';
 const WORK_TIMER_COLOR = 'var(--red)';
 const BREAK_TIMER_COLOR = 'var(--green)';
 const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
@@ -70,21 +70,16 @@ export function beginCountdown (duration, textDisplay) {
         // Changes the color of the timer
         document.getElementById('base-timer-path-remaining').setAttribute('stroke', BREAK_TIMER_COLOR);
         // Dispalys the next cycle without beginning it
-        if (pomoCount === 4) {
+        if (pomoCount === Constants.POMO_CYCLE_LENGTH) {
           currentTime(Constants.LONG_BREAK, textDisplay);
           timerTypeIndicator(Constants.timerOptions.LONG);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
           timerTypeIndicator(Constants.timerOptions.SHORT);
         }
-        // current pomos cycles completed today
-        const todayPomos = Number(window.localStorage.getItem(Storage.TODAY_POMO_ID));
-        // Today's date
-        const todayStorage = window.localStorage.getItem(Storage.TODAY_DATE_ID);
-        // incrementing daily pomo cycle count
 
-        Storage.setPomoCount(todayPomos, todayStorage);
-        Storage.incrDailyPomoCount();
+        // incrementing daily pomo cycle count
+        Storage.incrPomoCount();
         increaseTaskPomo();
         updateStats();
       } else {
@@ -94,10 +89,6 @@ export function beginCountdown (duration, textDisplay) {
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
         timerTypeIndicator(Constants.timerOptions.POMO);
-        // Update total cycle count at end of cycle
-        if (duration === Constants.LONG_BREAK) {
-          Storage.updateTotalCycles();
-        }
       }
       toggleTaskButtonDisabled(false);
       onBreak = togglePomoBreak(onBreak);
@@ -162,7 +153,7 @@ export function updatePots () {
     document.getElementById('pot' + i).src = COLORED_POT_SOURCE;
   }
 
-  for (let i = pomoCount + 1; i <= 4; i++) {
+  for (let i = pomoCount + 1; i <= Constants.POMO_CYCLE_LENGTH; i++) {
     document.getElementById('pot' + i).src = GRAY_POT_SOURCE;
   }
 }
@@ -190,11 +181,9 @@ export function resetTimer () {
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', STOP_TIMER_COLOR);
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
-  const todayDistractions = Number(window.localStorage.getItem(Storage.TODAY_DISTRACTION));
-  const todayStorage = window.localStorage.getItem(Storage.TODAY_DATE_ID);
-  Storage.setDistractions(todayDistractions, todayStorage);
-  updateStats();
 
+  Storage.incrDistractions();
+  updateStats();
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 

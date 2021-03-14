@@ -20,7 +20,7 @@ statsCloseButton.onclick = closeStatsPane;
 export function updateStats () {
   displayTodayStats();
   displayTotalStats();
-  drawGraph(graphCanvas, JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)));
+  drawGraph(graphCanvas, Storage.getWeeklyHistory());
 }
 
 /* istanbul ignore next */
@@ -75,9 +75,9 @@ export function displayTotalStats () {
   const totalTaskCount = Storage.getTotalTasksCount();
 
   totalPomoElem.textContent = totalPomoCount;
-  totalDistractElem.textContent = (Number(totalDistractCount) / (Number(totalPomoCount) || 1)).toFixed(2);
+  totalDistractElem.textContent = (totalDistractCount / (totalPomoCount || 1)).toFixed(2);
   bestPomoElem.textContent = bestPomoCount;
-  bestTimeElem.textContent = (Number(bestPomoCount) * (Constants.WORK_LENGTH / 60)).toFixed(2);
+  bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / 60)).toFixed(2);
   totalTasksElem.textContent = totalTaskCount;
 }
 
@@ -97,9 +97,9 @@ export function displayTodayStats () {
   const todayDistractElem = document.getElementById('today-distractions');
 
   // extracting daily stats data to be used for calculation
-  const todayPomoCount = window.localStorage.getItem(Constants.TODAY_POMO_ID) || '0';
-  const todayDistractCount = window.localStorage.getItem(Constants.TODAY_DISTRACTION) || '0';
-  const todayTaskCount = window.localStorage.getItem(Constants.TODAY_TASK_ID) || '0';
+  const todayPomoCount = Storage.getPomoCount();
+  const todayDistractCount = Storage.getDistractions();
+  const todayTaskCount = Storage.getTasksCount();
 
   // calculating daily stats with extracted data and displaying to UI
   todayPomoElem.textContent = todayPomoCount;
