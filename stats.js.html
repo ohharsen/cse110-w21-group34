@@ -27,14 +27,13 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import * as Constants from './constants.js';
-import * as Settings from './settings.js';
 import { drawGraph } from './graph.js';
 
-export const timerBlock = document.getElementsByClassName('center-container')[0];
-export const statsPane = document.getElementById('stats-container');
-export const statsOpenButton = document.getElementById('stats-open-button');
-export const statsCloseButton = document.getElementById('stats-close-button');
-
+const timerBlock = document.getElementsByClassName('center-container')[0];
+const counterBlock = document.getElementsByClassName('counters-container')[0];
+const statsPane = document.getElementById('stats-container');
+const statsOpenButton = document.getElementById('stats-open-button');
+const statsCloseButton = document.getElementById('stats-close-button');
 const graphCanvas = document.getElementById('weekly-graph');
 
 statsOpenButton.onclick = openStatsPane;
@@ -58,30 +57,26 @@ export function updateStats () {
 export function openStatsPane () {
   updateStats();
 
-  Settings.removeAll();
+  timerBlock.classList.remove('slide-close');
+  counterBlock.classList.remove('slide-close');
+  statsPane.classList.remove('slide-close');
 
-  if (Settings.settingsPane.classList.contains('slide-open-settings')) {
-    Settings.closeSettingsPane();
-
-    timerBlock.classList.add('slide-across-left');
-  } else {
-    timerBlock.classList.add('slide-open');
-  }
+  timerBlock.classList.add('slide-open');
+  counterBlock.classList.add('slide-open');
   statsPane.classList.add('slide-open');
 }
 
 /* istanbul ignore next */
-
 /**
  * Closes the statistics pane.
  */
 export function closeStatsPane () {
   timerBlock.classList.remove('slide-open');
+  counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
 
-  timerBlock.classList.remove('slide-across-left');
-
   timerBlock.classList.add('slide-close');
+  counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
 }
 
@@ -148,13 +143,13 @@ export function displayTodayStats () {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#modeGetter">modeGetter</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#modeGetter">modeGetter</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat Mar 13 2021 22:09:39 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Mar 14 2021 00:20:12 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
