@@ -6,9 +6,6 @@ const taskButton = document.getElementById(Constants.TASK_BTN_ID);
 
 let taskPomoCount = 0;
 
-// Sets the color of the timer
-document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
-
 if (taskButton) {
   toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {

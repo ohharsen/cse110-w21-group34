@@ -48,12 +48,6 @@
 
 .timer_circle_container {
     background-color: white;
-    stroke: none;
-}
-
-.timer_basic {
-    fill : none;
-    stroke: none;
 }
 
 /*The SVG path that displays the timer's progress */
@@ -61,7 +55,6 @@
     fill: none;
     transform: rotate(90deg) scale(1, -1) ;
     transform-origin: center;
-    /* stroke: #DB2E2E; */
     stroke-width: 2px;
     stroke-linecap: round;
     transition: stroke-dasharray 1s linear, stroke 0.25s linear;

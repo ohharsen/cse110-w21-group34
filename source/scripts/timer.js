@@ -3,7 +3,7 @@ import * as Storage from './util/storage.js'
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
 
-const STOP_TIMER_COLOR = 'var(--dark-orange)';
+const STOP_TIMER_COLOR = 'var(--grey)';
 const WORK_TIMER_COLOR = 'var(--red)';
 const BREAK_TIMER_COLOR = 'var(--green)';
 const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
@@ -53,6 +53,11 @@ export function startResetController () {
 export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
+  if (onBreak) {
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', BREAK_TIMER_COLOR);
+  } else {
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', WORK_TIMER_COLOR);
+  }
   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
   interval = setInterval(function () {
     --timer;
@@ -64,11 +69,11 @@ export function beginCountdown (duration, textDisplay) {
       document.getElementById('countdownText').classList.remove('hover-text');
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
+      // Mutes timer color
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', STOP_TIMER_COLOR);
       if (!onBreak) {
         pomoCount++;
         updatePots();
-        // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', BREAK_TIMER_COLOR);
         // Dispalys the next cycle without beginning it
         if (pomoCount === Constants.POMO_CYCLE_LENGTH) {
           currentTime(Constants.LONG_BREAK, textDisplay);
@@ -84,8 +89,6 @@ export function beginCountdown (duration, textDisplay) {
         updateStats();
       } else {
         updatePots();
-        // Changes the color of the timer
-        document.getElementById('base-timer-path-remaining').setAttribute('stroke', WORK_TIMER_COLOR);
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
         timerTypeIndicator(Constants.timerOptions.POMO);
@@ -177,8 +180,8 @@ export function resetTimer () {
     clearInterval(interval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     document.getElementById('base-timer-path-remaining').setAttribute('stroke', STOP_TIMER_COLOR);
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
 

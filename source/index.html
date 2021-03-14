@@ -36,10 +36,11 @@
                 <div class="timer" id = "clockTimer">
                   <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <g class="timer_circle_container"> <!-- The containter for grouping multiple svg elements -->
-                      <circle cx="50%" cy="43" r="35" style="fill:white" />
+                      <circle cx="50%" cy="43" r="35" style="fill:white; stroke: var(--grey); stroke-width: 2px;" />
                       <path
                         id="base-timer-path-remaining"
-                        stroke-dasharray="283"
+                        stroke = 'var(--grey)'
+                        stroke-dasharray = "220 220"
                         class="timer_path_elapsed"
                         d="
                           M 8, 50
