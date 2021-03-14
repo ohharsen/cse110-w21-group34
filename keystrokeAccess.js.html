@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: constants.js</title>
+    <title>JSDoc: Source: keystrokeAccess.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: constants.js</h1>
+    <h1 class="page-title">Source: keystrokeAccess.js</h1>
 
     
 
@@ -26,62 +26,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* Constants */
-export const START_STOP_ID = 'start-stop-button';
-export const RESET_BTN_TXT = 'Reset';
-export const BEGIN_BTN_TXT = 'Begin';
-export const TASK_BTN_ID = 'task';
-export const BEST_DAILY_POMO_ID = 'best-daily-pomo-count';
-export const TOTAL_POMO_ID = 'total-pomo-count';
-export const TOTAL_TASK_ID = 'total-task-count';
-export const TODAY_TASK_ID = 'today-task-count';
-export const WEEK_TASK_ID = 'week-task-count';
-export const WEEK_HISTORY = 'week-history';
-export const TODAY_DATE_ID = 'today';
-export const WEEK_START_ID = 'week-start';
-export const TODAY_POMO_ID = 'today-pomo-count';
-export const TOTAL_CYCLE_ID = 'total-cycle-count';
-export const TOTAL_DISTRACTION = 'total-distraction';
-export const TODAY_DISTRACTION = 'today-distraction';
-export const TASK_POMO_COUNTER = 'task-pomo-counter';
-export const CENTER_CONTAINER = 'center-container';
-export const LENGTH_OF_WEEK = 7;
-export const WORK_LENGTH = 1500; // # of seconds in a work pomo (orig. 1500)
-export const SHORT_BREAK = 300; // # of seconds in a short break (orig. 300)
-export const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
+            <pre class="prettyprint source linenums"><code>import { startResetController } from './startResetButton.js';
+import * as Constants from './constants.js';
+import { openStatsPane, closeStatsPane } from './stats.js';
 
-export const HOST_ADDRESS = 'http://127.0.0.1:5500/';
+let keystrokeMode = true;
 
 /**
- * Enumerated keydown event possible keys
- * @enum {string}
+ * The event listener for whenever keys are pressed
+ * Listens only to specific keys and lets other keys perform default action
+ * @param {Event} e the fired event object
  */
-export const events = {
-  KEYDOWN: 'keydown',
-  CLICK: 'click'
-};
+function keyControls (e) {
+  if (e.code === 'ArrowLeft') {
+    e.preventDefault();
+    openStatsPane();
+  } else if (e.code === 'ArrowRight') {
+    e.preventDefault();
+    closeStatsPane();
+  } else if (e.code === 'Space') {
+    e.preventDefault();
+    startResetController();
+  } else if (e.code === 'Enter') {
+    e.preventDefault();
+    document.getElementById(Constants.TASK_BTN_ID).click();
+  }
+}
+
+document.onkeydown = keyControls;
 
 /**
- * Enumerated keydown event possible keys
- * @enum {string}
+ * Function to toggle keystroke access. Called whenever the user toggles the setting switch
  */
-export const keys = {
-  SPACE: 'Space',
-  ENTER: 'Enter',
-  LEFT_ARROW: 'ArrowLeft',
-  RIGHT_ARROW: 'ArrowRight'
-};
+function toggleKeystroke () {
+  keystrokeMode = !keystrokeMode;
+  document.onkeydown = keystrokeMode ? keyControls : undefined;
+}
 
-/**
- * Enumerated timer states
- * @enum {string}
- */
-export const timerOptions = {
-  STOPPED: 'stopped',
-  POMO: 'pomo',
-  SHORT: 'short break',
-  LONG: 'long break'
-};
+document.getElementById('keystroke-switch').onclick = toggleKeystroke;
 </code></pre>
         </article>
     </section>
