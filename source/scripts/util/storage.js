@@ -4,7 +4,6 @@ export const BEST_DAILY_POMO_ID = 'best-daily-pomo-count';
 export const TOTAL_POMO_ID = 'total-pomo-count';
 export const TOTAL_TASK_ID = 'total-task-count';
 export const TODAY_TASK_ID = 'today-task-count';
-export const WEEK_TASK_ID = 'week-task-count';
 export const WEEK_HISTORY = 'week-history';
 export const TODAY_DATE_ID = 'today';
 export const WEEK_START_ID = 'week-start';
@@ -19,10 +18,9 @@ export const TODAY_DISTRACTION = 'today-distraction';
  * @param {number} weekCounter week total task count
  * @param {number} dayOfWeek the day of the week (0 --> Monday, 1 --> Tuesday, ... etc)
  */
-export function updateTasks (dayCounter, weekCounter, dayOfWeek) {
+export function updateTasks (dayCounter) {
   // Update today's task count
   window.localStorage.setItem(TODAY_TASK_ID, String(dayCounter));
-  window.localStorage.setItem(WEEK_TASK_ID, String(weekCounter));
 
   // Update total task count
   const totalTasks = Number(window.localStorage.getItem(TOTAL_TASK_ID)) + 1;
@@ -46,7 +44,7 @@ export function setPomoCount (todayPomos) {
   // update pomo cycle day count
   const storageDate = new Date(window.localStorage.getItem(TODAY_DATE_ID));
   const today = new Date();
-  if (isSameDay(today, storageDate)) {
+  if (todayEqualsStorage()) {
     todayPomos++;
   } else {
     todayPomos = 1;
@@ -118,7 +116,7 @@ export function setDistractions (todayDistractions) {
   // Update today's distractions
   const storageDate = new Date(window.localStorage.getItem(TODAY_DATE_ID));
   const today = new Date();
-  if (isSameDay(today, storageDate)) {
+  if (todayEqualsStorage()) {
     todayDistractions++;
   } else {
     // Update
@@ -150,20 +148,17 @@ export function getTodayStorageDate () {
   return new Date(window.localStorage.getItem(Constants.TODAY_DATE_ID));
 }
 
-export function setTodayStorageDate (today) {
+export function setTodayStorageDate () {
+  const today = new Date();
   window.localStorage.setItem(TODAY_DATE_ID, today.toString());
-}
-
-export function getWeekStorageDate () {
-  return new Date(window.localStorage.getItem(WEEK_START_ID));
-}
-
-export function setWeekStorageDate (mondayDate) {
-  window.localStorage.setItem(WEEK_START_ID, mondayDate.toString());
 }
 
 export function getDayCounter () {
   return Number(window.localStorage.getItem(TODAY_TASK_ID));
+}
+
+export function todayEqualsStorage() {
+  return isSameDay(new Date(), getTodayStorageDate());
 }
 
 /**
@@ -171,7 +166,7 @@ export function getDayCounter () {
  * @param {Date} date1 
  * @param {Date} date2 
  */
-function isSameDay (date1, date2) {
+export function isSameDay (date1, date2) {
   const isSameDate = date1.getDate() === date2.getDate();
   const isSameMonth = date1.getMonth() === date2.getMonth();
   const isSameYear = date1.getFullYear() === date2.getFullYear();
