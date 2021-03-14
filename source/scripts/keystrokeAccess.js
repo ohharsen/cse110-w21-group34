@@ -2,7 +2,9 @@ import { startResetController } from './startResetButton.js';
 import * as Constants from './constants.js';
 import { openStatsPane, closeStatsPane } from './stats.js';
 
-document.onkeydown = function (e) {
+let keystrokeMode = true;
+
+function keyControls(e) {
   if (e.code === 'ArrowLeft') {
     e.preventDefault();
     openStatsPane();
@@ -16,4 +18,13 @@ document.onkeydown = function (e) {
     e.preventDefault();
     document.getElementById(Constants.TASK_BTN_ID).click();
   }
-};
+}
+
+document.onkeydown = keyControls;
+
+function toggleKeystroke(){
+  keystrokeMode = !keystrokeMode;
+  document.onkeydown = keystrokeMode ? keyControls : undefined;
+}
+
+document.getElementById('keystroke-switch').onclick = toggleKeystroke;
