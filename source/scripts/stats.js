@@ -1,4 +1,5 @@
 import * as Constants from './constants.js';
+import * as Storage from './util/storage.js';
 import { drawGraph } from './util/graph.js';
 
 const timerBlock = document.getElementsByClassName('center-container')[0];
@@ -68,10 +69,10 @@ export function displayTotalStats () {
   const bestTimeElem = document.getElementById('total-best-time');
   const totalTasksElem = document.getElementById('total-tasks');
 
-  const totalPomoCount = window.localStorage.getItem(Constants.TOTAL_POMO_ID) || '0';
-  const totalDistractCount = window.localStorage.getItem(Constants.TOTAL_DISTRACTION) || '0';
-  const bestPomoCount = window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID) || '0';
-  const totalTaskCount = window.localStorage.getItem(Constants.TOTAL_TASK_ID) || '0';
+  const totalPomoCount = Storage.getTotalPomoCount();
+  const totalDistractCount = Storage.getTotalDistractions();
+  const bestPomoCount = Storage.getBestDailyPomoCount();
+  const totalTaskCount = Storage.getTotalTasksCount();
 
   totalPomoElem.textContent = totalPomoCount;
   totalDistractElem.textContent = (Number(totalDistractCount) / (Number(totalPomoCount) || 1)).toFixed(2);

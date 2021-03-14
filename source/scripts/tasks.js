@@ -9,6 +9,19 @@ let taskPomoCount = 0;
 // Sets the color of the timer
 document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
 
+if (taskButton) {
+  const today = new Date();
+  toggleTaskButtonDisabled(true);
+  taskButton.addEventListener('click', function (event) {
+    completeTask(false, today);
+    event.preventDefault();
+    document.getElementById('animation-overlay').style.display = 'flex';
+    setTimeout(function () {
+      document.getElementById('animation-overlay').style.display = 'none';
+    }, 3000);
+  }); // upon click
+}
+
 /**
  * Increases the number of pomodoros completed for the current task.
  */
@@ -26,35 +39,19 @@ export function resetTaskPomo () {
   toggleTaskButtonDisabled(true);
 }
 
-if (taskButton) {
-  const today = new Date();
-  toggleTaskButtonDisabled(true);
-  taskButton.addEventListener('click', function (event) {
-    taskComplete(today);
-    event.preventDefault();
-    document.getElementById('animation-overlay').style.display = 'flex';
-    setTimeout(function () {
-      document.getElementById('animation-overlay').style.display = 'none';
-    }, 3000);
-  }); // upon click
-}
-
 /**
  * Disables or enables task button
  * @param {Boolean} disabled parameter
  */
-
 export function toggleTaskButtonDisabled (disabled) {
   if (taskPomoCount === 0) disabled = true;
   taskButton.disabled = disabled;
 }
 
 /**
-   * Task is completed upon button click
-   * @param {Date} today current date
-   * @returns local storage for debug
-   */
-export function taskComplete (today) {
+ * Task is completed upon button click
+ */
+export function completeTask () {
   taskPomoCount = 0;
   document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 
@@ -69,7 +66,7 @@ export function taskComplete (today) {
 
   dayOfWeek--;
 
-  if (today !== todayStorage) {
+  if (isSameDay(today, todayStorage)) {
     if (isSameWeek(today)) { // different day, same week
       weekCounter++;
     } else { // different week
@@ -84,14 +81,14 @@ export function taskComplete (today) {
   }
 
   toggleTaskButtonDisabled(true);
-  return Storage.updateTasks(dayCounter, weekCounter, dayOfWeek);
+  Storage.updateTasks(dayCounter, weekCounter, dayOfWeek);
 }
 
 /**
-   * Check if today is in the same week as week start
-   * @param {Date} today current date
-   * @returns boolean is it the same week
-   */
+ * Check if today is in the same week as week start
+ * @param {Date} today current date
+ * @returns boolean is it the same week
+ */
 export function isSameWeek (today) {
   const checkDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const weekStorage = Storage.getWeekStorageDate();
