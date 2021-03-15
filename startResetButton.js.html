@@ -249,37 +249,37 @@ export function resetTimer () {
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
-  const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
+  const todayInterruptions = Number(window.localStorage.getItem(Constants.TODAY_INTERRUPTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
-  updateDistractions(todayDistractions, todayStorage);
+  updateInterruptions(todayInterruptions, todayStorage);
   updateStats();
 
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
 /**
-   * Updates distractions in local storage
-   * @param {Number} todayDistractions The number of distractions today
+   * Updates interruptions in local storage
+   * @param {Number} todayInterruptions The number of interruptions today
    * @param {String} todayStorage Today's date currently in window.localStorage
-   * @return The updated number of distractions
+   * @return The updated number of interruptions
    */
-export function updateDistractions (todayDistractions, todayStorage) {
-  // Total distractions
-  const distractions = Number(window.localStorage.getItem(Constants.TOTAL_DISTRACTION));
-  window.localStorage.setItem(Constants.TOTAL_DISTRACTION, String(distractions + 1));
+export function updateInterruptions (todayInterruptions, todayStorage) {
+  // Total interruptions
+  const interruptions = Number(window.localStorage.getItem(Constants.TOTAL_INTERRUPTION));
+  window.localStorage.setItem(Constants.TOTAL_INTERRUPTION, String(interruptions + 1));
 
-  // Today's distractions
+  // Today's interruptions
   const today = formatDate(new Date());
   if (today === todayStorage) {
-    todayDistractions++;
+    todayInterruptions++;
   } else {
     // Update
-    todayDistractions = 1;
+    todayInterruptions = 1;
     window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
   }
-  window.localStorage.setItem(Constants.TODAY_DISTRACTION, String(todayDistractions));
+  window.localStorage.setItem(Constants.TODAY_INTERRUPTION, String(todayInterruptions));
 
-  return todayDistractions;
+  return todayInterruptions;
 }
 
 /**
@@ -348,13 +348,13 @@ export function timerTypeIndicator (type) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#modeGetter">modeGetter</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#modeGetter">modeGetter</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateInterruptions">updateInterruptions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Mon Mar 15 2021 09:01:16 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Mon Mar 15 2021 09:35:52 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
