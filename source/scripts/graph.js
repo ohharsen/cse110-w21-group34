@@ -105,7 +105,7 @@ export function calculateAxes (data) {
   }
 
   // making sure max is divisible by 3 to not have decimals in y axis splits
-  while (max % 3 != 0) {
+  while (max % 3 !== 0) {
     max++;
   }
 
