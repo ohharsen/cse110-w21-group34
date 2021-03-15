@@ -37,7 +37,7 @@ export function startResetController () {
   if (pomoState === Constants.timerOptions.STOPPED) {
     startTimer();
   } else {
-    resetTimer();
+    resetPrompt();
   }
 }
 
@@ -205,8 +205,6 @@ export function updatePots () {
    * @return An array containing the stopped timer state and begin button text
    */
 export function resetTimer () {
-  console.log(document.getElementsByClassName("cd-popup-container").classList);
-
   document.getElementById('countdownText').classList.remove('hover-text');
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
@@ -226,6 +224,38 @@ export function resetTimer () {
   updateStats();
 
   return [pomoState, Constants.BEGIN_BTN_TXT];
+}
+
+let first = true;
+
+/*
+ * Checks if the reset button has been pressed before. If yes then resets the timer directly, otherwise asks for confirmation.
+ */
+export function resetPrompt () {
+  if (!first) {
+    resetTimer();
+    return;
+  }
+  startStopButton.style.display = 'none';
+  document.getElementById('prompt').style.display = 'flex';
+  const yesButton = document.getElementById('reset-yes-button');
+  const noButton = document.getElementById('reset-no-button');
+  yesButton.addEventListener('click', resetConfirm);
+  noButton.addEventListener('click', resetConfirm);
+}
+
+/*
+ * Resets the timer if yes button is clicked, and continues the cycle otherwise.
+ */
+export function resetConfirm (event) {
+  startStopButton.style.display = '';
+  document.getElementById('prompt').style.display = 'none';
+  if (event.target.innerText === 'Yes') {
+    resetTimer();
+    first = false;
+  } else {
+    first = false;
+  }
 }
 
 /**
