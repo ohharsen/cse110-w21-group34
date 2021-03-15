@@ -3,7 +3,7 @@ import {
     togglePomoBreak,
     startTimer,
     resetTimer,
-    updateDistractions,
+    updateInterruptions,
     currentTime,
     timeFraction,
     updateTotalCycles,
@@ -40,11 +40,11 @@ test('checks reset state', () => {
     expect(resetTimer()).toStrictEqual();
 });
   
-test('checks distraction updates', () => {
+test('checks interruption updates', () => {
     let date = new Date();
     date = formatDate(date);
-    expect(updateDistractions(2, "02/14/21")).toStrictEqual(1);
-    expect(updateDistractions(2, date)).toStrictEqual(3);
+    expect(updateInterruptions(2, "02/14/21")).toStrictEqual(1);
+    expect(updateInterruptions(2, date)).toStrictEqual(3);
 });
   
 test('Check current time display', () => {

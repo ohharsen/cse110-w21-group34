@@ -221,37 +221,37 @@ export function resetTimer () {
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
-  const todayDistractions = Number(window.localStorage.getItem(Constants.TODAY_DISTRACTION));
+  const todayInterruptions = Number(window.localStorage.getItem(Constants.TODAY_INTERRUPTION));
   const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
-  updateDistractions(todayDistractions, todayStorage);
+  updateInterruptions(todayInterruptions, todayStorage);
   updateStats();
 
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
 /**
-   * Updates distractions in local storage
-   * @param {Number} todayDistractions The number of distractions today
+   * Updates interruptions in local storage
+   * @param {Number} todayInterruptions The number of interruptions today
    * @param {String} todayStorage Today's date currently in window.localStorage
-   * @return The updated number of distractions
+   * @return The updated number of interruptions
    */
-export function updateDistractions (todayDistractions, todayStorage) {
-  // Total distractions
-  const distractions = Number(window.localStorage.getItem(Constants.TOTAL_DISTRACTION));
-  window.localStorage.setItem(Constants.TOTAL_DISTRACTION, String(distractions + 1));
+export function updateInterruptions (todayInterruptions, todayStorage) {
+  // Total interruptions
+  const interruptions = Number(window.localStorage.getItem(Constants.TOTAL_INTERRUPTION));
+  window.localStorage.setItem(Constants.TOTAL_INTERRUPTION, String(interruptions + 1));
 
-  // Today's distractions
+  // Today's interruptions
   const today = formatDate(new Date());
   if (today === todayStorage) {
-    todayDistractions++;
+    todayInterruptions++;
   } else {
     // Update
-    todayDistractions = 1;
+    todayInterruptions = 1;
     window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
   }
-  window.localStorage.setItem(Constants.TODAY_DISTRACTION, String(todayDistractions));
+  window.localStorage.setItem(Constants.TODAY_INTERRUPTION, String(todayInterruptions));
 
-  return todayDistractions;
+  return todayInterruptions;
 }
 
 /**
