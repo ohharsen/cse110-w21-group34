@@ -29,15 +29,7 @@ test('checks start state', () => {
 });
     
 test('checks reset state', () => {
-    window.confirm = function () {
-        return true;
-    };
     expect(resetTimer()).toStrictEqual([Constants.timerOptions.STOPPED, Constants.BEGIN_BTN_TXT]);
-
-    window.confirm = function () {
-        return false;
-    };
-    expect(resetTimer()).toStrictEqual();
 });
   
 test('checks distraction updates', () => {

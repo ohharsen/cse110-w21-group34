@@ -99,11 +99,11 @@
 
 .prompt-button{
     width: 40%;
-    height: 60px;
+    height: 40px;
     border-radius: 32px;
     font-family: Roboto;
     color: white;
-    font-size: var(--button-text-size);
+    font-size: 16;
     outline: 0;
 }
 
@@ -125,11 +125,14 @@
     display: none;
     justify-content: space-around;
     width: 100%;
+    flex-wrap: wrap;
+    flex-basis: 100%;
 }
 
 #prompt-text {
-    flex-wrap: wrap;
-    flex-basis: 100%;
+    font-family: Roboto;
+    width: 100%;
+    text-align: center;
 }
 
 .pomodoro-button {
