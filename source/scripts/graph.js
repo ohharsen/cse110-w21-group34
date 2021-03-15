@@ -93,8 +93,8 @@ export function calculateAxes (data) {
 
   // Calculating current max pomo cycles within week
   let max = Math.max(...data);
-  /* Checking max value to determine new max with forced minimum spacing 
-   * between max value and highest y axis 
+  /* Checking max value to determine new max with forced minimum spacing
+   * between max value and highest y axis
    */
   if (max < 3) {
     return axes;
@@ -104,14 +104,14 @@ export function calculateAxes (data) {
     max += 2;
   }
 
-  // making sure max is divisible by 3 to not have decimals in y axis splits 
-  while(max%3 != 0){
+  // making sure max is divisible by 3 to not have decimals in y axis splits
+  while (max % 3 != 0) {
     max++;
   }
 
   // Setting axes values and rounding to one decimal place
-  axes[1] = max / 3
-  axes[2] = 2 * max / 3
+  axes[1] = max / 3;
+  axes[2] = 2 * max / 3;
   axes[3] = max;
 
   return axes;
