@@ -159,6 +159,3 @@ export function updateLocalStorage (dayCounter, weekCounter, dayOfWeek) {
   updateStats();
   return window.localStorage;
 }
-
-// Sets the color of the timer
-document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
