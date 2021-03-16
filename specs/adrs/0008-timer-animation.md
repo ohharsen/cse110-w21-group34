@@ -24,9 +24,11 @@ Chosen option: Curved linear transition, because
 * Provides continuous animation for timer counting down
 * Utilizes calculating the fraction of how much time remains, can be scaled to different lengths of time
 
-Pros and Cons of Other Options
+## Pros and Cons of Other Options
 
-Bit by bit decrement
+### Bit by bit decrement
 
-* Pro: simpler, easier to implement 
+* Pro: simpler, easier to implement
+  - less code to write, easier to interpret when testing and reviewing
 * Con: more rigid design, animation not smooth
+  - doesn't fit out choices for having a clean user interface

@@ -2,7 +2,14 @@ import { startResetController } from './startResetButton.js';
 import * as Constants from './constants.js';
 import { openStatsPane, closeStatsPane } from './stats.js';
 
-document.onkeydown = function (e) {
+let keystrokeMode = true;
+
+/**
+ * The event listener for whenever keys are pressed
+ * Listens only to specific keys and lets other keys perform default action
+ * @param {Event} e the fired event object
+ */
+function keyControls (e) {
   if (e.code === 'ArrowLeft') {
     e.preventDefault();
     openStatsPane();
@@ -16,4 +23,16 @@ document.onkeydown = function (e) {
     e.preventDefault();
     document.getElementById(Constants.TASK_BTN_ID).click();
   }
-};
+}
+
+document.onkeydown = keyControls;
+
+/**
+ * Function to toggle keystroke access. Called whenever the user toggles the setting switch
+ */
+function toggleKeystroke () {
+  keystrokeMode = !keystrokeMode;
+  document.onkeydown = keystrokeMode ? keyControls : undefined;
+}
+
+document.getElementById('keystroke-switch').onclick = toggleKeystroke;
