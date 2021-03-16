@@ -65,7 +65,17 @@ button {
     border: 0;
 }
 
+button:focus {
+    outline: 0;
+}
 
+button:focus:not(:focus-visible) {
+    outline: 0;
+}
+
+button:focus-visible {
+    box-shadow: black 0px 0px 0px 2px;
+}
 
 @keyframes slide-right-out {
     to { right: 0 }
