@@ -13,6 +13,8 @@ const graphCanvas = document.getElementById('weekly-graph');
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
 
+export let isOpenStatsPane = false;
+
 /* istanbul ignore next */
 /**
  * Updates today and total stats when pomo cycle is complete,
@@ -41,6 +43,7 @@ export function openStatsPane () {
     timerBlock.classList.add('slide-open');
   }
   statsPane.classList.add('slide-open');
+  isOpenStatsPane = true;
 }
 
 /* istanbul ignore next */
@@ -56,6 +59,8 @@ export function closeStatsPane () {
 
   timerBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
+
+  isOpenStatsPane = false;
 }
 
 /* istanbul ignore next */

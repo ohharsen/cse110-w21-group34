@@ -86,11 +86,11 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: var(--white-a1);
     border-radius: 15px;
-    outline: 0;
+    border: 0;
 }
 
 .stats-button:hover {
@@ -118,14 +118,8 @@
     background: var(--white-a1);
     box-shadow: 0px 0px 10px 0px var(--black-a3);
     border-radius: 16px;
-    outline: 0;
     display: flex;
     align-items: center;
-}
-
-#stats-close-button {
-    display: flex;
-    align-content: center;
     justify-content: center;
 }
 
@@ -135,6 +129,18 @@
 
 #stats-close-button:active {
     background: var(--white-a1);
+}
+
+#stats-close-button:focus {
+    outline: 0;
+}
+
+#stats-close-button:focus:not(:focus-visible) {
+    outline: 0;
+}
+
+#stats-close-button:focus-visible {
+    box-shadow: black 0px 0px 0px 2px;
 }
 
 #weekly-graph {

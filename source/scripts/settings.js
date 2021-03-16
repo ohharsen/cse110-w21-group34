@@ -7,6 +7,8 @@ export const settingsCloseButton = document.getElementById('settings-close-butto
 settingsOpenButton.onclick = openSettingsPane;
 settingsCloseButton.onclick = closeSettingsPane;
 
+export let isOpenSettingsPane = false;
+
 /* istanbul ignore next */
 /**
  * Opens the statistics pane.
@@ -23,6 +25,8 @@ export function openSettingsPane () {
     Stats.timerBlock.classList.add('slide-open-settings');
   }
   settingsPane.classList.add('slide-open-settings');
+
+  isOpenSettingsPane = true;
 }
 
 /* istanbul ignore next */
@@ -37,6 +41,8 @@ export function closeSettingsPane () {
 
   Stats.timerBlock.classList.add('slide-close-settings');
   settingsPane.classList.add('slide-close-settings');
+
+  isOpenSettingsPane = false;
 }
 
 export function removeAll () {
