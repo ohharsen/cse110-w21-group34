@@ -44,18 +44,18 @@ describe('Daily Statistics', () => {
     });
   });
   
-  // Tests on Distractions 
-  it('Check when there are zero distractions', () => {
+  // Tests on Interruptions 
+  it('Check when there are zero interruptions', () => {
     cy.get('#stats-open-button').click();
-    cy.get('#today-distractions').then((elem) => {
+    cy.get('#today-interruptions').then((elem) => {
 			expect(elem.text()).to.equal('0');
     });
   });
   
-  it('Check that today distractions count display correctly reflects today distractions', () => {
-    window.localStorage.setItem(Constants.TODAY_DISTRACTION, '6');
+  it('Check that today interruptions count display correctly reflects today interruptions', () => {
+    window.localStorage.setItem(Constants.TODAY_INTERRUPTION, '6');
     cy.get('#stats-open-button').click();
-    cy.get('#today-distractions').then((elem) => {
+    cy.get('#today-interruptions').then((elem) => {
 			expect(elem.text()).to.equal('6');
     });
   });
@@ -80,9 +80,9 @@ describe('Total Statistics', () => {
     });
   });
   
-  it('Defaults to 0.00 for the total avg. distractions display', () => {
+  it('Defaults to 0.00 for the total avg. interruptions display', () => {
     cy.get('#stats-open-button').click();
-    cy.get('#total-distractions').then((elem) => {
+    cy.get('#total-interruptions').then((elem) => {
 			expect(elem.text()).to.equal('0.00');
     });
   });
@@ -109,11 +109,11 @@ describe('Total Statistics', () => {
     });
   });
   
-  it('Correctly displays total avg. distraction per pomodoro', () => {
-    window.localStorage.setItem(Constants.TOTAL_DISTRACTION, '9');
+  it('Correctly displays total avg. interruptions per pomodoro', () => {
+    window.localStorage.setItem(Constants.TOTAL_INTERRUPTION, '9');
     window.localStorage.setItem(Constants.TOTAL_POMO_ID, '4');
     cy.get('#stats-open-button').click();
-    cy.get('#total-distractions').then((elem) => {
+    cy.get('#total-interruptions').then((elem) => {
       expect(elem.text()).to.equal('2.25');
     });
   });

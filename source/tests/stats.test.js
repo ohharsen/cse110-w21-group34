@@ -1,13 +1,13 @@
 import * as Constants from '../scripts/constants';
 import * as Stats from '../scripts/stats';
 import { taskComplete } from '../scripts/taskButton';
-import { updatePomoCount, updateDistractions } from '../scripts/startResetButton';
+import { updatePomoCount, updateInterruptions } from '../scripts/startResetButton';
  
 describe('Daily Statistics', () => {
   beforeEach(() => {
     localStorage.removeItem(Constants.TODAY_POMO_ID);
     localStorage.removeItem(Constants.TODAY_TASK_ID);
-    localStorage.removeItem(Constants.TODAY_DISTRACTION);
+    localStorage.removeItem(Constants.TODAY_INTERRUPTION);
   });
 
   // Tests on Pomodoro cycles 
@@ -54,33 +54,33 @@ describe('Daily Statistics', () => {
     expect(storage.getItem("today-task-count")).toStrictEqual("1");
   });
 
-  // Tests on Distractions 
-  test('Check when there are zero distractions', () => {
+  // Tests on Interruptions 
+  test('Check when there are zero interruptions', () => {
     Stats.displayTodayStats();
-    expect(document.getElementById('today-distractions').textContent).toBe('0');
+    expect(document.getElementById('today-interruptions').textContent).toBe('0');
   });
   
-  test('Check that today distractions count display correctly reflects today distractions', () =>{
-    localStorage.setItem(Constants.TODAY_DISTRACTION, '6');
+  test('Check that today interruptions count display correctly reflects today interruptions', () =>{
+    localStorage.setItem(Constants.TODAY_INTERRUPTION, '6');
     Stats.displayTodayStats();
-    expect(document.getElementById('today-distractions').textContent).toBe('6');  
+    expect(document.getElementById('today-interruptions').textContent).toBe('6');  
   })
   
-  test ('Check to see that distractions count resets when it is new day', ()=>{
-    localStorage.setItem(Constants.TODAY_DISTRACTION, '17');
+  test ('Check to see that interruptions count resets when it is new day', ()=>{
+    localStorage.setItem(Constants.TODAY_INTERRUPTION, '17');
     Stats.displayTodayStats();
-    expect(document.getElementById('today-distractions').textContent).toBe('17');
-    updateDistractions(2, "03/3/22");
+    expect(document.getElementById('today-interruptions').textContent).toBe('17');
+    updateInterruptions(2, "03/3/22");
     Stats.displayTodayStats();
-    expect(localStorage.getItem("today-distraction")).toStrictEqual("1");
+    expect(localStorage.getItem("today-interruptions")).toStrictEqual("1");
   });
 });
 
 describe('Total Statistics', () => {
   beforeEach(() => {
-    localStorage.removeItem(Constants.TOTAL_DISTRACTION);
+    localStorage.removeItem(Constants.TOTAL_INTERRUPTION);
     localStorage.removeItem(Constants.TOTAL_TASK_ID);
-    localStorage.removeItem(Constants.TOTAL_DISTRACTION);
+    localStorage.removeItem(Constants.TOTAL_INTERRUPTION);
   });
 
   test('if the total pomodoros completed display defaults to 0', () => {
@@ -93,9 +93,9 @@ describe('Total Statistics', () => {
     expect(document.getElementById('total-tasks').textContent).toBe('0');
   });
 
-  test('if the total avg. distractions display defaults to 0.00', () => {
+  test('if the total avg. interruptions display defaults to 0.00', () => {
     Stats.displayTotalStats();
-    expect(document.getElementById('total-distractions').textContent).toBe('0.00');
+    expect(document.getElementById('total-interruptions').textContent).toBe('0.00');
   });
 
   test('if total pomodoros completed is correctly displayed', () => {
@@ -104,11 +104,11 @@ describe('Total Statistics', () => {
     expect(document.getElementById('total-pomodoros').textContent).toBe('7');
   });
 
-  test('if total avg. distraction per pomodoro is correctly displayed', () => {
-    localStorage.setItem(Constants.TOTAL_DISTRACTION, '9');
+  test('if total avg. interruptions per pomodoro is correctly displayed', () => {
+    localStorage.setItem(Constants.TOTAL_INTERRUPTION, '9');
     localStorage.setItem(Constants.TOTAL_POMO_ID, '4');
     Stats.displayTotalStats();
-    expect(document.getElementById('total-distractions').textContent).toBe('2.25');
+    expect(document.getElementById('total-interruptions').textContent).toBe('2.25');
   });
 
   test('if total tasks completed is correctly displayed', () => {

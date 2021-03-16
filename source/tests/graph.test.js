@@ -1,30 +1,30 @@
 import * as Graph from '../scripts/graph';
 
 describe('Graphing Y-axis 4 way splits', () => {
-  test('Check when max value is less than 4', () => {
-    let weekPomos = [3,2,2,0,2,2,2];
+  test('Check when max value is less than 3', () => {
+    let weekPomos = [1,2,2,0,2,2,2];
     let expectedSplits = [0, 1, 2, 3]
     expect(Graph.calculateAxes( weekPomos )).toEqual( expectedSplits);
 
   });
 
-  test('Check when max value is less than 11 and greater than 3', () => {
-      let weekPomos = [1,2,3,4,3,4,1];
-      let expectedSplits = [0, 1.7, 3.3, 5]
+  test('Check when max value is less than 11 and greater than 2', () => {
+      let weekPomos = [1,2,3,3,3,0,1];
+      let expectedSplits = [0, 2, 4, 6]
       expect(Graph.calculateAxes( weekPomos )).toEqual( expectedSplits);
 
     });
 
   test('Check when max value is greater than 10', () => {
     let weekPomos = [4,7,1,3,11,2,0];
-    let expectedSplits = [0, 4.3, 8.7, 13]
+    let expectedSplits = [0, 5, 10, 15]
     expect(Graph.calculateAxes( weekPomos )).toEqual( expectedSplits);
 
   });
 
   test('Test with large numebrs of taks completed', () => {
     let weekPomos = [24,30,22,15,11,2,9];
-    let expectedSplits = [0, 10.7, 21.3, 32]
+    let expectedSplits = [0, 11, 22, 33]
     expect(Graph.calculateAxes( weekPomos )).toEqual( expectedSplits);
 
   });
@@ -45,7 +45,7 @@ describe('Graphing Y-axis 4 way splits', () => {
 
   test('Check when multiple, but not all days, have completed tasks', () => {
     let weekPomos = [5,4,2,7,0,0,0];
-    let expectedSplits = [0, 2.7, 5.3, 8]
+    let expectedSplits = [0, 3, 6, 9]
     expect(Graph.calculateAxes( weekPomos )).toEqual( expectedSplits);
   
   });
