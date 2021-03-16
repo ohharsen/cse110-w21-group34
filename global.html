@@ -906,7 +906,7 @@ spacing = max axis / 4
 
 
 <div class="description">
-    Displays the user's statistics for the day on the statistics pane.Today statistics include:   - Today's pomodoros completed   - Today's avg. distractions per pomodoro   - Today's tasks completed   - Most pomodoros completed in a single day
+    Displays the user's statistics for the day on the statistics pane.Today statistics include:   - Today's pomodoros completed   - Today's avg. interruptions per pomodoro   - Today's tasks completed   - Most pomodoros completed in a single day
 </div>
 
 
@@ -994,7 +994,7 @@ spacing = max axis / 4
 
 
 <div class="description">
-    Displays the user's current all-time statistics on the statistics pane.Total statistics include:   - Total pomodoros completed   - Total avg. distractions per pomodoro   - Total tasks completed   - Most pomodoros completed in a single day
+    Displays the user's current all-time statistics on the statistics pane.Total statistics include:   - Total pomodoros completed   - Total avg. interruptionss per pomodoro   - Total tasks completed   - Most pomodoros completed in a single day
 </div>
 
 
@@ -1574,7 +1574,7 @@ Default color is black (#000000).
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line152">line 152</a>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line159">line 159</a>
     </li></ul></dd>
     
 
@@ -1781,7 +1781,7 @@ axis given in axes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line122">line 122</a>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line129">line 129</a>
     </li></ul></dd>
     
 
@@ -2170,7 +2170,7 @@ axis given in axes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line168">line 168</a>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line175">line 175</a>
     </li></ul></dd>
     
 
@@ -4230,7 +4230,7 @@ axis given in axes.
     
 
     
-    <h4 class="name" id="updateDistractions"><span class="type-signature"></span>updateDistractions<span class="signature">(todayDistractions, todayStorage)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="updateInterruptions"><span class="type-signature"></span>updateInterruptions<span class="signature">(todayInterruptions, todayStorage)</span><span class="type-signature"></span></h4>
     
 
     
@@ -4238,7 +4238,7 @@ axis given in axes.
 
 
 <div class="description">
-    Updates distractions in local storage
+    Updates interruptions in local storage
 </div>
 
 
@@ -4274,7 +4274,7 @@ axis given in axes.
 
         <tr>
             
-                <td class="name"><code>todayDistractions</code></td>
+                <td class="name"><code>todayInterruptions</code></td>
             
 
             <td class="type">
@@ -4290,7 +4290,7 @@ axis given in axes.
 
             
 
-            <td class="description last">The number of distractions today</td>
+            <td class="description last">The number of interruptions today</td>
         </tr>
 
     
@@ -4383,7 +4383,7 @@ axis given in axes.
 
         
 <div class="param-desc">
-    The updated number of distractions
+    The updated number of interruptions
 </div>
 
 
@@ -4844,7 +4844,7 @@ axis given in axes.
 
 
 <div class="description">
-    Updates today and total stats when pomo cycle is complete,task is complete, or distraction occurs
+    Updates today and total stats when pomo cycle is complete,task is complete, or interruption occurs
 </div>
 
 
@@ -5032,13 +5032,13 @@ axis given in axes.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#modeGetter">modeGetter</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateDistractions">updateDistractions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#modeGetter">modeGetter</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateInterruptions">updateInterruptions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue Mar 16 2021 00:05:01 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue Mar 16 2021 00:07:10 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
