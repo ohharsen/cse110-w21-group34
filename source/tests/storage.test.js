@@ -47,6 +47,37 @@ describe('Helper Methods', () => {
         expect(result).toBe(false);
     });
 
+    test('Check getting recent monday for same monday', () => {
+        const trueMonday = new Date(2021, 2, 8); // month is 0-indexed
+        const recentDate = Storage.getRecentMonday(trueMonday);
+        const result = Storage.isSameDay(trueMonday, recentDate);
+        expect(result).toBe(true);
+    });
+
+    test('Check getting recent monday for different monday', () => {
+        const trueMonday = new Date(2021, 2, 8); // month is 0-indexed
+        const day = new Date(2021, 2, 15); // month is 0-indexed
+        const recentDate = Storage.getRecentMonday(day);
+        const result = Storage.isSameDay(trueMonday, recentDate);
+        expect(result).toBe(false);
+    });
+
+    test('Check getting recent monday for same week', () => {
+        const trueMonday = new Date(2021, 2, 8); // month is 0-indexed
+        const day = new Date(2021, 2, 13); 
+        const recentDate = Storage.getRecentMonday(day);
+        const result = Storage.isSameDay(trueMonday, recentDate);
+        expect(result).toBe(true);
+    });
+
+    test('Check getting recent monday for different week', () => {
+        const trueMonday = new Date(2021, 2, 8); // month is 0-indexed
+        const day = new Date(2021, 2, 17); 
+        const recentDate = Storage.getRecentMonday(day);
+        const result = Storage.isSameDay(trueMonday, recentDate);
+        expect(result).toBe(false);
+    });
+
     test('Check if undefined storage date today-checker returns false', () => {
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
