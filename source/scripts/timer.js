@@ -220,6 +220,7 @@ export function timeFraction (timer, pomoState) {
   }
 }
 
+/* istanbul ignore next */
 /**
  * Displays the textual indicator of the current timer type
  * @param {String} type the timer type indicating work, long break, or short break

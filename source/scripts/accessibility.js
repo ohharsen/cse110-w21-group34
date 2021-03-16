@@ -34,6 +34,7 @@ export function isA11yEnabled () {
   return accessibleMode;
 }
 
+/* istanbul ignore next */
 /**
  * The event listener for whenever keys are pressed
  * Listens only to specific keys and lets other keys perform default action
@@ -76,5 +77,14 @@ function keyControls (e) {
  */
 export function toggleKeystroke () {
   keystrokeMode = !keystrokeMode;
-  document.onkeydown = keystrokeMode ? keyControls : undefined;
+  document.onkeydown = (keystrokeMode) ? keyControls : undefined;
+}
+
+/**
+ * Getter function to retrieve the keystroke mode,
+ * which indicates whether keyboard shortcuts is on
+ * @return {boolean} true when keystroke/shortcuts mode is on, false if off
+ */
+export function isKeystrokeEnabled () {
+  return keystrokeMode;
 }

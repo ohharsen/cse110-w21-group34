@@ -47,7 +47,6 @@ export function openStatsPane () {
 }
 
 /* istanbul ignore next */
-
 /**
  * Closes the statistics pane.
  */

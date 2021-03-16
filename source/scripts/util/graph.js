@@ -47,7 +47,7 @@ function drawAxes (ctx, canvasHeight, canvasWidth, axes) {
 
   // Draw y-axes
   // If accessibibility mode is on we use larger font
-  ctx.font = (isA11yEnabled) ? TEXT_FONT_ACCESSIBILITY : TEXT_FONT;
+  ctx.font = (isA11yEnabled()) ? TEXT_FONT_ACCESSIBILITY : TEXT_FONT;
   ctx.textAlign = 'center';
   for (const [i, axis] of axes.entries()) {
     const x = LEFT_PADDING;
@@ -130,7 +130,7 @@ function drawBars (ctx, canvasHeight, data, axes) {
     const barHeight = Math.round(maxHeight * (d / maxAxis));
     if (barHeight > 0) {
       // If accessibibility mode is on we use darker shade of red for rectangle
-      const barColor = (isA11yEnabled) ? BAR_COLOR_ACCESSIBILITY : BAR_COLOR;
+      const barColor = (isA11yEnabled()) ? BAR_COLOR_ACCESSIBILITY : BAR_COLOR;
       const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
       const y = TOP_PADDING + maxHeight - barHeight;
       drawBar(ctx, x, y, BAR_WIDTH, barHeight, barColor);

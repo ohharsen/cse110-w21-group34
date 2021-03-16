@@ -63,6 +63,7 @@ export function toggleButtons () {
   settingsKeysButton.disabled = !isOpenSettingsPane;
 }
 
+/* istanbul ignore next */
 export function removeAll () {
   Stats.timerBlock.classList.remove('slide-close');
   Stats.statsPane.classList.remove('slide-close');
