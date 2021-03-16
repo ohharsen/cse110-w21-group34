@@ -18,7 +18,7 @@ export const TODAY_DISTRACTION = 'today-distraction';
 export function incrTasks () {
   let todaysTasks = getTasksCount();
 
-  if (todayEqualsStorage()) {
+  if (isStorageDateToday()) {
     todaysTasks++;
   } else { // same day, same week
     todaysTasks = 1;
@@ -54,7 +54,7 @@ export function incrPomoCount () {
   let todayPomos = getPomoCount();
 
   // Update today's pomo count
-  if (todayEqualsStorage()) {
+  if (isStorageDateToday()) {
     todayPomos++;
   } else {
     todayPomos = 1;
@@ -115,7 +115,7 @@ export function incrDistractions () {
   let todayDistractions = getDistractions();
 
   // Update today's distractions
-  if (todayEqualsStorage()) {
+  if (isStorageDateToday()) {
     todayDistractions++;
   } else {
     todayDistractions = 1;
@@ -153,7 +153,7 @@ export function setTodayStorageDate () {
   window.localStorage.setItem(TODAY_DATE_ID, today.toString());
 }
 
-export function todayEqualsStorage () {
+export function isStorageDateToday () {
   return isSameDay(new Date(), getTodayStorageDate());
 }
 

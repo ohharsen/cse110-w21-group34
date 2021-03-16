@@ -3,13 +3,11 @@ import {
     togglePomoBreak,
     startTimer,
     resetTimer,
-    updateDistractions,
     currentTime,
     timeFraction,
-    updateTotalCycles,
-    timerTypeIndicator
+    timerTypeIndicator,
 } from '../scripts/timer';
-import { formatDate } from '../scripts/tasks';
+import * as Storage from '../scripts/util/storage';
 
 test('checks break toggle', () => {
     expect(togglePomoBreak(true)).toBe(false);
@@ -39,13 +37,25 @@ test('checks reset state', () => {
     expect(resetTimer()).toStrictEqual();
 });
   
-test('checks distraction updates', () => {
-    let date = new Date();
-    date = formatDate(date);
-    expect(updateDistractions(2, "02/14/21")).toStrictEqual(1);
-    expect(updateDistractions(2, date)).toStrictEqual(3);
+test('Check resetting timer increments distractions', () => {
+    window.confirm = function () {
+        return true;
+    };
+    resetTimer();
+    expect(Storage.getDistractions()).toBe(1);
 });
-  
+
+test('Check multiple timer resets increments distractions', () => {
+    const targetDistractions = 6;
+    for (let i = 0; i < targetDistractions; i++) {
+        window.confirm = function () {
+            return true;
+        };
+        resetTimer();
+    }
+    expect(Storage.getDistractions()).toBe(targetDistractions);
+});
+
 test('Check current time display', () => {
     currentTime(1500, document.querySelector('#countdownText'));
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("25:00");
@@ -64,11 +74,6 @@ test('Test timer fraction', () => {
     expect(timeFraction(60, Constants.timerOptions.SHORT)).toStrictEqual(0.2);
     expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
-});
-
-test('checks total cycle count updates', () => {
-    window.localStorage.setItem('total-cycle-count', '1');
-    expect(updateTotalCycles()).toStrictEqual('2');
 });
 
 test('test timerTypeIndicator', () => {
