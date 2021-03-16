@@ -1,19 +1,19 @@
-// <<<<<<< HEAD
 import * as Constants from './constants.js';
+import * as Storage from './util/storage.js';
 import * as Settings from './settings.js';
-import { drawGraph } from './graph.js';
+import { drawGraph } from './util/graph.js';
 
 export const timerBlock = document.getElementsByClassName('center-container')[0];
+export const counterBlock = document.getElementsByClassName('counters-container')[0];
 export const statsPane = document.getElementById('stats-container');
 export const statsOpenButton = document.getElementById('stats-open-button');
 export const statsCloseButton = document.getElementById('stats-close-button');
-
 const graphCanvas = document.getElementById('weekly-graph');
+
+export let isOpenStatsPane = false;
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
-
-export let isOpenStatsPane = false;
 
 /* istanbul ignore next */
 /**
@@ -23,7 +23,7 @@ export let isOpenStatsPane = false;
 export function updateStats () {
   displayTodayStats();
   displayTotalStats();
-  drawGraph(graphCanvas, JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)));
+  drawGraph(graphCanvas, Storage.getWeeklyHistory());
 }
 
 /* istanbul ignore next */
@@ -34,7 +34,6 @@ export function openStatsPane () {
   updateStats();
 
   Settings.removeAll();
-
   if (Settings.settingsPane.classList.contains('slide-open-settings')) {
     Settings.closeSettingsPane();
 
@@ -44,10 +43,10 @@ export function openStatsPane () {
   }
   statsPane.classList.add('slide-open');
   isOpenStatsPane = true;
+  toggleButtons();
 }
 
 /* istanbul ignore next */
-
 /**
  * Closes the statistics pane.
  */
@@ -61,6 +60,16 @@ export function closeStatsPane () {
   statsPane.classList.add('slide-close');
 
   isOpenStatsPane = false;
+  toggleButtons();
+}
+
+/**
+ * Enables / Disables the respective stats pane buttons based on the current
+ * state.
+ */
+export function toggleButtons () {
+  statsOpenButton.disabled = isOpenStatsPane;
+  statsCloseButton.disabled = !isOpenStatsPane;
 }
 
 /* istanbul ignore next */
@@ -79,15 +88,15 @@ export function displayTotalStats () {
   const bestTimeElem = document.getElementById('total-best-time');
   const totalTasksElem = document.getElementById('total-tasks');
 
-  const totalPomoCount = window.localStorage.getItem(Constants.TOTAL_POMO_ID) || '0';
-  const totalInterruptCount = window.localStorage.getItem(Constants.TOTAL_INTERRUPTION) || '0';
-  const bestPomoCount = window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID) || '0';
-  const totalTaskCount = window.localStorage.getItem(Constants.TOTAL_TASK_ID) || '0';
+  const totalPomoCount = Storage.getTotalPomoCount();
+  const totalInterruptCount = Storage.getTotalInterruptions();
+  const bestPomoCount = Storage.getBestDailyPomoCount();
+  const totalTaskCount = Storage.getTotalTasksCount();
 
   totalPomoElem.textContent = totalPomoCount;
-  totalInterruptElem.textContent = (Number(totalInterruptCount) / (Number(totalPomoCount) || 1)).toFixed(2);
+  totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(2);
   bestPomoElem.textContent = bestPomoCount;
-  bestTimeElem.textContent = (Number(bestPomoCount) * (Constants.WORK_LENGTH / 60)).toFixed(2);
+  bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / 60)).toFixed(2);
   totalTasksElem.textContent = totalTaskCount;
 }
 
@@ -107,9 +116,9 @@ export function displayTodayStats () {
   const todayInterruptElem = document.getElementById('today-interruptions');
 
   // extracting daily stats data to be used for calculation
-  const todayPomoCount = window.localStorage.getItem(Constants.TODAY_POMO_ID) || '0';
-  const todayInterruptCount = window.localStorage.getItem(Constants.TODAY_INTERRUPTION) || '0';
-  const todayTaskCount = window.localStorage.getItem(Constants.TODAY_TASK_ID) || '0';
+  const todayPomoCount = Storage.getPomoCount();
+  const todayInterruptCount = Storage.getInterruptions();
+  const todayTaskCount = Storage.getTasksCount();
 
   // calculating daily stats with extracted data and displaying to UI
   todayPomoElem.textContent = todayPomoCount;
