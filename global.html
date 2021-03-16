@@ -152,7 +152,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line22">line 22</a>
+        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line31">line 31</a>
     </li></ul></dd>
     
 
@@ -224,7 +224,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line31">line 31</a>
+        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line40">line 40</a>
     </li></ul></dd>
     
 
@@ -296,7 +296,69 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line45">line 45</a>
+        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".onclick"><span class="type-signature"></span>.onclick<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    redundant, used for linting
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -324,7 +386,7 @@
     
 
     
-    <h4 class="name" id="beginCountdown"><span class="type-signature"></span>beginCountdown<span class="signature">(duration)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="beginCountdown"><span class="type-signature"></span>beginCountdown<span class="signature">(duration, textDisplay)</span><span class="type-signature"></span></h4>
     
 
     
@@ -388,6 +450,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>textDisplay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The component on which the remaining time is outputted</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -425,7 +510,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line54">line 54</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
@@ -450,6 +535,172 @@
 
 
 
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="calculateAxes"><span class="type-signature"></span>calculateAxes<span class="signature">(data)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Calculate and return 4 y-axes used in the graph. The first axis will always
+be 0.
+
+If max data is:
+     0  - 3  => dont change max
+     4  - 10 => round max up 1
+     11 - 30 => round max up 2
+spacing = max axis / 4
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The weekly data to scale the axes by.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line90">line 90</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The axes in array form, from first axis to last axis.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -513,7 +764,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line42">line 42</a>
+        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -637,7 +888,7 @@
     
 
     
-    <h4 class="name" id="completeTask"><span class="type-signature"></span>completeTask<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="currentTime"><span class="type-signature"></span>currentTime<span class="signature">(timer, textDisplay)</span><span class="type-signature"></span></h4>
     
 
     
@@ -645,95 +896,7 @@
 
 
 <div class="description">
-    Task is completed upon button click
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line50">line 50</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="displayTime"><span class="type-signature"></span>displayTime<span class="signature">(time)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Displays the amount of time remaining.
+    Displays the amount of time remaining
 </div>
 
 
@@ -769,7 +932,7 @@
 
         <tr>
             
-                <td class="name"><code>time</code></td>
+                <td class="name"><code>timer</code></td>
             
 
             <td class="type">
@@ -786,6 +949,29 @@
             
 
             <td class="description last">The time to be displayed</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>textDisplay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The component on which the remaining time is displayed</td>
         </tr>
 
     
@@ -826,7 +1012,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line229">line 229</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line294">line 294</a>
     </li></ul></dd>
     
 
@@ -870,12 +1056,7 @@
 
 
 <div class="description">
-    Displays the user's statistics for the day on the statistics pane.
-Today statistics include:
-   - Today's pomodoros completed
-   - Today's avg. interruptions per pomodoro
-   - Today's tasks completed
-   - Most pomodoros completed in a single day
+    Displays the user's statistics for the day on the statistics pane.Today statistics include:   - Today's pomodoros completed   - Today's avg. interruptions per pomodoro   - Today's tasks completed   - Most pomodoros completed in a single day
 </div>
 
 
@@ -919,7 +1100,7 @@ Today statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line112">line 112</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line102">line 102</a>
     </li></ul></dd>
     
 
@@ -963,12 +1144,7 @@ Today statistics include:
 
 
 <div class="description">
-    Displays the user's current all-time statistics on the statistics pane.
-Total statistics include:
-   - Total pomodoros completed
-   - Total avg. interruptionss per pomodoro
-   - Total tasks completed
-   - Most pomodoros completed in a single day
+    Displays the user's current all-time statistics on the statistics pane.Total statistics include:   - Total pomodoros completed   - Total avg. interruptionss per pomodoro   - Total tasks completed   - Most pomodoros completed in a single day
 </div>
 
 
@@ -1012,7 +1188,7 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line84">line 84</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -1037,6 +1213,1285 @@ Total statistics include:
 
 
 
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="drawAxes"><span class="type-signature"></span>drawAxes<span class="signature">(ctx, canvasHeight, canvasWidth, axes)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CanvasRenderingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvasHeight</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvasWidth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>axes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="drawBar"><span class="type-signature"></span>drawBar<span class="signature">(ctx, x, y, w, h, color<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Draws a bar centered at (x, y) with w width (horizontal) and h height
+(vertical), using the given canvas' context.
+Default color is black (#000000).
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CanvasRenderingContext2D</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Target canvas' context</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">horizontal position of upper-left corner</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">vertical position of upper-left corner</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">width</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">height</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    #000000
+                
+                </td>
+            
+
+            <td class="description last">hex color (e.g. #fafefc)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line159">line 159</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="drawBars"><span class="type-signature"></span>drawBars<span class="signature">(ctx, canvasHeight, data, axes)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Draws bars for each datapoint in data, relative to the highest valued
+axis given in axes.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CanvasRenderingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The canvas' 2d rendering context</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvasHeight</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The canvas' height</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">x-data</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>axes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">y-axis values</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line129">line 129</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="drawGraph"><span class="type-signature"></span>drawGraph<span class="signature">(canvas, data)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Draws a graph to the given canvas element with the given data points.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>canvas</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLCanvasElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Target canvas</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="drawLine"><span class="type-signature"></span>drawLine<span class="signature">(ctx, x1, y1, x2, y2)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Draws a line from (x1, y1) to (x2, y2) on the given canvas' context.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CanvasRenderingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Target canvas' context</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">horizontal position of start point</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">vertical position of start point</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">horizontal position of end point</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">vertical position of end point</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="graph.js.html">graph.js</a>, <a href="graph.js.html#line175">line 175</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="formatDate"><span class="type-signature"></span>formatDate<span class="signature">(toFormat)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Reformat Date() variable to mm:dd:yyyy
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>toFormat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Date</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">date object to change</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    formatted string
+</div>
+
+
+
+    
 
 
 
@@ -1100,7 +2555,7 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line24">line 24</a>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -1136,7 +2591,7 @@ Total statistics include:
     
 
     
-    <h4 class="name" id="isA11yEnabled"><span class="type-signature"></span>isA11yEnabled<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="isSameWeek"><span class="type-signature"></span>isSameWeek<span class="signature">(today)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1144,7 +2599,7 @@ Total statistics include:
 
 
 <div class="description">
-    Getter function to retrieve accessibleMode variable,which indicates whether accessibility mode is on
+    Check if today is in the same week as week start
 </div>
 
 
@@ -1155,114 +2610,48 @@ Total statistics include:
 
 
 
-
-
-
-
-<dl class="details">
-
+    <h5>Parameters:</h5>
     
 
-    
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line33">line 33</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
+        <th>Type</th>
 
         
-<div class="param-desc">
-    true when accessibility mode is on, false if off
-</div>
 
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
         
-<span class="param-type">boolean</span>
 
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-    </dd>
-</dl>
-
+    <tbody>
     
 
-
-
-
-
-        
+        <tr>
+            
+                <td class="name"><code>today</code></td>
             
 
-    
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">current date</td>
+        </tr>
 
     
-    <h4 class="name" id="isKeystrokeEnabled"><span class="type-signature"></span>isKeystrokeEnabled<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Getter function to retrieve the keystroke mode,which indicates whether keyboard shortcuts is on
-</div>
-
-
-
-
-
-
-
+    </tbody>
+</table>
 
 
 
@@ -1298,7 +2687,7 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line88">line 88</a>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -1327,22 +2716,10 @@ Total statistics include:
 
         
 <div class="param-desc">
-    true when keystroke/shortcuts mode is on, false if off
+    boolean is it the same week
 </div>
 
 
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-    </dd>
-</dl>
 
     
 
@@ -1457,6 +2834,94 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
+        <a href="keystrokeAccess.js.html">keystrokeAccess.js</a>, <a href="keystrokeAccess.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="modeGetter"><span class="type-signature"></span>modeGetter<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Getter function to retrieve accessibleMode variable,which indicates whether accessibility mode is on
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
         <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line43">line 43</a>
     </li></ul></dd>
     
@@ -1482,6 +2947,28 @@ Total statistics include:
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true when accessibility mode is on, false if off
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1545,7 +3032,7 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line21">line 21</a>
+        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -1633,7 +3120,7 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line33">line 33</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -1721,7 +3208,7 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line32">line 32</a>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -1809,7 +3296,7 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line199">line 199</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line211">line 211</a>
     </li></ul></dd>
     
 
@@ -1855,7 +3342,7 @@ Total statistics include:
     
 
     
-    <h4 class="name" id="setCountdownInterval"><span class="type-signature"></span>setCountdownInterval<span class="signature">(duration)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="resetWeekArray"><span class="type-signature"></span>resetWeekArray<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -1863,8 +3350,7 @@ Total statistics include:
 
 
 <div class="description">
-    Begins the timer countdown for a cycle within the main thread for
-browsers that do not support web-workers.
+    Reset week history array to zeros
 </div>
 
 
@@ -1873,55 +3359,6 @@ browsers that do not support web-workers.
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The duration of the countdown</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1957,7 +3394,7 @@ browsers that do not support web-workers.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line86">line 86</a>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line137">line 137</a>
     </li></ul></dd>
     
 
@@ -2045,145 +3482,7 @@ browsers that do not support web-workers.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line42">line 42</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="startTimer"><span class="type-signature"></span>startTimer<span class="signature">(duration)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Starts a timer for the given duration and sends the time left
-every second as a message.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timeWorker.js.html">timeWorker.js</a>, <a href="timeWorker.js.html#line22">line 22</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line40">line 40</a>
     </li></ul></dd>
     
 
@@ -2343,7 +3642,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line117">line 117</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line167">line 167</a>
     </li></ul></dd>
     
 
@@ -2389,7 +3688,7 @@ every second as a message.
     
 
     
-    <h4 class="name" id="stopTimer"><span class="type-signature"></span>stopTimer<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="taskComplete"><span class="type-signature"></span>taskComplete<span class="signature">(clearStorage, today)</span><span class="type-signature"></span></h4>
     
 
     
@@ -2397,7 +3696,7 @@ every second as a message.
 
 
 <div class="description">
-    Stops the timer and refreshes user interface
+    Task is completed upon button click
 </div>
 
 
@@ -2406,6 +3705,68 @@ every second as a message.
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>clearStorage</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">for debugging</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>today</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">current date</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -2441,7 +3802,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line150">line 150</a>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -2466,6 +3827,16 @@ every second as a message.
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    local storage for debug
+</div>
+
+
+
+    
 
 
 
@@ -2601,7 +3972,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line244">line 244</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line309">line 309</a>
     </li></ul></dd>
     
 
@@ -2738,7 +4109,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line259">line 259</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line333">line 333</a>
     </li></ul></dd>
     
 
@@ -2826,185 +4197,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="toggleButtons"><span class="type-signature"></span>toggleButtons<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Enables / Disables the respective settings pane buttons based on the current
-state.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line59">line 59</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="toggleButtons"><span class="type-signature"></span>toggleButtons<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Enables / Disables the respective stats pane buttons based on the current
-state.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line70">line 70</a>
+        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -3092,7 +4285,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line78">line 78</a>
+        <a href="keystrokeAccess.js.html">keystrokeAccess.js</a>, <a href="keystrokeAccess.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -3229,7 +4422,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line104">line 104</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line154">line 154</a>
     </li></ul></dd>
     
 
@@ -3376,7 +4569,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line42">line 42</a>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -3401,6 +4594,612 @@ state.
 
 
 
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateDailyPomoCount"><span class="type-signature"></span>updateDailyPomoCount<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Updates the pomo count for the current day of the week in local storage.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line141">line 141</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateInterruptions"><span class="type-signature"></span>updateInterruptions<span class="signature">(todayInterruptions, todayStorage)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Updates interruptions in local storage
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>todayInterruptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The number of interruptions today</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>todayStorage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Today's date currently in window.localStorage</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line270">line 270</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated number of interruptions
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateLocalStorage"><span class="type-signature"></span>updateLocalStorage<span class="signature">(dayCounter, weekCounter, dayOfWeek)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Update local storage with finished task information
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dayCounter</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">today total task count</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>weekCounter</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">week total task count</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dayOfWeek</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the day of the week (0 --> Monday, 1 --> Tuesday, ... etc)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="taskButton.js.html">taskButton.js</a>, <a href="taskButton.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    local storage for debug
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updatePomoCount"><span class="type-signature"></span>updatePomoCount<span class="signature">(todayPomos, todayStorage)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Update's pomo count for today in local storage
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>todayPomos</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The number of daily current pomos completed</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>todayStorage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">updatePomoCount the local storage date for the current day</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line119">line 119</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    number of pomos completed today
+</div>
+
+
+
+    
 
 
 
@@ -3464,7 +5263,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line185">line 185</a>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line201">line 201</a>
     </li></ul></dd>
     
 
@@ -3508,8 +5307,7 @@ state.
 
 
 <div class="description">
-    Updates today and total stats when pomo cycle is complete,
-task is complete, or interruption occurs
+    Updates today and total stats when pomo cycle is complete,task is complete, or interruption occurs
 </div>
 
 
@@ -3553,7 +5351,7 @@ task is complete, or interruption occurs
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line23">line 23</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -3584,6 +5382,104 @@ task is complete, or interruption occurs
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="updateTotalCycles"><span class="type-signature"></span>updateTotalCycles<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Updates total cycles in local storage
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="startResetButton.js.html">startResetButton.js</a>, <a href="startResetButton.js.html#line323">line 323</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    the updated number of total cycles
+</div>
+
+
+
+    
+
+
+
+
+
+        
     
 
     
@@ -3599,13 +5495,13 @@ task is complete, or interruption occurs
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#displayTime">displayTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isA11yEnabled">isA11yEnabled</a></li><li><a href="global.html#isKeystrokeEnabled">isKeystrokeEnabled</a></li><li><a href="global.html#keyControls">keyControls</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#setCountdownInterval">setCountdownInterval</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#stopTimer">stopTimer</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#toggleButtons">toggleButtons</a></li><li><a href="global.html#toggleKeystroke">toggleKeystroke</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#isSameWeek">isSameWeek</a></li><li><a href="global.html#keyControls">keyControls</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#modeGetter">modeGetter</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#resetWeekArray">resetWeekArray</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#taskComplete">taskComplete</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#toggleKeystroke">toggleKeystroke</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updateDailyPomoCount">updateDailyPomoCount</a></li><li><a href="global.html#updateInterruptions">updateInterruptions</a></li><li><a href="global.html#updateLocalStorage">updateLocalStorage</a></li><li><a href="global.html#updatePomoCount">updatePomoCount</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateTotalCycles">updateTotalCycles</a></li><li><a href="global.html#.onclick">.onclick</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue Mar 16 2021 08:24:36 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue Mar 16 2021 08:51:01 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
