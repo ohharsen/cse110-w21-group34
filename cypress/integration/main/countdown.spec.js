@@ -1,5 +1,3 @@
-import * as Constants from '../../../source/scripts/constants.js';
-
 describe('Countdown Test', ()=>{
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/');

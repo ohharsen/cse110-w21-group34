@@ -4,13 +4,12 @@ const TASK_COUNT_VALID_ENTER = '0';
 const TASK_COUNT_INVALID_ENTER = '1';
 const STATS_SLIDE_OPEN  = 'slide-open';
 const STATS_SLIDE_CLOSE = 'slide-close';
-
 const SETTINGS_SLIDE_OPEN  = 'slide-open-settings';
 const SETTINGS_SLIDE_CLOSE = 'slide-close-settings';
 
 describe('Timer Keys Test', ()=>{
     beforeEach(() => {
-        cy.visit(Constants.HOST_ADDRESS);
+        cy.visit('http://127.0.0.1:5500/');
     });
 
     it('Space bar start timer check', () => {
@@ -27,7 +26,7 @@ describe('Timer Keys Test', ()=>{
     });
 });
 
-describe('Stats and Settings Pane Test', ()=>{
+describe('Pane Tests', ()=>{
     beforeEach(() => {
         cy.visit(Constants.HOST_ADDRESS);
     });
@@ -146,7 +145,7 @@ describe('Stats and Settings Pane Test', ()=>{
 describe('Enter Complete Task Tests', () => {
 
     beforeEach(() => {
-        cy.visit(Constants.HOST_ADDRESS);
+        cy.visit('http://127.0.0.1:5500/');
     });
 
     it('During Break T completes a task', () => {

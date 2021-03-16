@@ -1,11 +1,15 @@
 import * as Constants from './constants.js';
-import { increaseTaskPomo, formatDate, toggleTaskButtonDisabled } from './taskButton.js';
+import * as Storage from './util/storage.js';
+import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
 
-const startStopButton = document.getElementById(Constants.START_STOP_ID);
-const countdownText = document.getElementById('countdownText');
+const STOP_TIMER_COLOR = 'var(--grey)';
+const WORK_TIMER_COLOR = 'var(--red)';
+const BREAK_TIMER_COLOR = 'var(--green)';
 const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
 const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
+const startStopButton = document.getElementById(Constants.START_STOP_ID);
+const countdownText = document.getElementById('countdownText');
 
 const yesButton = document.getElementById('reset-yes-button');
 const noButton = document.getElementById('reset-no-button');
@@ -54,10 +58,9 @@ export function beginCountdown (duration, textDisplay) {
   let timer = duration; // minutes, seconds;
   currentTime(--timer, textDisplay);
   if (onBreak) {
-    startStopButton.disabled = true;
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--green)');
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', BREAK_TIMER_COLOR);
   } else {
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--red)');
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', WORK_TIMER_COLOR);
   }
   document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
   interval = setInterval(function () {
@@ -71,26 +74,21 @@ export function beginCountdown (duration, textDisplay) {
       startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
       pomoState = Constants.timerOptions.STOPPED;
       // Mutes timer color
-      document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--grey)');
+      document.getElementById('base-timer-path-remaining').setAttribute('stroke', STOP_TIMER_COLOR);
       if (!onBreak) {
         pomoCount++;
         updatePots();
         // Dispalys the next cycle without beginning it
-        if (pomoCount === 4) {
+        if (pomoCount === Constants.POMO_CYCLE_LENGTH) {
           currentTime(Constants.LONG_BREAK, textDisplay);
           timerTypeIndicator(Constants.timerOptions.LONG);
         } else {
           currentTime(Constants.SHORT_BREAK, textDisplay);
           timerTypeIndicator(Constants.timerOptions.SHORT);
         }
-        // current pomos cycles completed today
-        const todayPomos = Number(window.localStorage.getItem(Constants.TODAY_POMO_ID));
-        // Today's date
-        const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
-        // incrementing daily pomo cycle count
 
-        updatePomoCount(todayPomos, todayStorage);
-        updateDailyPomoCount();
+        // incrementing daily pomo cycle count
+        Storage.incrPomoCount();
         increaseTaskPomo();
         updateStats();
       } else {
@@ -99,51 +97,11 @@ export function beginCountdown (duration, textDisplay) {
         // Dispalys the next cycle without beggining it
         currentTime(Constants.WORK_LENGTH, textDisplay);
         timerTypeIndicator(Constants.timerOptions.POMO);
-        // Update total cycle count at end of cycle
-        if (duration === Constants.LONG_BREAK) {
-          updateTotalCycles();
-        }
       }
       toggleTaskButtonDisabled(false);
       onBreak = togglePomoBreak(onBreak);
     }
   }, 1000);
-}
-
-/**
-   * Update's pomo count for today in local storage
-   * @param {Number} todayPomos The number of daily current pomos completed
-   * @param {String} todayStorage updatePomoCount the local storage date for the current day
-   * @return number of pomos completed today
-   */
-export function updatePomoCount (todayPomos, todayStorage) {
-  // update pomo cycle day count
-  const today = formatDate(new Date());
-  // case if we are on same day
-  if (today === todayStorage) {
-    todayPomos++;
-  } else { // case if we are on different day
-    todayPomos = 1;
-    window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
-  }
-  window.localStorage.setItem(Constants.TODAY_POMO_ID, String(todayPomos));
-  window.localStorage.setItem(Constants.TOTAL_POMO_ID, String(Number(window.localStorage.getItem(Constants.TOTAL_POMO_ID)) + 1));
-  if (Number(window.localStorage.getItem(Constants.BEST_DAILY_POMO_ID)) < todayPomos) {
-    window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, todayPomos);
-  }
-
-  return todayPomos;
-}
-
-/**
- * Updates the pomo count for the current day of the week in local storage.
- */
-export function updateDailyPomoCount () {
-  const dayIdx = ((new Date()).getDay() - 1) % Constants.LENGTH_OF_WEEK;
-  const weekHistory = JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
-
-  weekHistory[dayIdx]++;
-  window.localStorage.setItem(Constants.WEEK_HISTORY, JSON.stringify(weekHistory));
 }
 
 /**
@@ -199,9 +157,13 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
  * Update pot icons to show number of pomos completed for the cycle
  */
 export function updatePots () {
-  for (let i = 1; i < pomoCount + 1; i++) { document.getElementById('pot' + i).src = COLORED_POT_SOURCE; }
+  for (let i = 1; i < pomoCount + 1; i++) {
+    document.getElementById('pot' + i).src = COLORED_POT_SOURCE;
+  }
 
-  for (let i = pomoCount + 1; i <= 4; i++) { document.getElementById('pot' + i).src = GRAY_POT_SOURCE; }
+  for (let i = pomoCount + 1; i <= Constants.POMO_CYCLE_LENGTH; i++) {
+    document.getElementById('pot' + i).src = GRAY_POT_SOURCE;
+  }
 }
 
 /**
@@ -218,15 +180,13 @@ export function resetTimer () {
     clearInterval(interval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     currentTime(Constants.WORK_LENGTH, document.querySelector('#countdownText'));
-    document.getElementById('base-timer-path-remaining').setAttribute('stroke', 'var(--grey)');
+    document.getElementById('base-timer-path-remaining').setAttribute('stroke', STOP_TIMER_COLOR);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', '220 220');
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
-  const todayInterruptions = Number(window.localStorage.getItem(Constants.TODAY_INTERRUPTION));
-  const todayStorage = window.localStorage.getItem(Constants.TODAY_DATE_ID);
-  updateInterruptions(todayInterruptions, todayStorage);
-  updateStats();
 
+  Storage.incrInterruptions();
+  updateStats();
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
@@ -262,31 +222,6 @@ export function resetConfirm (event) {
 }
 
 /**
-   * Updates interruptions in local storage
-   * @param {Number} todayInterruptions The number of interruptions today
-   * @param {String} todayStorage Today's date currently in window.localStorage
-   * @return The updated number of interruptions
-   */
-export function updateInterruptions (todayInterruptions, todayStorage) {
-  // Total interruptions
-  const interruptions = Number(window.localStorage.getItem(Constants.TOTAL_INTERRUPTION));
-  window.localStorage.setItem(Constants.TOTAL_INTERRUPTION, String(interruptions + 1));
-
-  // Today's interruptions
-  const today = formatDate(new Date());
-  if (today === todayStorage) {
-    todayInterruptions++;
-  } else {
-    // Update
-    todayInterruptions = 1;
-    window.localStorage.setItem(Constants.TODAY_DATE_ID, today);
-  }
-  window.localStorage.setItem(Constants.TODAY_INTERRUPTION, String(todayInterruptions));
-
-  return todayInterruptions;
-}
-
-/**
    * Displays the amount of time remaining
    * @param {Number} timer The time to be displayed
    * @param {Object} textDisplay The component on which the remaining time is displayed
@@ -316,16 +251,7 @@ export function timeFraction (timer, pomoState) {
   }
 }
 
-/**
- * Updates total cycles in local storage
- * @returns the updated number of total cycles
- */
-export function updateTotalCycles () {
-  const totalCycles = Number(window.localStorage.getItem(Constants.TOTAL_CYCLE_ID)) + 1;
-  window.localStorage.setItem(Constants.TOTAL_CYCLE_ID, String(totalCycles));
-  return window.localStorage.getItem(Constants.TOTAL_CYCLE_ID);
-}
-
+/* istanbul ignore next */
 /**
  * Displays the textual indicator of the current timer type
  * @param {String} type the timer type indicating work, long break, or short break
