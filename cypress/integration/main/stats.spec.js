@@ -53,7 +53,7 @@ describe('Daily Statistics', () => {
   });
   
   it('Check that today interruptions count display correctly reflects today interruptions', () => {
-    window.localStorage.setItem(Storage.TODAY_DISTRACTION, '6');
+    window.localStorage.setItem(Storage.TODAY_INTERRUPTION, '6');
     cy.get('#stats-open-button').click();
     cy.get('#today-interruptions').then((elem) => {
 			expect(elem.text()).to.equal('6');
@@ -110,7 +110,7 @@ describe('Total Statistics', () => {
   });
   
   it('Correctly displays total avg. interruptions per pomodoro', () => {
-    window.localStorage.setItem(Storage.TOTAL_DISTRACTION, '9');
+    window.localStorage.setItem(Storage.TOTAL_INTERRUPTION, '9');
     window.localStorage.setItem(Storage.TOTAL_POMO_ID, '4');
     cy.get('#stats-open-button').click();
     cy.get('#total-interruptions').then((elem) => {
