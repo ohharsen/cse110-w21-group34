@@ -46,7 +46,7 @@ test('Check resetting timer increments interruptions', () => {
         return true;
     };
     resetTimer();
-    expect(Storage.getDistractions()).toBe(1);
+    expect(Storage.getInterruptions()).toBe(1);
 });
 
 test('Check multiple timer resets increments interruptions', () => {
@@ -57,7 +57,7 @@ test('Check multiple timer resets increments interruptions', () => {
         };
         resetTimer();
     }
-    expect(Storage.getDistractions()).toBe(targetInterruptions);
+    expect(Storage.getInterruptions()).toBe(targetInterruptions);
 });
 
 test('Check current time display', () => {

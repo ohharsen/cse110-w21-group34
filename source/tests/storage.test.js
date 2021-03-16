@@ -167,46 +167,46 @@ describe('Tasks', () => {
     });
 });
 
-describe('Distractions', () => {
+describe('Interruptions', () => {
     beforeEach(() => {
         localStorage.clear();
         Storage.setTodayStorageDate();
     });
 
     test('Check if undefined interruptions count returns 0', () => {
-        expect(Storage.getDistractions()).toBe(0);
+        expect(Storage.getInterruptions()).toBe(0);
     });
 
     test('Check if undefined total interruptions count returns 0', () => {
-        expect(Storage.getTotalDistractions()).toBe(0);
+        expect(Storage.getTotalInterruptions()).toBe(0);
     });
 
     test('Check if storage increments undefined interruptions count', () => {
-        Storage.incrDistractions();
-        expect(Storage.getDistractions()).toBe(1);
+        Storage.incrInterruptions();
+        expect(Storage.getInterruptions()).toBe(1);
     });
     
     test('Check if storage increments undefined total interruptions count', () => {
-        Storage.incrDistractions();
-        expect(Storage.getTotalDistractions()).toBe(1);
+        Storage.incrInterruptions();
+        expect(Storage.getTotalInterruptions()).toBe(1);
     });
 
     test('Check if storage increments current interruptions count', () => {
-        localStorage.setItem(Storage.TODAY_DISTRACTION, '17');
-        Storage.incrDistractions();
-        expect(Storage.getDistractions()).toBe(18);
+        localStorage.setItem(Storage.TODAY_INTERRUPTION, '17');
+        Storage.incrInterruptions();
+        expect(Storage.getInterruptions()).toBe(18);
     });
 
     test('Check if storage increments total interruptions count', () => {
-        localStorage.setItem(Storage.TOTAL_DISTRACTION, '74');
-        Storage.incrDistractions();
-        expect(Storage.getTotalDistractions()).toBe(75);
+        localStorage.setItem(Storage.TOTAL_INTERRUPTION, '74');
+        Storage.incrInterruptions();
+        expect(Storage.getTotalInterruptions()).toBe(75);
     });
     
     test('Check to see that interruptions count resets when it is new day', () => {
-        localStorage.setItem(Storage.TODAY_DISTRACTION, '6');
+        localStorage.setItem(Storage.TODAY_INTERRUPTION, '6');
         localStorage.setItem(Storage.TODAY_DATE_ID, new Date(0));
-        Storage.incrDistractions();
-        expect(Storage.getDistractions()).toBe(1);
+        Storage.incrInterruptions();
+        expect(Storage.getInterruptions()).toBe(1);
     });  
 });

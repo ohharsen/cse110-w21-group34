@@ -72,9 +72,12 @@ export function incrPomoCount () {
     window.localStorage.setItem(BEST_DAILY_POMO_ID, todayPomos);
   }
 
-  // Update weekly history
+  // Check if we're in the same week
   const today = new Date();
-  if (!isSameWeek(getTodayStorageDate(), today)) clearWeeklyHistory();
+  const recentMonday = getRecentMonday(today);
+  if (!isSameDay(getWeekStartDate(), recentMonday)) setWeekStartDate(recentMonday);
+
+  // Update weekly history 
   const dayIdx = (today.getDay() - 1) % Constants.LENGTH_OF_WEEK;
   const weekHistory = JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
   weekHistory[dayIdx]++;
@@ -166,7 +169,7 @@ export function getTotalInterruptions () {
  * @returns {Date} storage data
  */
 export function getTodayStorageDate () {
-  return new Date(window.localStorage.getItem(TODAY_DATE_ID) || new Date(0));
+  return new Date(window.localStorage.getItem(TODAY_DATE_ID) || new Date());
 }
 
 /**
@@ -175,6 +178,22 @@ export function getTodayStorageDate () {
 export function setTodayStorageDate () {
   const today = new Date();
   window.localStorage.setItem(TODAY_DATE_ID, today.toString());
+}
+
+/**
+ * Getter method for date in storage that marks the start of a week
+ * @returns {Date} storage data
+ */
+export function getWeekStartDate () {
+  return new Date(window.localStorage.getItem(WEEK_START_ID)) || getRecentMonday(new Date());
+}
+
+/**
+ * Updates week start date in storage to most recent Monday
+ */
+export function setWeekStartDate (monday) {
+  window.localStorage.setItem(WEEK_START_ID, monday.toString());
+  clearWeeklyHistory()
 }
 
 /**
@@ -199,21 +218,16 @@ export function isSameDay (date1, date2) {
 }
 
 /**
- * Check if today is in the same week as week start
- * @param {Date} date1 The earlier date
- * @param {Date} date2 The later date
- * @return {Boolean} true if they are the same week, false otherwise
+ * Get most recent Monday from a given date
+ * @param {Date} date any date
+ * @returns {Date} the most recent Monday
  */
-export function isSameWeek (date1, date2) {
-  const checkDate = new Date(date2);
+export function getRecentMonday (date) {
+  const checkDate = new Date(date);
 
   // iterate until previous week start is reached
-  while (!isSameDay(date1, date2)) {
+  while (checkDate.getDay() !== 1) {
     checkDate.setDate(checkDate.getDate() - 1);
-    if (checkDate.getDay() === 1) {
-      window.localStorage.setItem(WEEK_START_ID, checkDate.toString());
-      return false;
-    }
   }
-  return true;
+  return checkDate;
 }

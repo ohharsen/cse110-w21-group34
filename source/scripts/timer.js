@@ -166,7 +166,7 @@ export function updatePots () {
    * @return An array containing the stopped timer state and begin button text
    */
 export function resetTimer () {
-  const userConfirm = confirm('This action will count as a distraction.');
+  const userConfirm = confirm('This action will count as a interruption.');
   if (!userConfirm) {
     return;
   }
@@ -185,7 +185,7 @@ export function resetTimer () {
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
 
-  Storage.incrDistractions();
+  Storage.incrInterruptions();
   updateStats();
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
