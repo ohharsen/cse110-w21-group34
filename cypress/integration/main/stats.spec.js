@@ -1,4 +1,4 @@
-import * as Constants from '../../../source/scripts/constants';
+import * as Storage from '../../../source/scripts/util/storage';
 
 describe('View / Animation', () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Daily Statistics', () => {
 
   // Tests on Pomodoro cycles 
   it('Check when there are zero pomodoro cycles completed', () => {
-    window.localStorage.setItem(Constants.TODAY_POMO_ID, '0');
+    window.localStorage.setItem(Storage.TODAY_POMO_ID, '0');
     cy.get('#stats-open-button').click();
     cy.get('#today-pomodoros').then((elem) => {
 			expect(elem.text()).to.equal('0');
@@ -21,7 +21,7 @@ describe('Daily Statistics', () => {
   });
   
   it('Check that pomodoro cycle count display correctly reflects cycle count', () => {
-    window.localStorage.setItem(Constants.TODAY_POMO_ID, '15');
+    window.localStorage.setItem(Storage.TODAY_POMO_ID, '15');
     cy.get('#stats-open-button').click();
     cy.get('#today-pomodoros').then((elem) => {
 			expect(elem.text()).to.equal('15');
@@ -37,7 +37,7 @@ describe('Daily Statistics', () => {
   });
   
   it('Check that today tasks count display correctly reflects today tasks', () => {
-    window.localStorage.setItem(Constants.TODAY_TASK_ID, '4');
+    window.localStorage.setItem(Storage.TODAY_TASK_ID, '4');
     cy.get('#stats-open-button').click();
     cy.get('#today-tasks').then((elem) => {
       expect(elem.text()).to.equal('4');
@@ -53,7 +53,7 @@ describe('Daily Statistics', () => {
   });
   
   it('Check that today interruptions count display correctly reflects today interruptions', () => {
-    window.localStorage.setItem(Constants.TODAY_INTERRUPTION, '6');
+    window.localStorage.setItem(Storage.TODAY_DISTRACTION, '6');
     cy.get('#stats-open-button').click();
     cy.get('#today-interruptions').then((elem) => {
 			expect(elem.text()).to.equal('6');
@@ -102,7 +102,7 @@ describe('Total Statistics', () => {
   });
   
   it('Correctly displays total pomodoros completed', () => {
-    window.localStorage.setItem(Constants.TOTAL_POMO_ID, '7');
+    window.localStorage.setItem(Storage.TOTAL_POMO_ID, '7');
     cy.get('#stats-open-button').click();
     cy.get('#total-pomodoros').then((elem) => {
       expect(elem.text()).to.equal('7');
@@ -110,8 +110,8 @@ describe('Total Statistics', () => {
   });
   
   it('Correctly displays total avg. interruptions per pomodoro', () => {
-    window.localStorage.setItem(Constants.TOTAL_INTERRUPTION, '9');
-    window.localStorage.setItem(Constants.TOTAL_POMO_ID, '4');
+    window.localStorage.setItem(Storage.TOTAL_DISTRACTION, '9');
+    window.localStorage.setItem(Storage.TOTAL_POMO_ID, '4');
     cy.get('#stats-open-button').click();
     cy.get('#total-interruptions').then((elem) => {
       expect(elem.text()).to.equal('2.25');
@@ -119,7 +119,7 @@ describe('Total Statistics', () => {
   });
   
   it('Correctly displays total tasks completed', () => {
-    window.localStorage.setItem(Constants.TOTAL_TASK_ID, '3');
+    window.localStorage.setItem(Storage.TOTAL_TASK_ID, '3');
     cy.get('#stats-open-button').click();
     cy.get('#total-tasks').then((elem) => {
       expect(elem.text()).to.equal('3');
@@ -127,7 +127,7 @@ describe('Total Statistics', () => {
   });
   
   it('Correctly displays pomodoros for the "Best Day" display', () => {
-    window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, '8');
+    window.localStorage.setItem(Storage.BEST_DAILY_POMO_ID, '8');
     cy.get('#stats-open-button').click();
     cy.get('#total-best-pomo').then((elem) => {
       expect(elem.text()).to.equal('8');
@@ -135,7 +135,7 @@ describe('Total Statistics', () => {
   });
   
   it('Correctly displays minutes for the "Best Day" display', () => {
-    window.localStorage.setItem(Constants.BEST_DAILY_POMO_ID, '5');
+    window.localStorage.setItem(Storage.BEST_DAILY_POMO_ID, '5');
     cy.get('#stats-open-button').click();
     cy.get('#total-best-time').then((elem) => {
       expect(elem.text()).to.equal('125.00');

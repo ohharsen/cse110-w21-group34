@@ -1,13 +1,14 @@
 import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
+import * as Settings from './settings.js';
 import { drawGraph } from './util/graph.js';
 
-const timerBlock = document.getElementsByClassName('center-container')[0];
-const counterBlock = document.getElementsByClassName('counters-container')[0];
-const statsPane = document.getElementById('stats-container');
-const statsOpenButton = document.getElementById('stats-open-button');
-const statsCloseButton = document.getElementById('stats-close-button');
-const graphCanvas = document.getElementById('weekly-graph');
+export const timerBlock = document.getElementsByClassName('center-container')[0];
+export const counterBlock = document.getElementsByClassName('counters-container')[0];
+export const statsPane = document.getElementById('stats-container');
+export const statsOpenButton = document.getElementById('stats-open-button');
+export const statsCloseButton = document.getElementById('stats-close-button');
+export const graphCanvas = document.getElementById('weekly-graph');
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
@@ -27,29 +28,32 @@ export function updateStats () {
 /**
  * Opens the statistics pane.
  */
-export function openStatsPane () {
+ export function openStatsPane () {
   updateStats();
 
-  timerBlock.classList.remove('slide-close');
-  counterBlock.classList.remove('slide-close');
-  statsPane.classList.remove('slide-close');
+  Settings.removeAll();
+  if (Settings.settingsPane.classList.contains('slide-open-settings')) {
+    Settings.closeSettingsPane();
 
-  timerBlock.classList.add('slide-open');
-  counterBlock.classList.add('slide-open');
+    timerBlock.classList.add('slide-across-left');
+  } else {
+    timerBlock.classList.add('slide-open');
+  }
   statsPane.classList.add('slide-open');
 }
 
 /* istanbul ignore next */
+
 /**
  * Closes the statistics pane.
  */
 export function closeStatsPane () {
   timerBlock.classList.remove('slide-open');
-  counterBlock.classList.remove('slide-open');
   statsPane.classList.remove('slide-open');
 
+  timerBlock.classList.remove('slide-across-left');
+
   timerBlock.classList.add('slide-close');
-  counterBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
 }
 

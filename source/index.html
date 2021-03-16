@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Pomodoro by Teddy Bears</title>
+    <link rel="stylesheet" href="./styles/settings.css">
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/timer.css">
     <link rel="stylesheet" href="./styles/stats.css">
@@ -58,8 +59,8 @@
             <!-- <button id="toggle-accessibility">Go Accessible! (Placeholder)</button> -->
         </div>
         <audio id = "timer-sound" src = "./sounds/quite-impressed-565.mp3"></audio>
-        <button id="stats-open-button" class="stats-button" type="button"><img width="80px" height="80px" src="./images/test.png" draggable="false" /></button>
-        <div class="counters-container"></div>
+        <button id="stats-open-button" class="stats-button" type="button"><img width="80px" height="80px" src="./images/test.png" /></button>
+        <button id="settings-open-button" class="settings-button" type="button"><img width="80px" height="80px" src="./images/settings.png" draggable="false"/></button>
     </main>
     
     <aside id="stats-container" class="stats-container">
@@ -121,11 +122,67 @@
             </div>
         </section>
     </aside>
+    <!-- Left-side info pane. -->
+    <aside id="settings-container" class="settings-container">
+        <button id="settings-close-button" type="button"><img width="15px" height="15px" src ="./images/xbutton.png" /></button>
+        <section id="settings-pane">
+            <h1>Settings</h1>
+            <div id="information" class="settings-box">
+                <div>
+                    <h2>What is a Pomodoro?</h2>
+                </div>
+                <div class="stats-flex">
+                    <div id="explanation-text">The Pomodoro Cycle is a tool for encouraging productivity.
+                        Each cycle allocates 25 minutes of time to work followed by a 5 minute rest period.
+                        After your 4th pomo, you'll earn an extended 15 minute break!
+                    </div>       
+                </div>
+            </div>
+            <div id="tutorial" class="settings-box">
+                <div>
+                    <h2>How does this app work?</h2>
+                </div>
+                <div class="stats-flex">
+                    <div id="tutorial-text">Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>"
+                        to end early. The text headers and ring color will indicate the
+                        <span id="work-text">work</span> and <span id="break-text">break</span> stages of a cycle.
+                        Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
+                    </div>
+                </div>
+            </div>
+            <div id="accessibility-overview" class="stats-box">
+                <div>
+                    <h2>Accessibility Options</h2>
+                </div>
+                <div class="stats-flex">
+                    <div class="settings-row">
+                        <div>Colorblindness</div>
+                        <div> 
+                            <label class="switch">
+                                <input id="colors-switch" type="checkbox">
+                                <span class="slider round"></span>
+                            </label> 
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <div>Keystroke Access</div>
+                        <div>
+                            <label class="switch">
+                                <input id="keystroke-switch" type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </aside>
     <script src="./scripts/timer.js" type="module"></script>
     <script src="./scripts/tasks.js" type="module"></script>
     <script src="./scripts/stats.js" type="module"></script>
     <script src="./scripts/accessibility.js" type="module"></script>
     <script src="./scripts/keystrokeAccess.js" type="module"></script>
+    <script src="./scripts/settings.js" type="module"></script>
   </body>
 </html>
  

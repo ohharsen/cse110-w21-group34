@@ -6,7 +6,7 @@ const ACCESSIBLE_CLASS = 'accessible';
    * Darkens backgrounds for better readibility of text
    * Colors picked according to AAA Guidilines
    */
-function toggleAccessibility () {
+export function toggleAccessibility () {
   if (!accessibleMode) {
     root.classList.add(ACCESSIBLE_CLASS);
   } else {
@@ -23,8 +23,3 @@ function toggleAccessibility () {
 export function isA11yEnabled () {
   return accessibleMode;
 }
-
-/** redundant, used for linting */
-toggleAccessibility();
-toggleAccessibility();
-// document.getElementById('toggle-accessibility').onclick = toggleAccessibility;
