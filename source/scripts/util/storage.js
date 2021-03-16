@@ -9,8 +9,8 @@ export const TODAY_DATE_ID = 'today';
 export const WEEK_START_ID = 'week-start';
 export const TODAY_POMO_ID = 'today-pomo-count';
 export const TOTAL_CYCLE_ID = 'total-cycle-count';
-export const TOTAL_DISTRACTION = 'total-distraction';
-export const TODAY_DISTRACTION = 'today-distraction';
+export const TOTAL_INTERRUPTION = 'total-interruption';
+export const TODAY_INTERRUPTION = 'today-interruption';
 
 /**
  * Update local storage with finished task information
@@ -124,41 +124,41 @@ export function clearWeeklyHistory () {
 }
 
 /**
- * Updates distractions in local storage
- * @param {Number} amount The number of distractions today
- * @return The updated number of distractions
+ * Updates interruptions in local storage
+ * @param {Number} amount The number of interruptions today
+ * @return The updated number of interruptions
  */
-export function incrDistractions () {
-  let todayDistractions = getDistractions();
+export function incrInterruptions () {
+  let todayInterruptions = getInterruptions();
 
-  // Update today's distractions
+  // Update today's interruptions
   if (isStorageDateToday()) {
-    todayDistractions++;
+    todayInterruptions++;
   } else {
-    todayDistractions = 1;
+    todayInterruptions = 1;
     setTodayStorageDate();
   }
-  window.localStorage.setItem(TODAY_DISTRACTION, String(todayDistractions));
+  window.localStorage.setItem(TODAY_INTERRUPTION, String(todayInterruptions));
 
-  // Update total distractions
-  const distractions = Number(window.localStorage.getItem(TOTAL_DISTRACTION));
-  window.localStorage.setItem(TOTAL_DISTRACTION, String(distractions + 1));
+  // Update total interruptions
+  const interruptions = Number(window.localStorage.getItem(TOTAL_INTERRUPTION));
+  window.localStorage.setItem(TOTAL_INTERRUPTION, String(interruptions + 1));
 }
 
 /**
- * Getter method for today's distractions
+ * Getter method for today's interruptions
  * @return {Number} storage data
  */
-export function getDistractions () {
-  return Number(window.localStorage.getItem(TODAY_DISTRACTION));
+export function getInterruptions () {
+  return Number(window.localStorage.getItem(TODAY_INTERRUPTION));
 }
 
 /**
- * Getter method for total distractions
+ * Getter method for total interruptions
  * @return {Number} storage data
  */
-export function getTotalDistractions () {
-  return Number(window.localStorage.getItem(TOTAL_DISTRACTION));
+export function getTotalInterruptions () {
+  return Number(window.localStorage.getItem(TOTAL_INTERRUPTION));
 }
 
 /**
