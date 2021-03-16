@@ -32,18 +32,18 @@ test('Checks if completing a task resets the task pomo counter', () => {
   expect(document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML).toBe('0');
 });
 
-test('Checks if task complete button is disabled when pomo count is 0', () => {
-  resetTaskPomo();
-  expect(document.getElementById(Constants.TASK_BTN_ID).disabled).toBe(true);
-});
+// test('Checks if task complete button is disabled when pomo count is 0', () => {
+//   resetTaskPomo();
+//   expect(document.getElementById(Constants.TASK_BTN_ID).disabled).toBe(true);
+// });
 
-test('Checks if task complete button is enabled when pomo count > 0', () => {
-  increaseTaskPomo();
-  expect(document.getElementById(Constants.TASK_BTN_ID).disabled).toBe(false);
-});
+// test('Checks if task complete button is enabled when pomo count > 0', () => {
+//   increaseTaskPomo();
+//   expect(document.getElementById(Constants.TASK_BTN_ID).disabled).toBe(false);
+// });
 
-test('Checks if completing a task disables the task complete button', () => {
-  resetTaskPomo();
-  increaseTaskPomo();
-  expect(document.getElementById(Constants.TASK_BTN_ID).disabled).toBe(true);
-});
+// test('Checks if completing a task disables the task complete button', () => {
+//   resetTaskPomo();
+//   increaseTaskPomo();
+//   expect(document.getElementById(Constants.TASK_BTN_ID).disabled).toBe(true);
+// });

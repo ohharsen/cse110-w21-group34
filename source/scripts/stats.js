@@ -15,7 +15,7 @@ statsCloseButton.onclick = closeStatsPane;
 /* istanbul ignore next */
 /**
  * Updates today and total stats when pomo cycle is complete,
- * task is complete, or distraction occurs
+ * task is complete, or interruption occurs
  */
 export function updateStats () {
   displayTodayStats();
@@ -58,24 +58,24 @@ export function closeStatsPane () {
  * Displays the user's current all-time statistics on the statistics pane.
  * Total statistics include:
  *    - Total pomodoros completed
- *    - Total avg. distractions per pomodoro
+ *    - Total avg. interruptionss per pomodoro
  *    - Total tasks completed
  *    - Most pomodoros completed in a single day
  */
 export function displayTotalStats () {
   const totalPomoElem = document.getElementById('total-pomodoros');
-  const totalDistractElem = document.getElementById('total-distractions');
+  const totalInterruptElem = document.getElementById('total-interruptions');
   const bestPomoElem = document.getElementById('total-best-pomo');
   const bestTimeElem = document.getElementById('total-best-time');
   const totalTasksElem = document.getElementById('total-tasks');
 
   const totalPomoCount = Storage.getTotalPomoCount();
-  const totalDistractCount = Storage.getTotalDistractions();
+  const totalInterruptCount = Storage.getTotalDistractions();
   const bestPomoCount = Storage.getBestDailyPomoCount();
   const totalTaskCount = Storage.getTotalTasksCount();
 
   totalPomoElem.textContent = totalPomoCount;
-  totalDistractElem.textContent = (totalDistractCount / (totalPomoCount || 1)).toFixed(2);
+  totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(2);
   bestPomoElem.textContent = bestPomoCount;
   bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / 60)).toFixed(2);
   totalTasksElem.textContent = totalTaskCount;
@@ -86,7 +86,7 @@ export function displayTotalStats () {
  * Displays the user's statistics for the day on the statistics pane.
  * Today statistics include:
  *    - Today's pomodoros completed
- *    - Today's avg. distractions per pomodoro
+ *    - Today's avg. interruptions per pomodoro
  *    - Today's tasks completed
  *    - Most pomodoros completed in a single day
  */
@@ -94,15 +94,15 @@ export function displayTodayStats () {
   // setting variables for html elements to modify
   const todayPomoElem = document.getElementById('today-pomodoros');
   const todayTasksElem = document.getElementById('today-tasks');
-  const todayDistractElem = document.getElementById('today-distractions');
+  const todayInterruptElem = document.getElementById('today-interruptions');
 
   // extracting daily stats data to be used for calculation
   const todayPomoCount = Storage.getPomoCount();
-  const todayDistractCount = Storage.getDistractions();
+  const todayInterruptCount = Storage.getDistractions();
   const todayTaskCount = Storage.getTasksCount();
 
   // calculating daily stats with extracted data and displaying to UI
   todayPomoElem.textContent = todayPomoCount;
-  todayDistractElem.textContent = todayDistractCount;
+  todayInterruptElem.textContent = todayInterruptCount;
   todayTasksElem.textContent = todayTaskCount;
 }

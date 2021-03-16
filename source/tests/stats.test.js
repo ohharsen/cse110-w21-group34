@@ -1,12 +1,12 @@
 import * as Constants from '../scripts/constants';
 import * as Stats from '../scripts/stats';
 import * as Storage from '../scripts/util/storage';
-import { taskComplete } from '../scripts/tasks';
+import { completeTask } from '../scripts/tasks';
  
 describe('Daily Statistics', () => {
   const todayPomosID = 'today-pomodoros';
   const todayTasksID = 'today-tasks';
-  const todayDistractionsID = 'today-distractions';
+  const todayDistractionsID = 'today-interruptions';
 
   beforeEach(() => {
     localStorage.clear();
@@ -18,22 +18,11 @@ describe('Daily Statistics', () => {
     expect(document.getElementById(todayPomosID).textContent).toBe('0');
   });
 
-  test('Check that pomodoro cycle count display correctly reflects cycle count', () =>{
+  test('Check that pomodoro cycle count display correctly reflects cycle count', () => {
     localStorage.setItem(Storage.TODAY_POMO_ID, '15');
     Stats.displayTodayStats();
     expect(document.getElementById(todayPomosID).textContent).toBe('15');  
   })
-
-  test ('Check to see that pomo cycle count resets when it is new day', ()=>{
-    localStorage.setItem(Storage.TODAY_POMO_ID, '6');
-    Stats.displayTodayStats();
-    expect(document.getElementById(todayPomosID).textContent).toBe('6');
-    // New day
-    new Date(2022, 3, 3)
-    Storage.incrPomoCount(); // 3-3-2022
-    Stats.displayTodayStats();
-    expect(document.getElementById(todayPomosID).textContent).toBe('1');
-  });
 
   // Tests on Tasks completed  
   test('Check when there are zero tasks completed', () => {
@@ -41,37 +30,26 @@ describe('Daily Statistics', () => {
     expect(document.getElementById(todayTasksID).textContent).toBe('0');
   });
   
-  test('Check that today tasks count display correctly reflects today tasks', () =>{
+  test('Check that today tasks count display correctly reflects today tasks', () => {
     localStorage.setItem(Storage.TODAY_TASK_ID, '4');
     Stats.displayTodayStats();
     expect(document.getElementById(todayTasksID).textContent).toBe('4');  
   })
-  
-  test ('Check to see that task count resets when it is new day', ()=>{
-    let storage = taskComplete(true, new Date(2021, 3, 2)); // 3-2-2021
-    localStorage.setItem(Constants.TODAY_TASK_ID, '5');
-    Stats.displayTodayStats();
-    expect(document.getElementById(todayTasksID).textContent).toBe('5');
-    // New day
-    storage = taskComplete(false, new Date(2022, 3, 3)); // 3-3-2022
-    Stats.displayTodayStats();
-    expect(document.getElementById(todayTasksID).textContent).toBe('1');
-  });
 
-  // Tests on Distractions 
-  test('Check when there are zero distractions', () => {
+  // Tests on Interruptions 
+  test('Check when there are zero interruptions', () => {
     Stats.displayTodayStats();
     expect(document.getElementById(todayDistractionsID).textContent).toBe('0');
   });
   
-  test('Check that today distractions count display correctly reflects today distractions', () =>{
+  test('Check that today distractions count display correctly reflects today distractions', () => {
     localStorage.setItem(Storage.TODAY_DISTRACTION, '6');
     Stats.displayTodayStats();
     expect(document.getElementById(todayDistractionsID).textContent).toBe('6');  
   })
   
-  test ('Check to see that distractions count resets when it is new day', ()=>{
-    localStorage.setItem(Constants.TODAY_DISTRACTION, '17');
+  test ('Check to see that interruptions count resets when it is new day', () => {
+    localStorage.setItem(Storage.TODAY_DISTRACTION, '17');
     Stats.displayTodayStats();
     expect(document.getElementById(todayDistractionsID).textContent).toBe('17');
     // New day
@@ -84,7 +62,7 @@ describe('Daily Statistics', () => {
 describe('Total Statistics', () => {
   const totalPomosID = 'total-pomodoros';
   const totalTasksID = 'total-tasks';
-  const totalDistractionsID = 'total-distractions';
+  const totalDistractionsID = 'total-interruptions';
 
   beforeEach(() => {
     localStorage.clear();
@@ -100,7 +78,7 @@ describe('Total Statistics', () => {
     expect(document.getElementById(totalTasksID).textContent).toBe('0');
   });
 
-  test('if the total avg. distractions display defaults to 0.00', () => {
+  test('if the total avg. interruptions display defaults to 0.00', () => {
     Stats.displayTotalStats();
     expect(document.getElementById(totalDistractionsID).textContent).toBe('0.00');
   });

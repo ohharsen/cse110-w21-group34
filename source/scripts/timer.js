@@ -1,5 +1,5 @@
 import * as Constants from './constants.js';
-import * as Storage from './util/storage.js'
+import * as Storage from './util/storage.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
 
@@ -225,14 +225,14 @@ export function timeFraction (timer, pomoState) {
  * @param {String} type the timer type indicating work, long break, or short break
  */
 export function timerTypeIndicator (type) {
-  document.getElementById('work-indicator').style.borderStyle = 'hidden';
-  document.getElementById('long-break-indicator').style.borderStyle = 'hidden';
-  document.getElementById('short-break-indicator').style.borderStyle = 'hidden';
+  document.getElementById('work-indicator').classList.remove('highlight');
+  document.getElementById('long-break-indicator').classList.remove('highlight');
+  document.getElementById('short-break-indicator').classList.remove('highlight');
   if (type === Constants.timerOptions.LONG) {
-    document.getElementById('long-break-indicator').style.borderStyle = 'solid';
+    document.getElementById('long-break-indicator').classList.add('highlight');
   } else if (type === Constants.timerOptions.SHORT) {
-    document.getElementById('short-break-indicator').style.borderStyle = 'solid';
+    document.getElementById('short-break-indicator').classList.add('highlight');
   } else {
-    document.getElementById('work-indicator').style.borderStyle = 'solid';
+    document.getElementById('work-indicator').classList.add('highlight');
   }
 }

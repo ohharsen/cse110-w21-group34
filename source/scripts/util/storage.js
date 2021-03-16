@@ -33,12 +33,12 @@ export function incrTasks () {
   window.localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 }
 
-export function getTasksCount() {
+export function getTasksCount () {
   return Number(window.localStorage.getItem(TODAY_TASK_ID));
 }
 
 /**
- * 
+ *
  * @returns Total tasks completed
  */
 export function getTotalTasksCount () {
@@ -87,7 +87,7 @@ export function getTotalPomoCount () {
   return Number(window.localStorage.getItem(TOTAL_POMO_ID));
 }
 
-export function getBestDailyPomoCount() {
+export function getBestDailyPomoCount () {
   return Number(window.localStorage.getItem(BEST_DAILY_POMO_ID));
 }
 
@@ -140,7 +140,7 @@ export function getDistractions () {
  * Updates distractions in local storage
  * @return Today's distractions
  */
- export function getTotalDistractions () {
+export function getTotalDistractions () {
   return Number(window.localStorage.getItem(TOTAL_DISTRACTION));
 }
 
@@ -158,9 +158,9 @@ export function isStorageDateToday () {
 }
 
 /**
- * 
- * @param {Date} date1 
- * @param {Date} date2 
+ *
+ * @param {Date} date1
+ * @param {Date} date2
  */
 export function isSameDay (date1, date2) {
   const isSameDate = date1.getDate() === date2.getDate();

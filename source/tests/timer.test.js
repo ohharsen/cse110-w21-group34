@@ -9,6 +9,10 @@ import {
 } from '../scripts/timer';
 import * as Storage from '../scripts/util/storage';
 
+beforeEach(() => {
+    localStorage.clear();
+});
+
 test('checks break toggle', () => {
     expect(togglePomoBreak(true)).toBe(false);
     expect(togglePomoBreak(false)).toBe(true);
@@ -37,7 +41,7 @@ test('checks reset state', () => {
     expect(resetTimer()).toStrictEqual();
 });
   
-test('Check resetting timer increments distractions', () => {
+test('Check resetting timer increments interruptions', () => {
     window.confirm = function () {
         return true;
     };
@@ -45,15 +49,15 @@ test('Check resetting timer increments distractions', () => {
     expect(Storage.getDistractions()).toBe(1);
 });
 
-test('Check multiple timer resets increments distractions', () => {
-    const targetDistractions = 6;
-    for (let i = 0; i < targetDistractions; i++) {
+test('Check multiple timer resets increments interruptions', () => {
+    const targetInterruptions = 6;
+    for (let i = 0; i < targetInterruptions; i++) {
         window.confirm = function () {
             return true;
         };
         resetTimer();
     }
-    expect(Storage.getDistractions()).toBe(targetDistractions);
+    expect(Storage.getDistractions()).toBe(targetInterruptions);
 });
 
 test('Check current time display', () => {
@@ -78,17 +82,17 @@ test('Test timer fraction', () => {
 
 test('test timerTypeIndicator', () => {
     timerTypeIndicator(Constants.timerOptions.LONG);
-    expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
-    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('solid');
-    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('work-indicator').classList[1]).toBe(undefined);
+    expect(document.getElementById('long-break-indicator').classList[1]).toBe('highlight');
+    expect(document.getElementById('short-break-indicator').classList[1]).toBe(undefined);
 
     timerTypeIndicator(Constants.timerOptions.SHORT);
-    expect(document.getElementById('work-indicator').style.borderStyle).toBe('hidden');
-    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
-    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('solid');
+    expect(document.getElementById('work-indicator').classList[1]).toBe(undefined);
+    expect(document.getElementById('long-break-indicator').classList[1]).toBe(undefined);
+    expect(document.getElementById('short-break-indicator').classList[1]).toBe('highlight');
 
     timerTypeIndicator(Constants.timerOptions.POMO);
-    expect(document.getElementById('work-indicator').style.borderStyle).toBe('solid');
-    expect(document.getElementById('long-break-indicator').style.borderStyle).toBe('hidden');
-    expect(document.getElementById('short-break-indicator').style.borderStyle).toBe('hidden');
+    expect(document.getElementById('work-indicator').classList[1]).toBe('highlight');
+    expect(document.getElementById('long-break-indicator').classList[1]).toBe(undefined);
+    expect(document.getElementById('short-break-indicator').classList[1]).toBe(undefined);
 });

@@ -22,18 +22,20 @@ We were deciding on whether task button should be disabled in certain scenarios.
 Chosen option: Disabled unless timer is finished, because
 
 * Following pomodoro standards, task may only be completed when timer is not running
-* Less user distraction
+* Less user distraction which follows our design choices
 * Code implementation is simpler
+  - doesn't require as many logical cases for disabling task button
+  - less code to test and review
 
-Pros and Cons of Other Options
+## Pros and Cons of Other Options
 
-Disabled after one click
+### Disabled after one click
 
 * Pro: only one task can be completed at a time 
 * Con: minimal user flexibility
 * Con: doesn't follow pomodoro standards
 
-Enabled
+### Enabled at all times
 
 * Pro: more user flexibility
 * Pro: user can finish multiple tasks per cycle
