@@ -46,5 +46,3 @@ export function removeAll () {
   Stats.timerBlock.classList.remove('slide-close-settings');
   settingsPane.classList.remove('slide-close-settings');
 }
-
-// Checking if can PR properly
