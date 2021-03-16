@@ -7,7 +7,6 @@ const countdownText = document.getElementById('countdownText');
 const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
 const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
 
-
 const yesButton = document.getElementById('reset-yes-button');
 const noButton = document.getElementById('reset-no-button');
 
