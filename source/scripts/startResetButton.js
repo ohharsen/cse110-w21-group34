@@ -7,6 +7,10 @@ const countdownText = document.getElementById('countdownText');
 const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
 const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
 
+
+const yesButton = document.getElementById('reset-yes-button');
+const noButton = document.getElementById('reset-no-button');
+
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
@@ -238,8 +242,8 @@ export function resetPrompt () {
   }
   startStopButton.style.display = 'none';
   document.getElementById('prompt').style.display = 'flex';
-  const yesButton = document.getElementById('reset-yes-button');
-  const noButton = document.getElementById('reset-no-button');
+  yesButton.disabled = false;
+  noButton.disabled = false;
   yesButton.addEventListener('click', resetConfirm);
   noButton.addEventListener('click', resetConfirm);
 }
@@ -250,6 +254,9 @@ export function resetPrompt () {
 export function resetConfirm (event) {
   startStopButton.style.display = '';
   document.getElementById('prompt').style.display = 'none';
+  document.getElementById('reset-yes-button');
+  yesButton.disabled = true;
+  noButton.disabled = true;
   if (event.target.innerText === 'Yes') {
     resetTimer();
     first = false;

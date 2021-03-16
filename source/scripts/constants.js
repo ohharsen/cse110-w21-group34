@@ -42,6 +42,8 @@ export const keys = {
   SPACE: 'Space',
   ENTER: 'Enter',
   T: 'KeyT',
+  Y: 'KeyY',
+  N: 'KeyN',
   LEFT_ARROW: 'ArrowLeft',
   RIGHT_ARROW: 'ArrowRight',
   DOWN_ARROW: 'ArrowDown'

@@ -40,6 +40,12 @@ function keyControls (e) {
       e.preventDefault();
       startResetController();
       break;
+    case 'KeyY':
+      document.getElementById('reset-yes-button').click();
+      break;
+    case 'KeyN':
+      document.getElementById('reset-no-button').click();
+      break;
     case 'KeyT':
     case 'ArrowDown':
       e.preventDefault();

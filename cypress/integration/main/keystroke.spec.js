@@ -22,6 +22,7 @@ describe('Timer Keys Test', ()=>{
         cy.document()
         .trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true})
         .trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true})
+        .trigger(Constants.events.KEYDOWN, {code: Constants.keys.Y, force: true})
         .get('#' + Constants.START_STOP_ID).contains(Constants.BEGIN_BTN_TXT);
     });
 });
