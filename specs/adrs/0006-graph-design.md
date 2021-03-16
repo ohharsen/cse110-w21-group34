@@ -12,12 +12,12 @@ We were deciding on our graph format: to use a bar graph or line graph.
 
 * Bar graph
   - bar for each day (Monday - Sunday)
-  - x axis: number of pomos per day
-  - y axis: day of week
+  - x axis: day of week
+  - y axis: pomos per day
 * Line graph
   - Point for each day (Monday - Sunday)
-  - x axis: number of pomos per day
-  - y axis: day of week
+  - x axis: day of week
+  - y axis: pomos per day
   - line connecting days
 
 ## Decision Outcome
