@@ -14,6 +14,7 @@ let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
 let interval;
+let firstReset = true; // Is rest being clicked for the first time
 
 if (startStopButton) {
   startStopButton.classList.toggle('break-button');
@@ -229,13 +230,11 @@ export function resetTimer () {
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
-let first = true;
-
 /*
  * Checks if the reset button has been pressed before. If yes then resets the timer directly, otherwise asks for confirmation.
  */
 export function resetPrompt () {
-  if (!first) {
+  if (!firstReset) {
     resetTimer();
     return;
   }
@@ -258,10 +257,8 @@ export function resetConfirm (event) {
   noButton.disabled = true;
   if (event.target.innerText === 'Yes') {
     resetTimer();
-    first = false;
-  } else {
-    first = false;
   }
+  firstReset = false;
 }
 
 /**

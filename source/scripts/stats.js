@@ -1,4 +1,3 @@
-// <<<<<<< HEAD
 import * as Constants from './constants.js';
 import * as Settings from './settings.js';
 import { drawGraph } from './graph.js';
