@@ -4,15 +4,10 @@ const TASK_COUNT_VALID_ENTER = '0';
 const TASK_COUNT_INVALID_ENTER = '1';
 const STATS_SLIDE_OPEN  = 'slide-open';
 const STATS_SLIDE_CLOSE = 'slide-close';
-
-<<<<<<< HEAD
-describe('Timer Keys Test', () => {
-=======
 const SETTINGS_SLIDE_OPEN  = 'slide-open-settings';
 const SETTINGS_SLIDE_CLOSE = 'slide-close-settings';
 
 describe('Timer Keys Test', ()=>{
->>>>>>> main
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/');
     });
@@ -30,11 +25,7 @@ describe('Timer Keys Test', ()=>{
     });
 });
 
-<<<<<<< HEAD
-describe('Stats Pane Test', () => {
-=======
-describe('Stats and Settings Pane Test', ()=>{
->>>>>>> main
+describe('Pane Tests', ()=>{
     beforeEach(() => {
         cy.visit(Constants.HOST_ADDRESS);
     });

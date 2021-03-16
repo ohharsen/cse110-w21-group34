@@ -108,6 +108,17 @@
     line-height: 150%;
 }
 
+.settings-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    background: var(--white-a1);
+    border-radius: 15px;
+    border: 0;
+}
+
 .settings-button:hover {
     opacity: 90%;
 }
@@ -136,6 +147,27 @@
     outline: 0;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+#settings-close-button:hover {
+    background: var(--white-a3);
+}
+
+#settings-close-button:active {
+    background: var(--white-a1);
+}
+
+#settings-close-button:focus {
+    outline: 0;
+}
+
+#settings-close-button:focus:not(:focus-visible) {
+    outline: 0;
+}
+
+#settings-close-button:focus-visible {
+    box-shadow: black 0px 0px 0px 2px;
 }
 
 #work-text {

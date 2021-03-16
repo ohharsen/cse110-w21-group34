@@ -1,14 +1,16 @@
 import * as Stats from './stats.js';
-import { toggleAccessibility } from './accessibility.js';
+import { toggleAccessibility, toggleKeystroke } from './accessibility.js';
 
 export const settingsPane = document.getElementById('settings-container');
 export const settingsOpenButton = document.getElementById('settings-open-button');
 export const settingsCloseButton = document.getElementById('settings-close-button');
 export const settingsColorButton = document.getElementById('colors-switch');
+export const settingsKeysButton = document.getElementById('keystroke-switch');
 
 settingsOpenButton.onclick = openSettingsPane;
 settingsCloseButton.onclick = closeSettingsPane;
 settingsColorButton.onclick = toggleAccessibility;
+settingsKeysButton.onclick = toggleKeystroke;
 
 export let isOpenSettingsPane = false;
 
@@ -30,6 +32,7 @@ export function openSettingsPane () {
   settingsPane.classList.add('slide-open-settings');
 
   isOpenSettingsPane = true;
+  toggleButtons();
 }
 
 /* istanbul ignore next */
@@ -46,6 +49,18 @@ export function closeSettingsPane () {
   settingsPane.classList.add('slide-close-settings');
 
   isOpenSettingsPane = false;
+  toggleButtons();
+}
+
+/**
+ * Enables / Disables the respective settings pane buttons based on the current
+ * state.
+ */
+export function toggleButtons () {
+  settingsOpenButton.disabled = isOpenSettingsPane;
+  settingsCloseButton.disabled = !isOpenSettingsPane;
+  settingsColorButton.disabled = !isOpenSettingsPane;
+  settingsKeysButton.disabled = !isOpenSettingsPane;
 }
 
 export function removeAll () {

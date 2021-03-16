@@ -30,7 +30,7 @@ export function updateStats () {
 /**
  * Opens the statistics pane.
  */
- export function openStatsPane () {
+export function openStatsPane () {
   updateStats();
 
   Settings.removeAll();
@@ -43,6 +43,7 @@ export function updateStats () {
   }
   statsPane.classList.add('slide-open');
   isOpenStatsPane = true;
+  toggleButtons();
 }
 
 /* istanbul ignore next */
@@ -58,7 +59,18 @@ export function closeStatsPane () {
 
   timerBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
+
   isOpenStatsPane = false;
+  toggleButtons();
+}
+
+/**
+ * Enables / Disables the respective stats pane buttons based on the current
+ * state.
+ */
+export function toggleButtons () {
+  statsOpenButton.disabled = isOpenStatsPane;
+  statsCloseButton.disabled = !isOpenStatsPane;
 }
 
 /* istanbul ignore next */
