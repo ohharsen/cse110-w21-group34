@@ -29,10 +29,13 @@ export const events = {
  * @enum {string}
  */
 export const keys = {
+  ESCAPE: 'Escape',
   SPACE: 'Space',
   ENTER: 'Enter',
+  T: 'KeyT',
   LEFT_ARROW: 'ArrowLeft',
-  RIGHT_ARROW: 'ArrowRight'
+  RIGHT_ARROW: 'ArrowRight',
+  DOWN_ARROW: 'ArrowDown'
 };
 
 /**

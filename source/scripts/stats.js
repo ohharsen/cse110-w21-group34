@@ -8,7 +8,9 @@ export const counterBlock = document.getElementsByClassName('counters-container'
 export const statsPane = document.getElementById('stats-container');
 export const statsOpenButton = document.getElementById('stats-open-button');
 export const statsCloseButton = document.getElementById('stats-close-button');
-export const graphCanvas = document.getElementById('weekly-graph');
+const graphCanvas = document.getElementById('weekly-graph');
+
+export let isOpenStatsPane = false;
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
@@ -40,6 +42,7 @@ export function updateStats () {
     timerBlock.classList.add('slide-open');
   }
   statsPane.classList.add('slide-open');
+  isOpenStatsPane = true;
 }
 
 /* istanbul ignore next */
@@ -55,6 +58,7 @@ export function closeStatsPane () {
 
   timerBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
+  isOpenStatsPane = false;
 }
 
 /* istanbul ignore next */

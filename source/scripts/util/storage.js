@@ -39,7 +39,7 @@ export function getTasksCount () {
 
 /**
  *
- * @returns Total tasks completed
+ * @return Total tasks completed
  */
 export function getTotalTasksCount () {
   return Number(window.localStorage.getItem(TOTAL_TASK_ID));
@@ -173,7 +173,7 @@ export function isSameDay (date1, date2) {
  * Check if today is in the same week as week start
  * @param {Date} date1 The earlier date
  * @param {Date} date2 The later date
- * @returns boolean is it the same week
+ * @return boolean is it the same week
  */
 function isSameWeek (date1, date2) {
   const checkDate = new Date(date2);
