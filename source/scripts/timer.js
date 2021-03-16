@@ -68,6 +68,7 @@ export function beginCountdown (duration, textDisplay) {
     currentTime(timer, textDisplay);
     document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * 220)} 220`);
     if (timer < 0) {
+      hidePrompt();
       clearInterval(interval);
       document.getElementById('timer-sound').play();
       document.getElementById('countdownText').classList.remove('hover-text');
@@ -206,15 +207,22 @@ export function resetPrompt () {
   noButton.addEventListener('click', resetConfirm);
 }
 
+/**
+ * Function to hide the reset prompt
+ * Called whenver the prompt is answere or a timer goes off
+ */
+export function hidePrompt(){
+  startStopButton.style.display = '';
+  document.getElementById('prompt').style.display = 'none';
+  yesButton.disabled = true;
+  noButton.disabled = true;
+}
+
 /*
  * Resets the timer if yes button is clicked, and continues the cycle otherwise.
  */
 export function resetConfirm (event) {
-  startStopButton.style.display = '';
-  document.getElementById('prompt').style.display = 'none';
-  document.getElementById('reset-yes-button');
-  yesButton.disabled = true;
-  noButton.disabled = true;
+  hidePrompt();
   if (event.target.innerText === 'Yes') {
     resetTimer();
   }

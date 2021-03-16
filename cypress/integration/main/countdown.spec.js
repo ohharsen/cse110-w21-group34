@@ -33,6 +33,15 @@ describe('Countdown Test', ()=>{
         });
     });
 
+    it('Reset prompt hide check', () => {
+        cy.clock();
+        cy.get('#start-stop-button').trigger('click');
+        cy.tick(60000);
+        cy.get('#start-stop-button').trigger('click');
+        cy.tick(1500000);
+        cy.get('#start-stop-button').contains('Begin')
+    });
+
     it('One full cycle check', () => {
         cy.clock();
         cy.get('#start-stop-button').trigger('click');
