@@ -10,6 +10,7 @@ const SETTINGS_SLIDE_CLOSE = 'slide-close-settings';
 describe('Timer Keys Test', ()=>{
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/');
+        window.Worker = null;
     });
 
     it('Space bar start timer check', () => {
@@ -28,6 +29,14 @@ describe('Timer Keys Test', ()=>{
 describe('Pane Tests', ()=>{
     beforeEach(() => {
         cy.visit(Constants.HOST_ADDRESS);
+        if (window.navigator && navigator.serviceWorker) {
+            navigator.serviceWorker.getRegistrations()
+            .then((registrations) => {
+              registrations.forEach((registration) => {
+                registration.unregister()
+              })
+            })
+          }
     });
 
     it('Left Arrow Then Right Arrow toggles stats pane', () => {
@@ -145,6 +154,14 @@ describe('Enter Complete Task Tests', () => {
 
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/');
+        if (window.navigator && navigator.serviceWorker) {
+            navigator.serviceWorker.getRegistrations()
+            .then((registrations) => {
+              registrations.forEach((registration) => {
+                registration.unregister()
+              })
+            })
+          }
     });
 
     it('During Break T completes a task', () => {

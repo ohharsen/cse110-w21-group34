@@ -3,7 +3,7 @@ import {
     togglePomoBreak,
     startTimer,
     resetTimer,
-    currentTime,
+    displayTime,
     timeFraction,
     timerTypeIndicator,
 } from '../scripts/timer';
@@ -61,13 +61,13 @@ test('Check multiple timer resets increments interruptions', () => {
 });
 
 test('Check current time display', () => {
-    currentTime(1500, document.querySelector('#countdownText'));
+    displayTime(1500);
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("25:00");
   
-    currentTime(319, document.querySelector('#countdownText'));
+    displayTime(319);
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("05:19");
   
-    currentTime(23, document.querySelector('#countdownText'));
+    displayTime(23);
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("00:23");
 });
   
