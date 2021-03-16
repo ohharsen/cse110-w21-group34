@@ -18,7 +18,7 @@ statsCloseButton.onclick = closeStatsPane;
  * Updates today and total stats when pomo cycle is complete,
  * task is complete, or interruption occurs
  */
- export function updateStats () {
+export function updateStats () {
   displayTodayStats();
   displayTotalStats();
   drawGraph(graphCanvas, JSON.parse(window.localStorage.getItem(Constants.WEEK_HISTORY)));
@@ -67,7 +67,7 @@ export function closeStatsPane () {
  *    - Total tasks completed
  *    - Most pomodoros completed in a single day
  */
- export function displayTotalStats () {
+export function displayTotalStats () {
   const totalPomoElem = document.getElementById('total-pomodoros');
   const totalInterruptElem = document.getElementById('total-interruptions');
   const bestPomoElem = document.getElementById('total-best-pomo');
@@ -86,10 +86,6 @@ export function closeStatsPane () {
   totalTasksElem.textContent = totalTaskCount;
 }
 
-
-
-
-
 /* istanbul ignore next */
 /**
  * Displays the user's statistics for the day on the statistics pane.
@@ -99,7 +95,7 @@ export function closeStatsPane () {
  *    - Today's tasks completed
  *    - Most pomodoros completed in a single day
  */
- export function displayTodayStats () {
+export function displayTodayStats () {
   // setting variables for html elements to modify
   const todayPomoElem = document.getElementById('today-pomodoros');
   const todayTasksElem = document.getElementById('today-tasks');
@@ -115,4 +111,3 @@ export function closeStatsPane () {
   todayInterruptElem.textContent = todayInterruptCount;
   todayTasksElem.textContent = todayTaskCount;
 }
-
