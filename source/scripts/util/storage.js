@@ -33,13 +33,17 @@ export function incrTasks () {
   window.localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
 }
 
+/**
+ * Getter method for number of tasks completed today
+ * @returns {Number} storage data
+ */
 export function getTasksCount () {
   return Number(window.localStorage.getItem(TODAY_TASK_ID));
 }
 
 /**
- *
- * @return Total tasks completed
+ * Getter method for total tasks completed
+ * @return {Number} storage data
  */
 export function getTotalTasksCount () {
   return Number(window.localStorage.getItem(TOTAL_TASK_ID));
@@ -79,20 +83,33 @@ export function incrPomoCount () {
   return todayPomos;
 }
 
+/**
+ * Getter method for number of pomos completed today
+ * @returns {Number} storage data
+ */
 export function getPomoCount () {
   return Number(window.localStorage.getItem(TODAY_POMO_ID));
 }
 
+/**
+ * Getter method for total pomos completed
+ * @returns {Number} storage data
+ */
 export function getTotalPomoCount () {
   return Number(window.localStorage.getItem(TOTAL_POMO_ID));
 }
 
+/**
+ * Getter method for best daily count
+ * @returns {Number} storage data
+ */
 export function getBestDailyPomoCount () {
   return Number(window.localStorage.getItem(BEST_DAILY_POMO_ID));
 }
 
 /**
- * Updates the pomo count for the current day of the week in local storage.
+ * Getter method for week history of pomos completed
+ * @returns {Array}  storage data
  */
 export function getWeeklyHistory () {
   return JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
@@ -129,38 +146,50 @@ export function incrDistractions () {
 }
 
 /**
- * Updates distractions in local storage
- * @return Today's distractions
+ * Getter method for today's distractions
+ * @return {Number} storage data
  */
 export function getDistractions () {
   return Number(window.localStorage.getItem(TODAY_DISTRACTION));
 }
 
 /**
- * Updates distractions in local storage
- * @return Today's distractions
+ * Getter method for total distractions
+ * @return {Number} storage data
  */
 export function getTotalDistractions () {
   return Number(window.localStorage.getItem(TOTAL_DISTRACTION));
 }
 
+/**
+ * Getter method for date in storage that counts as today
+ * @returns {Date} storage data
+ */
 export function getTodayStorageDate () {
   return new Date(window.localStorage.getItem(TODAY_DATE_ID) || new Date(0));
 }
 
+/**
+ * Updates date in storage to today's date
+ */
 export function setTodayStorageDate () {
   const today = new Date();
   window.localStorage.setItem(TODAY_DATE_ID, today.toString());
 }
 
+/**
+ * Checks if the date in storage is the same as today's date
+ * @returns {Boolean} true if they are the same, false otherwise
+ */
 export function isStorageDateToday () {
   return isSameDay(new Date(), getTodayStorageDate());
 }
 
 /**
- *
+ * Checks if two date values are the same MM/DD/YYYY
  * @param {Date} date1
  * @param {Date} date2
+ * @returns {Boolean} true if they are the same, false otherwise
  */
 export function isSameDay (date1, date2) {
   const isSameDate = date1.getDate() === date2.getDate();
@@ -173,9 +202,9 @@ export function isSameDay (date1, date2) {
  * Check if today is in the same week as week start
  * @param {Date} date1 The earlier date
  * @param {Date} date2 The later date
- * @return boolean is it the same week
+ * @return {Boolean} true if they are the same week, false otherwise
  */
-function isSameWeek (date1, date2) {
+export function isSameWeek (date1, date2) {
   const checkDate = new Date(date2);
 
   // iterate until previous week start is reached
