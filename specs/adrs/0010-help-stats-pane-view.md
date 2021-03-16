@@ -24,12 +24,13 @@ We were deciding on how help and stats pane can appear on screen.
 Chosen option: One pane at a time, because
 
 * Less clutter on screen
+  - it is guaranteed that there will be ample space in the screen
 * Clean transition for beautiful user interface
 * Doesn't impact styling of other components
 
-Pros and Cons of Other Options
+## Pros and Cons of Other Options
 
-Both appear
+### Both can appear
 
 * Pro: more information on the screen
 * Pro: user can decide which pane they want to look at

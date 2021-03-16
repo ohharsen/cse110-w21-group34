@@ -23,7 +23,7 @@
     <main>
         <div class="center-container">
             <div class="pomo-indicator-container"> 
-                <div class="pomo-indicator" id="work-indicator">Pomodoro</div>
+                <div class="pomo-indicator highlight" id="work-indicator">Pomodoro</div>
                 <div class="pomo-indicator" id="short-break-indicator">Short Break</div>
                 <div class="pomo-indicator" id="long-break-indicator">Long Break</div>
             </div>
@@ -37,10 +37,11 @@
                 <div class="timer" id = "clockTimer">
                   <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <g class="timer_circle_container"> <!-- The containter for grouping multiple svg elements -->
-                      <circle cx="50%" cy="43" r="35" style="fill:white" />
+                      <circle cx="50%" cy="43" r="35" style="fill:white; stroke: var(--grey); stroke-width: 2px;" />
                       <path
                         id="base-timer-path-remaining"
-                        stroke-dasharray="283"
+                        stroke = 'var(--grey)'
+                        stroke-dasharray = "220 220"
                         class="timer_path_elapsed"
                         d="
                           M 8, 50
@@ -77,8 +78,8 @@
                         <div><span id="today-pomodoros">____</span> po.</div>
                     </div>
                     <div class="stats-row">
-                        <div>Distractions:</div>
-                        <div><span id="today-distractions">____</span></div>
+                        <div>Interruptions:</div>
+                        <div><span id="today-interruptions">____</span></div>
                     </div>
                     <div class="stats-row">
                         <div>Total Tasks:</div>
@@ -96,8 +97,8 @@
                         <div><span id="total-pomodoros">____</span> po.</div>
                     </div>
                     <div class="stats-row">
-                        <div>Avg. Distractions:</div>
-                        <div><span id="total-distractions">____</span> per po.</div>
+                        <div>Avg. Interruptions:</div>
+                        <div><span id="total-interruptions">____</span> per po.</div>
                     </div>
                     <div class="stats-row">
                         <div>Best Day:</div>
@@ -142,16 +143,14 @@
                     <h2>How does this app work?</h2>
                 </div>
                 <div class="stats-flex">
-                    <div class="stats-row">
-                        <div id="tutorial-text">Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>"
-                            to end early. The text headers and ring color will indicate the
-                            <span id="work-text">work</span> and <span id="break-text">break</span> stages of a cycle.
-                            Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
-                        </div>
+                    <div id="tutorial-text">Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>"
+                        to end early. The text headers and ring color will indicate the
+                        <span id="work-text">work</span> and <span id="break-text">break</span> stages of a cycle.
+                        Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
                     </div>
                 </div>
             </div>
-            <div id="accessibility-overview" class="settings-box">
+            <div id="accessibility-overview" class="stats-box">
                 <div>
                     <h2>Accessibility Options</h2>
                 </div>
