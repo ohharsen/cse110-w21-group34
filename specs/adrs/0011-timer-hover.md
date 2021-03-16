@@ -22,13 +22,18 @@ We were deciding on whether to use click or hover for showing panes.
 Chosen option: Click, because
 
 * More intuitive for user
+  - when given a button, it is natural to click it, not to hover over it
 * Simpler design for user interaction
+  - using an event listener for click simplifies the coding process
+  - easier to test
 * Clean transition for pane to enter and exit screen
 
-Pros and Cons of Other Options
+## Pros and Cons of Other Options
 
-Hover
+### Hover
 
 * Pro: Gives user another viewing option
 * Con: Annoying in situations where the user doesn't want to view the pane but accidentally hovers over it
-* Con: Doesn't work for mobile and is less intuitive for user
+* Con: Hovering is less intuitive for user
+  - clicking a button makes more sense
+* Con: doesn't work for mobile users

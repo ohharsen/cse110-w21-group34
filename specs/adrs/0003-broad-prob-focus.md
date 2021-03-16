@@ -23,9 +23,9 @@ Chosen option: broad problem focus, because
 * Time management is an issue for a wide variety of people in different situations.
 * There are many different types of problems or tasks that can be completed with the use of a timer.
 
-Pros and Cons of Other Options
+## Pros and Cons of Other Options
 
-Narrow problem focus
+### Narrow problem focus
 
 * Pro: focused on and thus better appeals to specific group of users
 * Con: can be unfitting for the needs of other groups of users

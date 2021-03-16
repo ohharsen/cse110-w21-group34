@@ -26,12 +26,18 @@ We were deciding how to store task data in local storage.
 Chosen option: track task data for the week, because
 
 * Stores all the relevant data for our graph and statistics
+  - needs task number per day of the week
+  - need total task count for today and this week
 * Easier to track data compared to a list of tasks completed
+  - less logic required for extracting data when calculating statistics
 
-Pros and Cons of Other Options
+## Pros and Cons of Other Options
 
-Pomos per task
+### Pomos per task
 
 * Pro: keeps track of total pomos per task completed
+* Pro: tracks the date for each task completed
 * Con: messier to parse data from list and contains less information about week history
 * Con: tracks the day for each task, but more logic needs to be implemented for the graph in statistics
+* Con: doesn't track the start of the week, it would have to be recalculated
+  - local storage would have to be reaccessed and updated later on, which is undesirable
