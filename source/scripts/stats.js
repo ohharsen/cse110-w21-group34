@@ -59,7 +59,7 @@ export function closeStatsPane () {
 
   timerBlock.classList.add('slide-close');
   statsPane.classList.add('slide-close');
-  
+
   isOpenStatsPane = false;
 }
 
