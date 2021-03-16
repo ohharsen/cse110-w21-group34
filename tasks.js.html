@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: accessibility.js</title>
+    <title>JSDoc: Source: tasks.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: accessibility.js</h1>
+    <h1 class="page-title">Source: tasks.js</h1>
 
     
 
@@ -27,84 +27,61 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import * as Constants from './constants.js';
-import { startResetController } from './timer.js';
-import { openStatsPane, closeStatsPane, isOpenStatsPane } from './stats.js';
-import { openSettingsPane, closeSettingsPane, isOpenSettingsPane, removeAll } from './settings.js';
+import * as Storage from './util/storage.js';
+import { updateStats } from './stats.js';
 
-const ACCESSIBLE_CLASS = 'accessible';
-const root = document.documentElement;
+const taskButton = document.getElementById(Constants.TASK_BTN_ID);
 
-let accessibleMode = false;
-let keystrokeMode = true;
+let taskPomoCount = 0;
 
-document.onkeydown = keyControls;
-
-/**
-   * Function to toggle the accessibility colors and fonts
-   * Darkens backgrounds for better readibility of text
-   * Colors picked according to AAA Guidilines
-   */
-export function toggleAccessibility () {
-  if (!accessibleMode) {
-    root.classList.add(ACCESSIBLE_CLASS);
-  } else {
-    root.classList.remove(ACCESSIBLE_CLASS);
-  }
-  accessibleMode = !accessibleMode;
+if (taskButton) {
+  toggleTaskButtonDisabled(true);
+  taskButton.addEventListener('click', function (event) {
+    completeTask();
+    event.preventDefault();
+    document.getElementById('animation-overlay').style.display = 'flex';
+    setTimeout(function () {
+      document.getElementById('animation-overlay').style.display = 'none';
+    }, 3000);
+  }); // upon click
 }
 
 /**
- * Getter function to retrieve accessibleMode variable,
- * which indicates whether accessibility mode is on
- * @return {boolean} true when accessibility mode is on, false if off
+ * Increases the number of pomodoros completed for the current task.
  */
-export function isA11yEnabled () {
-  return accessibleMode;
+export function increaseTaskPomo () {
+  taskPomoCount++;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
 }
 
 /**
- * The event listener for whenever keys are pressed
- * Listens only to specific keys and lets other keys perform default action
- * @param {Event} e the fired event object
+ * Resets the number of pomodoros completed to 0 for the current task.
  */
-function keyControls (e) {
-  switch (e.code) {
-    case 'Escape':
-      e.preventDefault();
-      (isOpenSettingsPane) ? closeSettingsPane() : ((isOpenStatsPane) ? closeStatsPane() : (() => {})());
-      break;
-    case 'ArrowLeft':
-      e.preventDefault();
-      removeAll();
-      (isOpenSettingsPane) ? closeSettingsPane() : openStatsPane();
-      break;
-    case 'ArrowRight':
-      e.preventDefault();
-      removeAll();
-      (isOpenStatsPane) ? closeStatsPane() : openSettingsPane();
-      break;
-    case 'Space':
-      if (!(document.activeElement instanceof HTMLInputElement)) {
-        e.preventDefault();
-        startResetController();
-      }
-      break;
-    case 'KeyT':
-    case 'ArrowDown':
-      e.preventDefault();
-      document.getElementById(Constants.TASK_BTN_ID).click();
-      break;
-    default:
-      break;
-  }
+export function resetTaskPomo () {
+  taskPomoCount = 0;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
+  toggleTaskButtonDisabled(true);
 }
 
 /**
- * Function to toggle keystroke access. Called whenever the user toggles the setting switch
+ * Disables or enables task button
+ * @param {Boolean} disabled parameter
  */
-export function toggleKeystroke () {
-  keystrokeMode = !keystrokeMode;
-  document.onkeydown = keystrokeMode ? keyControls : undefined;
+export function toggleTaskButtonDisabled (disabled) {
+  if (taskPomoCount === 0) disabled = true;
+  taskButton.disabled = disabled;
+}
+
+/**
+ * Task is completed upon button click
+ */
+export function completeTask () {
+  taskPomoCount = 0;
+  document.getElementById(Constants.TASK_POMO_COUNTER).innerHTML = taskPomoCount;
+
+  Storage.incrTasks();
+  toggleTaskButtonDisabled(true);
+  updateStats();
 }
 </code></pre>
         </article>
