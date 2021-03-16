@@ -86,8 +86,8 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: var(--white-a1);
     border-radius: 15px;
     border: 0;

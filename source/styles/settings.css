@@ -22,6 +22,7 @@
 }
 
 #settings-container h2 {
+    font-size: 20px;
     margin-top: 8px;
     margin-bottom: 8px;
     padding-bottom: 4px;
@@ -32,7 +33,7 @@
     box-sizing: border-box;
     height: 100%;
     border-radius: 8px;
-    padding: 24px 48px 24px 48px;
+    padding: 24px 36px 24px 36px;
     background: var(--pink-grad);
     display: flex;
     flex-direction: column;
@@ -55,7 +56,7 @@
     align-content: stretch;
     justify-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 #information{
@@ -90,10 +91,10 @@
 
 .settings-button {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 100px;
-    height: 100px;
+    top: 12px;
+    left: 12px;
+    width: 80px;
+    height: 80px;
     background: var(--white-a1);
     border-radius: 15px;
     outline: 0;
