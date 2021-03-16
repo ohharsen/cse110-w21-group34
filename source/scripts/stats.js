@@ -89,7 +89,7 @@ export function displayTotalStats () {
   const totalTasksElem = document.getElementById('total-tasks');
 
   const totalPomoCount = Storage.getTotalPomoCount();
-  const totalInterruptCount = Storage.getTotalDistractions();
+  const totalInterruptCount = Storage.getTotalInterruptions();
   const bestPomoCount = Storage.getBestDailyPomoCount();
   const totalTaskCount = Storage.getTotalTasksCount();
 
@@ -117,7 +117,7 @@ export function displayTodayStats () {
 
   // extracting daily stats data to be used for calculation
   const todayPomoCount = Storage.getPomoCount();
-  const todayInterruptCount = Storage.getDistractions();
+  const todayInterruptCount = Storage.getInterruptions();
   const todayTaskCount = Storage.getTasksCount();
 
   // calculating daily stats with extracted data and displaying to UI

@@ -68,7 +68,7 @@ describe('Helper Methods', () => {
     test('Clearing weekly history', () => {
         Storage.clearWeeklyHistory();
         expect(Storage.getWeeklyHistory()).toStrictEqual([0, 0, 0, 0, 0, 0, 0]);
-    })
+    });
 });
 
 describe('Pomodoro Count', () => {

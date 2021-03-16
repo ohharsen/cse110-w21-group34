@@ -77,7 +77,7 @@ export function incrPomoCount () {
   const recentMonday = getRecentMonday(today);
   if (!isSameDay(getWeekStartDate(), recentMonday)) setWeekStartDate(recentMonday);
 
-  // Update weekly history 
+  // Update weekly history
   const dayIdx = (today.getDay() - 1) % Constants.LENGTH_OF_WEEK;
   const weekHistory = JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
   weekHistory[dayIdx]++;
@@ -169,7 +169,7 @@ export function getTotalInterruptions () {
  * @returns {Date} storage data
  */
 export function getTodayStorageDate () {
-  return new Date(window.localStorage.getItem(TODAY_DATE_ID) || new Date());
+  return new Date(window.localStorage.getItem(TODAY_DATE_ID) || new Date(0));
 }
 
 /**
@@ -185,7 +185,7 @@ export function setTodayStorageDate () {
  * @returns {Date} storage data
  */
 export function getWeekStartDate () {
-  return new Date(window.localStorage.getItem(WEEK_START_ID)) || getRecentMonday(new Date());
+  return new Date(window.localStorage.getItem(WEEK_START_ID)) || new Date(0);
 }
 
 /**
@@ -193,7 +193,7 @@ export function getWeekStartDate () {
  */
 export function setWeekStartDate (monday) {
   window.localStorage.setItem(WEEK_START_ID, monday.toString());
-  clearWeeklyHistory()
+  clearWeeklyHistory();
 }
 
 /**
