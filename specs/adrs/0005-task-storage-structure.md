@@ -13,21 +13,24 @@ We were deciding how to store task data in local storage.
 * Keep track of pomos per task
   - list with each item being a task completed
   - total number of pomos per task with timestamp: "Tasks = [{pomos: 5, timestamp: [“02/08/2021”]}]"
-* Keep track of task data for the week
-  - total-task-count
+* Keep track of task data for the day
   - today-task-count
-  - week-task-count
   - today-date
+* Keep track of task data for the week
+  - week-task-count
   - week-start-date
-  - week-history 
+* Keep track of week history data
+  - week-history
+* Keep track of totals
+  - total-task-count
 
 ## Decision Outcome
 
-Chosen option: track task data for the week, because
+Chosen option: day data, week history, and totals because
 
 * Stores all the relevant data for our graph and statistics
   - needs task number per day of the week
-  - need total task count for today and this week
+  - need total task count for today
 * Easier to track data compared to a list of tasks completed
   - less logic required for extracting data when calculating statistics
 
@@ -41,3 +44,10 @@ Chosen option: track task data for the week, because
 * Con: tracks the day for each task, but more logic needs to be implemented for the graph in statistics
 * Con: doesn't track the start of the week, it would have to be recalculated
   - local storage would have to be reaccessed and updated later on, which is undesirable
+
+### Week data
+
+* Pro: tracks information about the week which could provide more context to usage patterns
+* Pro: statistics like total tasks completed this week are not repetitive
+* Con: week history already tracks information about the week
+* Con: statistics pane does not use week data

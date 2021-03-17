@@ -17,15 +17,16 @@ We were deciding whether we wanted to keep the reset timer functionality for a b
 
 ## Decision Outcome
 
-Chosen option: allow reset timer, because
+Chosen option: disable reset timer, because
 
-* Gives user more flexibility in using the timer to fit their needs
+* Less distractions because there is less user interaction
+  - User has less choices which leads to less user interaction
 * Matches our intended design for tracking distractions
 
 ## Pros and Cons of Other Options
 
-### Disable reset timer
+### Allow reset timer
 
-* Pro: less distractions because there is less user interaction
-  - User has less choices which leads to less user interaction
-* Con: decreases flexibility for user when resetting timer
+* Pro: gives user more flexibility in using the timer to fit their needs
+* Con: more distractions for the user
+* Con: resetting on break is not an intended feature

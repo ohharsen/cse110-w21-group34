@@ -11,12 +11,15 @@ const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
 const timerRing = document.getElementById('base-timer-path-remaining');
 const countdownText = document.getElementById('countdownText');
+const yesButton = document.getElementById('reset-yes-button');
+const noButton = document.getElementById('reset-no-button');
 const timeWorker = (window.Worker && !window.Cypress) ? new Worker('./scripts/timeWorker.js') : null;
 
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
 let legacyInterval;
+let firstReset = true; // Is rest being clicked for the first time
 
 if (startStopButton) {
   startStopButton.classList.toggle('break-button');
@@ -43,10 +46,11 @@ export function startResetController () {
   if (pomoState === Constants.timerOptions.STOPPED) {
     startTimer();
   } else {
-    resetTimer();
+    resetPrompt();
   }
 }
 
+/* istanbul ignore next */
 /**
  * Begins the timer countdown for a cycle
  * @param {Number} duration The duration of the countdown
@@ -78,6 +82,7 @@ export function beginCountdown (duration) {
   }
 }
 
+/* istanbul ignore next */
 /**
    * Begins the timer countdown for a cycle within the main thread for
    * browsers that do not support web-workers.
@@ -197,12 +202,6 @@ export function updatePots () {
    * @return An array containing the stopped timer state and begin button text
    */
 export function resetTimer () {
-  const userConfirm = confirm('This action will count as a interruption.');
-  if (!userConfirm) {
-    return;
-  }
-
-  countdownText.classList.remove('hover-text');
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
 
@@ -211,6 +210,7 @@ export function resetTimer () {
     if (timeWorker) timeWorker.postMessage({ start: false });
     if (legacyInterval) clearInterval(legacyInterval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
+    countdownText.classList.remove('hover-text');
     timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
     timerRing.setAttribute('stroke-dasharray', '220 220');
     displayTime(Constants.WORK_LENGTH);
@@ -220,6 +220,41 @@ export function resetTimer () {
   Storage.incrInterruptions();
   updateStats();
   return [pomoState, Constants.BEGIN_BTN_TXT];
+}
+
+/*
+ * Checks if the reset button has been pressed before. If yes then resets the timer directly, otherwise asks for confirmation.
+ */
+export function resetPrompt () {
+  if (!firstReset) {
+    resetTimer();
+    return;
+  }
+  startStopButton.style.display = 'none';
+  document.getElementById('prompt').style.display = 'flex';
+  yesButton.disabled = false;
+  noButton.disabled = false;
+  yesButton.addEventListener('click', () => {
+    resetConfirm(true);
+  });
+  noButton.addEventListener('click', () => {
+    resetConfirm(false);
+  });
+}
+
+/**
+ * Resets the timer if confirmation is true
+ * @param {boolean} isConfirm True to reset timer, False otherwise
+ */
+export function resetConfirm (isConfirm) {
+  startStopButton.style.display = '';
+  document.getElementById('prompt').style.display = 'none';
+  yesButton.disabled = true;
+  noButton.disabled = true;
+  if (isConfirm) {
+    resetTimer();
+  }
+  firstReset = false;
 }
 
 /**

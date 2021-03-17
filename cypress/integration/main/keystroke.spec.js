@@ -10,7 +10,6 @@ const SETTINGS_SLIDE_CLOSE = 'slide-close-settings';
 describe('Timer Keys Test', ()=>{
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/');
-        window.Worker = null;
     });
 
     it('Space bar start timer check', () => {
@@ -22,6 +21,7 @@ describe('Timer Keys Test', ()=>{
         cy.document()
         .trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true})
         .trigger(Constants.events.KEYDOWN, {code: Constants.keys.SPACE, force: true})
+        .trigger(Constants.events.KEYDOWN, {code: Constants.keys.Y, force: true})
         .get('#' + Constants.START_STOP_ID).contains(Constants.BEGIN_BTN_TXT);
     });
 });
@@ -154,14 +154,6 @@ describe('Enter Complete Task Tests', () => {
 
     beforeEach(() => {
         cy.visit('http://127.0.0.1:5500/');
-        if (window.navigator && navigator.serviceWorker) {
-            navigator.serviceWorker.getRegistrations()
-            .then((registrations) => {
-              registrations.forEach((registration) => {
-                registration.unregister()
-              })
-            })
-          }
     });
 
     it('During Break T completes a task', () => {

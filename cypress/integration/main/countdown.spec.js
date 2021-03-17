@@ -9,8 +9,10 @@ describe('Countdown Test', ()=>{
     });
 
     it('Resetting the timer', () => {
-        cy.get('#start-stop-button').trigger('click')
-        .trigger('click').contains('Begin');
+        cy.get('#start-stop-button').trigger('click');
+        cy.get('#start-stop-button').trigger('click');
+        cy.get('#reset-yes-button').trigger('click');
+        cy.get('#start-stop-button').contains('Begin');
     });
 
     it('Check display in middle of work period', () => {
@@ -153,6 +155,7 @@ describe('Countdown Test', ()=>{
         cy.get('#pot1').should('have.attr', 'src').should('include','color');
         cy.get('#pot2').should('have.attr', 'src').should('include','gray');
         cy.get('#start-stop-button').trigger('click'); // Reset
+        cy.get('#reset-yes-button').trigger('click');  // Confirm Reset
         cy.get('#pot1').should('have.attr', 'src').should('include','color');
         cy.get('#pot2').should('have.attr', 'src').should('include','gray');
         cy.get('#countdownText').contains('25:00');
