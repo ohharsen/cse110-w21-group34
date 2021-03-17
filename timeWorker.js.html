@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: settings.js</title>
+    <title>JSDoc: Source: timeWorker.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: settings.js</h1>
+    <h1 class="page-title">Source: timeWorker.js</h1>
 
     
 
@@ -26,78 +26,34 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import * as Stats from './stats.js';
-import { toggleAccessibility, toggleKeystroke } from './accessibility.js';
+            <pre class="prettyprint source linenums"><code>let timerInterval;
 
-export const settingsPane = document.getElementById('settings-container');
-export const settingsOpenButton = document.getElementById('settings-open-button');
-export const settingsCloseButton = document.getElementById('settings-close-button');
-export const settingsColorButton = document.getElementById('colors-switch');
-export const settingsKeysButton = document.getElementById('keystroke-switch');
+// Listen for start/stop requests
+onmessage = (e) => {
+  const {
+    start,
+    duration
+  } = e.data;
 
-settingsOpenButton.onclick = openSettingsPane;
-settingsCloseButton.onclick = closeSettingsPane;
-settingsColorButton.onclick = toggleAccessibility;
-settingsKeysButton.onclick = toggleKeystroke;
-
-export let isOpenSettingsPane = false;
-
-/* istanbul ignore next */
-/**
- * Opens the statistics pane.
- */
-export function openSettingsPane () {
-  removeAll();
-
-  if (Stats.statsPane.classList.contains('slide-open')) {
-    Stats.closeStatsPane();
-
-    Stats.timerBlock.classList.remove('slide-close');
-    Stats.timerBlock.classList.add('slide-across-right');
+  if (start) {
+    startTimer(duration);
   } else {
-    Stats.timerBlock.classList.add('slide-open-settings');
+    clearInterval(timerInterval);
   }
-  settingsPane.classList.add('slide-open-settings');
-
-  isOpenSettingsPane = true;
-  toggleButtons();
-}
-
-/* istanbul ignore next */
-/**
- * Opens the statistics pane.
- */
-export function closeSettingsPane () {
-  Stats.timerBlock.classList.remove('slide-open-settings');
-  settingsPane.classList.remove('slide-open-settings');
-
-  Stats.timerBlock.classList.remove('slide-across-right');
-
-  Stats.timerBlock.classList.add('slide-close-settings');
-  settingsPane.classList.add('slide-close-settings');
-
-  isOpenSettingsPane = false;
-  toggleButtons();
-}
+};
 
 /**
- * Enables / Disables the respective settings pane buttons based on the current
- * state.
+ * Starts a timer for the given duration and sends the time left
+ * every second as a message.
+ * @param {number} duration
  */
-export function toggleButtons () {
-  settingsOpenButton.disabled = isOpenSettingsPane;
-  settingsCloseButton.disabled = !isOpenSettingsPane;
-  settingsColorButton.disabled = !isOpenSettingsPane;
-  settingsKeysButton.disabled = !isOpenSettingsPane;
-}
-
-/* istanbul ignore next */
-export function removeAll () {
-  Stats.timerBlock.classList.remove('slide-close');
-  Stats.statsPane.classList.remove('slide-close');
-
-  Stats.timerBlock.classList.remove('slide-close-settings');
-  settingsPane.classList.remove('slide-close-settings');
+function startTimer (duration) {
+  let timeLeft = duration;
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    postMessage({ timeLeft: timeLeft });
+    if (timeLeft &lt; 0) clearInterval(timerInterval);
+  }, 1000);
 }
 </code></pre>
         </article>
