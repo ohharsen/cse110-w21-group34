@@ -211,7 +211,7 @@ export function resetPrompt () {
  * Function to hide the reset prompt
  * Called whenver the prompt is answere or a timer goes off
  */
-export function hidePrompt(){
+export function hidePrompt () {
   startStopButton.style.display = '';
   document.getElementById('prompt').style.display = 'none';
   yesButton.disabled = true;
