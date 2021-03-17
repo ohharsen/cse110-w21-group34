@@ -179,7 +179,7 @@
     color: #34DBB3;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 814px) {
     #settings-container {
         height: calc(100vh - 36px);
         width: calc(100vw - 36px);
