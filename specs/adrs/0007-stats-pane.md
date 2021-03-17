@@ -10,16 +10,25 @@ We were deciding on our stats pane format, what information to display.
 
 ## Considered Options
 
-* Show today task data
-* Show week task data
-* Show week pomo data
-* Show total data
-* Show week task graph
-* Show week pomo graph
+* Show today's information
+  - Pomo cycles completed
+  - Number of interruptions
+  - Total tasks completed
+* Show this week's information
+  - Pomo cycles completed
+  - Number of interruptions
+  - Total tasks completed
+* Show totals
+  - Pomo cycles completed
+  - Average interruptions
+  - Best day
+  - Total tasks completed
+* Show week task history graph
+* Show week pomo history graph
 
 ## Decision Outcome
 
-Chosen option: Today task data, total data, and week pomo graph because
+Chosen option: today's information, totals, and week pomo history graph because
 
 * Comfortably fits in the stats pane
   - No empty space
@@ -30,7 +39,7 @@ Chosen option: Today task data, total data, and week pomo graph because
 
 ## Pros and Cons of Other Options
 
-### Week task data, Week pomo data, Week task graph
+### Week information, Week task graph
 
 * Pro: shows more information about week trends 
 * Pro: utilizes local storage information in different ways

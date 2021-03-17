@@ -1,36 +1,26 @@
-let accessibleMode = false;
+import * as Constants from './constants.js';
+import { startResetController } from './timer.js';
+import { openStatsPane, closeStatsPane, isOpenStatsPane } from './stats.js';
+import { openSettingsPane, closeSettingsPane, isOpenSettingsPane, removeAll } from './settings.js';
+
+const ACCESSIBLE_CLASS = 'accessible';
 const root = document.documentElement;
+
+let accessibleMode = false;
+let keystrokeMode = true;
+
+document.onkeydown = keyControls;
 
 /**
    * Function to toggle the accessibility colors and fonts
    * Darkens backgrounds for better readibility of text
    * Colors picked according to AAA Guidilines
    */
-function toggleAccessibility () {
+export function toggleAccessibility () {
   if (!accessibleMode) {
-    // Colors
-    root.style.setProperty('--green', '#006646');
-    root.style.setProperty('--red', '#B50014');
-    root.style.setProperty('--orange', '#AA2500');
-    root.style.setProperty('--orangered-grad', 'linear-gradient(180deg, #B40000 0%, #AC2100 100%)');
-    root.style.setProperty('--orange-light-grad', 'linear-gradient(180deg, #b4000036 0%, #ac2100 100%), conic-gradient(from 1.14deg at 42.54% 1226.03%, #416200 -22.72deg, #1915d9e2 160.22deg, #41620000 163.43deg, #416200 337.28deg, #1915d9e2 520.22deg)');
-    root.style.setProperty('--orange-dark-grad', 'linear-gradient(180deg, #AA2500 0%, #575757 100%)');
-    root.style.setProperty('--orange-dark-grad-1', 'linear-gradient(180deg, #575757 0%, #AA2500 100%)');
-    root.style.setProperty('--green-grad', 'linear-gradient(180deg,  #575757 0%, #00644e 100%)');
-    root.style.setProperty('--green-grad-1', 'linear-gradient(180deg,  #00644e 0%, #575757 100%)');
-    root.style.setProperty('--white-a1', 'rgba(255, 255, 255, 0.9)');
-    root.style.setProperty('--counter-color', 'black');
-
-    // Texts
-    root.style.setProperty('font-size', '1.1em');
-    root.style.setProperty('--button-text-size', '22px');
-    root.style.setProperty('font-weight', 'bolder');
-
-    // Background
-    root.style.setProperty('--bacgkround-source', 'url("../images/background_hi_contrast.png")');
+    root.classList.add(ACCESSIBLE_CLASS);
   } else {
-    // Colors
-    root.style = '';
+    root.classList.remove(ACCESSIBLE_CLASS);
   }
   accessibleMode = !accessibleMode;
 }
@@ -40,9 +30,67 @@ function toggleAccessibility () {
  * which indicates whether accessibility mode is on
  * @return {boolean} true when accessibility mode is on, false if off
  */
-export function modeGetter () {
+export function isA11yEnabled () {
   return accessibleMode;
 }
 
-/** redundant, used for linting */
-document.getElementById('colors-switch').onclick = toggleAccessibility;
+/* istanbul ignore next */
+/**
+ * The event listener for whenever keys are pressed
+ * Listens only to specific keys and lets other keys perform default action
+ * @param {Event} e the fired event object
+ */
+function keyControls (e) {
+  switch (e.code) {
+    case 'Escape':
+      e.preventDefault();
+      (isOpenSettingsPane) ? closeSettingsPane() : ((isOpenStatsPane) ? closeStatsPane() : (() => {})());
+      break;
+    case 'ArrowLeft':
+      e.preventDefault();
+      removeAll();
+      (isOpenSettingsPane) ? closeSettingsPane() : openStatsPane();
+      break;
+    case 'ArrowRight':
+      e.preventDefault();
+      removeAll();
+      (isOpenStatsPane) ? closeStatsPane() : openSettingsPane();
+      break;
+    case 'Space':
+      if (!(document.activeElement instanceof HTMLInputElement)) {
+        e.preventDefault();
+        startResetController();
+      }
+      break;
+    case 'KeyY':
+      document.getElementById('reset-yes-button').click();
+      break;
+    case 'KeyN':
+      document.getElementById('reset-no-button').click();
+      break;
+    case 'KeyT':
+    case 'ArrowDown':
+      e.preventDefault();
+      document.getElementById(Constants.TASK_BTN_ID).click();
+      break;
+    default:
+      break;
+  }
+}
+
+/**
+ * Function to toggle keystroke access. Called whenever the user toggles the setting switch
+ */
+export function toggleKeystroke () {
+  keystrokeMode = !keystrokeMode;
+  document.onkeydown = (keystrokeMode) ? keyControls : undefined;
+}
+
+/**
+ * Getter function to retrieve the keystroke mode,
+ * which indicates whether keyboard shortcuts is on
+ * @return {boolean} true when keystroke/shortcuts mode is on, false if off
+ */
+export function isKeystrokeEnabled () {
+  return keystrokeMode;
+}

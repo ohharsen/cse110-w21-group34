@@ -3,14 +3,15 @@ import {
     togglePomoBreak,
     startTimer,
     resetTimer,
-    updateInterruptions,
-    currentTime,
+    displayTime,
     timeFraction,
-    updateTotalCycles,
-    timerTypeIndicator
-} from '../scripts/startResetButton';
+    timerTypeIndicator,
+} from '../scripts/timer';
+import * as Storage from '../scripts/util/storage';
 
-import { formatDate } from '../scripts/taskButton';
+beforeEach(() => {
+    localStorage.clear();
+});
 
 test('checks break toggle', () => {
     expect(togglePomoBreak(true)).toBe(false);
@@ -29,32 +30,36 @@ test('checks start state', () => {
 });
     
 test('checks reset state', () => {
+    expect(resetTimer()).toStrictEqual([Constants.timerOptions.STOPPED, Constants.BEGIN_BTN_TXT]);
+});
+  
+test('Check resetting timer increments interruptions', () => {
     window.confirm = function () {
         return true;
     };
-    expect(resetTimer()).toStrictEqual([Constants.timerOptions.STOPPED, Constants.BEGIN_BTN_TXT]);
+    resetTimer();
+    expect(Storage.getInterruptions()).toBe(1);
+});
 
-    window.confirm = function () {
-        return false;
-    };
-    expect(resetTimer()).toStrictEqual();
+test('Check multiple timer resets increments interruptions', () => {
+    const targetInterruptions = 6;
+    for (let i = 0; i < targetInterruptions; i++) {
+        window.confirm = function () {
+            return true;
+        };
+        resetTimer();
+    }
+    expect(Storage.getInterruptions()).toBe(targetInterruptions);
 });
-  
-test('checks interruption updates', () => {
-    let date = new Date();
-    date = formatDate(date);
-    expect(updateInterruptions(2, "02/14/21")).toStrictEqual(1);
-    expect(updateInterruptions(2, date)).toStrictEqual(3);
-});
-  
+
 test('Check current time display', () => {
-    currentTime(1500, document.querySelector('#countdownText'));
+    displayTime(1500);
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("25:00");
   
-    currentTime(319, document.querySelector('#countdownText'));
+    displayTime(319);
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("05:19");
   
-    currentTime(23, document.querySelector('#countdownText'));
+    displayTime(23);
     expect(document.querySelector('#countdownText').textContent).toStrictEqual("00:23");
 });
   
@@ -65,11 +70,6 @@ test('Test timer fraction', () => {
     expect(timeFraction(60, Constants.timerOptions.SHORT)).toStrictEqual(0.2);
     expect(timeFraction(810, Constants.timerOptions.LONG)).toStrictEqual(0.9);
     expect(timeFraction(450, Constants.timerOptions.LONG)).toStrictEqual(0.5);
-});
-
-test('checks total cycle count updates', () => {
-    window.localStorage.setItem('total-cycle-count', '1');
-    expect(updateTotalCycles()).toStrictEqual('2');
 });
 
 test('test timerTypeIndicator', () => {
