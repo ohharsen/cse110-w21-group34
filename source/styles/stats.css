@@ -155,6 +155,14 @@
         margin: 18px 18px 18px 18px;
         right: calc(-100vw + -18px);
     }
+
+    #weekly-graph {
+        width: calc(100vw - 100px);
+    }
+
+    #stats-overview {
+        min-height: calc(75vw - 100px);
+    }
     
     #stats-container h2 {
         margin-top: 4px;
@@ -163,7 +171,7 @@
 
     #stats-pane {
         padding: 16px 32px 16px 32px;
-        min-height: 650px;
+        min-height: calc(75vw + 400px);
     }
 
     .stats-button {
