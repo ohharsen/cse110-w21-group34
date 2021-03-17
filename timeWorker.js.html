@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: timeWorker.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,47 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: timeWorker.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let timerInterval;
 
+// Listen for start/stop requests
+onmessage = (e) => {
+  const {
+    start,
+    duration
+  } = e.data;
 
-    <h3> </h3>
+  if (start) {
+    startTimer(duration);
+  } else {
+    clearInterval(timerInterval);
+  }
+};
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * Starts a timer for the given duration and sends the time left
+ * every second as a message.
+ * @param {number} duration
+ */
+function startTimer (duration) {
+  let timeLeft = duration;
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    postMessage({ timeLeft: timeLeft });
+    if (timeLeft &lt; 0) clearInterval(timerInterval);
+  }, 1000);
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
