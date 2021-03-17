@@ -71,6 +71,7 @@ export function beginCountdown (duration) {
       timerRing.setAttribute('stroke-dasharray', `${(timeFraction(timeLeft, pomoState) * 220)} 220`);
       if (timeLeft < 0) {
         stopTimer();
+        hidePrompt();
         timeWorker.onmessage = undefined;
       }
     };
@@ -243,14 +244,22 @@ export function resetPrompt () {
 }
 
 /**
- * Resets the timer if confirmation is true
- * @param {boolean} isConfirm True to reset timer, False otherwise
+ * Function to hide the reset prompt
+ * Called whenver the prompt is answered or a timer goes off
  */
-export function resetConfirm (isConfirm) {
+export function hidePrompt () {
   startStopButton.style.display = '';
   document.getElementById('prompt').style.display = 'none';
   yesButton.disabled = true;
   noButton.disabled = true;
+}
+
+/*
+ * Resets the timer if confirmation is true
+ * @param {boolean} isConfirm True to reset timer, False otherwise
+ */
+export function resetConfirm (isConfirm) {
+  hidePrompt();
   if (isConfirm) {
     resetTimer();
   }
