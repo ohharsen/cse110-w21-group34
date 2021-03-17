@@ -40,6 +40,7 @@
     align-content: space-around;
     justify-items: flex-start;
     justify-content: space-around;
+    min-height: max(calc(75vw + 400px), 650px);
 }
 
 #stats-overview {
@@ -171,7 +172,6 @@
 
     #stats-pane {
         padding: 16px 32px 16px 32px;
-        min-height: calc(75vw + 400px);
     }
 
     .stats-button {
