@@ -44,6 +44,7 @@
 
 #stats-overview {
     flex-basis: 35%;
+    min-height: 240px;
 }
 
 .stats-box {
@@ -162,6 +163,7 @@
 
     #stats-pane {
         padding: 16px 32px 16px 32px;
+        min-height: 650px;
     }
 
     .stats-button {

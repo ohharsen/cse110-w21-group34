@@ -41,6 +41,7 @@
     align-content: space-around;
     justify-items: flex-start;
     justify-content: space-between;
+    min-height: 650px;
 }
 
 .settings-box {
@@ -216,6 +217,7 @@
 
     #settings-pane {
         padding: 12px 24px 12px 24px;
+        min-height: 700px;
     }
 
     .settingts-button {
