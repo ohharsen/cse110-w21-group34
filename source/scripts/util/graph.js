@@ -1,7 +1,7 @@
 import { isA11yEnabled } from '../accessibility.js';
 
 const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
-const Y_LABEL = 'Pomodoros Completed';
+const Y_LABEL = 'Pomos Completed';
 const INITIAL_Y_AXES = [0, 1, 2, 3];
 const TEXT_FONT = '12px Roboto';
 const TEXT_FONT_ACCESSIBILITY = 'bold 15px Roboto';
