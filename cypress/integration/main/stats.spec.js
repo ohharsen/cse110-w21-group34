@@ -9,6 +9,7 @@ describe('View / Animation', () => {
 describe('Daily Statistics', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5500/');
+    Storage.setDate(Storage.TODAY_DATE_ID, new Date());
   });
 
   // Tests on Pomodoro cycles 
