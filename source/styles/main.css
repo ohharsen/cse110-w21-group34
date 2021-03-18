@@ -11,7 +11,7 @@
     --white-a3: rgba(255, 255, 255, 0.2);
     --red: #ee3737;
     --dark-red: #ce0119;
-    --grey: #b3a89e;
+    --grey: #b3a89e70;
     --pink-grad: linear-gradient(0deg, #FFD1D1 0%, #EEEEEE 100%);
     --pink-dark-grad: linear-gradient(180deg, #ffffffb0 99.99%, #ffd1d1b0 100%, #ffd1d1b0 100%);
     --orange: orange;
