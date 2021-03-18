@@ -20,23 +20,27 @@
 
 - For stats pane, tested by opening stats pane then shrinking and increasing window height then making sure stats pane correctly shrinks and expands and creates a scroll bar that allows user to scroll through stats pane when the height of the window becomes too small  
 
-![check](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/stats-scroll.gif)
+![](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/stats-scroll.gif)
 
 
-- Tested by opening settings pane then shrinking and increasing window height then making sure settings pane and text correctly shrinks and expands and creates a scroll bar that allows user to scroll through settings pane 
+- For settigns pane, tested by opening settings pane then shrinking and increasing window height then making sure settings pane and text correctly shrinks and expands and creates a scroll bar that allows user to scroll through settings pane 
 
-**Tested to make sure setting and graph page properly resize when window width is decreased and increased** 
+![](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/settings-scroll.gif)
 
-- Tested by opening stats pane then shrinking and expanding window width then making sure stats pane correctly squeezes and expands, and when the width gets small enough to only display stats pane
+**Tested to make sure setting and stats page properly resize when window width is decreased and increased** 
 
-- Tested by opening settings pane then shrinking and expanding window width then making sure settings pane correctly squeezes and expands, and when the width gets small enough to only display settings pane
+- For stats pane, tested by opening stats pane then shrinking and expanding window width then making sure stats pane correctly squeezes and expands, and when the width gets small enough to only display stats pane
+
+- For settings pane, tested by opening settings pane then shrinking and expanding window width then making sure settings pane correctly squeezes and expands, and when the width gets small enough to only display settings pane
 
 **Tested to make sure when colorblind accessibility is turned on, that settings and stats pane correctly change** 
 
 - For stats pane, tested by opening settings pane then turning on colorblind access. Then opening stats pane and making sure the text and colors change accordingly, then closing and reopening pane to make sure the changes are maintained
 
+![](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/stats-colorblind.gif)
+
 - For settings pane, tested by opening settings pane then turning on colorblind access and making sure the text and colors change accordingly while settings pane is open, then closing and reopening pane to make sure the changes are maintained
 
-
+![](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/settings-colorblind.gif)
 
 
