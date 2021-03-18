@@ -93,151 +93,151 @@ describe('Helper Methods', () => {
     
     test('Check if undefined storage date is not today', () => {
         const today = new Date();
-        expect(Storage.isSameDay(today, Storage.getTodayStorageDate())).toBe(false);
+        expect(Storage.isSameDay(today, Storage.getDate(Storage.TODAY_DATE_ID))).toBe(false);
     });
     
     test('Clearing weekly history', () => {
-        Storage.clearWeeklyHistory();
-        expect(Storage.getWeeklyHistory()).toStrictEqual([0, 0, 0, 0, 0, 0, 0]);
+        Storage.setWeekHistory(Storage.ZEROS);
+        expect(Storage.getWeekHistory()).toStrictEqual([0, 0, 0, 0, 0, 0, 0]);
     });
 });
 
 describe('Pomodoro Count', () => {
     beforeEach(() => {
         localStorage.clear();
-        Storage.setTodayStorageDate();
+        Storage.setDate(Storage.TODAY_DATE_ID, new Date());
     });
 
     test('Check if undefined pomo count returns 0', () => {
-        expect(Storage.getPomoCount()).toBe(0);
+        expect(Storage.getCounter(Storage.TODAY_POMO_ID)).toBe(0);
     });
 
     test('Check if undefined pomo count best day returns 0', () => {
-        expect(Storage.getBestDailyPomoCount()).toBe(0);
+        expect(Storage.getCounter(Storage.BEST_DAILY_POMO_ID)).toBe(0);
     });
 
     test('Check if undefined pomo count weekly history returns 0s', () => {
-        expect(Storage.getWeeklyHistory()).toStrictEqual([0, 0, 0, 0, 0, 0, 0]);
+        expect(Storage.getWeekHistory()).toStrictEqual([0, 0, 0, 0, 0, 0, 0]);
     });
 
     test('Check if undefined total pomo count returns 0', () => {
-        expect(Storage.getTotalPomoCount()).toBe(0);
+        expect(Storage.getCounter(Storage.TOTAL_POMO_ID)).toBe(0);
     });
 
     test('Check if storage increments undefined pomo count', () => {
         Storage.incrPomoCount();
-        expect(Storage.getPomoCount()).toBe(1);
+        expect(Storage.getCounter(Storage.TODAY_POMO_ID)).toBe(1);
     });
     
     test('Check if storage increments undefined total pomo count', () => {
         Storage.incrPomoCount();
-        expect(Storage.getTotalPomoCount()).toBe(1);
+        expect(Storage.getCounter(Storage.TOTAL_POMO_ID)).toBe(1);
     });
 
     test('Check if storage increments current pomo count', () => {
         localStorage.setItem(Storage.TODAY_POMO_ID, '6');
         Storage.incrPomoCount();
-        expect(Storage.getPomoCount()).toBe(7);
+        expect(Storage.getCounter(Storage.TODAY_POMO_ID)).toBe(7);
     });
 
     test('Check if storage increments total pomo count', () => {
         localStorage.setItem(Storage.TOTAL_POMO_ID, '6');
         Storage.incrPomoCount();
-        expect(Storage.getTotalPomoCount()).toBe(7);
+        expect(Storage.getCounter(Storage.TOTAL_POMO_ID)).toBe(7);
     });
 
     test('Check to see that pomo count resets when it is new day', () => {
         localStorage.setItem(Storage.TODAY_POMO_ID, '6');
         localStorage.setItem(Storage.TODAY_DATE_ID, new Date(0));
         Storage.incrPomoCount();
-        expect(Storage.getPomoCount()).toBe(1);
+        expect(Storage.getCounter(Storage.TOTAL_POMO_ID)).toBe(1);
     });
 });
 
 describe('Tasks', () => {
     beforeEach(() => {
         localStorage.clear();
-        Storage.setTodayStorageDate();
+        Storage.setDate(Storage.TODAY_DATE_ID, new Date());
     });
 
     test('Check if undefined task count returns 0', () => {
-        expect(Storage.getTasksCount()).toBe(0);
+        expect(Storage.getCounter(Storage.TODAY_TASK_ID)).toBe(0);
     });
 
     test('Check if undefined total tasks count returns 0', () => {
-        expect(Storage.getTotalTasksCount()).toBe(0);
+        expect(Storage.getCounter(Storage.TOTAL_TASK_ID)).toBe(0);
     });
 
     test('Check if storage increments undefined task count', () => {
         Storage.incrTasks();
-        expect(Storage.getTasksCount()).toBe(1);
+        expect(Storage.getCounter(Storage.TODAY_TASK_ID)).toBe(1);
     });
     
     test('Check if storage increments undefined total task count', () => {
         Storage.incrTasks();
-        expect(Storage.getTotalTasksCount()).toBe(1);
+        expect(Storage.getCounter(Storage.TOTAL_TASK_ID)).toBe(1);
     });
 
     test('Check if storage increments current task count', () => {
         localStorage.setItem(Storage.TODAY_TASK_ID, '2');
         Storage.incrTasks();
-        expect(Storage.getTasksCount()).toBe(3);
+        expect(Storage.getCounter(Storage.TODAY_TASK_ID)).toBe(3);
     });
 
     test('Check if storage increments total task count', () => {
         localStorage.setItem(Storage.TOTAL_TASK_ID, '43');
         Storage.incrTasks();
-        expect(Storage.getTotalTasksCount()).toBe(44);
+        expect(Storage.getCounter(Storage.TOTAL_TASK_ID)).toBe(44);
     });
     
     test('Check to see that task count resets when it is new day', () => {
         localStorage.setItem(Storage.TODAY_TASK_ID, '6');
         localStorage.setItem(Storage.TODAY_DATE_ID, new Date(0));
         Storage.incrTasks();
-        expect(Storage.getTasksCount()).toBe(1);
+        expect(Storage.getCounter(Storage.TODAY_TASK_ID)).toBe(1);
     });
 });
 
 describe('Interruptions', () => {
     beforeEach(() => {
         localStorage.clear();
-        Storage.setTodayStorageDate();
+        Storage.setDate(Storage.TODAY_DATE_ID, new Date());
     });
 
     test('Check if undefined interruptions count returns 0', () => {
-        expect(Storage.getInterruptions()).toBe(0);
+        expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(0);
     });
 
     test('Check if undefined total interruptions count returns 0', () => {
-        expect(Storage.getTotalInterruptions()).toBe(0);
+        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTION)).toBe(0);
     });
 
     test('Check if storage increments undefined interruptions count', () => {
         Storage.incrInterruptions();
-        expect(Storage.getInterruptions()).toBe(1);
+        expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(1);
     });
     
     test('Check if storage increments undefined total interruptions count', () => {
         Storage.incrInterruptions();
-        expect(Storage.getTotalInterruptions()).toBe(1);
+        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTION)).toBe(1);
     });
 
     test('Check if storage increments current interruptions count', () => {
         localStorage.setItem(Storage.TODAY_INTERRUPTION, '17');
         Storage.incrInterruptions();
-        expect(Storage.getInterruptions()).toBe(18);
+        expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(18);
     });
 
     test('Check if storage increments total interruptions count', () => {
         localStorage.setItem(Storage.TOTAL_INTERRUPTION, '74');
         Storage.incrInterruptions();
-        expect(Storage.getTotalInterruptions()).toBe(75);
+        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTION)).toBe(75);
     });
     
     test('Check to see that interruptions count resets when it is new day', () => {
         localStorage.setItem(Storage.TODAY_INTERRUPTION, '6');
         localStorage.setItem(Storage.TODAY_DATE_ID, new Date(0));
         Storage.incrInterruptions();
-        expect(Storage.getInterruptions()).toBe(1);
+        expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(1);
     });  
 });

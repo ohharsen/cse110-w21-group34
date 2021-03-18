@@ -21,9 +21,10 @@ statsCloseButton.onclick = closeStatsPane;
  * task is complete, or interruption occurs
  */
 export function updateStats () {
+  Storage.updateStorage();
   displayTodayStats();
   displayTotalStats();
-  drawGraph(graphCanvas, Storage.getWeeklyHistory());
+  drawGraph(graphCanvas, Storage.getWeekHistory());
 }
 
 /* istanbul ignore next */
@@ -77,7 +78,7 @@ export function toggleButtons () {
  * Displays the user's current all-time statistics on the statistics pane.
  * Total statistics include:
  *    - Total pomodoros completed
- *    - Total avg. interruptionss per pomodoro
+ *    - Total avg. interruptions per pomodoro
  *    - Total tasks completed
  *    - Most pomodoros completed in a single day
  */
@@ -88,10 +89,10 @@ export function displayTotalStats () {
   const bestTimeElem = document.getElementById('total-best-time');
   const totalTasksElem = document.getElementById('total-tasks');
 
-  const totalPomoCount = Storage.getTotalPomoCount();
-  const totalInterruptCount = Storage.getTotalInterruptions();
-  const bestPomoCount = Storage.getBestDailyPomoCount();
-  const totalTaskCount = Storage.getTotalTasksCount();
+  const totalPomoCount = Storage.getCounter(Storage.TOTAL_POMO_ID);
+  const totalInterruptCount = Storage.getCounter(Storage.TOTAL_INTERRUPTION);
+  const bestPomoCount = Storage.getCounter(Storage.BEST_DAILY_POMO_ID);
+  const totalTaskCount = Storage.getCounter(Storage.TOTAL_TASK_ID);
 
   totalPomoElem.textContent = totalPomoCount;
   totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(2);
@@ -116,9 +117,9 @@ export function displayTodayStats () {
   const todayInterruptElem = document.getElementById('today-interruptions');
 
   // extracting daily stats data to be used for calculation
-  const todayPomoCount = Storage.getPomoCount();
-  const todayInterruptCount = Storage.getInterruptions();
-  const todayTaskCount = Storage.getTasksCount();
+  const todayPomoCount = Storage.getCounter(Storage.TODAY_POMO_ID);
+  const todayInterruptCount = Storage.getCounter(Storage.TODAY_INTERRUPTION);
+  const todayTaskCount = Storage.getCounter(Storage.TODAY_TASK_ID);
 
   // calculating daily stats with extracted data and displaying to UI
   todayPomoElem.textContent = todayPomoCount;
