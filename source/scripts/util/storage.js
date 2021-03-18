@@ -11,7 +11,7 @@ export const TODAY_POMO_ID = 'today-pomo-count';
 export const TOTAL_CYCLE_ID = 'total-cycle-count';
 export const TOTAL_INTERRUPTION = 'total-interruption';
 export const TODAY_INTERRUPTION = 'today-interruption';
-export const ZEROS = [0,0,0,0,0,0,0];
+export const ZEROS = [0, 0, 0, 0, 0, 0, 0];
 
 /**
  * Setter method for counters
@@ -25,7 +25,7 @@ export function setCounter (counterID, counter) {
 /**
  * Setter mmethod for dates
  * @param {String} dateID The key for a date item in storage
- * @param {Date} date The new value for the key 
+ * @param {Date} date The new value for the key
  */
 export function setDate (dateID, date) {
   window.localStorage.setItem(dateID, date.toString());
@@ -70,21 +70,20 @@ export function getWeekHistory () {
  */
 export function incrTasks () {
   updateStorage();
-  setCounter(TODAY_TASK_ID, getCounter(TODAY_TASK_ID)+1);
-  setCounter(TOTAL_TASK_ID, getCounter(TOTAL_TASK_ID)+1);
+  setCounter(TODAY_TASK_ID, getCounter(TODAY_TASK_ID) + 1);
+  setCounter(TOTAL_TASK_ID, getCounter(TOTAL_TASK_ID) + 1);
 }
 
 /**
  * Increments completed Pomodoros for today, the current week, and total in
  * local storage.
- * @return number of pomos completed today
  */
 export function incrPomoCount () {
   updateStorage();
 
-  let todayPomos = getCounter(TODAY_POMO_ID)+1;
+  const todayPomos = getCounter(TODAY_POMO_ID) + 1;
   setCounter(TODAY_POMO_ID, todayPomos);
-  setCounter(TOTAL_POMO_ID, getCounter(TOTAL_POMO_ID)+1);
+  setCounter(TOTAL_POMO_ID, getCounter(TOTAL_POMO_ID) + 1);
 
   if (getCounter(BEST_DAILY_POMO_ID) < todayPomos) setCounter(BEST_DAILY_POMO_ID, todayPomos);
 
@@ -97,14 +96,12 @@ export function incrPomoCount () {
 }
 
 /**
- * Updates interruptions in local storage
- * @param {Number} amount The number of interruptions today
- * @return The updated number of interruptions
+ * Increments interruptions for today and in total
  */
 export function incrInterruptions () {
   updateStorage();
-  setCounter(TODAY_INTERRUPTION, getCounter(TODAY_INTERRUPTION)+1);
-  setCounter(TOTAL_INTERRUPTION, getCounter(TOTAL_INTERRUPTION)+1);
+  setCounter(TODAY_INTERRUPTION, getCounter(TODAY_INTERRUPTION) + 1);
+  setCounter(TOTAL_INTERRUPTION, getCounter(TOTAL_INTERRUPTION) + 1);
 }
 
 /**

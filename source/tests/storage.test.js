@@ -205,39 +205,39 @@ describe('Interruptions', () => {
     });
 
     test('Check if undefined interruptions count returns 0', () => {
-        expect(Storage.getCounter(Storage.TODAY_INTERRUPTIONS)).toBe(0);
+        expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(0);
     });
 
     test('Check if undefined total interruptions count returns 0', () => {
-        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTIONS)).toBe(0);
+        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTION)).toBe(0);
     });
 
     test('Check if storage increments undefined interruptions count', () => {
         Storage.incrInterruptions();
-        expect(Storage.getCounter(Storage.TODAY_INTERRUPTIONS)).toBe(1);
+        expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(1);
     });
     
     test('Check if storage increments undefined total interruptions count', () => {
         Storage.incrInterruptions();
-        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTIONS)).toBe(1);
+        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTION)).toBe(1);
     });
 
     test('Check if storage increments current interruptions count', () => {
         localStorage.setItem(Storage.TODAY_INTERRUPTION, '17');
         Storage.incrInterruptions();
-        expect(Storage.getCounter(Storage.TODAY_INTERRUPTIONS)).toBe(18);
+        expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(18);
     });
 
     test('Check if storage increments total interruptions count', () => {
         localStorage.setItem(Storage.TOTAL_INTERRUPTION, '74');
         Storage.incrInterruptions();
-        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTIONS)).toBe(75);
+        expect(Storage.getCounter(Storage.TOTAL_INTERRUPTION)).toBe(75);
     });
     
     test('Check to see that interruptions count resets when it is new day', () => {
         localStorage.setItem(Storage.TODAY_INTERRUPTION, '6');
         localStorage.setItem(Storage.TODAY_DATE_ID, new Date(0));
         Storage.incrInterruptions();
-        expect(Storage.getCounter(Storage.TODAY_INTERRUPTIONS)).toBe(1);
+        expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(1);
     });  
 });
