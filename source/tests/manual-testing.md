@@ -34,6 +34,6 @@
 
 - For settings pane, tested by opening settings pane then turning on colorblind access and making sure the text and colors change accordingly while settings pane is open, then closing and reopening pane to make sure the changes are maintained
 
-![check](source/gifs/stats-scroll.gif)
+![check](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/stats-scroll.gif)
 
 
