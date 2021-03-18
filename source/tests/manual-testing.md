@@ -2,13 +2,13 @@
 
 ### Visual Tests on Stats and Settings Pane 
 
-**Making sure that additional interruptions or tasks completed don’t increase the bar in the bar graph** 
-
-- Tested by making interruptions in the timer and completing tasks, then making sure it doesn’t affect the bars in the graph 
-
 **Making sure the graph and stats automatically update while the stats pane is open without having to reopen pane**
 
 - Tested by changing the time of a pomo to 3 seconds then repeatedly finishing pomos and making sure the stats displayed and graph automatically reflect these these changes while the stats pane was open 
+
+**Making sure that additional interruptions or tasks completed don’t increase the bar in the bar graph** 
+
+- Tested by making interruptions in the timer and completing tasks, then making sure it doesn’t affect the bars in the graph 
 
 **Making sure the y-axis splits in graph correctly change with the max value of pomos in a day**
 
