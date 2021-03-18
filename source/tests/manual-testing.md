@@ -34,6 +34,6 @@
 
 - For settings pane, tested by opening settings pane then turning on colorblind access and making sure the text and colors change accordingly while settings pane is open, then closing and reopening pane to make sure the changes are maintained
 
-![](stats-scroll.gif)
+![](source/gifs/stats-scroll.gif)
 
 
