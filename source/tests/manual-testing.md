@@ -15,7 +15,7 @@
 
 - Tested by changing time of a pomo to 3 seconds, then tested from max pomo in a day being 0 up until 20, and made sure the correct splits were correctly displayed in each case while the stats pane was open and when closing and reoping stats pane 
 
-This accounts for the 3 cases when max less than 3 and 11 or greater than 10, and also checks whether it correctly adjusts the highest split to be a multiple of 3 in any case where the original max is not a multiple of 3
+  - This accounts for the 3 cases when max less than 3 and 11 or greater than 10, and also checks whether it correctly adjusts the highest split to be a multiple     of 3 in any case where the original max is not a multiple of 3
 
 Test to make sure setting and graph page properly resize when window height  is decreased 
 
