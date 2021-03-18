@@ -17,11 +17,11 @@
 
   - This accounts for the 3 cases when max less than 3 and 11 or greater than 10, and also checks whether it correctly adjusts the highest split to be a multiple     of 3 in any case where the original max is not a multiple of 3
 
-Test to make sure setting and graph page properly resize when window height  is decreased 
+**Tested to make sure setting and graph page properly resize when window height is decreased and increased**
 
-tested by opening stats pane then shrinking window height then making sure stats pane correctly shrinks and creates a scroll bar that allows to scroll through stats pane  
+- Tested by opening stats pane then shrinking and increasing window height then making sure stats pane correctly shrinks and expands and creates a scroll bar that allows user to scroll through stats pane when the height of the window becomes too small  
 
-tested by opening settings pane then shrinking window height then making sure settings pane and text correctly shrinks and creates a scroll bar that allows to scroll through settings pane 
+- Tested by opening settings pane then shrinking and increasing window height then making sure settings pane and text correctly shrinks and expands and creates a scroll bar that allows user to scroll through settings pane 
 
 Test to make sure setting and graph page properly resize when window width is decreased 
 
