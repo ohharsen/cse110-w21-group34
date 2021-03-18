@@ -41,6 +41,7 @@
     align-content: space-around;
     justify-items: flex-start;
     justify-content: space-between;
+    min-height: 680px;
 }
 
 .settings-box {
@@ -178,7 +179,7 @@
     color: #34DBB3;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 814px) {
     #settings-container {
         height: calc(100vh - 36px);
         width: calc(100vw - 36px);
@@ -216,9 +217,10 @@
 
     #settings-pane {
         padding: 12px 24px 12px 24px;
+        min-height: 700px;
     }
 
-    .settingts-button {
+    .settings-button {
         top: 12px;
         right: 12px;
         width: 80px;

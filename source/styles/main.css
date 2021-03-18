@@ -54,6 +54,7 @@ html {
     -o-background-size: cover;
     background-size: cover;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -93,6 +94,10 @@ button:focus:not(:focus-visible) {
 
 button:focus-visible {
     box-shadow: black 0px 0px 0px 2px;
+}
+
+aside {
+    overflow: auto;
 }
 
 @keyframes slide-right-out {
