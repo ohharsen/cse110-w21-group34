@@ -18,7 +18,10 @@
 
 **Tested to make sure setting and graph page properly resize when window height is decreased and increased**
 
-- Tested by opening stats pane then shrinking and increasing window height then making sure stats pane correctly shrinks and expands and creates a scroll bar that allows user to scroll through stats pane when the height of the window becomes too small  
+- For stats pane, tested by opening stats pane then shrinking and increasing window height then making sure stats pane correctly shrinks and expands and creates a scroll bar that allows user to scroll through stats pane when the height of the window becomes too small  
+
+![check](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/stats-scroll.gif)
+
 
 - Tested by opening settings pane then shrinking and increasing window height then making sure settings pane and text correctly shrinks and expands and creates a scroll bar that allows user to scroll through settings pane 
 
@@ -34,6 +37,6 @@
 
 - For settings pane, tested by opening settings pane then turning on colorblind access and making sure the text and colors change accordingly while settings pane is open, then closing and reopening pane to make sure the changes are maintained
 
-![check](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/stats-scroll.gif)
+
 
 
