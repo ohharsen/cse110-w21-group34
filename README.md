@@ -1,4 +1,12 @@
-# cse110-w21-group34
+# Team Pomobears (Group 34 - CSE 110 Winter 21')
+
+This project is a Pomodoro Timer to help others manage their time and
+stay productive. Unlike many other timers, our timer provides features like:
+- Daily & Total Statistics
+- Weekly Productivity Graph
+- Keyboard Shortcuts & Accessibility
+
+To see the live project, visit [https://www.pomobears.tech/](https://www.pomobears.tech/).
 
 ## Source Documentation (JSDocs)
 
