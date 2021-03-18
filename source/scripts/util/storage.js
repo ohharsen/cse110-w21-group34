@@ -11,7 +11,6 @@ export const TODAY_POMO_ID = 'today-pomo-count';
 export const TOTAL_CYCLE_ID = 'total-cycle-count';
 export const TOTAL_INTERRUPTION = 'total-interruption';
 export const TODAY_INTERRUPTION = 'today-interruption';
-
 export const ZEROS = [0,0,0,0,0,0,0];
 
 /**
@@ -28,8 +27,7 @@ export function setCounter (counterID, counter) {
  * @param {String} dateID The key for a date item in storage
  * @param {Date} date The new value for the key 
  */
-export function setDate (dateID, date = new Date()) {
-  // Sets to today's date by default
+export function setDate (dateID, date) {
   window.localStorage.setItem(dateID, date.toString());
 }
 
@@ -38,7 +36,6 @@ export function setDate (dateID, date = new Date()) {
  * @param {Array} weekHistory Pomos completed on each day of the week
  */
 export function setWeekHistory (weekHistory) {
-  // Clears by default
   window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(weekHistory));
 }
 
@@ -114,14 +111,14 @@ export function incrInterruptions () {
  * Update storage today counters and dates if today's date has changed
  */
 export function updateStorage () {
-  const today = new Date();
-  if (!isSameDay(today, getDate(TODAY_DATE_ID))) {
+  if (!isStorageDateToday()) {
     // Set counters
     setCounter(TODAY_POMO_ID, 0);
     setCounter(TODAY_TASK_ID, 0);
     setCounter(TODAY_INTERRUPTION, 0);
 
     // Set dates (and week history if necessary)
+    const today = new Date();
     setDate(TODAY_DATE_ID, today);
     const recentMonday = getRecentMonday(today);
     if (!isSameDay(getDate(WEEK_START_ID), recentMonday)) {
@@ -129,6 +126,14 @@ export function updateStorage () {
       setWeekHistory(ZEROS);
     }
   }
+}
+
+/**
+ * Checks if the storage date for today matches today's real date
+ * @returns {Boolean} true if they are the same, false otherwise
+ */
+export function isStorageDateToday () {
+  return isSameDay(new Date(), getDate(TODAY_DATE_ID));
 }
 
 /**
