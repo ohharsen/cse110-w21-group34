@@ -1,7 +1,6 @@
 # Manual Testing 
 
-// visual tests on the Graph 
-
+### Visual Tests on Stats and Settings Pane 
 
 **Making sure that additional interruptions or tasks completed don’t increase the bar in the bar graph** 
 
@@ -23,14 +22,15 @@
 
 - Tested by opening settings pane then shrinking and increasing window height then making sure settings pane and text correctly shrinks and expands and creates a scroll bar that allows user to scroll through settings pane 
 
-Test to make sure setting and graph page properly resize when window width is decreased 
+**Tested to make sure setting and graph page properly resize when window width is decreased and increased** 
 
-tested by opening stats pane then shrinking window width then making sure stats pane correctly squeezes and expands, and when the width gets small enough to only display stats pane. 
+- Tested by opening stats pane then shrinking and expanding window width then making sure stats pane correctly squeezes and expands, and when the width gets small enough to only display stats pane
 
-tested by opening settings pane then shrinking and expanding window width then making sure settings pane correctly squeezes and expands, and when the width gets small enough to only display settings pane. 
+- Tested by opening settings pane then shrinking and expanding window width then making sure settings pane correctly squeezes and expands, and when the width gets small enough to only display settings pane
 
-making sure when colorblind accessibility is turned on, that settings and graph pane correctly change 
+**Tested to make sure when colorblind accessibility is turned on, that settings and stats pane correctly change** 
 
-For settings pane, tested by opening settings pane then turning on colorblind access and making sure the text and colors change accordingly while settings pane is open, then closing and reopening pane to make sure the changes are maintained. 
+- For stats pane, tested by opening settings pane then turning on colorblind access. Then opening stats pane and making sure the text and colors change accordingly, then closing and reopening pane to make sure the changes are maintained
 
-For stats pane, tested by opening settings pane then turning on colorblind access. Then opening stats pane and making sure the text and colors change accordingly, then closing and reopening pane to make sure the changes are maintained. 
+- For settings pane, tested by opening settings pane then turning on colorblind access and making sure the text and colors change accordingly while settings pane is open, then closing and reopening pane to make sure the changes are maintained
+
