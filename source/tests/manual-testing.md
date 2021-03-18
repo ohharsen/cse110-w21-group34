@@ -23,7 +23,7 @@
 ![](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/stats-scroll.gif)
 
 
-- For settigns pane, tested by opening settings pane then shrinking and increasing window height then making sure settings pane and text correctly shrinks and expands and creates a scroll bar that allows user to scroll through settings pane 
+- For settings pane, tested by opening settings pane then shrinking and increasing window height then making sure settings pane and text correctly shrinks and expands and creates a scroll bar that allows user to scroll through settings pane 
 
 ![](https://github.com/4R53N/cse110-w21-group34/blob/manual-testing/source/gifs/settings-scroll.gif)
 
