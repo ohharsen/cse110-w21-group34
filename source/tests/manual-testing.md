@@ -1,6 +1,6 @@
 # Manual Testing 
 
-### Visual Tests on Stats and Settings Pane 
+### Visual Tests on Stats and Settings Pane (few gifs included to demonstrate the testing)
 
 **Making sure the graph and stats automatically update while the stats pane is open without having to reopen pane**
 
