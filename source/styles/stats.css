@@ -44,6 +44,7 @@
 
 #stats-overview {
     flex-basis: 35%;
+    min-height: 240px;
 }
 
 .stats-box {
@@ -147,12 +148,20 @@
     width: 100%;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 814px) {
     #stats-container {
         height: calc(100vh - 36px);
         width: calc(100vw - 36px);
         margin: 18px 18px 18px 18px;
         right: calc(-100vw + -18px);
+    }
+
+    #weekly-graph {
+        width: calc(100vw - 100px);
+    }
+
+    #stats-overview {
+        min-height: calc(75vw - 100px);
     }
     
     #stats-container h2 {
@@ -162,6 +171,7 @@
 
     #stats-pane {
         padding: 16px 32px 16px 32px;
+        min-height: max(calc(75vw + 400px), 650px);
     }
 
     .stats-button {
@@ -185,6 +195,7 @@
 
     #stats-pane {
         padding: 12px 24px 12px 24px;
+        min-height: max(calc(75vw + 400px), 650px);
     }
 
     .stats-button {

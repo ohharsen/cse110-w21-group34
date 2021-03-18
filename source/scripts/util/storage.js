@@ -11,197 +11,126 @@ export const TODAY_POMO_ID = 'today-pomo-count';
 export const TOTAL_CYCLE_ID = 'total-cycle-count';
 export const TOTAL_INTERRUPTION = 'total-interruption';
 export const TODAY_INTERRUPTION = 'today-interruption';
+export const ZEROS = [0, 0, 0, 0, 0, 0, 0];
+
+/**
+ * Setter method for counters
+ * @param {String} counterID The key for a counter item in storage
+ * @param {Number} counter The new value for the key
+ */
+export function setCounter (counterID, counter) {
+  window.localStorage.setItem(counterID, String(counter));
+}
+
+/**
+ * Setter mmethod for dates
+ * @param {String} dateID The key for a date item in storage
+ * @param {Date} date The new value for the key
+ */
+export function setDate (dateID, date) {
+  window.localStorage.setItem(dateID, date.toString());
+}
+
+/**
+ * Setter method for the week history
+ * @param {Array} weekHistory Pomos completed on each day of the week
+ */
+export function setWeekHistory (weekHistory) {
+  window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(weekHistory));
+}
+
+/**
+ * Getter method for counters
+ * @param {String} counterID The key for a counter item in storage
+ * @returns {Number} the value for the key in storage
+ */
+export function getCounter (counterID) {
+  return Number(window.localStorage.getItem(counterID));
+}
+
+/**
+ * Getter method for dates
+ * @param {String} dateID The key for a date item in storage
+ * @returns {Date} the value for the key in storage
+ */
+export function getDate (dateID) {
+  return new Date(window.localStorage.getItem(dateID) || new Date(0));
+}
+
+/**
+ * Getter method for the week history
+ * @returns {Array} Pomos completed on each day of the week
+ */
+export function getWeekHistory () {
+  return JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || ZEROS;
+}
 
 /**
  * Update local storage with finished task information
  */
 export function incrTasks () {
-  let todaysTasks = getTasksCount();
-
-  if (isStorageDateToday()) {
-    todaysTasks++;
-  } else { // same day, same week
-    todaysTasks = 1;
-    setTodayStorageDate();
-  }
-
-  // Update today's task count
-  window.localStorage.setItem(TODAY_TASK_ID, String(todaysTasks));
-
-  // Update total task count
-  const totalTasks = Number(window.localStorage.getItem(TOTAL_TASK_ID)) + 1;
-  window.localStorage.setItem(TOTAL_TASK_ID, String(totalTasks));
-}
-
-/**
- * Getter method for number of tasks completed today
- * @returns {Number} storage data
- */
-export function getTasksCount () {
-  return Number(window.localStorage.getItem(TODAY_TASK_ID));
-}
-
-/**
- * Getter method for total tasks completed
- * @return {Number} storage data
- */
-export function getTotalTasksCount () {
-  return Number(window.localStorage.getItem(TOTAL_TASK_ID));
+  updateStorage();
+  setCounter(TODAY_TASK_ID, getCounter(TODAY_TASK_ID) + 1);
+  setCounter(TOTAL_TASK_ID, getCounter(TOTAL_TASK_ID) + 1);
 }
 
 /**
  * Increments completed Pomodoros for today, the current week, and total in
  * local storage.
- * @return number of pomos completed today
  */
 export function incrPomoCount () {
-  let todayPomos = getPomoCount();
+  updateStorage();
 
-  // Update today's pomo count
-  if (isStorageDateToday()) {
-    todayPomos++;
-  } else {
-    todayPomos = 1;
-    setTodayStorageDate();
-  }
-  window.localStorage.setItem(TODAY_POMO_ID, String(todayPomos));
+  const todayPomos = getCounter(TODAY_POMO_ID) + 1;
+  setCounter(TODAY_POMO_ID, todayPomos);
+  setCounter(TOTAL_POMO_ID, getCounter(TOTAL_POMO_ID) + 1);
 
-  // Update total pomo count
-  window.localStorage.setItem(TOTAL_POMO_ID, String(Number(window.localStorage.getItem(TOTAL_POMO_ID)) + 1));
-  if (Number(window.localStorage.getItem(BEST_DAILY_POMO_ID)) < todayPomos) {
-    window.localStorage.setItem(BEST_DAILY_POMO_ID, todayPomos);
-  }
+  if (getCounter(BEST_DAILY_POMO_ID) < todayPomos) setCounter(BEST_DAILY_POMO_ID, todayPomos);
 
-  // Check if we're in the same week
+  // Update week history
   const today = new Date();
-  const recentMonday = getRecentMonday(today);
-  if (!isSameDay(getWeekStartDate(), recentMonday)) setWeekStartDate(recentMonday);
-
-  // Update weekly history
   const dayIdx = (today.getDay() - 1) % Constants.LENGTH_OF_WEEK;
-  const weekHistory = JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
+  const weekHistory = getWeekHistory();
   weekHistory[dayIdx]++;
-  window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(weekHistory));
-
-  return todayPomos;
+  setWeekHistory(weekHistory);
 }
 
 /**
- * Getter method for number of pomos completed today
- * @returns {Number} storage data
- */
-export function getPomoCount () {
-  return Number(window.localStorage.getItem(TODAY_POMO_ID));
-}
-
-/**
- * Getter method for total pomos completed
- * @returns {Number} storage data
- */
-export function getTotalPomoCount () {
-  return Number(window.localStorage.getItem(TOTAL_POMO_ID));
-}
-
-/**
- * Getter method for best daily count
- * @returns {Number} storage data
- */
-export function getBestDailyPomoCount () {
-  return Number(window.localStorage.getItem(BEST_DAILY_POMO_ID));
-}
-
-/**
- * Getter method for week history of pomos completed
- * @returns {Array}  storage data
- */
-export function getWeeklyHistory () {
-  return JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || [0, 0, 0, 0, 0, 0, 0];
-}
-
-/**
- * Reset week history array to zeros
- */
-export function clearWeeklyHistory () {
-  const zeros = [0, 0, 0, 0, 0, 0, 0];
-  window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(zeros));
-}
-
-/**
- * Updates interruptions in local storage
- * @param {Number} amount The number of interruptions today
- * @return The updated number of interruptions
+ * Increments interruptions for today and in total
  */
 export function incrInterruptions () {
-  let todayInterruptions = getInterruptions();
+  updateStorage();
+  setCounter(TODAY_INTERRUPTION, getCounter(TODAY_INTERRUPTION) + 1);
+  setCounter(TOTAL_INTERRUPTION, getCounter(TOTAL_INTERRUPTION) + 1);
+}
 
-  // Update today's interruptions
-  if (isStorageDateToday()) {
-    todayInterruptions++;
-  } else {
-    todayInterruptions = 1;
-    setTodayStorageDate();
+/**
+ * Update storage today counters and dates if today's date has changed
+ */
+export function updateStorage () {
+  if (!isStorageDateToday()) {
+    // Set counters
+    setCounter(TODAY_POMO_ID, 0);
+    setCounter(TODAY_TASK_ID, 0);
+    setCounter(TODAY_INTERRUPTION, 0);
+
+    // Set dates (and week history if necessary)
+    const today = new Date();
+    setDate(TODAY_DATE_ID, today);
+    const recentMonday = getRecentMonday(today);
+    if (!isSameDay(getDate(WEEK_START_ID), recentMonday)) {
+      setDate(WEEK_START_ID, recentMonday);
+      setWeekHistory(ZEROS);
+    }
   }
-  window.localStorage.setItem(TODAY_INTERRUPTION, String(todayInterruptions));
-
-  // Update total interruptions
-  const interruptions = Number(window.localStorage.getItem(TOTAL_INTERRUPTION));
-  window.localStorage.setItem(TOTAL_INTERRUPTION, String(interruptions + 1));
 }
 
 /**
- * Getter method for today's interruptions
- * @return {Number} storage data
- */
-export function getInterruptions () {
-  return Number(window.localStorage.getItem(TODAY_INTERRUPTION));
-}
-
-/**
- * Getter method for total interruptions
- * @return {Number} storage data
- */
-export function getTotalInterruptions () {
-  return Number(window.localStorage.getItem(TOTAL_INTERRUPTION));
-}
-
-/**
- * Getter method for date in storage that counts as today
- * @returns {Date} storage data
- */
-export function getTodayStorageDate () {
-  return new Date(window.localStorage.getItem(TODAY_DATE_ID) || new Date(0));
-}
-
-/**
- * Updates date in storage to today's date
- */
-export function setTodayStorageDate () {
-  const today = new Date();
-  window.localStorage.setItem(TODAY_DATE_ID, today.toString());
-}
-
-/**
- * Getter method for date in storage that marks the start of a week
- * @returns {Date} storage data
- */
-export function getWeekStartDate () {
-  return new Date(window.localStorage.getItem(WEEK_START_ID)) || new Date(0);
-}
-
-/**
- * Updates week start date in storage to most recent Monday
- */
-export function setWeekStartDate (monday) {
-  window.localStorage.setItem(WEEK_START_ID, monday.toString());
-  clearWeeklyHistory();
-}
-
-/**
- * Checks if the date in storage is the same as today's date
+ * Checks if the storage date for today matches today's real date
  * @returns {Boolean} true if they are the same, false otherwise
  */
 export function isStorageDateToday () {
-  return isSameDay(new Date(), getTodayStorageDate());
+  return isSameDay(new Date(), getDate(TODAY_DATE_ID));
 }
 
 /**
