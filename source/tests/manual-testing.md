@@ -3,9 +3,9 @@
 // visual tests on the Graph 
 
 
-make sure that addiotional interruptions or tasks completed don’t increase the bar in the bar graph 
+**making sure that additional interruptions or tasks completed don’t increase the bar in the bar graph** 
 
-tested by making interruptions in the timer and completing tasks, then making sure it doesn’t affect the bars in the graph 
+- tested by making interruptions in the timer and completing tasks, then making sure it doesn’t affect the bars in the graph 
 
 making sure the graph and stats automatically update while the pane is open without having to reopen pane
 
