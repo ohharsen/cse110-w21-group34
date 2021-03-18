@@ -3,17 +3,17 @@
 // visual tests on the Graph 
 
 
-**making sure that additional interruptions or tasks completed don’t increase the bar in the bar graph** 
+**Making sure that additional interruptions or tasks completed don’t increase the bar in the bar graph** 
 
-- tested by making interruptions in the timer and completing tasks, then making sure it doesn’t affect the bars in the graph 
+- Tested by making interruptions in the timer and completing tasks, then making sure it doesn’t affect the bars in the graph 
 
-making sure the graph and stats automatically update while the pane is open without having to reopen pane
+**Making sure the graph and stats automatically update while the stats pane is open without having to reopen pane**
 
-tested by changing the time of pomo to 3 seconds then repeatedly finishing pomos and making sure the stats and graph automatically reflected these updates these changes while the stats pane was open 
+- Tested by changing the time of a pomo to 3 seconds then repeatedly finishing pomos and making sure the stats displayed and graph automatically reflect these these changes while the stats pane was open 
 
-making sure the y axis splits in graph correctly change with the max value of pomos in a day 
+**Making sure the y-axis splits in graph correctly change with the max value of pomos in a day**
 
-tested by changing time of pomo to 3 seconds then tested from max pomo being 0 up until 20, and made sure the correct splits were displayed in each case 
+- Tested by changing time of a pomo to 3 seconds, then tested from max pomo in a day being 0 up until 20, and made sure the correct splits were correctly displayed in each case while the stats pane was open and when closing and reoping stats pane 
 
 This accounts for the 3 cases when max less than 3 and 11 or greater than 10, and also checks whether it correctly adjusts the highest split to be a multiple of 3. 
 
