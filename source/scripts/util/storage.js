@@ -15,17 +15,17 @@ export const ZEROS = [0, 0, 0, 0, 0, 0, 0];
 
 /**
  * Setter method for counters
- * @param {String} counterID The key for a counter item in storage
- * @param {Number} counter The new value for the key
+ * @param {String} counterID - The key for a counter item in storage
+ * @param {Number} counter - The new value for the key
  */
 export function setCounter (counterID, counter) {
   window.localStorage.setItem(counterID, String(counter));
 }
 
 /**
- * Setter mmethod for dates
- * @param {String} dateID The key for a date item in storage
- * @param {Date} date The new value for the key
+ * Setter method for dates
+ * @param {String} dateID - The key for a date item in storage
+ * @param {Date} date - The new value for the key
  */
 export function setDate (dateID, date) {
   window.localStorage.setItem(dateID, date.toString());
@@ -33,7 +33,7 @@ export function setDate (dateID, date) {
 
 /**
  * Setter method for the week history
- * @param {Array} weekHistory Pomos completed on each day of the week
+ * @param {Number[]} weekHistory - Pomos completed on each day of the week
  */
 export function setWeekHistory (weekHistory) {
   window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(weekHistory));
@@ -41,7 +41,7 @@ export function setWeekHistory (weekHistory) {
 
 /**
  * Getter method for counters
- * @param {String} counterID The key for a counter item in storage
+ * @param {String} counterID - The key for a counter item in storage
  * @returns {Number} the value for the key in storage
  */
 export function getCounter (counterID) {
@@ -50,7 +50,7 @@ export function getCounter (counterID) {
 
 /**
  * Getter method for dates
- * @param {String} dateID The key for a date item in storage
+ * @param {String} dateID - The key for a date item in storage
  * @returns {Date} the value for the key in storage
  */
 export function getDate (dateID) {
@@ -59,14 +59,14 @@ export function getDate (dateID) {
 
 /**
  * Getter method for the week history
- * @returns {Array} Pomos completed on each day of the week
+ * @returns {Number[]} Pomos completed on each day of the week
  */
 export function getWeekHistory () {
   return JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || ZEROS;
 }
 
 /**
- * Update local storage with finished task information
+ * Updates local storage with finished task information
  */
 export function incrTasks () {
   updateStorage();
@@ -105,7 +105,7 @@ export function incrInterruptions () {
 }
 
 /**
- * Update storage today counters and dates if today's date has changed
+ * Updates storage today counters and dates if today's date has changed
  */
 export function updateStorage () {
   if (!isStorageDateToday()) {
@@ -135,8 +135,8 @@ export function isStorageDateToday () {
 
 /**
  * Checks if two date values are the same MM/DD/YYYY
- * @param {Date} date1
- * @param {Date} date2
+ * @param {Date} date1 - The first date to compare
+ * @param {Date} date2 - The second date to compare
  * @returns {Boolean} true if they are the same, false otherwise
  */
 export function isSameDay (date1, date2) {
@@ -147,9 +147,9 @@ export function isSameDay (date1, date2) {
 }
 
 /**
- * Get most recent Monday from a given date
- * @param {Date} date any date
- * @returns {Date} the most recent Monday
+ * Gets most recent Monday from a given date
+ * @param {Date} date - Any date
+ * @returns {Date} the most recent Monday from given date
  */
 export function getRecentMonday (date) {
   const checkDate = new Date(date);
