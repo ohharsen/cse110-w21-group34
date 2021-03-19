@@ -1,5 +1,5 @@
 import * as Stats from './stats.js';
-import * as Constants from './constants.js'
+import * as Constants from './constants.js';
 import { toggleAccessibility, toggleKeystroke } from './accessibility.js';
 
 /* Settings Pane and Buttons */

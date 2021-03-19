@@ -55,7 +55,7 @@ function keyControls (e) {
       removeAll();
       (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
       break;
-    case keys.DOWN_ARROW:
+    case keys.RIGHT_ARROW:
       e.preventDefault();
       removeAll();
       (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();

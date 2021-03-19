@@ -1,5 +1,5 @@
 import { isA11yEnabled } from '../accessibility.js';
-import { ZEROS } from './storage.js' 
+import { ZEROS } from './storage.js';
 
 /* Graph Constants */
 const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
@@ -28,7 +28,6 @@ const Y_MAX_SPACING = 11;
 const TWO = 2;
 
 /* Other Constants */
-const OBJECT_TYPE = 'object';
 const TEST_PROCESS = 'test';
 const CONTEXT_2D = '2d';
 
@@ -41,7 +40,7 @@ const CONTEXT_2D = '2d';
  * @param {Number[]} data - An array
  */
 export function drawGraph (canvas, data = ZEROS) {
-  if (!canvas || (typeof process === OBJECT_TYPE && process.env.NODE_ENV === TEST_PROCESS)) return;
+  if (!canvas || (typeof process === 'object' && process.env.NODE_ENV === TEST_PROCESS)) return;
 
   const ctx = canvas.getContext(CONTEXT_2D);
   const axes = calculateAxes(data);
@@ -53,8 +52,8 @@ export function drawGraph (canvas, data = ZEROS) {
 
 /* istanbul ignore next */
 /**
- * Draws axes for the graph 
- * @param {CanvasRenderingContext2D} ctx - The canvas' 2d rendering context 
+ * Draws axes for the graph
+ * @param {CanvasRenderingContext2D} ctx - The canvas' 2d rendering context
  * @param {Number} canvasHeight - The canvas height
  * @param {Number} canvasWidth - The canvas width
  * @param {Number[]} axes - y-axis values
@@ -114,7 +113,7 @@ export function calculateAxes (data) {
   // between max value and highest y axis
   if (max < Y_MIN_SPACING) return axes;
   if (max >= Y_MAX_SPACING) max++;
-  
+
   max++;
 
   // making sure max is divisible by 3 to not have decimals in y axis splits

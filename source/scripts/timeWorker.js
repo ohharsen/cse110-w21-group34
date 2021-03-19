@@ -16,8 +16,8 @@ onmessage = (e) => {
 
 /**
  * Starts a timer for the given duration and sends the time left
- * every second as a message.
- * @param {number} duration
+ * every second as a message
+ * @param {Number} duration - Amount of time left
  */
 function startTimer (duration) {
   let timeLeft = duration;
