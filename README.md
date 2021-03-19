@@ -8,7 +8,7 @@ stay productive. Unlike many other timers, our timer provides features like:
 
 To see the live project, visit [https://www.pomobears.tech/](https://www.pomobears.tech/).
 
-## Keyboard Shortcuts 
+## Keyboard Shortcuts (Would have included instructions in website, if we had more time)
 **Keyboard Shortcuts are initially turned on for user accessibility** 
 - "Esc" to close either pane 
 - Left Arrow to open stats pane if settings pane isn't open, or close settings pane otherwise
