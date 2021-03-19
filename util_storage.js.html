@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: util/storage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: util/storage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import * as Constants from '../constants.js';
+
+export const BEST_DAILY_POMO_ID = 'best-daily-pomo-count';
+export const TOTAL_POMO_ID = 'total-pomo-count';
+export const TOTAL_TASK_ID = 'total-task-count';
+export const TODAY_TASK_ID = 'today-task-count';
+export const WEEK_HISTORY = 'week-history';
+export const TODAY_DATE_ID = 'today';
+export const WEEK_START_ID = 'week-start';
+export const TODAY_POMO_ID = 'today-pomo-count';
+export const TOTAL_CYCLE_ID = 'total-cycle-count';
+export const TOTAL_INTERRUPTION = 'total-interruption';
+export const TODAY_INTERRUPTION = 'today-interruption';
+export const ZEROS = [0, 0, 0, 0, 0, 0, 0];
+
+/**
+ * Setter method for counters
+ * @param {String} counterID The key for a counter item in storage
+ * @param {Number} counter The new value for the key
+ */
+export function setCounter (counterID, counter) {
+  window.localStorage.setItem(counterID, String(counter));
+}
+
+/**
+ * Setter mmethod for dates
+ * @param {String} dateID The key for a date item in storage
+ * @param {Date} date The new value for the key
+ */
+export function setDate (dateID, date) {
+  window.localStorage.setItem(dateID, date.toString());
+}
+
+/**
+ * Setter method for the week history
+ * @param {Array} weekHistory Pomos completed on each day of the week
+ */
+export function setWeekHistory (weekHistory) {
+  window.localStorage.setItem(WEEK_HISTORY, JSON.stringify(weekHistory));
+}
+
+/**
+ * Getter method for counters
+ * @param {String} counterID The key for a counter item in storage
+ * @returns {Number} the value for the key in storage
+ */
+export function getCounter (counterID) {
+  return Number(window.localStorage.getItem(counterID));
+}
+
+/**
+ * Getter method for dates
+ * @param {String} dateID The key for a date item in storage
+ * @returns {Date} the value for the key in storage
+ */
+export function getDate (dateID) {
+  return new Date(window.localStorage.getItem(dateID) || new Date(0));
+}
+
+/**
+ * Getter method for the week history
+ * @returns {Array} Pomos completed on each day of the week
+ */
+export function getWeekHistory () {
+  return JSON.parse(window.localStorage.getItem(WEEK_HISTORY)) || ZEROS;
+}
+
+/**
+ * Update local storage with finished task information
+ */
+export function incrTasks () {
+  updateStorage();
+  setCounter(TODAY_TASK_ID, getCounter(TODAY_TASK_ID) + 1);
+  setCounter(TOTAL_TASK_ID, getCounter(TOTAL_TASK_ID) + 1);
+}
+
+/**
+ * Increments completed Pomodoros for today, the current week, and total in
+ * local storage.
+ */
+export function incrPomoCount () {
+  updateStorage();
+
+  const todayPomos = getCounter(TODAY_POMO_ID) + 1;
+  setCounter(TODAY_POMO_ID, todayPomos);
+  setCounter(TOTAL_POMO_ID, getCounter(TOTAL_POMO_ID) + 1);
+
+  if (getCounter(BEST_DAILY_POMO_ID) &lt; todayPomos) setCounter(BEST_DAILY_POMO_ID, todayPomos);
+
+  // Update week history
+  const today = new Date();
+  const dayIdx = (today.getDay() - 1) % Constants.LENGTH_OF_WEEK;
+  const weekHistory = getWeekHistory();
+  weekHistory[dayIdx]++;
+  setWeekHistory(weekHistory);
+}
+
+/**
+ * Increments interruptions for today and in total
+ */
+export function incrInterruptions () {
+  updateStorage();
+  setCounter(TODAY_INTERRUPTION, getCounter(TODAY_INTERRUPTION) + 1);
+  setCounter(TOTAL_INTERRUPTION, getCounter(TOTAL_INTERRUPTION) + 1);
+}
+
+/**
+ * Update storage today counters and dates if today's date has changed
+ */
+export function updateStorage () {
+  if (!isStorageDateToday()) {
+    // Set counters
+    setCounter(TODAY_POMO_ID, 0);
+    setCounter(TODAY_TASK_ID, 0);
+    setCounter(TODAY_INTERRUPTION, 0);
+
+    // Set dates (and week history if necessary)
+    const today = new Date();
+    setDate(TODAY_DATE_ID, today);
+    const recentMonday = getRecentMonday(today);
+    if (!isSameDay(getDate(WEEK_START_ID), recentMonday)) {
+      setDate(WEEK_START_ID, recentMonday);
+      setWeekHistory(ZEROS);
+    }
+  }
+}
+
+/**
+ * Checks if the storage date for today matches today's real date
+ * @returns {Boolean} true if they are the same, false otherwise
+ */
+export function isStorageDateToday () {
+  return isSameDay(new Date(), getDate(TODAY_DATE_ID));
+}
+
+/**
+ * Checks if two date values are the same MM/DD/YYYY
+ * @param {Date} date1
+ * @param {Date} date2
+ * @returns {Boolean} true if they are the same, false otherwise
+ */
+export function isSameDay (date1, date2) {
+  const isSameDate = date1.getDate() === date2.getDate();
+  const isSameMonth = date1.getMonth() === date2.getMonth();
+  const isSameYear = date1.getFullYear() === date2.getFullYear();
+  return isSameDate &amp;&amp; isSameMonth &amp;&amp; isSameYear;
+}
+
+/**
+ * Get most recent Monday from a given date
+ * @param {Date} date any date
+ * @returns {Date} the most recent Monday
+ */
+export function getRecentMonday (date) {
+  const checkDate = new Date(date);
+
+  // iterate until previous week start is reached
+  while (checkDate.getDay() !== 1) {
+    checkDate.setDate(checkDate.getDate() - 1);
+  }
+  return checkDate;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#displayTime">displayTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#getCounter">getCounter</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getRecentMonday">getRecentMonday</a></li><li><a href="global.html#getWeekHistory">getWeekHistory</a></li><li><a href="global.html#hidePrompt">hidePrompt</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#incrInterruptions">incrInterruptions</a></li><li><a href="global.html#incrPomoCount">incrPomoCount</a></li><li><a href="global.html#incrTasks">incrTasks</a></li><li><a href="global.html#isA11yEnabled">isA11yEnabled</a></li><li><a href="global.html#isKeystrokeEnabled">isKeystrokeEnabled</a></li><li><a href="global.html#isSameDay">isSameDay</a></li><li><a href="global.html#isStorageDateToday">isStorageDateToday</a></li><li><a href="global.html#keyControls">keyControls</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#setCountdownInterval">setCountdownInterval</a></li><li><a href="global.html#setCounter">setCounter</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setWeekHistory">setWeekHistory</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#stopTimer">stopTimer</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#toggleButtons">toggleButtons</a></li><li><a href="global.html#toggleKeystroke">toggleKeystroke</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateStorage">updateStorage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Mar 19 2021 03:49:31 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
