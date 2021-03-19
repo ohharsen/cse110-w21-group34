@@ -36,7 +36,7 @@ const CONTEXT_2D = '2d';
 
 /* istanbul ignore next */
 /**
- * Draws a graph to the given canvas element with the given data points.
+ * Draws a graph to the given canvas element with the given data points
  * @param {HTMLCanvasElement} canvas - Target canvas
  * @param {Number[]} data - An array
  */
@@ -92,7 +92,7 @@ function drawAxes (ctx, canvasHeight, canvasWidth, axes) {
 
 /**
  * Calculates and returns 4 y-axes used in the graph. The first axis will always
- * be 0.
+ * be 0
  *
  * If max data is:
  *      0  - 3  => dont change max
@@ -123,7 +123,7 @@ export function calculateAxes (data) {
   }
 
   // Setting axes values and rounding to one decimal place
-  const axisIndex = 1;
+  let axisIndex = 1;
   axes[axisIndex++] = max / Y_MIN_SPACING;
   axes[axisIndex++] = TWO * max / Y_MIN_SPACING;
   axes[axisIndex] = max;
@@ -134,7 +134,7 @@ export function calculateAxes (data) {
 /* istanbul ignore next */
 /**
  * Draws bars for each datapoint in data, relative to the highest valued
- * axis given in axes.
+ * axis given in axes
  * @param {CanvasRenderingContext2D} ctx - The canvas' 2d rendering context
  * @param {Number} canvasHeight - The canvas height
  * @param {Number[]} data - x-data
@@ -158,7 +158,7 @@ function drawBars (ctx, canvasHeight, data, axes) {
 /* istanbul ignore next */
 /**
  * Draws a bar centered at (x, y) with w width (horizontal) and h height
- * (vertical), using the given canvas' context.
+ * (vertical), using the given canvas' context
  * @param {CanvasRenderingContext2D} ctx - The canvas' 2d rendering context
  * @param {Number} x - Horizontal position of upper-left corner
  * @param {Number} y - Vertical position of upper-left corner
@@ -175,7 +175,7 @@ function drawBar (ctx, x, y, w, h, color) {
 
 /* istanbul ignore next */
 /**
- * Draws a line from (x1, y1) to (x2, y2) on the given canvas' context.
+ * Draws a line from (x1, y1) to (x2, y2) on the given canvas' context
  * @param {CanvasRenderingContext2D} ctx - The canvas' 2d rendering context
  * @param {Number} x1 - Horizontal position of start point
  * @param {Number} y1 - Vertical position of start point

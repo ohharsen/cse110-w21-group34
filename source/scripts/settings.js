@@ -1,6 +1,8 @@
 import * as Stats from './stats.js';
+import * as Constants from './constants.js'
 import { toggleAccessibility, toggleKeystroke } from './accessibility.js';
 
+/* Settings Pane and Buttons */
 export const settingsPane = document.getElementById('settings-container');
 export const settingsOpenButton = document.getElementById('settings-open-button');
 export const settingsCloseButton = document.getElementById('settings-close-button');
@@ -12,62 +14,64 @@ settingsCloseButton.onclick = closeSettingsPane;
 settingsColorButton.onclick = toggleAccessibility;
 settingsKeysButton.onclick = toggleKeystroke;
 
-export let isOpenSettingsPane = false;
+export let settingsPaneIsOpen = false;
 
 /* istanbul ignore next */
 /**
- * Opens the statistics pane.
+ * Opens the settings pane and closes the stats pane
  */
 export function openSettingsPane () {
   removeAll();
 
-  if (Stats.statsPane.classList.contains('slide-open')) {
+  if (Stats.statsPane.classList.contains(Constants.SLIDE_OPEN)) {
     Stats.closeStatsPane();
 
-    Stats.timerBlock.classList.remove('slide-close');
-    Stats.timerBlock.classList.add('slide-across-right');
+    Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
+    Stats.timerBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
   } else {
-    Stats.timerBlock.classList.add('slide-open-settings');
+    Stats.timerBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
   }
-  settingsPane.classList.add('slide-open-settings');
+  settingsPane.classList.add(Constants.SLIDE_OPEN_SETTINGS);
 
-  isOpenSettingsPane = true;
+  settingsPaneIsOpen = true;
   toggleButtons();
 }
 
 /* istanbul ignore next */
 /**
- * Opens the statistics pane.
+ * Closes the settings pane and allows stats pane to reopen
  */
 export function closeSettingsPane () {
-  Stats.timerBlock.classList.remove('slide-open-settings');
-  settingsPane.classList.remove('slide-open-settings');
+  Stats.timerBlock.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
+  settingsPane.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
 
-  Stats.timerBlock.classList.remove('slide-across-right');
+  Stats.timerBlock.classList.remove(Constants.SLIDE_ACROSS_RIGHT);
 
-  Stats.timerBlock.classList.add('slide-close-settings');
-  settingsPane.classList.add('slide-close-settings');
+  Stats.timerBlock.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
+  settingsPane.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
 
-  isOpenSettingsPane = false;
+  settingsPaneIsOpen = false;
   toggleButtons();
 }
 
 /**
- * Enables / Disables the respective settings pane buttons based on the current
- * state.
+ * Toggles the respective settings pane buttons based on the current state
  */
 export function toggleButtons () {
-  settingsOpenButton.disabled = isOpenSettingsPane;
-  settingsCloseButton.disabled = !isOpenSettingsPane;
-  settingsColorButton.disabled = !isOpenSettingsPane;
-  settingsKeysButton.disabled = !isOpenSettingsPane;
+  settingsOpenButton.disabled = settingsPaneIsOpen;
+  settingsCloseButton.disabled = !settingsPaneIsOpen;
+  settingsColorButton.disabled = !settingsPaneIsOpen;
+  settingsKeysButton.disabled = !settingsPaneIsOpen;
 }
 
 /* istanbul ignore next */
+/**
+ * Removes existing animation classes from stats and settings panes
+ */
 export function removeAll () {
-  Stats.timerBlock.classList.remove('slide-close');
-  Stats.statsPane.classList.remove('slide-close');
+  Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
+  Stats.statsPane.classList.remove(Constants.SLIDE_CLOSE);
 
-  Stats.timerBlock.classList.remove('slide-close-settings');
-  settingsPane.classList.remove('slide-close-settings');
+  Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
+  settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }

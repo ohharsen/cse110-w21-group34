@@ -1,7 +1,7 @@
 import { keys, TASK_BTN_ID } from './constants.js';
 import { startResetController } from './timer.js';
-import { openStatsPane, closeStatsPane, isOpenStatsPane } from './stats.js';
-import { openSettingsPane, closeSettingsPane, isOpenSettingsPane, removeAll } from './settings.js';
+import { openStatsPane, closeStatsPane, statsPaneIsOpen } from './stats.js';
+import { openSettingsPane, closeSettingsPane, settingsPaneIsOpen, removeAll } from './settings.js';
 
 /* Button IDs */
 const RESET_YES_ID = 'reset-yes-button';
@@ -33,7 +33,7 @@ export function toggleAccessibility () {
 
 /**
  * Getter method for accessibleMode
- * @return {boolean} true when accessibility mode is on, false if off
+ * @returns {Boolean} true when accessibility mode is on, false if off
  */
 export function isA11yEnabled () {
   return accessibleMode;
@@ -48,17 +48,17 @@ function keyControls (e) {
   switch (e.code) {
     case keys.ESCAPE:
       e.preventDefault();
-      (isOpenSettingsPane) ? closeSettingsPane() : ((isOpenStatsPane) ? closeStatsPane() : (() => {})());
+      (settingsPaneIsOpen) ? closeSettingsPane() : ((statsPaneIsOpen) ? closeStatsPane() : (() => {})());
       break;
     case keys.LEFT_ARROW:
       e.preventDefault();
       removeAll();
-      (isOpenSettingsPane) ? closeSettingsPane() : openStatsPane();
+      (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
       break;
     case keys.DOWN_ARROW:
       e.preventDefault();
       removeAll();
-      (isOpenStatsPane) ? closeStatsPane() : openSettingsPane();
+      (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();
       break;
     case keys.SPACE:
       if (!(document.activeElement instanceof HTMLInputElement)) {
@@ -92,7 +92,7 @@ export function toggleKeystroke () {
 
 /**
  * Getter method for keystroke mode
- * @return {boolean} true when keystroke/shortcuts mode is on, false if off
+ * @returns {Boolean} true when keystroke/shortcuts mode is on, false if off
  */
 export function isKeystrokeEnabled () {
   return keystrokeMode;

@@ -6,6 +6,7 @@ const taskButton = document.getElementById(Constants.TASK_BTN_ID);
 
 let taskPomoCount = 0;
 
+/* Event listener */
 if (taskButton) {
   toggleTaskButtonDisabled(true);
   taskButton.addEventListener('click', function (event) {
@@ -19,7 +20,7 @@ if (taskButton) {
 }
 
 /**
- * Increases the number of pomodoros completed for the current task.
+ * Increases the number of pomodoros completed for the current task
  */
 export function increaseTaskPomo () {
   taskPomoCount++;
@@ -27,7 +28,7 @@ export function increaseTaskPomo () {
 }
 
 /**
- * Resets the number of pomodoros completed to 0 for the current task.
+ * Resets the number of pomodoros completed to 0 for the current task
  */
 export function resetTaskPomo () {
   taskPomoCount = 0;
@@ -36,8 +37,8 @@ export function resetTaskPomo () {
 }
 
 /**
- * Disables or enables task button
- * @param {Boolean} disabled parameter
+ * Toggles task button
+ * @param {Boolean} disabled - Allows caller to select whether button is disabled
  */
 export function toggleTaskButtonDisabled (disabled) {
   if (taskPomoCount === 0) disabled = true;
@@ -45,7 +46,7 @@ export function toggleTaskButtonDisabled (disabled) {
 }
 
 /**
- * Task is completed upon button click
+ * Resets pomo count for the task, updates storage / stats, and disables button
  */
 export function completeTask () {
   taskPomoCount = 0;

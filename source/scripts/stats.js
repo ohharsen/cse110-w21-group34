@@ -3,14 +3,29 @@ import * as Storage from './util/storage.js';
 import * as Settings from './settings.js';
 import { drawGraph } from './util/graph.js';
 
+/* Elements */
 export const timerBlock = document.getElementsByClassName('center-container')[0];
 export const counterBlock = document.getElementsByClassName('counters-container')[0];
 export const statsPane = document.getElementById('stats-container');
 export const statsOpenButton = document.getElementById('stats-open-button');
 export const statsCloseButton = document.getElementById('stats-close-button');
+
+const totalPomoElem = document.getElementById('total-pomodoros');
+const totalInterruptElem = document.getElementById('total-interruptions');
+const bestPomoElem = document.getElementById('total-best-pomo');
+const bestTimeElem = document.getElementById('total-best-time');
+const totalTasksElem = document.getElementById('total-tasks');
+
+const todayPomoElem = document.getElementById('today-pomodoros');
+const todayTasksElem = document.getElementById('today-tasks');
+const todayInterruptElem = document.getElementById('today-interruptions');
+
 const graphCanvas = document.getElementById('weekly-graph');
 
-export let isOpenStatsPane = false;
+const MINUTES = 60;
+const NUM_DECIMALS = 2;
+
+export let statsPaneIsOpen = false;
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
@@ -29,53 +44,52 @@ export function updateStats () {
 
 /* istanbul ignore next */
 /**
- * Opens the statistics pane.
+ * Opens the statistics pane
  */
 export function openStatsPane () {
   updateStats();
 
   Settings.removeAll();
-  if (Settings.settingsPane.classList.contains('slide-open-settings')) {
+  if (Settings.settingsPane.classList.contains(Constants.SLIDE_OPEN_SETTINGS)) {
     Settings.closeSettingsPane();
 
-    timerBlock.classList.add('slide-across-left');
+    timerBlock.classList.add(Constants.SLIDE_ACROSS_LEFT);
   } else {
-    timerBlock.classList.add('slide-open');
+    timerBlock.classList.add(Constants.SLIDE_OPEN);
   }
-  statsPane.classList.add('slide-open');
-  isOpenStatsPane = true;
+  statsPane.classList.add(Constants.SLIDE_OPEN);
+  statsPaneIsOpen = true;
   toggleButtons();
 }
 
 /* istanbul ignore next */
 /**
- * Closes the statistics pane.
+ * Closes the statistics pane
  */
 export function closeStatsPane () {
-  timerBlock.classList.remove('slide-open');
-  statsPane.classList.remove('slide-open');
+  timerBlock.classList.remove(Constants.SLIDE_OPEN);
+  statsPane.classList.remove(Constants.SLIDE_OPEN);
 
-  timerBlock.classList.remove('slide-across-left');
+  timerBlock.classList.remove(Constants.SLIDE_ACROSS_LEFT);
 
-  timerBlock.classList.add('slide-close');
-  statsPane.classList.add('slide-close');
+  timerBlock.classList.add(Constants.SLIDE_CLOSE);
+  statsPane.classList.add(Constants.SLIDE_CLOSE);
 
-  isOpenStatsPane = false;
+  statsPaneIsOpen = false;
   toggleButtons();
 }
 
 /**
- * Enables / Disables the respective stats pane buttons based on the current
- * state.
+ * Toggles the respective stats pane buttons based on the current state
  */
 export function toggleButtons () {
-  statsOpenButton.disabled = isOpenStatsPane;
-  statsCloseButton.disabled = !isOpenStatsPane;
+  statsOpenButton.disabled = statsPaneIsOpen;
+  statsCloseButton.disabled = !statsPaneIsOpen;
 }
 
 /* istanbul ignore next */
 /**
- * Displays the user's current all-time statistics on the statistics pane.
+ * @summary Displays the user's current all-time statistics on the pane
  * Total statistics include:
  *    - Total pomodoros completed
  *    - Total avg. interruptions per pomodoro
@@ -83,27 +97,21 @@ export function toggleButtons () {
  *    - Most pomodoros completed in a single day
  */
 export function displayTotalStats () {
-  const totalPomoElem = document.getElementById('total-pomodoros');
-  const totalInterruptElem = document.getElementById('total-interruptions');
-  const bestPomoElem = document.getElementById('total-best-pomo');
-  const bestTimeElem = document.getElementById('total-best-time');
-  const totalTasksElem = document.getElementById('total-tasks');
-
   const totalPomoCount = Storage.getCounter(Storage.TOTAL_POMO_ID);
   const totalInterruptCount = Storage.getCounter(Storage.TOTAL_INTERRUPTION);
   const bestPomoCount = Storage.getCounter(Storage.BEST_DAILY_POMO_ID);
   const totalTaskCount = Storage.getCounter(Storage.TOTAL_TASK_ID);
 
   totalPomoElem.textContent = totalPomoCount;
-  totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(2);
+  totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(NUM_DECIMALS);
   bestPomoElem.textContent = bestPomoCount;
-  bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / 60)).toFixed(2);
+  bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / MINUTES)).toFixed(NUM_DECIMALS);
   totalTasksElem.textContent = totalTaskCount;
 }
 
 /* istanbul ignore next */
 /**
- * Displays the user's statistics for the day on the statistics pane.
+ * @summary Displays the user's statistics for the day on the pane
  * Today statistics include:
  *    - Today's pomodoros completed
  *    - Today's avg. interruptions per pomodoro
@@ -111,11 +119,6 @@ export function displayTotalStats () {
  *    - Most pomodoros completed in a single day
  */
 export function displayTodayStats () {
-  // setting variables for html elements to modify
-  const todayPomoElem = document.getElementById('today-pomodoros');
-  const todayTasksElem = document.getElementById('today-tasks');
-  const todayInterruptElem = document.getElementById('today-interruptions');
-
   // extracting daily stats data to be used for calculation
   const todayPomoCount = Storage.getCounter(Storage.TODAY_POMO_ID);
   const todayInterruptCount = Storage.getCounter(Storage.TODAY_INTERRUPTION);
