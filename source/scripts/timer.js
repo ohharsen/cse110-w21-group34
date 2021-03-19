@@ -12,6 +12,7 @@ const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
 const DASH_STROKE_VAL = 220;
 const MINUTES = 60;
 const BASE_10 = 10;
+const FINAL_POMO = 4;
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
 const timerRing = document.getElementById('base-timer-path-remaining');
@@ -151,7 +152,7 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
       pomoState = Constants.timerOptions.POMO;
       beginCountdown(Constants.WORK_LENGTH);
     } else {
-      if (localPomoCount === 4) {
+      if (localPomoCount === FINAL_POMO) {
         localPomoCount = 0;
         pomoCount = 0;
         pomoState = Constants.timerOptions.LONG;
