@@ -22,6 +22,7 @@ describe('Color Accessibility', () => {
     test('Checks if keystroke/shortcut mode is toggled', () => {
         const prev = isKeystrokeEnabled();
         toggleKeystroke();
-        expect(isKeystrokeEnabled()).not.toBe(prev);
+        const next = isKeystrokeEnabled();
+        expect(next).not.toBe(prev);
     });
 });

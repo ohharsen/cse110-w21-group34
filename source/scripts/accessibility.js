@@ -1,7 +1,11 @@
-import * as Constants from './constants.js';
+import { keys, TASK_BTN_ID } from './constants.js';
 import { startResetController } from './timer.js';
-import { openStatsPane, closeStatsPane, isOpenStatsPane } from './stats.js';
-import { openSettingsPane, closeSettingsPane, isOpenSettingsPane, removeAll } from './settings.js';
+import { openStatsPane, closeStatsPane, statsPaneIsOpen } from './stats.js';
+import { openSettingsPane, closeSettingsPane, settingsPaneIsOpen, removeAll } from './settings.js';
+
+/* Button IDs */
+const RESET_YES_ID = 'reset-yes-button';
+const RESET_NO_ID = 'reset-no-button';
 
 const ACCESSIBLE_CLASS = 'accessible';
 const root = document.documentElement;
@@ -11,11 +15,13 @@ let keystrokeMode = true;
 
 document.onkeydown = keyControls;
 
+/* All instanbul ignored code is tested in Cypress or uses Canvas */
+
 /**
-   * Function to toggle the accessibility colors and fonts
-   * Darkens backgrounds for better readibility of text
-   * Colors picked according to AAA Guidilines
-   */
+ * Toggles the accessibility colors and fonts
+ *  Darkens backgrounds for better readibility of text
+ *  Colors picked according to AAA Guidilines
+ */
 export function toggleAccessibility () {
   if (!accessibleMode) {
     root.classList.add(ACCESSIBLE_CLASS);
@@ -26,9 +32,8 @@ export function toggleAccessibility () {
 }
 
 /**
- * Getter function to retrieve accessibleMode variable,
- * which indicates whether accessibility mode is on
- * @return {boolean} true when accessibility mode is on, false if off
+ * Getter method for accessibleMode
+ * @returns {Boolean} true when accessibility mode is on, false if off
  */
 export function isA11yEnabled () {
   return accessibleMode;
@@ -36,42 +41,41 @@ export function isA11yEnabled () {
 
 /* istanbul ignore next */
 /**
- * The event listener for whenever keys are pressed
- * Listens only to specific keys and lets other keys perform default action
- * @param {Event} e the fired event object
+ * Listens to specific key presses and fires an event
+ * @param {Event} e - The fired event object
  */
 function keyControls (e) {
   switch (e.code) {
-    case 'Escape':
+    case keys.ESCAPE:
       e.preventDefault();
-      (isOpenSettingsPane) ? closeSettingsPane() : ((isOpenStatsPane) ? closeStatsPane() : (() => {})());
+      (settingsPaneIsOpen) ? closeSettingsPane() : ((statsPaneIsOpen) ? closeStatsPane() : (() => {})());
       break;
-    case 'ArrowLeft':
-      e.preventDefault();
-      removeAll();
-      (isOpenSettingsPane) ? closeSettingsPane() : openStatsPane();
-      break;
-    case 'ArrowRight':
+    case keys.LEFT_ARROW:
       e.preventDefault();
       removeAll();
-      (isOpenStatsPane) ? closeStatsPane() : openSettingsPane();
+      (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
       break;
-    case 'Space':
+    case keys.RIGHT_ARROW:
+      e.preventDefault();
+      removeAll();
+      (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();
+      break;
+    case keys.SPACE:
       if (!(document.activeElement instanceof HTMLInputElement)) {
         e.preventDefault();
         startResetController();
       }
       break;
-    case 'KeyY':
-      document.getElementById('reset-yes-button').click();
+    case keys.Y:
+      document.getElementById(RESET_YES_ID).click();
       break;
-    case 'KeyN':
-      document.getElementById('reset-no-button').click();
+    case keys.N:
+      document.getElementById(RESET_NO_ID).click();
       break;
-    case 'KeyT':
-    case 'ArrowDown':
+    case keys.T:
+    case keys.DOWN_ARROW:
       e.preventDefault();
-      document.getElementById(Constants.TASK_BTN_ID).click();
+      document.getElementById(TASK_BTN_ID).click();
       break;
     default:
       break;
@@ -79,7 +83,7 @@ function keyControls (e) {
 }
 
 /**
- * Function to toggle keystroke access. Called whenever the user toggles the setting switch
+ * Toggles keystroke access whenever the user toggles the setting switch
  */
 export function toggleKeystroke () {
   keystrokeMode = !keystrokeMode;
@@ -87,9 +91,8 @@ export function toggleKeystroke () {
 }
 
 /**
- * Getter function to retrieve the keystroke mode,
- * which indicates whether keyboard shortcuts is on
- * @return {boolean} true when keystroke/shortcuts mode is on, false if off
+ * Getter method for keystroke mode
+ * @returns {Boolean} true when keystroke/shortcuts mode is on, false if off
  */
 export function isKeystrokeEnabled () {
   return keystrokeMode;

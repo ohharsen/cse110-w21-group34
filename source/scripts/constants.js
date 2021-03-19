@@ -1,4 +1,4 @@
-/* Constants */
+/* Timer Constants */
 export const START_STOP_ID = 'start-stop-button';
 export const TASK_BTN_ID = 'task';
 export const TASK_POMO_COUNTER = 'task-pomo-counter';
@@ -9,6 +9,14 @@ export const WORK_LENGTH = 1500; // # of seconds in a work pomo (orig. 1500)
 export const SHORT_BREAK = 300; // # of seconds in a short break (orig. 300)
 export const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
 
+/* Settings Pane Class Lists */
+export const SLIDE_OPEN = 'slide-open';
+export const SLIDE_CLOSE = 'slide-close';
+export const SLIDE_ACROSS_RIGHT = 'slide-across-right';
+export const SLIDE_ACROSS_LEFT = 'slide-across-left';
+export const SLIDE_OPEN_SETTINGS = 'slide-open-settings';
+export const SLIDE_CLOSE_SETTINGS = 'slide-close-settings';
+
 /* Text */
 export const RESET_BTN_TXT = 'Reset';
 export const BEGIN_BTN_TXT = 'Begin';
@@ -16,7 +24,7 @@ export const BEGIN_BTN_TXT = 'Begin';
 export const HOST_ADDRESS = 'http://127.0.0.1:5500/';
 
 /**
- * Enumerated keydown event possible keys
+ * Enumerated keydown event possible controls
  * @enum {string}
  */
 export const events = {

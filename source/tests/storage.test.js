@@ -152,6 +152,13 @@ describe('Pomodoro Count', () => {
         Storage.incrPomoCount();
         expect(Storage.getCounter(Storage.TOTAL_POMO_ID)).toBe(1);
     });
+
+    test('Check best day does not increment when it should not', () => {
+        localStorage.setItem(Storage.BEST_DAILY_POMO_ID, '10');
+        localStorage.setItem(Storage.TODAY_POMO_ID, '1');
+        Storage.incrPomoCount();
+        expect(Storage.getCounter(Storage.BEST_DAILY_POMO_ID)).toBeGreaterThan(Storage.getCounter(Storage.TODAY_POMO_ID));
+    });
 });
 
 describe('Tasks', () => {
