@@ -31,14 +31,29 @@ import * as Storage from './util/storage.js';
 import * as Settings from './settings.js';
 import { drawGraph } from './util/graph.js';
 
+/* Elements */
 export const timerBlock = document.getElementsByClassName('center-container')[0];
 export const counterBlock = document.getElementsByClassName('counters-container')[0];
 export const statsPane = document.getElementById('stats-container');
 export const statsOpenButton = document.getElementById('stats-open-button');
 export const statsCloseButton = document.getElementById('stats-close-button');
+
+const totalPomoElem = document.getElementById('total-pomodoros');
+const totalInterruptElem = document.getElementById('total-interruptions');
+const bestPomoElem = document.getElementById('total-best-pomo');
+const bestTimeElem = document.getElementById('total-best-time');
+const totalTasksElem = document.getElementById('total-tasks');
+
+const todayPomoElem = document.getElementById('today-pomodoros');
+const todayTasksElem = document.getElementById('today-tasks');
+const todayInterruptElem = document.getElementById('today-interruptions');
+
 const graphCanvas = document.getElementById('weekly-graph');
 
-export let isOpenStatsPane = false;
+const MINUTES = 60;
+const NUM_DECIMALS = 2;
+
+export let statsPaneIsOpen = false;
 
 statsOpenButton.onclick = openStatsPane;
 statsCloseButton.onclick = closeStatsPane;
@@ -57,53 +72,53 @@ export function updateStats () {
 
 /* istanbul ignore next */
 /**
- * Opens the statistics pane.
+ * Opens the statistics pane
  */
 export function openStatsPane () {
   updateStats();
 
   Settings.removeAll();
-  if (Settings.settingsPane.classList.contains('slide-open-settings')) {
+  if (Settings.settingsPane.classList.contains(Constants.SLIDE_OPEN_SETTINGS)) {
     Settings.closeSettingsPane();
 
-    timerBlock.classList.add('slide-across-left');
+    timerBlock.classList.add(Constants.SLIDE_ACROSS_LEFT);
   } else {
-    timerBlock.classList.add('slide-open');
+    timerBlock.classList.add(Constants.SLIDE_OPEN);
   }
-  statsPane.classList.add('slide-open');
-  isOpenStatsPane = true;
+  statsPane.classList.add(Constants.SLIDE_OPEN);
+  statsPaneIsOpen = true;
   toggleButtons();
 }
 
 /* istanbul ignore next */
 /**
- * Closes the statistics pane.
+ * Closes the statistics pane
  */
 export function closeStatsPane () {
-  timerBlock.classList.remove('slide-open');
-  statsPane.classList.remove('slide-open');
+  timerBlock.classList.remove(Constants.SLIDE_OPEN);
+  statsPane.classList.remove(Constants.SLIDE_OPEN);
 
-  timerBlock.classList.remove('slide-across-left');
+  timerBlock.classList.remove(Constants.SLIDE_ACROSS_LEFT);
 
-  timerBlock.classList.add('slide-close');
-  statsPane.classList.add('slide-close');
+  timerBlock.classList.add(Constants.SLIDE_CLOSE);
+  statsPane.classList.add(Constants.SLIDE_CLOSE);
 
-  isOpenStatsPane = false;
+  statsPaneIsOpen = false;
   toggleButtons();
-}
-
-/**
- * Enables / Disables the respective stats pane buttons based on the current
- * state.
- */
-export function toggleButtons () {
-  statsOpenButton.disabled = isOpenStatsPane;
-  statsCloseButton.disabled = !isOpenStatsPane;
 }
 
 /* istanbul ignore next */
 /**
- * Displays the user's current all-time statistics on the statistics pane.
+ * Toggles the respective stats pane buttons based on the current state
+ */
+export function toggleButtons () {
+  statsOpenButton.disabled = statsPaneIsOpen;
+  statsCloseButton.disabled = !statsPaneIsOpen;
+}
+
+/* istanbul ignore next */
+/**
+ * @summary Displays the user's current all-time statistics on the pane
  * Total statistics include:
  *    - Total pomodoros completed
  *    - Total avg. interruptions per pomodoro
@@ -111,27 +126,21 @@ export function toggleButtons () {
  *    - Most pomodoros completed in a single day
  */
 export function displayTotalStats () {
-  const totalPomoElem = document.getElementById('total-pomodoros');
-  const totalInterruptElem = document.getElementById('total-interruptions');
-  const bestPomoElem = document.getElementById('total-best-pomo');
-  const bestTimeElem = document.getElementById('total-best-time');
-  const totalTasksElem = document.getElementById('total-tasks');
-
   const totalPomoCount = Storage.getCounter(Storage.TOTAL_POMO_ID);
   const totalInterruptCount = Storage.getCounter(Storage.TOTAL_INTERRUPTION);
   const bestPomoCount = Storage.getCounter(Storage.BEST_DAILY_POMO_ID);
   const totalTaskCount = Storage.getCounter(Storage.TOTAL_TASK_ID);
 
   totalPomoElem.textContent = totalPomoCount;
-  totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(2);
+  totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(NUM_DECIMALS);
   bestPomoElem.textContent = bestPomoCount;
-  bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / 60)).toFixed(2);
+  bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / MINUTES)).toFixed(NUM_DECIMALS);
   totalTasksElem.textContent = totalTaskCount;
 }
 
 /* istanbul ignore next */
 /**
- * Displays the user's statistics for the day on the statistics pane.
+ * @summary Displays the user's statistics for the day on the pane
  * Today statistics include:
  *    - Today's pomodoros completed
  *    - Today's avg. interruptions per pomodoro
@@ -139,11 +148,6 @@ export function displayTotalStats () {
  *    - Most pomodoros completed in a single day
  */
 export function displayTodayStats () {
-  // setting variables for html elements to modify
-  const todayPomoElem = document.getElementById('today-pomodoros');
-  const todayTasksElem = document.getElementById('today-tasks');
-  const todayInterruptElem = document.getElementById('today-interruptions');
-
   // extracting daily stats data to be used for calculation
   const todayPomoCount = Storage.getCounter(Storage.TODAY_POMO_ID);
   const todayInterruptCount = Storage.getCounter(Storage.TODAY_INTERRUPTION);
@@ -164,13 +168,13 @@ export function displayTodayStats () {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#displayTime">displayTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#getCounter">getCounter</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getRecentMonday">getRecentMonday</a></li><li><a href="global.html#getWeekHistory">getWeekHistory</a></li><li><a href="global.html#hidePrompt">hidePrompt</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#incrInterruptions">incrInterruptions</a></li><li><a href="global.html#incrPomoCount">incrPomoCount</a></li><li><a href="global.html#incrTasks">incrTasks</a></li><li><a href="global.html#isA11yEnabled">isA11yEnabled</a></li><li><a href="global.html#isKeystrokeEnabled">isKeystrokeEnabled</a></li><li><a href="global.html#isSameDay">isSameDay</a></li><li><a href="global.html#isStorageDateToday">isStorageDateToday</a></li><li><a href="global.html#keyControls">keyControls</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#setCountdownInterval">setCountdownInterval</a></li><li><a href="global.html#setCounter">setCounter</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setWeekHistory">setWeekHistory</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#stopTimer">stopTimer</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#toggleButtons">toggleButtons</a></li><li><a href="global.html#toggleKeystroke">toggleKeystroke</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateStorage">updateStorage</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#displayTime">displayTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#getCounter">getCounter</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getRecentMonday">getRecentMonday</a></li><li><a href="global.html#getWeekHistory">getWeekHistory</a></li><li><a href="global.html#hidePrompt">hidePrompt</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#incrInterruptions">incrInterruptions</a></li><li><a href="global.html#incrPomoCount">incrPomoCount</a></li><li><a href="global.html#incrTasks">incrTasks</a></li><li><a href="global.html#isA11yEnabled">isA11yEnabled</a></li><li><a href="global.html#isKeystrokeEnabled">isKeystrokeEnabled</a></li><li><a href="global.html#isSameDay">isSameDay</a></li><li><a href="global.html#isStorageDateToday">isStorageDateToday</a></li><li><a href="global.html#keyControls">keyControls</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#removeAll">removeAll</a></li><li><a href="global.html#resetConfirm">resetConfirm</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#setCountdownInterval">setCountdownInterval</a></li><li><a href="global.html#setCounter">setCounter</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setWeekHistory">setWeekHistory</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#stopTimer">stopTimer</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#toggleButtons">toggleButtons</a></li><li><a href="global.html#toggleKeystroke">toggleKeystroke</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateStorage">updateStorage</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Mar 19 2021 03:49:31 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Mar 19 2021 06:52:40 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

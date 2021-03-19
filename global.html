@@ -104,7 +104,7 @@
 
 
 <div class="description">
-    Enumerated keydown event possible keys
+    Enumerated keydown event possible controls
 </div>
 
 
@@ -152,7 +152,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line22">line 22</a>
+        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -224,7 +224,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line31">line 31</a>
+        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -296,7 +296,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line47">line 47</a>
+        <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -425,7 +425,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line58">line 58</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line75">line 75</a>
     </li></ul></dd>
     
 
@@ -461,16 +461,18 @@
     
 
     
-    <h4 class="name" id="calculateAxes"><span class="type-signature"></span>calculateAxes<span class="signature">(data)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span></h4>
+    <h4 class="name" id="calculateAxes"><span class="type-signature"></span>calculateAxes<span class="signature">(data)</span><span class="type-signature"> &rarr; {Array.&lt;Number>}</span></h4>
     
 
+    
+    <p class="summary">Calculates y-axis marks</p>
     
 
 
 
 <div class="description">
-    Calculate and return 4 y-axes used in the graph. The first axis will always
-be 0.
+    Calculates and returns 4 y-axes used in the graph. The first axis will always
+be 0
 
 If max data is:
      0  - 3  => dont change max
@@ -518,7 +520,7 @@ spacing = max axis / 4
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">Array.&lt;Number></span>
 
 
             
@@ -528,7 +530,7 @@ spacing = max axis / 4
 
             
 
-            <td class="description last">The weekly data to scale the axes by.</td>
+            <td class="description last">The weekly data to scale the axes by</td>
         </tr>
 
     
@@ -569,7 +571,7 @@ spacing = max axis / 4
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line87">line 87</a>
+        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line105">line 105</a>
     </li></ul></dd>
     
 
@@ -598,7 +600,7 @@ spacing = max axis / 4
 
         
 <div class="param-desc">
-    The axes in array form, from first axis to last axis.
+    - The axes in array form, from first axis to last axis
 </div>
 
 
@@ -609,7 +611,7 @@ spacing = max axis / 4
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">Array.&lt;Number></span>
 
 
     </dd>
@@ -635,7 +637,7 @@ spacing = max axis / 4
 
 
 <div class="description">
-    Opens the statistics pane.
+    Closes the settings pane and allows stats pane to reopen
 </div>
 
 
@@ -679,7 +681,7 @@ spacing = max axis / 4
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line42">line 42</a>
+        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -723,7 +725,7 @@ spacing = max axis / 4
 
 
 <div class="description">
-    Closes the statistics pane.
+    Closes the statistics pane
 </div>
 
 
@@ -767,7 +769,7 @@ spacing = max axis / 4
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line54">line 54</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -811,7 +813,7 @@ spacing = max axis / 4
 
 
 <div class="description">
-    Task is completed upon button click
+    Resets pomo count for the task, updates storage / stats, and disables button
 </div>
 
 
@@ -855,7 +857,7 @@ spacing = max axis / 4
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line50">line 50</a>
+        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -891,7 +893,7 @@ spacing = max axis / 4
     
 
     
-    <h4 class="name" id="displayTime"><span class="type-signature"></span>displayTime<span class="signature">(time)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="displayTime"><span class="type-signature"></span>displayTime<span class="signature">(time)</span><span class="type-signature"> &rarr; {String}</span></h4>
     
 
     
@@ -899,7 +901,7 @@ spacing = max axis / 4
 
 
 <div class="description">
-    Displays the amount of time remaining.
+    Displays the amount of time remaining
 </div>
 
 
@@ -992,7 +994,7 @@ spacing = max axis / 4
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line273">line 273</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line289">line 289</a>
     </li></ul></dd>
     
 
@@ -1017,6 +1019,28 @@ spacing = max axis / 4
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    text displayed in the countdown
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1032,17 +1056,15 @@ spacing = max axis / 4
     
 
     
-
-
-
-<div class="description">
-    Displays the user's statistics for the day on the statistics pane.
+    <p class="summary">Displays the user's statistics for the day on the pane
 Today statistics include:
    - Today's pomodoros completed
    - Today's avg. interruptions per pomodoro
    - Today's tasks completed
-   - Most pomodoros completed in a single day
-</div>
+   - Most pomodoros completed in a single day</p>
+    
+
+
 
 
 
@@ -1085,7 +1107,7 @@ Today statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line113">line 113</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line122">line 122</a>
     </li></ul></dd>
     
 
@@ -1125,17 +1147,15 @@ Today statistics include:
     
 
     
-
-
-
-<div class="description">
-    Displays the user's current all-time statistics on the statistics pane.
+    <p class="summary">Displays the user's current all-time statistics on the pane
 Total statistics include:
    - Total pomodoros completed
    - Total avg. interruptions per pomodoro
    - Total tasks completed
-   - Most pomodoros completed in a single day
-</div>
+   - Most pomodoros completed in a single day</p>
+    
+
+
 
 
 
@@ -1178,7 +1198,7 @@ Total statistics include:
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line85">line 85</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -1221,545 +1241,8 @@ Total statistics include:
 
 
 
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>ctx</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">CanvasRenderingContext2D</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>canvasHeight</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>canvasWidth</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axes</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line44">line 44</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="drawBar"><span class="type-signature"></span>drawBar<span class="signature">(ctx, x, y, w, h, color<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
 <div class="description">
-    Draws a bar centered at (x, y) with w width (horizontal) and h height
-(vertical), using the given canvas' context.
-Default color is black (#000000).
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>ctx</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">CanvasRenderingContext2D</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">Target canvas' context</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">horizontal position of upper-left corner</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">vertical position of upper-left corner</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>w</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">width</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>h</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">height</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                    &lt;nullable><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    #000000
-                
-                </td>
-            
-
-            <td class="description last">hex color (e.g. #fafefc)</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line153">line 153</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="drawBars"><span class="type-signature"></span>drawBars<span class="signature">(ctx, canvasHeight, data, axes)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Draws bars for each datapoint in data, relative to the highest valued
-axis given in axes.
+    Draws axes for the graph
 </div>
 
 
@@ -1824,7 +1307,7 @@ axis given in axes.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -1834,20 +1317,20 @@ axis given in axes.
 
             
 
-            <td class="description last">The canvas' height</td>
+            <td class="description last">The canvas height</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>canvasWidth</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">Number</span>
 
 
             
@@ -1857,7 +1340,7 @@ axis given in axes.
 
             
 
-            <td class="description last">x-data</td>
+            <td class="description last">The canvas width</td>
         </tr>
 
     
@@ -1870,7 +1353,7 @@ axis given in axes.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">Array.&lt;Number></span>
 
 
             
@@ -1921,7 +1404,467 @@ axis given in axes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line126">line 126</a>
+        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line61">line 61</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="drawBar"><span class="type-signature"></span>drawBar<span class="signature">(ctx, x, y, w, h, color)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Draws a bar centered at (x, y) with w width (horizontal) and h height
+(vertical), using the given canvas' context
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CanvasRenderingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The canvas' 2d rendering context</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Horizontal position of upper-left corner</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Vertical position of upper-left corner</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Width</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Height</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Hex color (e.g. #fafefc)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line168">line 168</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="drawBars"><span class="type-signature"></span>drawBars<span class="signature">(ctx, canvasHeight, data, axes)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Draws bars for each datapoint in data, relative to the highest valued
+axis given in axes
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CanvasRenderingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The canvas' 2d rendering context</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvasHeight</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The canvas height</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">x-data</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>axes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">y-axis values</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line142">line 142</a>
     </li></ul></dd>
     
 
@@ -1965,7 +1908,7 @@ axis given in axes.
 
 
 <div class="description">
-    Draws a graph to the given canvas element with the given data points.
+    Draws a graph to the given canvas element with the given data points
 </div>
 
 
@@ -2030,7 +1973,7 @@ axis given in axes.
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">Array.&lt;Number></span>
 
 
             
@@ -2081,7 +2024,7 @@ axis given in axes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line25">line 25</a>
+        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -2125,7 +2068,7 @@ axis given in axes.
 
 
 <div class="description">
-    Draws a line from (x1, y1) to (x2, y2) on the given canvas' context.
+    Draws a line from (x1, y1) to (x2, y2) on the given canvas' context
 </div>
 
 
@@ -2177,7 +2120,7 @@ axis given in axes.
 
             
 
-            <td class="description last">Target canvas' context</td>
+            <td class="description last">The canvas' 2d rendering context</td>
         </tr>
 
     
@@ -2190,7 +2133,7 @@ axis given in axes.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -2200,7 +2143,7 @@ axis given in axes.
 
             
 
-            <td class="description last">horizontal position of start point</td>
+            <td class="description last">Horizontal position of start point</td>
         </tr>
 
     
@@ -2213,7 +2156,7 @@ axis given in axes.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -2223,7 +2166,7 @@ axis given in axes.
 
             
 
-            <td class="description last">vertical position of start point</td>
+            <td class="description last">Vertical position of start point</td>
         </tr>
 
     
@@ -2236,7 +2179,7 @@ axis given in axes.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -2246,7 +2189,7 @@ axis given in axes.
 
             
 
-            <td class="description last">horizontal position of end point</td>
+            <td class="description last">Horizontal position of end point</td>
         </tr>
 
     
@@ -2259,7 +2202,7 @@ axis given in axes.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -2269,7 +2212,7 @@ axis given in axes.
 
             
 
-            <td class="description last">vertical position of end point</td>
+            <td class="description last">Vertical position of end point</td>
         </tr>
 
     
@@ -2310,7 +2253,7 @@ axis given in axes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line169">line 169</a>
+        <a href="util_graph.js.html">util/graph.js</a>, <a href="util_graph.js.html#line184">line 184</a>
     </li></ul></dd>
     
 
@@ -2672,7 +2615,7 @@ axis given in axes.
 
 
 <div class="description">
-    Get most recent Monday from a given date
+    Gets most recent Monday from a given date
 </div>
 
 
@@ -2724,7 +2667,7 @@ axis given in axes.
 
             
 
-            <td class="description last">any date</td>
+            <td class="description last">Any date</td>
         </tr>
 
     
@@ -2794,7 +2737,7 @@ axis given in axes.
 
         
 <div class="param-desc">
-    the most recent Monday
+    the most recent Monday from given date
 </div>
 
 
@@ -2823,7 +2766,7 @@ axis given in axes.
     
 
     
-    <h4 class="name" id="getWeekHistory"><span class="type-signature"></span>getWeekHistory<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    <h4 class="name" id="getWeekHistory"><span class="type-signature"></span>getWeekHistory<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;Number>}</span></h4>
     
 
     
@@ -2915,7 +2858,7 @@ axis given in axes.
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;Number></span>
 
 
     </dd>
@@ -2941,8 +2884,7 @@ axis given in axes.
 
 
 <div class="description">
-    Function to hide the reset prompt
-Called whenver the prompt is answered or a timer goes off
+    Hides reset prompt whenever prompt is answered or timer ends
 </div>
 
 
@@ -2986,7 +2928,7 @@ Called whenver the prompt is answered or a timer goes off
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line250">line 250</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line265">line 265</a>
     </li></ul></dd>
     
 
@@ -3030,7 +2972,7 @@ Called whenver the prompt is answered or a timer goes off
 
 
 <div class="description">
-    Increases the number of pomodoros completed for the current task.
+    Increases the number of pomodoros completed for the current task
 </div>
 
 
@@ -3074,7 +3016,7 @@ Called whenver the prompt is answered or a timer goes off
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line24">line 24</a>
+        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -3207,7 +3149,7 @@ Called whenver the prompt is answered or a timer goes off
 
 <div class="description">
     Increments completed Pomodoros for today, the current week, and total in
-local storage.
+local storage
 </div>
 
 
@@ -3295,7 +3237,7 @@ local storage.
 
 
 <div class="description">
-    Update local storage with finished task information
+    Updates local storage with finished task information
 </div>
 
 
@@ -3375,7 +3317,7 @@ local storage.
     
 
     
-    <h4 class="name" id="isA11yEnabled"><span class="type-signature"></span>isA11yEnabled<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="isA11yEnabled"><span class="type-signature"></span>isA11yEnabled<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
     
 
     
@@ -3383,7 +3325,7 @@ local storage.
 
 
 <div class="description">
-    Getter function to retrieve accessibleMode variable,which indicates whether accessibility mode is on
+    Getter method for accessibleMode
 </div>
 
 
@@ -3427,7 +3369,7 @@ local storage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line33">line 33</a>
+        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line38">line 38</a>
     </li></ul></dd>
     
 
@@ -3467,7 +3409,7 @@ local storage.
     </dt>
     <dd>
         
-<span class="param-type">boolean</span>
+<span class="param-type">Boolean</span>
 
 
     </dd>
@@ -3485,7 +3427,7 @@ local storage.
     
 
     
-    <h4 class="name" id="isKeystrokeEnabled"><span class="type-signature"></span>isKeystrokeEnabled<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="isKeystrokeEnabled"><span class="type-signature"></span>isKeystrokeEnabled<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
     
 
     
@@ -3493,7 +3435,7 @@ local storage.
 
 
 <div class="description">
-    Getter function to retrieve the keystroke mode,which indicates whether keyboard shortcuts is on
+    Getter method for keystroke mode
 </div>
 
 
@@ -3537,7 +3479,7 @@ local storage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line94">line 94</a>
+        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line97">line 97</a>
     </li></ul></dd>
     
 
@@ -3577,7 +3519,7 @@ local storage.
     </dt>
     <dd>
         
-<span class="param-type">boolean</span>
+<span class="param-type">Boolean</span>
 
 
     </dd>
@@ -3655,7 +3597,7 @@ local storage.
 
             
 
-            <td class="description last"></td>
+            <td class="description last">The first date to compare</td>
         </tr>
 
     
@@ -3678,7 +3620,7 @@ local storage.
 
             
 
-            <td class="description last"></td>
+            <td class="description last">The second date to compare</td>
         </tr>
 
     
@@ -3895,7 +3837,7 @@ local storage.
 
 
 <div class="description">
-    The event listener for whenever keys are pressedListens only to specific keys and lets other keys perform default action
+    Listens to specific key presses and fires an event
 </div>
 
 
@@ -3947,7 +3889,7 @@ local storage.
 
             
 
-            <td class="description last">the fired event object</td>
+            <td class="description last">The fired event object</td>
         </tr>
 
     
@@ -3988,7 +3930,7 @@ local storage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line43">line 43</a>
+        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -4032,7 +3974,7 @@ local storage.
 
 
 <div class="description">
-    Opens the statistics pane.
+    Opens the settings pane and closes the stats pane
 </div>
 
 
@@ -4076,7 +4018,7 @@ local storage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line21">line 21</a>
+        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -4120,7 +4062,7 @@ local storage.
 
 
 <div class="description">
-    Opens the statistics pane.
+    Opens the statistics pane
 </div>
 
 
@@ -4164,7 +4106,232 @@ local storage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line34">line 34</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="removeAll"><span class="type-signature"></span>removeAll<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Removes existing animation classes from stats and settings panes
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line72">line 72</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="resetConfirm"><span class="type-signature"></span>resetConfirm<span class="signature">(isConfirm)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Resets the timer if confirmation is received
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>isConfirm</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">True to reset timer, False otherwise</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line276">line 276</a>
     </li></ul></dd>
     
 
@@ -4208,7 +4375,7 @@ local storage.
 
 
 <div class="description">
-    Resets the number of pomodoros completed to 0 for the current task.
+    Resets the number of pomodoros completed to 0 for the current task
 </div>
 
 
@@ -4252,7 +4419,7 @@ local storage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line32">line 32</a>
+        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -4288,7 +4455,7 @@ local storage.
     
 
     
-    <h4 class="name" id="resetTimer"><span class="type-signature"></span>resetTimer<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="resetTimer"><span class="type-signature"></span>resetTimer<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
     
 
     
@@ -4340,7 +4507,7 @@ local storage.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line205">line 205</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line221">line 221</a>
     </li></ul></dd>
     
 
@@ -4374,6 +4541,18 @@ local storage.
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
     
 
 
@@ -4395,7 +4574,7 @@ local storage.
 
 <div class="description">
     Begins the timer countdown for a cycle within the main thread for
-browsers that do not support web-workers.
+browsers that do not support web-workers
 </div>
 
 
@@ -4488,7 +4667,7 @@ browsers that do not support web-workers.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line92">line 92</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -4692,7 +4871,7 @@ browsers that do not support web-workers.
 
 
 <div class="description">
-    Setter mmethod for dates
+    Setter method for dates
 </div>
 
 
@@ -4894,7 +5073,7 @@ browsers that do not support web-workers.
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;Number></span>
 
 
             
@@ -4989,7 +5168,7 @@ browsers that do not support web-workers.
 
 
 <div class="description">
-    The callback for events that trigger the start or stop of timer
+    Callback for events that trigger the start or stop of timer
 </div>
 
 
@@ -5033,7 +5212,7 @@ browsers that do not support web-workers.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line45">line 45</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -5078,7 +5257,7 @@ browsers that do not support web-workers.
 
 <div class="description">
     Starts a timer for the given duration and sends the time left
-every second as a message.
+every second as a message
 </div>
 
 
@@ -5120,7 +5299,7 @@ every second as a message.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -5130,7 +5309,7 @@ every second as a message.
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Amount of time left</td>
         </tr>
 
     
@@ -5207,7 +5386,7 @@ every second as a message.
     
 
     
-    <h4 class="name" id="startTimer"><span class="type-signature"></span>startTimer<span class="signature">(localOnBreak, localPomoCount)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="startTimer"><span class="type-signature"></span>startTimer<span class="signature">(localOnBreak, localPomoCount)</span><span class="type-signature"> &rarr; {Array}</span></h4>
     
 
     
@@ -5331,7 +5510,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line123">line 123</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line140">line 140</a>
     </li></ul></dd>
     
 
@@ -5364,6 +5543,18 @@ every second as a message.
 </div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -5429,7 +5620,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line156">line 156</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line172">line 172</a>
     </li></ul></dd>
     
 
@@ -5465,7 +5656,7 @@ every second as a message.
     
 
     
-    <h4 class="name" id="timeFraction"><span class="type-signature"></span>timeFraction<span class="signature">(timer, pomoState)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="timeFraction"><span class="type-signature"></span>timeFraction<span class="signature">(timer, pomoState)</span><span class="type-signature"> &rarr; {Number}</span></h4>
     
 
     
@@ -5473,7 +5664,7 @@ every second as a message.
 
 
 <div class="description">
-    Returns the fraction of the time remaining for the current countdown
+    Calculates the fraction of the time remaining for the current countdown
 </div>
 
 
@@ -5589,7 +5780,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line288">line 288</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line305">line 305</a>
     </li></ul></dd>
     
 
@@ -5614,6 +5805,28 @@ every second as a message.
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    amount of time remaining
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -5685,7 +5898,7 @@ every second as a message.
 
             
 
-            <td class="description last">the timer type indicating work, long break, or short break</td>
+            <td class="description last">Timer enum type indicating work, long break, or short break</td>
         </tr>
 
     
@@ -5726,7 +5939,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line303">line 303</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line320">line 320</a>
     </li></ul></dd>
     
 
@@ -5770,7 +5983,7 @@ every second as a message.
 
 
 <div class="description">
-    Function to toggle the accessibility colors and fontsDarkens backgrounds for better readibility of textColors picked according to AAA Guidilines
+    Toggles the accessibility colors and fonts Darkens backgrounds for better readibility of text Colors picked according to AAA Guidilines
 </div>
 
 
@@ -5814,7 +6027,7 @@ every second as a message.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line19">line 19</a>
+        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -5858,8 +6071,7 @@ every second as a message.
 
 
 <div class="description">
-    Enables / Disables the respective settings pane buttons based on the current
-state.
+    Toggles the respective settings pane buttons based on the current state
 </div>
 
 
@@ -5903,7 +6115,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line59">line 59</a>
+        <a href="settings.js.html">settings.js</a>, <a href="settings.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -5947,8 +6159,7 @@ state.
 
 
 <div class="description">
-    Enables / Disables the respective stats pane buttons based on the current
-state.
+    Toggles the respective stats pane buttons based on the current state
 </div>
 
 
@@ -5992,7 +6203,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line71">line 71</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line86">line 86</a>
     </li></ul></dd>
     
 
@@ -6036,7 +6247,7 @@ state.
 
 
 <div class="description">
-    Function to toggle keystroke access. Called whenever the user toggles the setting switch
+    Toggles keystroke access whenever the user toggles the setting switch
 </div>
 
 
@@ -6080,7 +6291,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line84">line 84</a>
+        <a href="accessibility.js.html">accessibility.js</a>, <a href="accessibility.js.html#line88">line 88</a>
     </li></ul></dd>
     
 
@@ -6116,7 +6327,7 @@ state.
     
 
     
-    <h4 class="name" id="togglePomoBreak"><span class="type-signature"></span>togglePomoBreak<span class="signature">(onBreak)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="togglePomoBreak"><span class="type-signature"></span>togglePomoBreak<span class="signature">(onBreak)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
     
 
     
@@ -6217,7 +6428,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line110">line 110</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line127">line 127</a>
     </li></ul></dd>
     
 
@@ -6251,6 +6462,18 @@ state.
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
     
 
 
@@ -6271,7 +6494,7 @@ state.
 
 
 <div class="description">
-    Disables or enables task button
+    Toggles task button
 </div>
 
 
@@ -6323,7 +6546,7 @@ state.
 
             
 
-            <td class="description last">parameter</td>
+            <td class="description last">Allows caller to select whether button is disabled</td>
         </tr>
 
     
@@ -6364,7 +6587,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line42">line 42</a>
+        <a href="tasks.js.html">tasks.js</a>, <a href="tasks.js.html#line43">line 43</a>
     </li></ul></dd>
     
 
@@ -6408,7 +6631,7 @@ state.
 
 
 <div class="description">
-    Update pot icons to show number of pomos completed for the cycle
+    Updates pot icons to show number of pomos completed for the cycle
 </div>
 
 
@@ -6452,7 +6675,7 @@ state.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line191">line 191</a>
+        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line207">line 207</a>
     </li></ul></dd>
     
 
@@ -6541,7 +6764,7 @@ task is complete, or interruption occurs
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line23">line 23</a>
+        <a href="stats.js.html">stats.js</a>, <a href="stats.js.html#line38">line 38</a>
     </li></ul></dd>
     
 
@@ -6585,7 +6808,7 @@ task is complete, or interruption occurs
 
 
 <div class="description">
-    Update storage today counters and dates if today's date has changed
+    Updates storage today counters and dates if today's date has changed
 </div>
 
 
@@ -6675,13 +6898,13 @@ task is complete, or interruption occurs
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#displayTime">displayTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#getCounter">getCounter</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getRecentMonday">getRecentMonday</a></li><li><a href="global.html#getWeekHistory">getWeekHistory</a></li><li><a href="global.html#hidePrompt">hidePrompt</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#incrInterruptions">incrInterruptions</a></li><li><a href="global.html#incrPomoCount">incrPomoCount</a></li><li><a href="global.html#incrTasks">incrTasks</a></li><li><a href="global.html#isA11yEnabled">isA11yEnabled</a></li><li><a href="global.html#isKeystrokeEnabled">isKeystrokeEnabled</a></li><li><a href="global.html#isSameDay">isSameDay</a></li><li><a href="global.html#isStorageDateToday">isStorageDateToday</a></li><li><a href="global.html#keyControls">keyControls</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#setCountdownInterval">setCountdownInterval</a></li><li><a href="global.html#setCounter">setCounter</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setWeekHistory">setWeekHistory</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#stopTimer">stopTimer</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#toggleButtons">toggleButtons</a></li><li><a href="global.html#toggleKeystroke">toggleKeystroke</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateStorage">updateStorage</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginCountdown">beginCountdown</a></li><li><a href="global.html#calculateAxes">calculateAxes</a></li><li><a href="global.html#closeSettingsPane">closeSettingsPane</a></li><li><a href="global.html#closeStatsPane">closeStatsPane</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#displayTime">displayTime</a></li><li><a href="global.html#displayTodayStats">displayTodayStats</a></li><li><a href="global.html#displayTotalStats">displayTotalStats</a></li><li><a href="global.html#drawAxes">drawAxes</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawBars">drawBars</a></li><li><a href="global.html#drawGraph">drawGraph</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#getCounter">getCounter</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getRecentMonday">getRecentMonday</a></li><li><a href="global.html#getWeekHistory">getWeekHistory</a></li><li><a href="global.html#hidePrompt">hidePrompt</a></li><li><a href="global.html#increaseTaskPomo">increaseTaskPomo</a></li><li><a href="global.html#incrInterruptions">incrInterruptions</a></li><li><a href="global.html#incrPomoCount">incrPomoCount</a></li><li><a href="global.html#incrTasks">incrTasks</a></li><li><a href="global.html#isA11yEnabled">isA11yEnabled</a></li><li><a href="global.html#isKeystrokeEnabled">isKeystrokeEnabled</a></li><li><a href="global.html#isSameDay">isSameDay</a></li><li><a href="global.html#isStorageDateToday">isStorageDateToday</a></li><li><a href="global.html#keyControls">keyControls</a></li><li><a href="global.html#keys">keys</a></li><li><a href="global.html#openSettingsPane">openSettingsPane</a></li><li><a href="global.html#openStatsPane">openStatsPane</a></li><li><a href="global.html#removeAll">removeAll</a></li><li><a href="global.html#resetConfirm">resetConfirm</a></li><li><a href="global.html#resetTaskPomo">resetTaskPomo</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#setCountdownInterval">setCountdownInterval</a></li><li><a href="global.html#setCounter">setCounter</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setWeekHistory">setWeekHistory</a></li><li><a href="global.html#startResetController">startResetController</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#stopTimer">stopTimer</a></li><li><a href="global.html#timeFraction">timeFraction</a></li><li><a href="global.html#timerOptions">timerOptions</a></li><li><a href="global.html#timerTypeIndicator">timerTypeIndicator</a></li><li><a href="global.html#toggleAccessibility">toggleAccessibility</a></li><li><a href="global.html#toggleButtons">toggleButtons</a></li><li><a href="global.html#toggleKeystroke">toggleKeystroke</a></li><li><a href="global.html#togglePomoBreak">togglePomoBreak</a></li><li><a href="global.html#toggleTaskButtonDisabled">toggleTaskButtonDisabled</a></li><li><a href="global.html#updatePots">updatePots</a></li><li><a href="global.html#updateStats">updateStats</a></li><li><a href="global.html#updateStorage">updateStorage</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Mar 19 2021 03:49:31 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Mar 19 2021 06:52:40 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
