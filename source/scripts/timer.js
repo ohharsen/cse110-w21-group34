@@ -318,7 +318,7 @@ export function timeFraction (timer, pomoState) {
  * @param {String} type - Timer enum type indicating work, long break, or short break
  */
 export function timerTypeIndicator (type) {
-  workIndicator.classList.remove();
+  workIndicator.classList.remove(HIGHLIGHT);
   longBreakIndicator.classList.remove(HIGHLIGHT);
   shortBreakIndicator.classList.remove(HIGHLIGHT);
   if (type === Constants.timerOptions.LONG) {

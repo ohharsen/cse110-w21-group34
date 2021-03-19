@@ -79,6 +79,7 @@ export function closeStatsPane () {
   toggleButtons();
 }
 
+/* istanbul ignore next */
 /**
  * Toggles the respective stats pane buttons based on the current state
  */

@@ -1,7 +1,6 @@
 import * as Constants from '../scripts/constants';
 import * as Stats from '../scripts/stats';
 import * as Storage from '../scripts/util/storage';
-import { completeTask } from '../scripts/tasks';
  
 describe('Daily Statistics', () => {
   const todayPomosID = 'today-pomodoros';

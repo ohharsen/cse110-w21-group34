@@ -76,7 +76,7 @@ export function incrTasks () {
 
 /**
  * Increments completed Pomodoros for today, the current week, and total in
- * local storage.
+ * local storage
  */
 export function incrPomoCount () {
   updateStorage();

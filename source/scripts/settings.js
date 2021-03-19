@@ -54,6 +54,7 @@ export function closeSettingsPane () {
   toggleButtons();
 }
 
+/* instanbul ignore next */
 /**
  * Toggles the respective settings pane buttons based on the current state
  */
