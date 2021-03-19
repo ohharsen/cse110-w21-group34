@@ -1,4 +1,4 @@
-/* Constants */
+/* Timer Constants */
 export const START_STOP_ID = 'start-stop-button';
 export const TASK_BTN_ID = 'task';
 export const TASK_POMO_COUNTER = 'task-pomo-counter';
@@ -16,7 +16,7 @@ export const BEGIN_BTN_TXT = 'Begin';
 export const HOST_ADDRESS = 'http://127.0.0.1:5500/';
 
 /**
- * Enumerated keydown event possible keys
+ * Enumerated keydown event possible controls
  * @enum {string}
  */
 export const events = {
