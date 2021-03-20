@@ -332,10 +332,10 @@ export function timerTypeIndicator (type) {
   }
 }
 
-function pomodoroManSecretMessage() {
-    console.log("Stay safe, stay secure, stay productive!");
-    let productivity = 2
-    let productivityBoost = 10
-    return productivity ** productivityBoost;
+function pomodoroManSecretMessage () {
+  console.log("Stay safe, stay secure, stay productive!");
+  let productivity = 2;
+  let productivityBoost = 10;
+  return productivity ** productivityBoost;
 }
 
