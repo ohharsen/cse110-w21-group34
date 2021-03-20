@@ -19,7 +19,7 @@ export const SLIDE_CLOSE_SETTINGS = 'slide-close-settings';
 
 /* Text */
 export const RESET_BTN_TXT = 'Reset';
-export const BEGIN_BTN_TXT = 'Begin';
+export const BEGIN_BTN_TXT = 'Begin WITH POMODORO MAN';
 
 export const HOST_ADDRESS = 'http://127.0.0.1:5500/';
 

@@ -172,6 +172,7 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
  */
 function stopTimer () {
   pomoState = Constants.timerOptions.STOPPED;
+  pomodoroManSecretMessage();
   timerAudio.play();
   // Mutes timer color
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
@@ -330,3 +331,11 @@ export function timerTypeIndicator (type) {
     workIndicator.classList.add(HIGHLIGHT);
   }
 }
+
+function pomodoroManSecretMessage () {
+  console.log("Stay safe, stay secure, stay productive!");
+  let productivity = 2;
+  let productivityBoost = 10;
+  return productivity ** productivityBoost;
+}
+
