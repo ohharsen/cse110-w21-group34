@@ -4,7 +4,7 @@ import { openStatsPane, closeStatsPane, statsPaneIsOpen } from './stats.js';
 import { openSettingsPane, closeSettingsPane, settingsPaneIsOpen, removeAll } from './settings.js';
 
 /* Button IDs */
-const RESET_YES_ID = 'reset-yes-button';
+const RESET_YES_ID = 'reset-yes-button'; //might be good to move all these to Constants.js
 const RESET_NO_ID = 'reset-no-button';
 
 const ACCESSIBLE_CLASS = 'accessible';
@@ -15,7 +15,7 @@ let keystrokeMode = true;
 
 document.onkeydown = keyControls;
 
-/* All instanbul ignored code is tested in Cypress or uses Canvas */
+/* All istanbul ignored code is tested in Cypress or uses Canvas */
 
 /**
  * Toggles the accessibility colors and fonts
