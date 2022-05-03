@@ -8,7 +8,7 @@
     "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
     "test": "jest",
     "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
-    "cypress": "./node_modules/.bin/cypress run"
+    "cypress": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "babel-eslint": "^10.1.0",
     "browserify": "^17.0.0",
     "coveralls": "^3.1.0",
-    "cypress": "6.7.0",
+    "cypress": "^6.7.0",
     "eslint": "^7.19.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
