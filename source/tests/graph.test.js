@@ -42,4 +42,16 @@ describe('Graphing Y-axis 4 way splits', () => {
     let expectedSplits = [0, 3, 6, 9]
     expect(Graph.calculateAxes( weekPomos )).toEqual( expectedSplits);
   });
+
+  test('Check when multiple, but not all consecutive days, have completed tasks', () => {
+    let weekPomos = [5,0,0,0,0,15,0];
+    let expectedSplits = [0, 6, 12, 18]
+    expect(Graph.calculateAxes( weekPomos )).toEqual( expectedSplits);
+  });
+
+  test('Check when all days have same amount of completed tasks', () => {
+    let weekPomos = [15,15,15,15,15,15,15];
+    let expectedSplits = [0, 6, 12, 18]
+    expect(Graph.calculateAxes( weekPomos )).toEqual( expectedSplits);
+  });
 });

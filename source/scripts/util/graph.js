@@ -43,8 +43,8 @@ export function drawGraph (canvas, data = ZEROS) {
   if (!canvas || (typeof process === 'object' && process.env.NODE_ENV === TEST_PROCESS)) return;
 
   const ctx = canvas.getContext(CONTEXT_2D);
-  const axes = calculateAxes(data);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const axes = calculateAxes(data);  //gets how big y axis should be 
+  ctx.clearRect(0, 0, canvas.width, canvas.height); //clears the canvas
   drawAxes(ctx, canvas.height, canvas.width, axes);
   drawBars(ctx, canvas.height, data, axes);
   ctx.save();
@@ -59,8 +59,8 @@ export function drawGraph (canvas, data = ZEROS) {
  * @param {Number[]} axes - y-axis values
  */
 function drawAxes (ctx, canvasHeight, canvasWidth, axes) {
-  const maxHeight = canvasHeight - BOTTOM_PADDING;
-  const maxWidth = canvasWidth - RIGHT_PADDING;
+  const maxHeight = canvasHeight - BOTTOM_PADDING; //find max height for y-axis
+  const maxWidth = canvasWidth - RIGHT_PADDING; // find maxWidth for x-axis
 
   // Draw y-axes
   // If accessibibility mode is on we use larger font
@@ -68,7 +68,7 @@ function drawAxes (ctx, canvasHeight, canvasWidth, axes) {
   ctx.textAlign = TEXT_ALIGN_CENTER;
   for (const [i, axis] of axes.entries()) {
     const x = LEFT_PADDING;
-    const y = TOP_PADDING + maxHeight - Math.round(maxHeight * (i / (axes.length - 1)));
+    const y = TOP_PADDING + maxHeight - Math.round(maxHeight * (i / (axes.length - 1))); // finds which axis we are using corresponding to the axes already calculated
     drawLine(ctx, x, y, maxWidth, y);
     ctx.fillText(axis, x - FILL_TEXT_X_PAD, y + FILL_TEXT_Y_PAD);
   }
@@ -80,7 +80,7 @@ function drawAxes (ctx, canvasHeight, canvasWidth, axes) {
   ctx.fillText(Y_LABEL, 0, 0);
   ctx.restore();
 
-  // Draw x-labels
+  // Draw x-labels (every day of week)
   for (const [i, label] of X_LABELS.entries()) {
     const x = LEFT_PADDING + BAR_LEFT_MARGIN + i * (BAR_WIDTH + BAR_PADDING);
     const y = TOP_PADDING + maxHeight + X_LABEL_HEIGHT_PAD + (TEXT_HEIGHT / TWO);
@@ -123,9 +123,9 @@ export function calculateAxes (data) {
 
   // Setting axes values and rounding to one decimal place
   let axisIndex = 1;
-  axes[axisIndex++] = max / Y_MIN_SPACING;
-  axes[axisIndex++] = TWO * max / Y_MIN_SPACING;
-  axes[axisIndex] = max;
+  axes[axisIndex++] = max / Y_MIN_SPACING; // first axis
+  axes[axisIndex++] = TWO * max / Y_MIN_SPACING; // second axis
+  axes[axisIndex] = max; //third axis
 
   return axes;
 }

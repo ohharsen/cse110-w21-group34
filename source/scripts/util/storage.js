@@ -70,8 +70,8 @@ export function getWeekHistory () {
  */
 export function incrTasks () {
   updateStorage();
-  setCounter(TODAY_TASK_ID, getCounter(TODAY_TASK_ID) + 1);
-  setCounter(TOTAL_TASK_ID, getCounter(TOTAL_TASK_ID) + 1);
+  setCounter(TODAY_TASK_ID, getCounter(TODAY_TASK_ID) + 1); //incrementing todays tasks by one
+  setCounter(TOTAL_TASK_ID, getCounter(TOTAL_TASK_ID) + 1); //incrementing total tasks by one
 }
 
 /**
@@ -82,8 +82,8 @@ export function incrPomoCount () {
   updateStorage();
 
   const todayPomos = getCounter(TODAY_POMO_ID) + 1;
-  setCounter(TODAY_POMO_ID, todayPomos);
-  setCounter(TOTAL_POMO_ID, getCounter(TOTAL_POMO_ID) + 1);
+  setCounter(TODAY_POMO_ID, todayPomos); //increment todays pomo count
+  setCounter(TOTAL_POMO_ID, getCounter(TOTAL_POMO_ID) + 1); //increment total pomo count
 
   if (getCounter(BEST_DAILY_POMO_ID) < todayPomos) setCounter(BEST_DAILY_POMO_ID, todayPomos);
 
@@ -100,8 +100,8 @@ export function incrPomoCount () {
  */
 export function incrInterruptions () {
   updateStorage();
-  setCounter(TODAY_INTERRUPTION, getCounter(TODAY_INTERRUPTION) + 1);
-  setCounter(TOTAL_INTERRUPTION, getCounter(TOTAL_INTERRUPTION) + 1);
+  setCounter(TODAY_INTERRUPTION, getCounter(TODAY_INTERRUPTION) + 1); //increments todays interruptions
+  setCounter(TOTAL_INTERRUPTION, getCounter(TOTAL_INTERRUPTION) + 1); //increments total interruptions
 }
 
 /**
