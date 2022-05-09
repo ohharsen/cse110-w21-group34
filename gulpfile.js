@@ -1,51 +1,51 @@
 const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
-const concat = require('gulp-concat');
 const terser = require('gulp-terser');
 const postcss = require('gulp-postcss');
+const htmlmin = require('gulp-htmlmin');
 const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
-const { src, parallel, dest } = require('gulp');
+const { src, parallel, dest, series } = require('gulp');
 
-const jsPath1 = 'build/bundled/main.js';
-const jsPath2 = 'build/bundled/timeWorker.js';
+const jsPath = 'source/scripts/**/*.js'
 const cssPath = 'source/styles/*.css';
 
+function copyfavi() {
+  return src('source/*.ico').pipe(gulp.dest('build'));
+}
 
-function copyHtml() {
-  return src('source/*.html').pipe(gulp.dest('build'));
+function copySounds() {
+  return src('source/sounds/*.mp3').pipe(gulp.dest('build/sounds'));
 }
 
 function imgTask() {
   return src('source/images/*').pipe(imagemin()).pipe(gulp.dest('build/images'));
 }
 
-function jsTask1() {
-  return src(jsPath1)
-    .pipe(concat('main.js'))
+function minhtml() {
+  return gulp.src('source/index.html')
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest('build'));
+}
+
+function jsTask() {
+  return src(jsPath)
     .pipe(terser())
     .pipe(dest('build/scripts'));
 }
-
-function jsTask2() {
-  return src(jsPath2)
-    .pipe(concat('timeWorker.js'))
-    .pipe(terser())
-    .pipe(dest('build/scripts'));
-}
-
 
 function cssTask() {
   return src(cssPath)
-    .pipe(concat('main.css'))
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(dest('build/styles'));
 }
 
 
 exports.cssTask = cssTask;
-exports.jsTask1 = jsTask1;
-exports.jsTask2 = jsTask2;
+exports.htmlmin = minhtml;
+exports.jsTask = jsTask;
 exports.imgTask = imgTask;
-exports.copyHtml = copyHtml;
-exports.default = parallel(copyHtml, imgTask, cssTask);
+exports.copyfavi = copyfavi;
+exports.copySounds = copySounds;
+
+exports.default = parallel(minhtml, copyfavi, copySounds, imgTask, cssTask, jsTask);
