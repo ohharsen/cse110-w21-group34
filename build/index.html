@@ -1,0 +1,201 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pomodoro by Texas Codem</title>
+    <link rel="stylesheet" href="./styles/settings.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/timer.css">
+    <link rel="stylesheet" href="./styles/stats.css">
+    <link rel="stylesheet" href="./styles/confetti.css">
+    <link rel="icon" type="image/png" href="./favicon.ico"/>
+
+    <!-- Roboto font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="animation-overlay">
+        <img id = "confetti-img" src="./images/confetti.gif" alt="Confetti gif" draggable="false">
+    </div>  
+    <main>
+        <div class="center-container">
+            <div class="pomo-indicator-container"> 
+                <div class="pomo-indicator highlight" id="work-indicator">Pomodoro</div>
+                <div class="pomo-indicator" id="short-break-indicator">Short Break</div>
+                <div class="pomo-indicator" id="long-break-indicator">Long Break</div>
+            </div>
+            <div class="timer-container">
+                <div class = "pots-container">
+                    <img id="pot1" src="images/honey-pot-gray.svg" alt = "First task complete indicator pot" draggable="false" />
+                    <img id="pot2" src="images/honey-pot-gray.svg" alt = "Second task complete indicator pot" draggable="false" />
+                    <img id="pot3" src="images/honey-pot-gray.svg" alt = "Third task complete indicator pot" draggable="false" />
+                    <img id="pot4" src="images/honey-pot-gray.svg" alt = "Fourth task complete indicator pot" draggable="false" />
+                </div>
+                <div class="timer" id = "clockTimer">
+                  <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g class="timer_circle_container"> <!-- The containter for grouping multiple svg elements -->
+                      <circle cx="50%" cy="43" r="35" style="fill:white; stroke: var(--grey); stroke-width: 2px;" />
+                      <path
+                        id="base-timer-path-remaining"
+                        stroke = 'var(--grey)'
+                        stroke-dasharray = "220 220"
+                        class="timer_path_elapsed"
+                        d="
+                          M 8, 50
+                          a 35,35 0 1,0 70,0
+                          a 35,35 0 1,0 -70,0
+                        "
+                      />
+                    </g>
+                    <text id="countdownText" x = "26" y = "50">25:00</text>
+                  </svg>
+                </div>
+                <button id="start-stop-button" class="pomodoro-button break-button">Begin</button>
+                
+                <div id = "prompt">
+                    <p id = "prompt-text">This will count as an interruption.<br> Are you sure?</p>
+                    <div class = "prompt-buttons">
+                        <button id="reset-yes-button" class="prompt-button">Yes</button>
+                        <button id="reset-no-button" class="prompt-button">No</button>
+                    </div>
+                </div>
+            </div>
+            <button id="task" class="task-button">Complete Task: <span id="task-pomo-counter">0</span> Pomos</button>
+        </div>
+        <button id="settings-open-button" class="settings-button" type="button" aria-label="Open settings">
+            <img width="60px" height="60px" src="./images/settings.png" alt="Settings icon" draggable="false"/>
+        </button>
+        <button id="stats-open-button" class="stats-button" type="button" aria-label="Open statistics">
+            <img width="60px" height="60px" src="./images/test.png" alt="Statistics icon" draggable="false"/>
+        </button>
+        <audio id = "timer-sound" src = "./sounds/quite-impressed-565.mp3"></audio>
+    </main>
+    <!-- Left-side info pane. -->
+    <aside id="settings-container" class="settings-container">
+        <button id="settings-close-button" type="button" disabled>
+            <img width="15px" height="15px" src ="./images/xbutton.png" alt="Close icon" draggable="false" />
+        </button>
+        <section id="settings-pane">
+            <h1>Settings</h1>
+            <div id="information" class="settings-box">
+                <div>
+                    <h2>What is a Pomodoro?</h2>
+                </div>
+                <div class="stats-flex">
+                    <div id="explanation-text">The Pomodoro Cycle is a tool for encouraging productivity.
+                        Each cycle allocates 25 minutes of time to work followed by a 5 minute rest period.
+                        After your 4th pomo, you'll earn an extended 15 minute break!
+                    </div>       
+                </div>
+            </div>
+            <div id="tutorial" class="settings-box">
+                <div>
+                    <h2>How does this app work?</h2>
+                </div>
+                <div class="stats-flex">
+                    <div id="tutorial-text">Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>"
+                        to end early. The text headers and ring color will indicate the
+                        <span id="work-text">work</span> and <span id="break-text">break</span> stages of a cycle.
+                        Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
+                    </div>
+                </div>
+            </div>
+            <div id="accessibility-overview" class="stats-box">
+                <div>
+                    <h2>Accessibility Options</h2>
+                </div>
+                <div class="stats-flex">
+                    <div class="settings-row">
+                        <div>Colorblindness</div>
+                        <div> 
+                            <label class="switch" for="colors-switch">
+                                <input id="colors-switch" type="checkbox" disabled>
+                                <span class="slider round"></span>
+                            </label> 
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <div>Keystroke Access</div>
+                        <div>
+                            <label class="switch" for="keystroke-switch">
+                                <input id="keystroke-switch" type="checkbox" checked disabled>
+                                <span class="slider round"></span>
+                            </label> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </aside>
+    <aside id="stats-container" class="stats-container">
+        <button id="stats-close-button" type="button" disabled>
+            <img width="15px" height="15px" src ="./images/xbutton.png" alt="Close icon" draggable="false" />
+        </button>
+        <section id="stats-pane">
+            <h1>User Statistics</h1>
+
+            <div id="stats-today" class="stats-box">
+                <div>
+                    <h2>Today</h2>
+                </div>
+                <div class="stats-flex">
+                    <div class="stats-row">
+                        <div>Pomos cycles:</div>
+                        <div><span id="today-pomodoros">____</span> po.</div>
+                    </div>
+                    <div class="stats-row">
+                        <div>Interruptions:</div>
+                        <div><span id="today-interruptions">____</span></div>
+                    </div>
+                    <div class="stats-row">
+                        <div>Total Tasks:</div>
+                        <div><span id="today-tasks">____</span> tasks</div>
+                    </div>
+                </div>
+            </div>
+            <div id="stats-totals" class="stats-box">
+                <div>
+                    <h2>Totals</h2>
+                </div>
+                <div class="stats-flex">
+                    <div class="stats-row">
+                        <div>Pomos cycles:</div>
+                        <div><span id="total-pomodoros">____</span> po.</div>
+                    </div>
+                    <div class="stats-row">
+                        <div>Avg. Interruptions:</div>
+                        <div><span id="total-interruptions">____</span> per po.</div>
+                    </div>
+                    <div class="stats-row">
+                        <div>Best Day:</div>
+                        <div><span id="total-best-pomo">____</span> po. | <span id="total-best-time">____</span> min.</div>
+                    </div>
+                    <div class="stats-row">
+                        <div>Total Tasks:</div>
+                        <div><span id="total-tasks">____</span> tasks</div>
+                    </div>
+                </div>
+            </div>
+            <div id="stats-overview" class="stats-box">
+                <div>
+                    <h2>Weekly Overview</h2>
+                </div>
+                <div class="stats-flex">
+                    <div class="graph">
+                        <canvas id="weekly-graph" height="180"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </aside>
+    <script src="./scripts/timer.js" type="module"></script>
+    <script src="./scripts/tasks.js" type="module"></script>
+    <script src="./scripts/stats.js" type="module"></script>
+    <script src="./scripts/accessibility.js" type="module"></script>
+    <script src="./scripts/settings.js" type="module"></script>
+  </body>
+</html>
+ 
