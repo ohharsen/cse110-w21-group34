@@ -9,7 +9,7 @@
     "test": "jest",
     "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
     "cypress": "./node_modules/.bin/cypress run",
-    "validate-html": "w3c-html-validator source/index.html",
+    "validate-html": "html-validate source/index.html",
     "validate-css": "csstree-validator source/styles"
   },
   "repository": {
@@ -44,9 +44,9 @@
     "gulp-postcss": "^9.0.1",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.1.0",
+    "html-validate": "^7.0.0",
     "http-server": "^0.12.3",
-    "jest": "^26.6.3",
-    "w3c-html-validator": "^1.0.3"
+    "jest": "^26.6.3"
   },
   "dependencies": {
     "@babel/core": "^7.12.17",
