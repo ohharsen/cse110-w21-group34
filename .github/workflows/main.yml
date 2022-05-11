@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ main, jun-1-CI/CD-Gulp-Explore ]
   pull_request:
     branches: [ main ]
 
@@ -34,6 +34,12 @@ jobs:
 
       - name: Install Node.js dependencies
         run: npm install
+      
+      - name: Verify HTML
+        run: npm run validate-html
+
+      - name: Verify CSS
+        run: npm run validate-css
 
       - name: Run linters
         run: npm run lint

@@ -8,7 +8,9 @@
     "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
     "test": "jest",
     "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
-    "cypress": "./node_modules/.bin/cypress run"
+    "cypress": "./node_modules/.bin/cypress run",
+    "validate-html": "w3c-html-validator source/index.html",
+    "validate-css": "csstree-validator source/styles"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
     "browserify": "^17.0.0",
     "coveralls": "^3.1.0",
     "cssnano": "^5.1.7",
+    "csstree-validator": "^3.0.0",
     "cypress": "6.7.0",
     "eslint": "^7.19.0",
     "eslint-config-standard": "^16.0.2",
@@ -42,7 +45,8 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.1.0",
     "http-server": "^0.12.3",
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "w3c-html-validator": "^1.0.3"
   },
   "dependencies": {
     "@babel/core": "^7.12.17",
