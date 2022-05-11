@@ -296,9 +296,9 @@ export function displayTime (time) {
   countdownText.textContent = minutes + ':' + seconds;
 
   if (onBreak) {
-    window.document.title = "Break: " + countdownText.textContent;
+    window.document.title = 'Break: ' + countdownText.textContent;
   } else {
-    window.document.title = "Work: " + countdownText.textContent;
+    window.document.title = 'Work: ' + countdownText.textContent;
   }
 
   return countdownText.textContent;
