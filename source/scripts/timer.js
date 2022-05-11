@@ -294,6 +294,13 @@ export function displayTime (time) {
   minutes = minutes < BASE_10 ? '0' + minutes : minutes;
   seconds = seconds < BASE_10 ? '0' + seconds : seconds;
   countdownText.textContent = minutes + ':' + seconds;
+
+  if (onBreak) {
+    window.document.title = "Break: " + countdownText.textContent;
+  } else {
+    window.document.title = "Work: " + countdownText.textContent;
+  }
+
   return countdownText.textContent;
 }
 
