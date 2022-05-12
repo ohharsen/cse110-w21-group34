@@ -1,59 +1,60 @@
 {
-  "name": "cse110-w21-group34",
-  "version": "1.0.0",
-  "description": "Package",
-  "main": "index.js",
-  "scripts": {
-    "lint": "./node_modules/.bin/eslint ./source/scripts --ext .js --ignore-path .eslintignore",
-    "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
-    "test": "jest",
-    "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
-    "cypress": "./node_modules/.bin/cypress run",
-    "validate-html": "html-validate source/index.html",
-    "validate-css": "csstree-validator source/styles"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/4R53N/cse110-w21-group34.git"
-  },
-  "author": "Team 34",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/4R53N/cse110-w21-group34/issues"
-  },
-  "homepage": "https://github.com/4R53N/cse110-w21-group34#readme",
-  "devDependencies": {
-    "autoprefixer": "^9.8.6",
-    "babel-eslint": "^10.1.0",
-    "browserify": "^17.0.0",
-    "coveralls": "^3.1.0",
-    "cssnano": "^5.1.7",
-    "csstree-validator": "^3.0.0",
-    "cypress": "6.7.0",
-    "eslint": "^7.19.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.3.1",
-    "gulp": "^4.0.2",
-    "postcss": "^8.0.0",
-    "postcss-cli": "^8.1.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "gulp-clean": "^0.4.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-imagemin": "^7.1.0",
-    "gulp-postcss": "^9.0.1",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-terser": "^2.1.0",
-    "html-validate": "^7.0.0",
-    "http-server": "^0.12.3",
-    "jest": "^26.6.3"
-  },
-  "dependencies": {
-    "@babel/core": "^7.12.17",
-    "@babel/preset-env": "^7.12.17",
-    "babel-jest": "^26.6.3"
-  }
+    "name": "cse110-w21-group34",
+    "version": "1.0.0",
+    "description": "Package",
+    "main": "index.js",
+    "scripts": {
+        "lint": "./node_modules/.bin/eslint ./source/scripts --ext .js --ignore-path .eslintignore",
+        "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
+        "test": "jest",
+        "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
+        "cypress": "./node_modules/.bin/cypress run",
+        "validate-html": "html-validate source/index.html",
+        "validate-css": "csstree-validator source/styles"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/4R53N/cse110-w21-group34.git"
+    },
+    "author": "Team 34",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/4R53N/cse110-w21-group34/issues"
+    },
+    "homepage": "https://github.com/4R53N/cse110-w21-group34#readme",
+    "devDependencies": {
+        "node": ">=12.22",
+        "autoprefixer": "^9.8.6",
+        "babel-eslint": "^10.1.0",
+        "browserify": "^17.0.0",
+        "coveralls": "^3.1.0",
+        "cssnano": "^5.1.7",
+        "csstree-validator": "^3.0.0",
+        "cypress": "6.7.0",
+        "eslint": "^7.19.0",
+        "eslint-config-standard": "^16.0.2",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.3.1",
+        "gulp": "^4.0.2",
+        "postcss": "^8.0.0",
+        "postcss-cli": "^8.1.0",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+        "gulp-clean": "^0.4.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-htmlmin": "^5.0.1",
+        "gulp-imagemin": "^7.1.0",
+        "gulp-postcss": "^9.0.1",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-terser": "^2.1.0",
+        "html-validate": "^6.0.0",
+        "http-server": "^0.12.3",
+        "jest": "^26.6.3"
+    },
+    "dependencies": {
+        "@babel/core": "^7.12.17",
+        "@babel/preset-env": "^7.12.17",
+        "babel-jest": "^26.6.3"
+    }
 }
