@@ -1,0 +1,1 @@
+let timerInterval;function startTimer(t){let e=t;timerInterval=setInterval((()=>{e--,postMessage({timeLeft:e}),e<0&&clearInterval(timerInterval)}),1e3)}onmessage=t=>{const{start:e,duration:r}=t.data;e?startTimer(r):clearInterval(timerInterval)};
