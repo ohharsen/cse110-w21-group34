@@ -3,4 +3,3 @@ coverage
 cypress/screenshots/
 cypress/videos
 source/bundle.js
-package-lock.json
