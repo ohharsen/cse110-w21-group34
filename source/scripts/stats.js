@@ -20,7 +20,6 @@ const todayPomoElem = document.getElementById('today-pomodoros');
 const todayTasksElem = document.getElementById('today-tasks');
 const todayInterruptElem = document.getElementById('today-interruptions');
 
-const graphCanvas = document.getElementById('weekly-graph');
 
 const MINUTES = 60;
 const NUM_DECIMALS = 2;
@@ -39,7 +38,7 @@ export function updateStats () {
   Storage.updateStorage();
   displayTodayStats();
   displayTotalStats();
-  drawGraph(graphCanvas, Storage.getWeekHistory());
+  drawGraph(Storage.getWeekHistory());
 }
 
 /* istanbul ignore next */

@@ -147,6 +147,10 @@
 #weekly-graph {
     width: 100%;
 }
+.chart--container {
+    height: 100%;
+    width: 100%;
+}
 
 @media only screen and (max-width: 814px) {
     #stats-container {
@@ -156,7 +160,7 @@
         right: calc(-100vw + -18px);
     }
 
-    #weekly-graph {
+    .chart--container {
         width: calc(100vw - 100px);
     }
 
