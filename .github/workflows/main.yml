@@ -47,8 +47,8 @@ jobs:
       - name: Run Jest Tests
         run: npm run test
       
-      - name: Compress
-        run: npm run compress
+      - name: Build for deployment
+        run: npm run build
 
       - name: Create Coverage
         run: node ./node_modules/jest/bin/jest.js --coverage
