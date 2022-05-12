@@ -144,10 +144,7 @@
     box-shadow: black 0px 0px 0px 2px;
 }
 
-#weekly-graph {
-    width: 100%;
-}
-.chart--container {
+.weekly-graph {
     height: 100%;
     width: 100%;
 }
@@ -160,7 +157,7 @@
         right: calc(-100vw + -18px);
     }
 
-    .chart--container {
+    .weekly-graph {
         width: calc(100vw - 100px);
     }
 

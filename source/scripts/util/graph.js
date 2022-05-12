@@ -4,71 +4,98 @@ import { ZEROS } from './storage.js';
 /* Graph Constants */
 const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
 const Y_LABEL = 'Pomos Completed';
-const INITIAL_Y_AXES = [0, 1, 2, 3];
 const TEXT_ALIGN_CENTER = 'center';
-const TEXT_FONT = '12px Roboto';
-const TEXT_FONT_ACCESSIBILITY = 'bold 15px Roboto';
+const TEXT_FONT = 'Roboto';
+const TEXT_FONT_SIZE = '12px';
+const TEXT_FONT_SIZE_ACCESSIBILITY = '15px';
+const TEXT_FONT_WEIGHT = 'normal';
+const TEXT_FONT_WEIGHT_ACCESSIBILITY = 'bold';
 const BAR_COLOR = '#eb4000';
 const BAR_COLOR_ACCESSIBILITY = '#B50014';
-const BAR_WIDTH = 20;
-const BAR_PADDING = 12;
-const BAR_LEFT_MARGIN = 24;
-const TEXT_HEIGHT = 14;
-const TOP_PADDING = 16;
-const RIGHT_PADDING = 16;
-const BOTTOM_PADDING = 32;
-const LEFT_PADDING = 48;
-
-/* Drawing Constants */
-const FILL_TEXT_X_PAD = 16;
-const FILL_TEXT_Y_PAD = 4;
-const X_LABEL_HEIGHT_PAD = 8;
-const Y_MIN_SPACING = 3;
-const Y_MAX_SPACING = 11;
-const TWO = 2;
-
-/* Other Constants */
+const ANIMATION_SPEED = 275;
+const Y_MIN_SCALING = 3;
 const TEST_PROCESS = 'test';
-const CONTEXT_2D = '2d';
 
 
 // /* All instanbul ignored code is tested in Cypress or uses Canvas */
 
+// /**
+//  * Function to find max value in weekly data
+//  * @param {Number[]} data - An array of weekly data of pomos completed
+//  * @return max - the max value in the weekly data
+//  */
+function findMax(data){
+    var max = -1;
+    for(var i = 0; i<data.length; i++){
+      if(data[i]>max){
+        max = data[i];
+      }
+    }
+    return max; 
+}
+
 // /* istanbul ignore next */
 // /**
-//  * Draws a graph to the given canvas element with the given data points
-//  * @param {HTMLCanvasElement} canvas - Target canvas
-//  * @param {Number[]} data - An array
+//  * Displays a graph showing the weekly statistics of pomos completed
+//  * @param {Number[]} data - An array of weekly data of pomos completed
 //  */
+export function displayGraph (data = ZEROS) {
+  if ((typeof process === 'object' && process.env.NODE_ENV === TEST_PROCESS)) return;
+  
+  const barColor = (isA11yEnabled()) ? BAR_COLOR_ACCESSIBILITY : BAR_COLOR;
+  const fontSize = (isA11yEnabled()) ? TEXT_FONT_SIZE_ACCESSIBILITY : TEXT_FONT_SIZE;
+  const fontWeight = (isA11yEnabled()) ? TEXT_FONT_WEIGHT_ACCESSIBILITY : TEXT_FONT_WEIGHT;
+  var maxVal = findMax(data);
 
-export function drawGraph (data = ZEROS) {
-  console.log("graph");
-  // if (!canvas || (typeof process === 'object' && process.env.NODE_ENV === TEST_PROCESS)) return;
-  //data = [5, 10, 7, 1, 9, 0, 11]
-  //data = [0, 0, 0, 1, 0, 0, 1]
+  //when values are small, scales the graph appropriately
+  if(maxVal < Y_MIN_SCALING){
+    maxVal = Y_MIN_SCALING
+  }
 
   let myConfig = {
     type: 'bar',
+    tooltip: {
+      'font-family': TEXT_FONT, 
+      'font-size': fontSize,
+      'font-weight': fontWeight
+    },
     scaleX: {
-      label: { text: 'Days' },
+      label: { 
+        text: 'Days',
+        'font-family': TEXT_FONT, 
+        'font-size': fontSize,
+        'font-weight': fontWeight
+      },
       labels: X_LABELS
     },
     scaleY: {
-      label: { text: Y_LABEL }
+      label: { 
+        text: Y_LABEL,
+        'font-family': TEXT_FONT, 
+        'font-size': fontSize,
+        'font-weight': fontWeight
+      },
+      'max-value': maxVal //for scaling y-axis
     },
-    
+    "plotarea": {
+      "margin": "dynamic" //for the graph to fit the div
+    },
     plot: {
+      //for the bar animations
       animation: {
         effect: 'ANIMATION_EXPAND_BOTTOM',
         method: 'ANIMATION_STRONG_EASE_OUT',
         sequence: 'ANIMATION_BY_NODE',
-        speed: 275,
-      }
+        speed: ANIMATION_SPEED,
+      },
+      'font-family': TEXT_FONT, 
+      'font-size': fontSize,
+      'font-weight': fontWeight
     },
     series: [
       {
-        values: data,
-        'background-color': BAR_COLOR, // Bar fill color 
+        values: data, //the data to populate graph
+        'background-color': barColor, // Bar fill color 
         alpha: 1 //for a solid bar color
       }
     ]
@@ -77,7 +104,8 @@ export function drawGraph (data = ZEROS) {
     id: "graph",
     data: myConfig,
     height: '100%',
-    width: '100%'
+    width: '100%',
+    
   });
 }
 

@@ -1,7 +1,7 @@
 import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
 import * as Settings from './settings.js';
-import { drawGraph } from './util/graph.js';
+import { displayGraph } from './util/graph.js';
 
 /* Elements */
 export const timerBlock = document.getElementsByClassName('center-container')[0];
@@ -38,7 +38,7 @@ export function updateStats () {
   Storage.updateStorage();
   displayTodayStats();
   displayTotalStats();
-  drawGraph(Storage.getWeekHistory());
+  displayGraph(Storage.getWeekHistory());
 }
 
 /* istanbul ignore next */
