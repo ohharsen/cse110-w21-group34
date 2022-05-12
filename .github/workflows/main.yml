@@ -38,8 +38,8 @@ jobs:
       - name: Verify HTML
         run: npm run validate-html
 
-      - name: Verify CSS
-        run: npm run validate-css
+      # - name: Verify CSS
+      #   run: npm run validate-css
 
       - name: Run linters
         run: npm run lint
