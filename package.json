@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/4R53N/cse110-w21-group34#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.7",
+    "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "browserify": "^17.0.0",
     "coveralls": "^3.1.0",
@@ -37,6 +37,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "gulp": "^4.0.2",
+    "postcss": "^8.0.0",
+    "postcss-cli": "^8.1.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-htmlmin": "^5.0.1",
