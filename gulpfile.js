@@ -33,7 +33,7 @@ function imgTask() {
 function htmlTask() {
   return gulp.src('source/index.html')
     .pipe(htmlreplace({
-      'css': 'main.css',
+      'css': './styles/main.css',
     }))
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('build'));
