@@ -14,6 +14,8 @@ const BAR_COLOR = '#eb4000';
 const BAR_COLOR_ACCESSIBILITY = '#B50014';
 const ANIMATION_SPEED = 275;
 const Y_MIN_SCALING = 3;
+const Y_MAX_STEP = 6;
+const ONE = 1;
 const TEST_PROCESS = 'test';
 
 
@@ -41,15 +43,20 @@ function findMax(data){
 //  */
 export function displayGraph (data = ZEROS) {
   if ((typeof process === 'object' && process.env.NODE_ENV === TEST_PROCESS)) return;
-  
+  //data = [0, 1, 2, 3, 13, 0, 11]
+  //data = [0, 2, 0, 5, 0, 4, 0]
   const barColor = (isA11yEnabled()) ? BAR_COLOR_ACCESSIBILITY : BAR_COLOR;
   const fontSize = (isA11yEnabled()) ? TEXT_FONT_SIZE_ACCESSIBILITY : TEXT_FONT_SIZE;
   const fontWeight = (isA11yEnabled()) ? TEXT_FONT_WEIGHT_ACCESSIBILITY : TEXT_FONT_WEIGHT;
   var maxVal = findMax(data);
+  var step = null;
 
   //when values are small, scales the graph appropriately
   if(maxVal < Y_MIN_SCALING){
-    maxVal = Y_MIN_SCALING
+    maxVal = Y_MIN_SCALING;
+  }
+  if(maxVal < Y_MAX_STEP){
+    step = ONE;
   }
 
   let myConfig = {
@@ -75,7 +82,9 @@ export function displayGraph (data = ZEROS) {
         'font-size': fontSize,
         'font-weight': fontWeight
       },
+      step: step,
       'max-value': maxVal //for scaling y-axis
+      
     },
     "plotarea": {
       "margin": "dynamic" //for the graph to fit the div
@@ -87,10 +96,7 @@ export function displayGraph (data = ZEROS) {
         method: 'ANIMATION_STRONG_EASE_OUT',
         sequence: 'ANIMATION_BY_NODE',
         speed: ANIMATION_SPEED,
-      },
-      'font-family': TEXT_FONT, 
-      'font-size': fontSize,
-      'font-weight': fontWeight
+      }
     },
     series: [
       {
