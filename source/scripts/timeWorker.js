@@ -23,7 +23,7 @@ onmessage = (e) => {
 function startTimer (duration) {
   let timeLeft = duration;
   timerInterval = setInterval(() => {
-    timeLeft--;// decrement timeLeft by 1 
+    timeLeft--;// decrement timeLeft by 1
     postMessage({ timeLeft: timeLeft });
     if (timeLeft < 0) clearInterval(timerInterval);
   }, 1000);

@@ -18,7 +18,6 @@ const Y_MAX_STEP = 6;
 const ONE = 1;
 const TEST_PROCESS = 'test';
 
-
 // /* All instanbul ignored code is tested in Cypress or uses Canvas */
 
 // /**
@@ -26,14 +25,14 @@ const TEST_PROCESS = 'test';
 //  * @param {Number[]} data - An array of weekly data of pomos completed
 //  * @return max - the max value in the weekly data
 //  */
-function findMax(data){
-    var max = -1;
-    for(var i = 0; i<data.length; i++){
-      if(data[i]>max){
-        max = data[i];
-      }
+function findMax(data) {
+  let max = -1;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i] > max) {
+      max = data[i];
     }
-    return max;
+  }
+  return max;
 }
 
 // /* istanbul ignore next */
@@ -44,18 +43,18 @@ function findMax(data){
 export function displayGraph (data = ZEROS) {
   if ((typeof process === 'object' && process.env.NODE_ENV === TEST_PROCESS)) return;
 
-  //set font and bar color appropriately when accessibility is on
+  // set font and bar color appropriately when accessibility is on
   const barColor = (isA11yEnabled()) ? BAR_COLOR_ACCESSIBILITY : BAR_COLOR;
   const fontSize = (isA11yEnabled()) ? TEXT_FONT_SIZE_ACCESSIBILITY : TEXT_FONT_SIZE;
   const fontWeight = (isA11yEnabled()) ? TEXT_FONT_WEIGHT_ACCESSIBILITY : TEXT_FONT_WEIGHT;
-  var maxVal = findMax(data);
-  var step = null;
+  let maxVal = findMax(data);
+  let step = null;
 
   //when values are small, scales the graph appropriately
-  if(maxVal < Y_MIN_SCALING){
+  if (maxVal < Y_MIN_SCALING) {
     maxVal = Y_MIN_SCALING;
   }
-  if(maxVal < Y_MAX_STEP){
+  if (maxVal < Y_MAX_STEP) {
     step = ONE;
   }
 
@@ -87,11 +86,11 @@ export function displayGraph (data = ZEROS) {
       'max-value': maxVal //for scaling y-axis
       
     },
-    "plotarea": {
-      "margin": "dynamic" //for the graph to fit the div
+    'plotarea': {
+      'margin': 'dynamic' // for the graph to fit the div
     },
     plot: {
-      //for the bar animations
+      // for the bar animations
       animation: {
         effect: 'ANIMATION_EXPAND_BOTTOM',
         method: 'ANIMATION_STRONG_EASE_OUT',
@@ -101,18 +100,17 @@ export function displayGraph (data = ZEROS) {
     },
     series: [
       {
-        values: data, //the data to populate graph
+        values: data, // the data to populate graph
         'background-color': barColor, // Bar fill color 
-        alpha: ONE //for a solid bar color
+        alpha: ONE // for a solid bar color
       }
     ]
   };
   zingchart.render({
-    id: "graph",
+    id: 'graph',
     data: myConfig,
     height: '100%',
     width: '100%',
-    
   });
 }
 

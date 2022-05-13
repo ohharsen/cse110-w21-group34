@@ -20,7 +20,6 @@ const todayPomoElem = document.getElementById('today-pomodoros');
 const todayTasksElem = document.getElementById('today-tasks');
 const todayInterruptElem = document.getElementById('today-interruptions');
 
-
 const MINUTES = 60;
 const NUM_DECIMALS = 2;
 
