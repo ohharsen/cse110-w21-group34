@@ -33,7 +33,7 @@ function findMax(data){
         max = data[i];
       }
     }
-    return max; 
+    return max;
 }
 
 // /* istanbul ignore next */
@@ -68,18 +68,18 @@ export function displayGraph (data = ZEROS) {
       'font-weight': fontWeight
     },
     scaleX: {
-      label: { 
+      label: {
         text: X_LABEL,
-        'font-family': TEXT_FONT, 
+        'font-family': TEXT_FONT,
         'font-size': fontSize,
         'font-weight': fontWeight
       },
       labels: X_LABELS
     },
     scaleY: {
-      label: { 
+      label: {
         text: Y_LABEL,
-        'font-family': TEXT_FONT, 
+        'font-family': TEXT_FONT,
         'font-size': fontSize,
         'font-weight': fontWeight
       },
