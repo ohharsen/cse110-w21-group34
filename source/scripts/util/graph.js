@@ -1,3 +1,4 @@
+/* global zingchart */
 import { isA11yEnabled } from '../accessibility.js';
 import { ZEROS } from './storage.js';
 
