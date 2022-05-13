@@ -28,9 +28,7 @@ export function openSettingsPane () {
     Stats.closeStatsPane();
     Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
     Stats.timerBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
-  }
-  // add the slide open settings (css)
-  else {
+  } else { // add the slide open settings (css)
     Stats.timerBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
   }
   settingsPane.classList.add(Constants.SLIDE_OPEN_SETTINGS);
