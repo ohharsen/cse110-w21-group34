@@ -3,8 +3,8 @@ import { ZEROS } from './storage.js';
 
 /* Graph Constants */
 const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
+const X_LABEL = 'Days';
 const Y_LABEL = 'Pomos Completed';
-const TEXT_ALIGN_CENTER = 'center';
 const TEXT_FONT = 'Roboto';
 const TEXT_FONT_SIZE = '12px';
 const TEXT_FONT_SIZE_ACCESSIBILITY = '15px';
@@ -43,8 +43,8 @@ function findMax(data){
 //  */
 export function displayGraph (data = ZEROS) {
   if ((typeof process === 'object' && process.env.NODE_ENV === TEST_PROCESS)) return;
-  //data = [0, 1, 2, 3, 13, 0, 11]
-  //data = [0, 2, 0, 5, 0, 4, 0]
+
+  //set font and bar color appropriately when accessibility is on
   const barColor = (isA11yEnabled()) ? BAR_COLOR_ACCESSIBILITY : BAR_COLOR;
   const fontSize = (isA11yEnabled()) ? TEXT_FONT_SIZE_ACCESSIBILITY : TEXT_FONT_SIZE;
   const fontWeight = (isA11yEnabled()) ? TEXT_FONT_WEIGHT_ACCESSIBILITY : TEXT_FONT_WEIGHT;
@@ -61,6 +61,7 @@ export function displayGraph (data = ZEROS) {
 
   let myConfig = {
     type: 'bar',
+    //tooltip is the number when users scrolls over bars
     tooltip: {
       'font-family': TEXT_FONT, 
       'font-size': fontSize,
@@ -68,7 +69,7 @@ export function displayGraph (data = ZEROS) {
     },
     scaleX: {
       label: { 
-        text: 'Days',
+        text: X_LABEL,
         'font-family': TEXT_FONT, 
         'font-size': fontSize,
         'font-weight': fontWeight
@@ -102,7 +103,7 @@ export function displayGraph (data = ZEROS) {
       {
         values: data, //the data to populate graph
         'background-color': barColor, // Bar fill color 
-        alpha: 1 //for a solid bar color
+        alpha: ONE //for a solid bar color
       }
     ]
   };
