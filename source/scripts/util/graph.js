@@ -25,7 +25,7 @@ const TEST_PROCESS = 'test';
 //  * @param {Number[]} data - An array of weekly data of pomos completed
 //  * @return max - the max value in the weekly data
 //  */
-function findMax(data) {
+function findMax (data) {
   let max = -1;
   for (let i = 0; i < data.length; i++) {
     if (data[i] > max) {
@@ -50,7 +50,7 @@ export function displayGraph (data = ZEROS) {
   let maxVal = findMax(data);
   let step = null;
 
-  //when values are small, scales the graph appropriately
+  // when values are small, scales the graph appropriately
   if (maxVal < Y_MIN_SCALING) {
     maxVal = Y_MIN_SCALING;
   }
@@ -58,11 +58,11 @@ export function displayGraph (data = ZEROS) {
     step = ONE;
   }
 
-  let myConfig = {
+  const myConfig = {
     type: 'bar',
-    //tooltip is the number when users scrolls over bars
+    // tooltip is the number when users scrolls over bars
     tooltip: {
-      'font-family': TEXT_FONT, 
+      'font-family': TEXT_FONT,
       'font-size': fontSize,
       'font-weight': fontWeight
     },
@@ -83,11 +83,10 @@ export function displayGraph (data = ZEROS) {
         'font-weight': fontWeight
       },
       step: step,
-      'max-value': maxVal //for scaling y-axis
-      
+      'max-value': maxVal // for scaling y-axis
     },
-    'plotarea': {
-      'margin': 'dynamic' // for the graph to fit the div
+    plotarea: {
+      margin: 'dynamic' // for the graph to fit the div
     },
     plot: {
       // for the bar animations
@@ -95,13 +94,13 @@ export function displayGraph (data = ZEROS) {
         effect: 'ANIMATION_EXPAND_BOTTOM',
         method: 'ANIMATION_STRONG_EASE_OUT',
         sequence: 'ANIMATION_BY_NODE',
-        speed: ANIMATION_SPEED,
+        speed: ANIMATION_SPEED
       }
     },
     series: [
       {
         values: data, // the data to populate graph
-        'background-color': barColor, // Bar fill color 
+        'background-color': barColor, // Bar fill color
         alpha: ONE // for a solid bar color
       }
     ]
@@ -110,7 +109,6 @@ export function displayGraph (data = ZEROS) {
     id: 'graph',
     data: myConfig,
     height: '100%',
-    width: '100%',
+    width: '100%'
   });
 }
-
