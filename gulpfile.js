@@ -32,9 +32,6 @@ function imgTask() {
 
 function htmlTask() {
   return gulp.src('source/index.html')
-    .pipe(htmlreplace({
-      'css': './styles/main.css',
-    }))
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('build'));
 }
@@ -47,7 +44,6 @@ function jsTask() {
 
 function cssTask() {
   return src(cssPath)
-    .pipe(concat('main.css'))
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(dest('build/styles'));
 }
