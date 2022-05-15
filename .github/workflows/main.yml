@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ main, jun-1-CI/CD-Gulp-Explore ]
   pull_request:
     branches: [ main ]
 
@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -34,6 +34,12 @@ jobs:
 
       - name: Install Node.js dependencies
         run: npm install
+      
+      - name: Verify HTML
+        run: npm run validate-html
+
+      # - name: Verify CSS
+      #   run: npm run validate-css
 
       - name: Run linters
         run: npm run lint
@@ -55,8 +61,28 @@ jobs:
       - name: Run Cypress Tests
         run: npm run cypress
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          name: php-app
+          path: ./build
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: php-app
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'pomodoro-team6'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3B58C52C0F154D2E80ECA91BE12791F5 }}
+          package: .
