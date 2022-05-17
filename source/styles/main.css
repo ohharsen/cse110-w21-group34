@@ -25,7 +25,7 @@
     --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
-    --bacgkround-source: url('../images/drawing (2).svg');
+    --bacgkround-source: url('../images/background.png');
     --counter-color: white;
 }
 
