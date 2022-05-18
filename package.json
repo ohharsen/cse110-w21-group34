@@ -10,7 +10,8 @@
         "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
         "cypress": "./node_modules/.bin/cypress run",
         "validate-html": "html-validate source/index.html",
-        "validate-css": "csstree-validator source/styles"
+        "validate-css": "csstree-validator source/styles",
+        "build": "gulp"
     },
     "repository": {
         "type": "git",
@@ -23,7 +24,6 @@
     },
     "homepage": "https://github.com/4R53N/cse110-w21-group34#readme",
     "devDependencies": {
-        "node": ">=12.22",
         "autoprefixer": "^9.8.6",
         "babel-eslint": "^10.1.0",
         "browserify": "^17.0.0",
@@ -38,11 +38,9 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^4.3.1",
         "gulp": "^4.0.2",
-        "postcss": "^8.0.0",
-        "postcss-cli": "^8.1.0",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
         "gulp-clean": "^0.4.0",
         "gulp-concat": "^2.6.1",
+        "gulp-html-replace": "^1.6.2",
         "gulp-htmlmin": "^5.0.1",
         "gulp-imagemin": "^7.1.0",
         "gulp-postcss": "^9.0.1",
@@ -50,7 +48,11 @@
         "gulp-terser": "^2.1.0",
         "html-validate": "^6.0.0",
         "http-server": "^0.12.3",
-        "jest": "^26.6.3"
+        "jest": "^26.6.3",
+        "node": ">=12.22",
+        "postcss": "^8.0.0",
+        "postcss-cli": "^8.1.0",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
     },
     "dependencies": {
         "@babel/core": "^7.12.17",
