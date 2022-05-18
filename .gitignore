@@ -3,3 +3,4 @@ coverage
 cypress/screenshots/
 cypress/videos
 source/bundle.js
+.idea
