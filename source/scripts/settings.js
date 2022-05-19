@@ -78,7 +78,7 @@ export function removeAll () {
 }
 /*
 * initial load
-* sets height of settings/stats tab 
+* sets height of settings/stats tab
 */
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -88,6 +88,6 @@ document.documentElement.style.setProperty('--vh', `${vh}px`);
  * on window resize trigger new height
  */
 window.addEventListener('resize', () => {
-  let vh = window.innerHeight * 0.01;
+  vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 })
