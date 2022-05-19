@@ -1,3 +1,4 @@
+/* Stats container positioning and size */
 #stats-container {
     position: fixed;
     height: calc(100vh - 36px);
@@ -5,9 +6,10 @@
     margin: 18px 18px 18px 18px;
     top: 0;
     right: -418px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
 }
 
+/* Stats container animations */
 #stats-container.slide-open {
     animation: slide-right-out 0.5s ease-out forwards;
 }
@@ -15,12 +17,14 @@
     animation: slide-right-in 0.5s ease-out forwards;
 }
 
+/* Stats header (User Statistics) */
 #stats-container h1 {
     margin-top: 4px;
     margin-bottom: 4px;
     font-size: 1.8em;
 }
 
+/* Subheaders in stats */
 #stats-container h2 {
     margin-top: 8px;
     margin-bottom: 8px;
@@ -28,6 +32,7 @@
     border-bottom: 1px solid black;
 }
 
+/* Stats Container size and positioning */
 #stats-pane {
     box-sizing: border-box;
     height: 100%;
@@ -47,13 +52,14 @@
     min-height: 240px;
 }
 
+/* Subcontainers/boxes inside stats */
 .stats-box {
     height: 20%;
     width: 100%;
     padding: 12px 12px 12px 12px;
     border-radius: 8px;
     background-color: white;
-    box-shadow: 0px 0px 10px 0px var(--black-a3);
+    box-shadow: 0 0 10px 0 var(--black-a3);
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -62,15 +68,17 @@
     justify-content: flex-start;
 }
 
+/* Positioning inside stats subcontainers */
 .stats-flex {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     align-content: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
+/* Positioning for each row inside stats-flex (inside each subcontainer of stats) */
 .stats-row {
     display:flex;
     flex-direction: row;
@@ -79,10 +87,11 @@
     justify-content: space-between;
 }
 
-.stats-row div:nth-child(2) {
+.stats-row p:nth-child(2) {
     font-weight: bolder;
 }
 
+/* All stats button positioning, color, and active */
 .stats-button {
     position: fixed;
     top: 20px;
@@ -117,7 +126,7 @@
     width: 29px;
     height: 30px;
     background: var(--white-a1);
-    box-shadow: 0px 0px 10px 0px var(--black-a3);
+    box-shadow: 0 0 10px 0 var(--black-a3);
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -141,7 +150,7 @@
 }
 
 #stats-close-button:focus-visible {
-    box-shadow: black 0px 0px 0px 2px;
+    box-shadow: black 0 0 0 2px;
 }
 
 .weekly-graph {
@@ -149,6 +158,7 @@
     width: 100%;
 }
 
+/* Responsive design for smaller screens for stats container */
 @media only screen and (max-width: 814px) {
     #stats-container {
         height: calc(100vh - 36px);
@@ -164,7 +174,7 @@
     #stats-overview {
         min-height: calc(75vw - 100px);
     }
-    
+
     #stats-container h2 {
         margin-top: 4px;
         padding-bottom: 4px;
@@ -186,6 +196,7 @@
     }
 }
 
+/* Responsive design for mobile for stats */
 @media only screen and (max-width: 480px) {
     #stats-container {
         height: calc(100vh - 16px);
@@ -204,5 +215,20 @@
         right: 12px;
         width: 80px;
         height: 80px;
-    }   
+    }
+}
+
+figure {
+    width: 100%;
+    margin: 0;
+}
+
+ol, ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+li {
+    margin: 0;
 }

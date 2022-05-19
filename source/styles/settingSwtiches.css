@@ -38,6 +38,7 @@
   transition: .2s;
 }
 
+/* Accessibility input sliders */
 input:checked + .slider {
   background-color: var(--orange);
 }
