@@ -43,7 +43,6 @@ if (startStopButton) {
   startStopButton.classList.toggle(BREAK_BUTTON);
   startStopButton.addEventListener('click', startResetController);
 }
-
 // Toggles countdown text on click
 if (countdownText) {
   countdownText.addEventListener('click', () => {
@@ -79,7 +78,7 @@ export function beginCountdown (duration) {
   const timerRingColor = (onBreak) ? BREAK_TIMER_COLOR : WORK_TIMER_COLOR;
   timerRing.setAttribute('stroke', timerRingColor);
   timerRing.setAttribute('stroke-dasharray', `${(timeFraction(duration, pomoState) * DASH_STROKE_VAL)} ${DASH_STROKE_VAL}`);
-
+  
   if (timeWorker) {
     timeWorker.onmessage = (e) => {
       if (pomoState === Constants.timerOptions.STOPPED) return;
@@ -127,7 +126,7 @@ export function setCountdownInterval (duration) {
    */
 export function togglePomoBreak (onBreak) {
   if (startStopButton) {
-    startStopButton.classList.toggle(BREAK_BUTTON);
+    //startStopButton.classList.toggle(BREAK_BUTTON);
   }
   return !onBreak;
 }
@@ -176,7 +175,7 @@ function stopTimer () {
   // Mutes timer color
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
-  startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+  //startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
   if (!onBreak) {
     pomoCount++;
     // Dispalys the next cycle without beginning it
@@ -192,6 +191,7 @@ function stopTimer () {
     Storage.incrPomoCount();
     increaseTaskPomo();
     updateStats();
+    setTimeout(startResetController, 1000);
   } else {
     // Displays the next cycle without beggining it
     displayTime(Constants.WORK_LENGTH);
