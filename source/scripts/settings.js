@@ -77,3 +77,18 @@ export function removeAll () {
   Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }
+/*
+* initial load
+* sets height of settings/stats tab
+*/
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+/* istanbul ignore next */
+/**
+ * on window resize trigger new height
+ */
+window.addEventListener('resize', () => {
+  vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
