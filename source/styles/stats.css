@@ -80,11 +80,16 @@
 
 /* Positioning for each row inside stats-flex (inside each subcontainer of stats) */
 .stats-row {
-    display:flex;
+    display: flex;
     flex-direction: row;
-    align-items:center;
-    align-content:center;
+    align-items: center;
+    align-content: center;
     justify-content: space-between;
+}
+
+.stats-row p {
+    margin: 0;
+    padding: 0;
 }
 
 .stats-row p:nth-child(2) {
@@ -226,9 +231,5 @@ figure {
 ol, ul {
     list-style-type: none;
     padding-left: 0;
-    margin: 0;
-}
-
-li {
     margin: 0;
 }
