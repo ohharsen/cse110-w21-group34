@@ -6,7 +6,7 @@
     margin: 18px 18px 18px 18px;
     top: 0;
     right: -418px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
 }
 
 /* Stats container animations */
@@ -59,7 +59,7 @@
     padding: 12px 12px 12px 12px;
     border-radius: 8px;
     background-color: white;
-    box-shadow: 0px 0px 10px 0px var(--black-a3);
+    box-shadow: 0 0 10px 0 var(--black-a3);
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -75,7 +75,7 @@
     flex-direction: column;
     align-items: stretch;
     align-content: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 /* Positioning for each row inside stats-flex (inside each subcontainer of stats) */
@@ -87,7 +87,7 @@
     justify-content: space-between;
 }
 
-.stats-row div:nth-child(2) {
+.stats-row p:nth-child(2) {
     font-weight: bolder;
 }
 
@@ -126,7 +126,7 @@
     width: 29px;
     height: 30px;
     background: var(--white-a1);
-    box-shadow: 0px 0px 10px 0px var(--black-a3);
+    box-shadow: 0 0 10px 0 var(--black-a3);
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -150,7 +150,7 @@
 }
 
 #stats-close-button:focus-visible {
-    box-shadow: black 0px 0px 0px 2px;
+    box-shadow: black 0 0 0 2px;
 }
 
 #weekly-graph {
@@ -173,7 +173,7 @@
     #stats-overview {
         min-height: calc(75vw - 100px);
     }
-    
+
     #stats-container h2 {
         margin-top: 4px;
         padding-bottom: 4px;
@@ -214,5 +214,20 @@
         right: 12px;
         width: 80px;
         height: 80px;
-    }   
+    }
+}
+
+figure {
+    width: 100%;
+    margin: 0;
+}
+
+ol, ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+li {
+    margin: 0;
 }
