@@ -19,6 +19,7 @@
     <!-- Roboto font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 
 <body>
@@ -251,9 +252,7 @@
                     <h2>Weekly Overview</h2>
                 </header>
                 <div class="stats-flex">
-                    <figure class="graph">
-                        <canvas id="weekly-graph" height="180"></canvas>
-                    </figure>
+                    <div id="graph" class="weekly-graph"></div>
                 </div>
             </div>
         </section>
@@ -263,6 +262,6 @@
     <script src="./scripts/stats.js" type="module"></script>
     <script src="./scripts/accessibility.js" type="module"></script>
     <script src="./scripts/settings.js" type="module"></script>
-</body>
+ </body>
 
 </html>

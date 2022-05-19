@@ -10,6 +10,8 @@ export const SHORT_BREAK = 300; // # of seconds in a short break (orig. 300)
 export const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
 
 /* Settings Pane Class Lists */
+// kind of weird that these are only used in settings.js but is defined here.
+// many js files have their own list of consts, should think of grouping them all here or come up with consistent rule to distribute them
 export const SLIDE_OPEN = 'slide-open';
 export const SLIDE_CLOSE = 'slide-close';
 export const SLIDE_ACROSS_RIGHT = 'slide-across-right';
@@ -29,7 +31,7 @@ export const HOST_ADDRESS = 'http://127.0.0.1:5500/';
  */
 export const events = {
   KEYDOWN: 'keydown',
-  CLICK: 'click'
+  CLICK: 'click' // cannot find use case might be safe to delete
 };
 
 /**

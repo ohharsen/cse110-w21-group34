@@ -1,7 +1,7 @@
 import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
 import * as Settings from './settings.js';
-import { drawGraph } from './util/graph.js';
+import { displayGraph } from './util/graph.js';
 
 /* Elements */
 export const timerBlock = document.getElementsByClassName('center-container')[0];
@@ -20,8 +20,6 @@ const todayPomoElem = document.getElementById('today-pomodoros');
 const todayTasksElem = document.getElementById('today-tasks');
 const todayInterruptElem = document.getElementById('today-interruptions');
 
-const graphCanvas = document.getElementById('weekly-graph');
-
 const MINUTES = 60;
 const NUM_DECIMALS = 2;
 
@@ -39,7 +37,7 @@ export function updateStats () {
   Storage.updateStorage();
   displayTodayStats();
   displayTotalStats();
-  drawGraph(graphCanvas, Storage.getWeekHistory());
+  displayGraph(Storage.getWeekHistory());
 }
 
 /* istanbul ignore next */
