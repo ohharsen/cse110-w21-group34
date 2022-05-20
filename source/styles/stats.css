@@ -188,7 +188,7 @@
 
     #stats-pane {
         padding: 16px 32px 16px 32px;
-        min-height: max(calc(75vw + 400px), 650px);
+        min-height: calc(max(calc(75vw + 400px), 650px));
     }
 
     .stats-button {
@@ -214,7 +214,7 @@
 
     #stats-pane {
         padding: 12px 24px 12px 24px;
-        min-height: max(calc(75vw + 400px), 650px);
+        min-height: calc(max(calc(75vw + 400px), 650px));
     }
 
     .stats-button {
