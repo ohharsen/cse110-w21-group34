@@ -88,7 +88,7 @@
     width: 40%;
     height: 60px;
     border-radius: 32px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     color: white;
     font-size: var(--button-text-size);
 }
@@ -106,9 +106,9 @@
     width: 40%;
     height: 60px;
     border-radius: 32px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     color: white;
-    font-size: 16;
+    font-size: 16px;
     outline: 0;
 }
 
@@ -137,7 +137,7 @@
 }
 
 #prompt-text {
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     text-align: center;
     margin: 0 0 5px 0;
     transform: translate(0, -50%);
@@ -180,7 +180,7 @@
     background: var(--orange);
     border-radius: 22px;
     height: 50px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     color: var(--counter-color);
     font-size: var(--button-text-size);
     margin-top: 5px;
@@ -217,7 +217,7 @@
 }
 
 .pomo-indicator-container {
-    font-family: "Roboto";
+    font-family: Roboto, sans-serif;
     font-size: 18px;
     color: var(--counter-color);
     display: flex;
@@ -238,7 +238,7 @@
 
 .pomo-indicator {
     text-align: center;
-    padding: 5px 5px 0px 5px;
+    padding: 5px 5px 0 5px;
     opacity: 0.6;
 }
 
