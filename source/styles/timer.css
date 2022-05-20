@@ -65,7 +65,6 @@
   
 /** Organization of text and positioning. **/
 #countdownText {
-    font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-size: 20px;
     display: flex;
@@ -88,7 +87,6 @@
     width: 40%;
     height: 60px;
     border-radius: 32px;
-    font-family: Roboto;
     color: white;
     font-size: var(--button-text-size);
 }
@@ -106,7 +104,6 @@
     width: 40%;
     height: 60px;
     border-radius: 32px;
-    font-family: Roboto;
     color: white;
     font-size: 16;
     outline: 0;
@@ -137,7 +134,6 @@
 }
 
 #prompt-text {
-    font-family: Roboto;
     text-align: center;
     margin: 0 0 5px 0;
     transform: translate(0, -50%);
@@ -180,7 +176,6 @@
     background: var(--orange);
     border-radius: 22px;
     height: 50px;
-    font-family: Roboto;
     color: var(--counter-color);
     font-size: var(--button-text-size);
     margin-top: 5px;
@@ -217,7 +212,6 @@
 }
 
 .pomo-indicator-container {
-    font-family: "Roboto";
     font-size: 18px;
     color: var(--counter-color);
     display: flex;

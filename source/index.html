@@ -15,10 +15,11 @@
     <!--endbuild-->
     <link rel="icon" type="image/png" href="./favicon.ico">
     <script src="./scripts/timer.js" type="module"></script>
-
-    <!-- Roboto font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <script src="./scripts/timeWorker.js"></script>
+    <script src="./scripts/tasks.js" type="module"></script>
+    <script src="./scripts/stats.js" type="module"></script>
+    <script src="./scripts/accessibility.js" type="module"></script>
+    <script src="./scripts/settings.js" type="module"></script>
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 
@@ -46,6 +47,9 @@
                 </div>
                 <div class="timer" id="clockTimer">
                     <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <style>
+                                @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+                            </style>
                             <g class="timer_circle_container">
                                 <!-- The container for grouping multiple svg elements -->
                                 <circle
@@ -66,8 +70,8 @@
                         "
                                 />
                             </g>
-                            <text id="countdownText" x="26" y="50">25:00</text>
-                        </svg>
+                            <text id="countdownText" x="26" y="50" font-style="Roboto", sans-serif !important>25:00</text>
+                    </svg>
                 </div>
                 <button type="button" id="start-stop-button" class="pomodoro-button break-button">
                         Begin
@@ -258,11 +262,6 @@
             </div>
         </section>
     </aside>
-    <script src="./scripts/timeWorker.js"></script>
-    <script src="./scripts/tasks.js" type="module"></script>
-    <script src="./scripts/stats.js" type="module"></script>
-    <script src="./scripts/accessibility.js" type="module"></script>
-    <script src="./scripts/settings.js" type="module"></script>
  </body>
 
 </html>
