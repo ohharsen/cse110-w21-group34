@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+/* Color constants and size constants */
 :root {
     --black: #000000;
     --black-a1: rgba(0, 0, 0, 0.7);
@@ -47,6 +48,7 @@
     --counter-color: black;
 }
 
+/* Positioning, background, size for page */
 html {
     background: var(--bacgkround-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -80,6 +82,7 @@ img {
     user-select: none;
 }
 
+/* Style for buttons */
 button {
     border: 0;
 }
@@ -100,6 +103,7 @@ aside {
     overflow: auto;
 }
 
+/* Animations for settings and stats */
 @keyframes slide-right-out {
     to { right: 0 }
 }

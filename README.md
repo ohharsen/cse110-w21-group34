@@ -1,5 +1,5 @@
-
-# Original Project by Team Pomobears (Group 34 - CSE 110 Winter 21')
+# Team 6 - CSE 112
+## Original Project by Team Pomobears (Group 34 - CSE 110 Winter 21')
 
 This project is a Pomodoro Timer to help others manage their time and
 stay productive. Unlike many other timers, our timer provides features like:
