@@ -1,3 +1,4 @@
+/* Container for countdown box, session indicators, and number of pomos */
 .center-container {
     width: 25%;
     min-width: 300px;
@@ -15,6 +16,7 @@
     }
 }
 
+/* Animations for settings button */
 .center-container.slide-open {
     animation: slide-center-out 0.5s ease-out forwards;
 }
@@ -24,6 +26,7 @@
     animation: slide-center-in 0.5s ease-out forwards;
 }
 
+/* Box containing the countdown, pomojars, and begin button */
 .timer-container {
     box-sizing: border-box;
     padding: 16px;
@@ -50,7 +53,7 @@
     background-color: white;
 }
 
-/*The SVG path that displays the timer's progress */
+/* The SVG path that displays the timer's progress */
 .timer_path_elapsed {
     fill: none;
     transform: rotate(90deg) scale(1, -1) ;
@@ -60,8 +63,8 @@
     transition: stroke-dasharray 1s linear, stroke 0.25s linear;
 }
   
+/** Organization of text and positioning. **/
 #countdownText {
-    /** Organization of text and positioning. **/
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-size: 20px;
@@ -80,11 +83,12 @@
     opacity: 1.0;
 }
 
+/* Start button positioning, sizing, color */
 #start-stop-button {
     width: 40%;
     height: 60px;
     border-radius: 32px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     color: white;
     font-size: var(--button-text-size);
 }
@@ -97,13 +101,14 @@
     background:rgba(233, 217, 217, 0.2);
 }
 
+/* Prompt buttons for resetting timer */
 .prompt-button{
     width: 40%;
     height: 60px;
     border-radius: 32px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     color: white;
-    font-size: 16;
+    font-size: 16px;
     outline: 0;
 }
 
@@ -121,6 +126,7 @@
     background: var(--dark-red);
 }
 
+/* Prompt positioning, size, and color for resetting timer */
 #prompt {
     display: none;
     justify-content: space-around;
@@ -131,7 +137,7 @@
 }
 
 #prompt-text {
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     text-align: center;
     margin: 0 0 5px 0;
     transform: translate(0, -50%);
@@ -143,6 +149,7 @@
     transform: translate(0, -25%);
 }
 
+/* Start button color and hover */
 .pomodoro-button {
     background: var(--red);
 }
@@ -155,6 +162,7 @@
     background: var(--red);
 }
 
+/* Buttons for breaks */
 .break-button {
     background: var(--green);
 }
@@ -167,11 +175,12 @@
     background: var(--green); 
 }
 
+/* Positioning, size, and color for task button */
 .task-button {
     background: var(--orange);
     border-radius: 22px;
     height: 50px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     color: var(--counter-color);
     font-size: var(--button-text-size);
     margin-top: 5px;
@@ -191,6 +200,7 @@
     background:rgba(255, 255, 255, 0.2);
 }
 
+/* positioning for pomo pots/jars */
 .pots-container {
     width: 100%;
     padding-bottom: 16px;
@@ -207,7 +217,7 @@
 }
 
 .pomo-indicator-container {
-    font-family: "Roboto";
+    font-family: Roboto, sans-serif;
     font-size: 18px;
     color: var(--counter-color);
     display: flex;
@@ -228,7 +238,7 @@
 
 .pomo-indicator {
     text-align: center;
-    padding: 5px 5px 0px 5px;
+    padding: 5px 5px 0 5px;
     opacity: 0.6;
 }
 

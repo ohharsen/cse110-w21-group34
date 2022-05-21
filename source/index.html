@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <script src="https://cdn.lr-in-prod.com/LogRocket.min.js" crossorigin="anonymous"></script>
+    <script>window.LogRocket && window.LogRocket.init('umcvob/texascodeem');</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title name="tab-title">Pomodoro by Texas Codem</title>
+    <!--build:css-->
     <link rel="stylesheet" href="./styles/settings.css">
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/timer.css">
     <link rel="stylesheet" href="./styles/stats.css">
     <link rel="stylesheet" href="./styles/confetti.css">
+    <!--endbuild-->
     <link rel="icon" type="image/png" href="./favicon.ico">
     <script src="./scripts/timer.js" type="module"></script>
 
     <!-- Roboto font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +47,7 @@
                 <div class="timer" id="clockTimer">
                     <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <g class="timer_circle_container">
-                                <!-- The containter for grouping multiple svg elements -->
+                                <!-- The container for grouping multiple svg elements -->
                                 <circle
                                     cx="50%"
                                     cy="43"
@@ -119,47 +123,45 @@
         <section id="settings-pane">
             <h1>Settings</h1>
             <div id="information" class="settings-box">
-                <div>
+                <header>
                     <h2>What is a Pomodoro?</h2>
-                </div>
+                </header>
                 <div class="stats-flex">
-                    <div id="explanation-text">
+                    <p id="explanation-text">
                         The Pomodoro Cycle is a tool for encouraging productivity. Each cycle allocates 25 minutes of time to work followed by a 5 minute rest period. After your 4th pomo, you'll earn an extended 15 minute break!
-                    </div>
+                    </p>
                 </div>
             </div>
             <div id="tutorial" class="settings-box">
-                <div>
+                <header>
                     <h2>How does this app work?</h2>
-                </div>
+                </header>
                 <div class="stats-flex">
-                    <div id="tutorial-text">
-                        Select "
-                        <b>Begin</b>" to start a Pomodoro and "
-                        <b>Reset</b> " to end early. The text headers and ring color will indicate the
+                    <p id="tutorial-text">
+                        Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>" to end early.
+                        The text headers and ring color will indicate the
                         <span id="work-text">work</span> and
-                        <span id="break-text">break</span> stages of a cycle. Select "
-                        <b>Complete Task</b>" when appropriate and "
-                        <b>Statistics</b> " to browse your performance.
-                    </div>
+                        <span id="break-text">break</span> stages of a cycle.
+                        Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
+                    </p>
                 </div>
             </div>
             <div id="accessibility-overview" class="stats-box">
-                <div>
+                <header>
                     <h2>Accessibility Options</h2>
-                </div>
-                <div class="stats-flex">
-                    <div class="settings-row">
-                        <div>Colorblindness</div>
+                </header>
+                <ul class="stats-flex">
+                    <li class="settings-row">
+                        <p>Colorblindness</p>
                         <div>
                             <label class="switch">
                                     <input id="colors-switch" type="checkbox" disabled>
                                     <span class="slider round"></span>
                                 </label>
                         </div>
-                    </div>
-                    <div class="settings-row">
-                        <div>Keystroke Access</div>
+                    </li>
+                    <li class="settings-row">
+                        <p>Keystroke Access</p>
                         <div>
                             <label class="switch">
                                     <input
@@ -171,11 +173,12 @@
                                     <span class="slider round"></span>
                                 </label>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
         </section>
     </aside>
+    <!-- Right-side stats pane. -->
     <aside id="stats-container" class="stats-container">
         <button id="stats-close-button" type="button" disabled>
                 <img
@@ -189,70 +192,68 @@
         <section id="stats-pane">
             <h1>User Statistics</h1>
             <div id="stats-today" class="stats-box">
-                <div>
+                <header>
                     <h2>Today</h2>
-                </div>
-                <div class="stats-flex">
-                    <div class="stats-row">
-                        <div>Pomos cycles:</div>
-                        <div>
+                </header>
+                <ul class="stats-flex">
+                    <li class="stats-row">
+                        <p>Pomos cycles:</p>
+                        <p>
                             <span id="today-pomodoros">____</span> po.
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div>Interruptions:</div>
-                        <div>
+                        </p>
+                    </li>
+                    <li class="stats-row">
+                        <p>Interruptions:</p>
+                        <p>
                             <span id="today-interruptions">____</span>
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div>Total Tasks:</div>
-                        <div>
+                        </p>
+                    </li>
+                    <li class="stats-row">
+                        <p>Total Tasks:</p>
+                        <p>
                             <span id="today-tasks">____</span> tasks
-                        </div>
-                    </div>
-                </div>
+                        </p>
+                    </li>
+                </ul>
             </div>
             <div id="stats-totals" class="stats-box">
-                <div>
+                <header>
                     <h2>Totals</h2>
-                </div>
-                <div class="stats-flex">
-                    <div class="stats-row">
-                        <div>Pomos cycles:</div>
-                        <div>
+                </header>
+                <ul class="stats-flex">
+                    <li class="stats-row">
+                        <p>Pomos cycles:</p>
+                        <p>
                             <span id="total-pomodoros">____</span> po.
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div>Avg. Interruptions:</div>
-                        <div>
+                        </p>
+                    </li>
+                    <li class="stats-row">
+                        <p>Avg. Interruptions:</p>
+                        <p>
                             <span id="total-interruptions">____</span> per po.
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div>Best Day:</div>
-                        <div>
+                        </p>
+                    </li>
+                    <li class="stats-row">
+                        <p>Best Day:</p>
+                        <p>
                             <span id="total-best-pomo">____</span> po. |
                             <span id="total-best-time">____</span> min.
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div>Total Tasks:</div>
-                        <div>
+                        </p>
+                    </li>
+                    <li class="stats-row">
+                        <p>Total Tasks:</p>
+                        <p>
                             <span id="total-tasks">____</span> tasks
-                        </div>
-                    </div>
-                </div>
+                        </p>
+                    </li>
+                </ul>
             </div>
             <div id="stats-overview" class="stats-box">
-                <div>
+                <header>
                     <h2>Weekly Overview</h2>
-                </div>
+                </header>
                 <div class="stats-flex">
-                    <div class="graph">
-                        <canvas id="weekly-graph" height="180"></canvas>
-                    </div>
+                    <div id="graph" class="weekly-graph"></div>
                 </div>
             </div>
         </section>
@@ -262,6 +263,6 @@
     <script src="./scripts/stats.js" type="module"></script>
     <script src="./scripts/accessibility.js" type="module"></script>
     <script src="./scripts/settings.js" type="module"></script>
-</body>
+ </body>
 
 </html>
