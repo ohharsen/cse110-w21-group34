@@ -1,28 +1,12 @@
-// Required to use gulp
+// Required to use gulp config
 const gulp = require('gulp');
-
-// Optimize the images
 const imagemin = require('gulp-imagemin');
-
-// Replaces html to different text (Used for bundled files)
 const htmlreplace = require('gulp-html-replace');
-
-// Used to minify javascript
 const terser = require('gulp-terser');
-
-// Concats files together
 const concat = require('gulp-concat');
-
-// Used to minify CSS
 const postcss = require('gulp-postcss');
-
-// Wipes out build directory for each build
 const clean = require('gulp-clean');
-
-// Used to minify HTML
 const htmlmin = require('gulp-htmlmin');
-
-// Used for CSS minification
 const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
 
@@ -30,7 +14,7 @@ const autoprefixer = require('autoprefixer');
 const { src, parallel, dest, series } = require('gulp');
 
 // Constants defining paths
-const jsPath = 'source/scripts/**/*.js'
+const jsPath = 'source/scripts/bundled.js'
 const cssPath = 'source/styles/*.css';
 
 // Clear the build directory
@@ -63,15 +47,26 @@ function imgTask() {
 function htmlTask() {
   return src('source/index.html')
     .pipe(htmlreplace({
-    'css': 'styles/main.css',
+      'css': './styles/main.css',
+      'js': {
+        'src': null,
+        'tpl': '<script src=./scripts/bundled.js type="module"></script>'
+      }
     }))
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(dest('build'));
 }
 
 // Copy and minify the Javscript
-function jsTask() {
+function jsMainTask() {
   return src(jsPath)
+    .pipe(terser())
+    .pipe(dest('build/scripts'));
+}
+
+// Copy and minify the Javascript
+function jsTimeWorkerTask() {
+  return src('source/scripts/timeWorker.js')
     .pipe(terser())
     .pipe(dest('build/scripts'));
 }
@@ -88,10 +83,11 @@ function cssTask() {
 exports.cssTask = cssTask;
 exports.reset = reset;
 exports.htmlTask = htmlTask;
-exports.jsTask = jsTask;
+exports.jsMainTask = jsMainTask;
+exports.jsTimeWorkerTask = jsTimeWorkerTask;
 exports.imgTask = imgTask;
 exports.copyfavi = copyfavi;
 exports.copySounds = copySounds;
 exports.copyFonts = copyFonts;
 
-exports.default = series(reset ,parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsTask));
+exports.default = series(reset ,parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask));

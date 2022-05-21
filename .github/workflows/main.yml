@@ -47,6 +47,9 @@ jobs:
       - name: Run Jest Tests
         run: npm run test
       
+      - name: Bundle Javascript
+        run: npm run bundle
+      
       - name: Build for deployment
         run: npm run build
 

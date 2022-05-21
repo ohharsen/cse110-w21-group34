@@ -1,7 +1,8 @@
+// Used to bundle the code
 export default {
   input: 'source/scripts/timer.js',
   output: {
-    file: 'build/script/main.js',
+    file: 'source/scripts/bundled.js',
     format: 'es'
   }
 }
