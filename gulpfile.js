@@ -14,7 +14,7 @@ const autoprefixer = require('autoprefixer');
 const { src, parallel, dest, series } = require('gulp');
 
 // Constants defining paths
-const jsPath = 'source/scripts/bundled.js'
+const jsPath = 'source/bundled/bundled.js';
 const cssPath = 'source/styles/*.css';
 
 // Clear the build directory

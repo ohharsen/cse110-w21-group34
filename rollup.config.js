@@ -2,7 +2,7 @@
 export default {
   input: 'source/scripts/timer.js',
   output: {
-    file: 'source/scripts/bundled.js',
+    file: 'source/bundled/bundled.js',
     format: 'es'
   }
 }
