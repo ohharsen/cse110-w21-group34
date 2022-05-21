@@ -2,6 +2,7 @@ import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
+import { isAutoStartEnabled } from './accessibility.js';
 
 /* Constants */
 const STOP_TIMER_COLOR = 'var(--grey)';
@@ -126,7 +127,7 @@ export function setCountdownInterval (duration) {
    */
 export function togglePomoBreak (onBreak) {
   if (startStopButton) {
-    //startStopButton.classList.toggle(BREAK_BUTTON);
+    startStopButton.classList.toggle(BREAK_BUTTON);
   }
   return !onBreak;
 }
@@ -138,7 +139,10 @@ export function togglePomoBreak (onBreak) {
  * @returns {Array} An array containing the pomoState and the pomoCount
  */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
-  toggleTaskButtonDisabled(true);
+  if(!onBreak){
+    toggleTaskButtonDisabled(true);
+  }
+  
 
   if (!timerAudio.paused) {
     timerAudio.pause();
@@ -175,7 +179,7 @@ function stopTimer () {
   // Mutes timer color
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
-  //startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+  startStopButton.innerHTML = (isAutoStartEnabled() && !onBreak) ? Constants.RESET_BTN_TXT : Constants.BEGIN_BTN_TXT;
   if (!onBreak) {
     pomoCount++;
     // Dispalys the next cycle without beginning it
@@ -191,7 +195,11 @@ function stopTimer () {
     Storage.incrPomoCount();
     increaseTaskPomo();
     updateStats();
-    setTimeout(startResetController, 1000);
+    if(isAutoStartEnabled()){
+      console.log("enabled");
+      setTimeout(startResetController, 1000);
+    }
+    
   } else {
     // Displays the next cycle without beggining it
     displayTime(Constants.WORK_LENGTH);
