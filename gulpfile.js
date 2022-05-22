@@ -14,7 +14,9 @@ const autoprefixer = require('autoprefixer');
 const { src, parallel, dest, series } = require('gulp');
 
 // Constants defining paths
-const jsPath = 'source/bundled/bundled.js';
+const bundledPath = 'source/bundled/bundled.js';
+const timeWorkerPath = 'source/scripts/timeWorker.js';
+const zingPath = 'source/scripts/util/zingchart.min.js';
 const cssPath = 'source/styles/*.css';
 
 // Clear the build directory
@@ -57,18 +59,25 @@ function htmlTask() {
     .pipe(dest('build'));
 }
 
-// Copy and minify the Javscript
+// Copy and minify the main part of the JS
 function jsMainTask() {
-  return src(jsPath)
+  return src(bundledPath)
     .pipe(terser())
     .pipe(dest('build/scripts'));
 }
 
-// Copy and minify the Javascript
+// Copy and minify the timeworker
 function jsTimeWorkerTask() {
-  return src('source/scripts/timeWorker.js')
+  return src(timeWorkerPath)
     .pipe(terser())
     .pipe(dest('build/scripts'));
+}
+
+// Copy and minify zing library
+function jsZingTask() {
+  return src(zingPath)
+    .pipe(terser())
+    .pipe(dest('build/scripts/util'));
 }
 
 // Copy and minify the CSS
@@ -89,5 +98,6 @@ exports.imgTask = imgTask;
 exports.copyfavi = copyfavi;
 exports.copySounds = copySounds;
 exports.copyFonts = copyFonts;
+exports.jsZingTask = jsZingTask;
 
-exports.default = series(reset ,parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask));
+exports.default = series(reset ,parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, jsZingTask));
