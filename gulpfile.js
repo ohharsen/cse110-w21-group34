@@ -50,7 +50,7 @@ function htmlTask() {
       'css': './styles/main.css',
       'js': {
         'src': null,
-        'tpl': '<script src=./scripts/bundled.js type="module"></script>'
+        'tpl': '<script defer src=./scripts/bundled.js type="module"></script>'
       }
     }))
     .pipe(htmlmin({ collapseWhitespace: true }))
