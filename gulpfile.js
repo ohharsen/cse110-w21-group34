@@ -16,7 +16,6 @@ const { src, parallel, dest, series } = require('gulp');
 // Constants defining paths
 const bundledPath = 'source/bundled/bundled.js';
 const timeWorkerPath = 'source/scripts/timeWorker.js';
-const zingPath = 'source/scripts/util/zingchart.min.js';
 const cssPath = 'source/styles/*.css';
 
 // Clear the build directory
@@ -73,11 +72,9 @@ function jsTimeWorkerTask() {
     .pipe(dest('build/scripts'));
 }
 
-// Copy and minify zing library
-function jsZingTask() {
-  return src(zingPath)
-    .pipe(terser())
-    .pipe(dest('build/scripts/util'));
+// Copy the fonts
+function copyZing() {
+  return src('source/zingchart/*').pipe(dest('build/zingchart'));
 }
 
 // Copy and minify the CSS
@@ -98,6 +95,6 @@ exports.imgTask = imgTask;
 exports.copyfavi = copyfavi;
 exports.copySounds = copySounds;
 exports.copyFonts = copyFonts;
-exports.jsZingTask = jsZingTask;
+exports.copyZing = copyZing;
 
-exports.default = series(reset ,parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, jsZingTask));
+exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, copyZing));
