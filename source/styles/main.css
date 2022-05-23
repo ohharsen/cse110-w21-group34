@@ -103,6 +103,14 @@ aside {
     overflow: auto;
 }
 
+#break-message{
+    color: white;
+    font-size: 3em;
+    display: inline-block;
+    position: relative;
+    visibility: hidden;
+}
+
 /* Animations for settings and stats */
 @keyframes slide-right-out {
     to { right: 0 }

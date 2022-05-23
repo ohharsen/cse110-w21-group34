@@ -26,6 +26,9 @@ const workIndicator = document.getElementById('work-indicator');
 const longBreakIndicator = document.getElementById('long-break-indicator');
 const shortBreakIndicator = document.getElementById('short-break-indicator');
 
+const breakMessage = document.getElementById('break-message');
+const breakMessages = ["Stand up!", "Relax your mind", "Take a break!", "Breathe"]
+
 const timeWorker = (window.Worker && !window.Cypress) ? new Worker('./scripts/timeWorker.js') : null;
 
 /* Class List */
@@ -141,9 +144,10 @@ export function togglePomoBreak (onBreak) {
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   if(!onBreak){
     toggleTaskButtonDisabled(true);
+  } else {
+    showBreakMessage();
   }
   
-
   if (!timerAudio.paused) {
     timerAudio.pause();
     timerAudio.currentTime = 0;
@@ -196,7 +200,6 @@ function stopTimer () {
     increaseTaskPomo();
     updateStats();
     if(isAutoStartEnabled()){
-      console.log("enabled");
       setTimeout(startResetController, 1000);
     }
     
@@ -208,6 +211,9 @@ function stopTimer () {
   updatePots();
   toggleTaskButtonDisabled(false);
   onBreak = togglePomoBreak(onBreak);
+  if(!onBreak){
+    hideBreakMessage();
+  }
 }
 
 /**
@@ -344,4 +350,19 @@ export function timerTypeIndicator (type) {
   } else {
     workIndicator.classList.add(HIGHLIGHT);
   }
+}
+
+function showBreakMessage(){
+  
+  for (let i = 0; i < breakMessages.length; i++) {
+    (function(index) {
+      setTimeout(function() { breakMessage.innerText = breakMessages[i]; }, index*10000);
+    })(i);
+    
+  }
+  breakMessage.style.visibility = "visible";
+}
+
+function hideBreakMessage(){
+  breakMessage.style.visibility = "hidden";
 }
