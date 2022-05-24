@@ -80,7 +80,7 @@ function copyZing() {
 
 // Copy logrocket
 function copyLogRocket() {
-  return src('source/3rd_party/logRocket.min.js').pipe(dest('build/3rd_party'));
+  return src('source/3rd_party/LogRocket.min.js').pipe(dest('build/3rd_party'));
 }
 
 // Copy and minify the logrocket start script
