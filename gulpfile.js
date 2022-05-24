@@ -66,6 +66,13 @@ function jsMainTask() {
     .pipe(dest('build/scripts'));
 }
 
+// Copy and minify the main part of the JS
+function jsLogRocketTask() {
+  return src(logRocketPath)
+    .pipe(terser())
+    .pipe(dest('build/3rd_party'));
+}
+
 // Copy and minify the timeworker
 function jsTimeWorkerTask() {
   return src(timeWorkerPath)
@@ -76,11 +83,6 @@ function jsTimeWorkerTask() {
 // Copy zing
 function copyZing() {
   return src('source/3rd_party/zingchart.min.js').pipe(dest('build/3rd_party'));
-}
-
-// Copy logrocket
-function copyLogRocket() {
-  return src('source/3rd_party/LogRocket.min.js').pipe(dest('build/3rd_party'));
 }
 
 // Copy and minify the CSS
@@ -102,6 +104,6 @@ exports.copyfavi = copyfavi;
 exports.copySounds = copySounds;
 exports.copyFonts = copyFonts;
 exports.copyZing = copyZing;
-exports.copyLogRocket = copyLogRocket;
+exports.jsLogRocketTask =  jsLogRocketTask;
 
-exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, copyZing, copyLogRocket));
+exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, copyZing, jsLogRocketTask));
