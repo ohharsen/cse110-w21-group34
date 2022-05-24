@@ -1,1 +1,1 @@
-window.addEventListener("OMContentLoaded",(function(){setTimeout(window.LogRocket&&window.LogRocket.init("umcvob/texascodeem"),1e3)}));
+window.addEventListener("DOMContentLoaded",(function(){setTimeout(window.LogRocket&&window.LogRocket.init("umcvob/texascodeem"),1e3)}));
