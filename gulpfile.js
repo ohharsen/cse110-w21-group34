@@ -16,6 +16,7 @@ const { src, parallel, dest, series } = require('gulp');
 // Constants defining paths
 const bundledPath = 'source/bundled/bundled.js';
 const timeWorkerPath = 'source/scripts/timeWorker.js';
+const logRocketPath = 'source/3rd_party/logRocketInit.js';
 const cssPath = 'source/styles/*.css';
 
 // Clear the build directory
@@ -77,6 +78,11 @@ function copyZing() {
   return src('source/3rd_party/zingchart.min.js').pipe(dest('build/3rd_party'));
 }
 
+// Copy logrocket
+function copyLogRocket() {
+  return src('source/3rd_party/LogRocket.min.js').pipe(dest('build/3rd_party'));
+}
+
 // Copy and minify the CSS
 function cssTask() {
   return src(cssPath)
@@ -96,5 +102,6 @@ exports.copyfavi = copyfavi;
 exports.copySounds = copySounds;
 exports.copyFonts = copyFonts;
 exports.copyZing = copyZing;
+exports.copyLogRocket = copyLogRocket;
 
-exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, copyZing));
+exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, copyZing, copyLogRocket));
