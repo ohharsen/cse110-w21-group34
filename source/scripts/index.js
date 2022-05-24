@@ -1,5 +1,5 @@
 /**
- * Checks for service walker support
+ * Checks for service worker support
  */
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").then(registration => {
