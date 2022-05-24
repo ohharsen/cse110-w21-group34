@@ -97,4 +97,4 @@ exports.copySounds = copySounds;
 exports.copyFonts = copyFonts;
 exports.copyZing = copyZing;
 
-exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, copyZing, copyLogRocket, minifyLogRocketInit));
+exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, copyZing));
