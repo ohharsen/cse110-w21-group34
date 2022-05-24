@@ -2,6 +2,7 @@ import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
+import { lang } from './util/language.js';
 
 /* Constants */
 const STOP_TIMER_COLOR = 'var(--grey)';
@@ -146,7 +147,8 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     timerAudio.currentTime = 0;
   }
   if (startStopButton) {
-    startStopButton.innerHTML = Constants.RESET_BTN_TXT;
+    startStopButton.innerHTML = lang.reset;
+    //startStopButton.innerHTML = Constants.RESET_BTN_TXT;
 
     if (!localOnBreak) {
       pomoState = Constants.timerOptions.POMO;
@@ -176,7 +178,8 @@ function stopTimer () {
   // Mutes timer color
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
-  startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+  startStopButton.innerHTML = lang.begin;
+  //startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
   if (!onBreak) {
     pomoCount++;
     // Dispalys the next cycle without beginning it
@@ -224,7 +227,8 @@ export function resetTimer () {
   toggleTaskButtonDisabled(true);
 
   if (startStopButton) {
-    startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+    startStopButton.innerHTML = lang.begin;
+    //startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
     if (timeWorker) timeWorker.postMessage({ start: false });
     if (legacyInterval) clearInterval(legacyInterval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
@@ -237,7 +241,8 @@ export function resetTimer () {
 
   Storage.incrInterruptions();
   updateStats();
-  return [pomoState, Constants.BEGIN_BTN_TXT];
+  return [pomoState, lang.begin];
+  //return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
 /*

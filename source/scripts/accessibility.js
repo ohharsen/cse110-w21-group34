@@ -10,10 +10,25 @@ const RESET_NO_ID = 'reset-no-button';
 const ACCESSIBLE_CLASS = 'accessible';
 const root = document.documentElement;
 
+//set default settings
 let accessibleMode = false;
 let keystrokeMode = true;
-
 document.onkeydown = keyControls;
+//override defaults if we have previous saved settings
+if(localStorage.getItem("accessible") == "true"){
+  toggleAccessibility();
+  document.getElementById("colors-switch").checked = true;
+} else {
+  document.getElementById("colors-switch").checked = false;
+}
+if(localStorage.getItem("keystroke") == "false"){
+  toggleKeystroke();
+  document.getElementById("keystroke-switch").checked = false;
+} else {
+  document.getElementById("keystroke-switch").checked = true;
+}
+
+
 
 /* All istanbul ignored code is tested in Cypress or uses Canvas */
 
@@ -29,6 +44,7 @@ export function toggleAccessibility () {
     root.classList.remove(ACCESSIBLE_CLASS);
   }
   accessibleMode = !accessibleMode;
+  accessibleMode ? localStorage.setItem("accessible", "true") : localStorage.setItem("accessible", "false");
 }
 
 /**
@@ -83,10 +99,11 @@ function keyControls (e) {
 }
 
 /**
- * Toggles keystroke access whenever the user toggles the setting switch
+ * Toggles keystroke access whenever the user toggles the setting switch and save settings
  */
 export function toggleKeystroke () {
   keystrokeMode = !keystrokeMode;
+  keystrokeMode ? localStorage.setItem("keystroke", "true") : localStorage.setItem("keystroke", "false");
   document.onkeydown = (keystrokeMode) ? keyControls : undefined;
 }
 

@@ -5,9 +5,9 @@ export const TASK_POMO_COUNTER = 'task-pomo-counter';
 export const CENTER_CONTAINER = 'center-container';
 export const LENGTH_OF_WEEK = 7;
 export const POMO_CYCLE_LENGTH = 4;
-export const WORK_LENGTH = 1500; // # of seconds in a work pomo (orig. 1500)
-export const SHORT_BREAK = 300; // # of seconds in a short break (orig. 300)
-export const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
+export const WORK_LENGTH = 3; // # of seconds in a work pomo (orig. 1500)
+export const SHORT_BREAK = 2; // # of seconds in a short break (orig. 300)
+export const LONG_BREAK = 2; // # of seconds in a long break (orig. 900)
 
 /* Settings Pane Class Lists */
 // kind of weird that these are only used in settings.js but is defined here.
