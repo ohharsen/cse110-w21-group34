@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title name="tab-title">Pomodoro by Texas Codem</title>
+    <title>Pomodoro by Texas Codem</title>
     <!--build:css-->
     <link rel="stylesheet" href="./styles/settings.css">
     <link rel="stylesheet" href="./styles/main.css">
@@ -14,15 +14,12 @@
     <link rel="icon" type="image/png" href="./favicon.ico">
     <script defer src="./scripts/timeWorker.js"></script>
     <!--build:js-->
-    <script defer src="./scripts/timer.js" type="module"></script>
-    <script defer src="./scripts/tasks.js" type="module"></script>
-    <script defer src="./scripts/stats.js" type="module"></script>
-    <script defer src="./scripts/accessibility.js" type="module"></script>
-    <script defer src="./scripts/settings.js" type="module"></script>
+    <script src="./scripts/timer.js" type="module"></script>
+    <script src="./scripts/tasks.js" type="module"></script>
+    <script src="./scripts/stats.js" type="module"></script>
+    <script src="./scripts/accessibility.js" type="module"></script>
+    <script src="./scripts/settings.js" type="module"></script>
     <!--endbuild-->
-    <script defer src="https://cdn.lr-in-prod.com/LogRocket.min.js" crossorigin="anonymous"></script>
-    <script defer src="./3rd_party/logRocketInit.js"></script>
-    <script defer src="./3rd_party/zingchart.min.js"></script>
 </head>
 <body>
     <div id="animation-overlay">
@@ -71,7 +68,7 @@
                         "
                                 />
                             </g>
-                            <text id="countdownText" x="26" y="50" style="font-style: Roboto, sans-serif;">25:00</text>
+                            <text id="countdownText" x="26" y="50">25:00</text>
                     </svg>
                 </div>
                 <button type="button" id="start-stop-button" class="pomodoro-button break-button">
@@ -96,8 +93,8 @@
         </div>
         <button id="settings-open-button" class="settings-button" type="button" aria-label="Open settings">
                 <img
-                    width="60px"
-                    height="60px"
+                    width="60"
+                    height="60"
                     src="./images/settings.png"
                     alt="Settings icon"
                     draggable="false"
@@ -105,8 +102,8 @@
             </button>
         <button id="stats-open-button" class="stats-button" type="button" aria-label="Open statistics">
                 <img
-                    width="60px"
-                    height="60px"
+                    width="60"
+                    height="60"
                     src="./images/test.png"
                     alt="Statistics icon"
                     draggable="false"
@@ -118,8 +115,8 @@
     <aside id="settings-container" class="settings-container">
         <button id="settings-close-button" type="button" disabled>
                 <img
-                    width="15px"
-                    height="15px"
+                    width="15"
+                    height="15"
                     src="./images/xbutton.svg"
                     alt="Close icon"
                     draggable="false"
@@ -187,8 +184,8 @@
     <aside id="stats-container" class="stats-container">
         <button id="stats-close-button" type="button" disabled>
                 <img
-                    width="15px"
-                    height="15px"
+                    width="15"
+                    height="15"
                     src="./images/xbutton.svg"
                     alt="Close icon"
                     draggable="false"
@@ -263,5 +260,7 @@
             </div>
         </section>
     </aside>
- </body>
+    <script src="./3rd_party/zingchart.min.js"></script>
+    <script src="./3rd_party/logRocketInit.js"></script>
+</body>
 </html>

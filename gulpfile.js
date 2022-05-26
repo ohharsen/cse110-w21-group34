@@ -41,8 +41,8 @@ function copyFonts() {
 }
 
 // Copy and minify images
-function imgTask() {
-  return src('source/images/*').pipe(imagemin()).pipe(dest('build/images'));
+function copyImg() {
+  return src('source/images/*').pipe(dest('build/images'));
 }
 
 // Copy and minify the HTML
@@ -99,11 +99,11 @@ exports.reset = reset;
 exports.htmlTask = htmlTask;
 exports.jsMainTask = jsMainTask;
 exports.jsTimeWorkerTask = jsTimeWorkerTask;
-exports.imgTask = imgTask;
+exports.copyImg = copyImg;
 exports.copyfavi = copyfavi;
 exports.copySounds = copySounds;
 exports.copyFonts = copyFonts;
 exports.copyZing = copyZing;
 exports.jsLogRocketTask =  jsLogRocketTask;
 
-exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, imgTask, cssTask, jsMainTask, jsTimeWorkerTask, copyZing, jsLogRocketTask));
+exports.default = series(reset, parallel(htmlTask, copyfavi, copySounds, copyFonts, copyImg, cssTask, jsMainTask, jsTimeWorkerTask, copyZing, jsLogRocketTask));
