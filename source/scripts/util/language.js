@@ -37,7 +37,7 @@ var en_us = {
     '<span id="total-best-pomo">____</span> po. |<span id="total-best-time">____</span> min.',
   totalTotalTasksUnits: '<span id="total-tasks">____</span> tasks',
   weeklyHeader: "Weekly Overview",
-  languageDropdownHeader: "Change Language",
+  dropdownHeader: "Change Language",
   dropdownBtn: "Language",
   dropdownEn: "English",
   dropdownKo: "Korean",
