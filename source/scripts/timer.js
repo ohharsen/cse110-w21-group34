@@ -20,6 +20,8 @@ const countdownText = document.getElementById('countdownText');
 const yesButton = document.getElementById('reset-yes-button');
 const noButton = document.getElementById('reset-no-button');
 const timerAudio = document.getElementById('timer-sound');
+const settingsButton = document.getElementById('settings-open-button');
+const statsButton = document.getElementById('stats-open-button');
 
 const workIndicator = document.getElementById('work-indicator');
 const longBreakIndicator = document.getElementById('long-break-indicator');
@@ -77,6 +79,10 @@ export function beginCountdown (duration) {
   duration--;
   displayTime(duration);
   const timerRingColor = (onBreak) ? BREAK_TIMER_COLOR : WORK_TIMER_COLOR;
+  settingsButton.disabled = !(onBreak);
+  statsButton.disabled = !(onBreak);
+  settingsButton.style.opacity = (onBreak) ? 1 : 0.2;
+  statsButton.style.opacity = (onBreak) ? 1 : 0.2;
   timerRing.setAttribute('stroke', timerRingColor);
   timerRing.setAttribute('stroke-dasharray', `${(timeFraction(duration, pomoState) * DASH_STROKE_VAL)} ${DASH_STROKE_VAL}`);
 
