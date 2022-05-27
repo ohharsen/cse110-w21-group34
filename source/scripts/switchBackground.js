@@ -13,22 +13,21 @@ backgroundOneOption.onclick = backgroundOneClicked;
 backgroundTwoOption.onclick = backgroundTwoClicked;
 backgroundThreeOption.onclick = backgroundThreeClicked;
 
-backgroundDropDown.onmouseover = enableDropdown; 
+backgroundDropDown.onmouseover = enableDropdown;
 
 /* istanbul ignore next */
 /**
  * Disables the background dropdown options from being displayed
  */
-function disableDropdown(){
-  document.getElementById('backgrounds').style.display = 'none';
+function disableDropdown () {
+  document.getElementById('backgrounds').style.display = 'none'
 }
 
 /* istanbul ignore next */
 /**
  * Enables the background dropdown options to be displayed 
  */
-function enableDropdown()
-{
+function enableDropdown () {
     document.getElementById('backgrounds').style.display = '';
 }
 
@@ -37,19 +36,17 @@ function enableDropdown()
  * Triggered when background 1 is selected
  * Changes background to background 1 then disables dropdown options 
  */
-function backgroundOneClicked()
-{
+function backgroundOneClicked () {
     disableDropdown();
     document.documentElement.style.backgroundImage = backgroundOneURL;
-} 
+}
 
 /* istanbul ignore next */
 /**
  * Triggered when background 2 is selected
  * Changes background to background 2 then disables dropdown options 
  */
-function backgroundTwoClicked()
-{
+function backgroundTwoClicked () {
   disableDropdown();
   document.documentElement.style.backgroundImage = backgroundTwoURL;
 }
@@ -59,8 +56,7 @@ function backgroundTwoClicked()
  * Triggered when background 3 is selected
  * Changes background to background 3 then disables dropdown options 
  */
-function backgroundThreeClicked()
-{
+function backgroundThreeClicked () {
   disableDropdown();
   document.documentElement.style.backgroundImage = backgroundThreeURL;
-} 
+}
