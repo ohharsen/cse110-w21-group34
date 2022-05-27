@@ -20,31 +20,31 @@ backgroundDropDown.onmouseover = enableDropdown;
  * Disables the background dropdown options from being displayed
  */
 function disableDropdown () {
-  document.getElementById('backgrounds').style.display = 'none'
+  document.getElementById('backgrounds').style.display = 'none';
 }
 
 /* istanbul ignore next */
 /**
- * Enables the background dropdown options to be displayed 
+ * Enables the background dropdown options to be displayed
  */
 function enableDropdown () {
-    document.getElementById('backgrounds').style.display = '';
+  document.getElementById('backgrounds').style.display = '';
 }
 
 /* istanbul ignore next */
 /**
  * Triggered when background 1 is selected
- * Changes background to background 1 then disables dropdown options 
+ * Changes background to background 1 then disables dropdown options
  */
 function backgroundOneClicked () {
-    disableDropdown();
-    document.documentElement.style.backgroundImage = backgroundOneURL;
+  disableDropdown();
+  document.documentElement.style.backgroundImage = backgroundOneURL;
 }
 
 /* istanbul ignore next */
 /**
  * Triggered when background 2 is selected
- * Changes background to background 2 then disables dropdown options 
+ * Changes background to background 2 then disables dropdown options
  */
 function backgroundTwoClicked () {
   disableDropdown();
@@ -54,7 +54,7 @@ function backgroundTwoClicked () {
 /* istanbul ignore next */
 /**
  * Triggered when background 3 is selected
- * Changes background to background 3 then disables dropdown options 
+ * Changes background to background 3 then disables dropdown options
  */
 function backgroundThreeClicked () {
   disableDropdown();
