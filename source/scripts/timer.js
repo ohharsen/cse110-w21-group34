@@ -27,7 +27,8 @@ const longBreakIndicator = document.getElementById('long-break-indicator');
 const shortBreakIndicator = document.getElementById('short-break-indicator');
 
 const breakMessage = document.getElementById('break-message');
-const breakMessages = ["Stand up!", "Relax your mind", "Take a break!", "Breathe"]
+const breakContainer = document.getElementById('break-container');
+const breakMessages = ["Stand up!", "Relax your mind", "Rest!", "Breathe", "Take a break!"]
 
 const timeWorker = (window.Worker && !window.Cypress) ? new Worker('./scripts/timeWorker.js') : null;
 
@@ -40,7 +41,10 @@ let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
 let legacyInterval;
+let breakInterval; // so we can display a new message every 10 seconds
 let firstReset = true; // Is rest being clicked for the first time
+let firstEndSession = true;
+hideBreakMessage(); // hideBreakMessage at very beginning
 
 /* Event listeners */
 if (startStopButton) {
@@ -59,6 +63,13 @@ if (countdownText) {
     }
   });
 }
+
+yesButton.addEventListener('click', () => {
+  resetConfirm(true);
+});
+noButton.addEventListener('click', () => {
+  resetConfirm(false);
+});
 
 /**
  * Callback for events that trigger the start or stop of timer
@@ -144,7 +155,10 @@ export function togglePomoBreak (onBreak) {
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   if(!onBreak){
     toggleTaskButtonDisabled(true);
-  } else {
+    hideBreakMessage();
+  }
+
+  if(onBreak && !isAutoStartEnabled()){
     showBreakMessage();
   }
   
@@ -153,8 +167,13 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     timerAudio.currentTime = 0;
   }
   if (startStopButton) {
-    startStopButton.innerHTML = Constants.RESET_BTN_TXT;
-
+    if(!isAutoStartEnabled()){
+      startStopButton.innerHTML =  Constants.RESET_BTN_TXT;
+    } else if (isAutoStartEnabled() && onBreak) {
+      startStopButton.innerHTML = Constants.END_BTN_TXT;
+    } else if (isAutoStartEnabled() && !onBreak) {
+      startStopButton.innerHTML =  Constants.RESET_BTN_TXT;
+    }
     if (!localOnBreak) {
       pomoState = Constants.timerOptions.POMO;
       beginCountdown(Constants.WORK_LENGTH);
@@ -183,7 +202,12 @@ function stopTimer () {
   // Mutes timer color
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
-  startStopButton.innerHTML = (isAutoStartEnabled() && !onBreak) ? Constants.RESET_BTN_TXT : Constants.BEGIN_BTN_TXT;
+  if (isAutoStartEnabled() && !onBreak) {
+    startStopButton.innerHTML = Constants.RESET_BTN_TXT;
+  } else if (!isAutoStartEnabled()) {
+    startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+  }
+
   if (!onBreak) {
     pomoCount++;
     // Dispalys the next cycle without beginning it
@@ -200,6 +224,7 @@ function stopTimer () {
     increaseTaskPomo();
     updateStats();
     if(isAutoStartEnabled()){
+      showBreakMessage();
       setTimeout(startResetController, 1000);
     }
     
@@ -207,11 +232,14 @@ function stopTimer () {
     // Displays the next cycle without beggining it
     displayTime(Constants.WORK_LENGTH);
     timerTypeIndicator(Constants.timerOptions.POMO);
+    if (isAutoStartEnabled()) {
+      setTimeout(startResetController, 1000);
+    }
   }
   updatePots();
   toggleTaskButtonDisabled(false);
   onBreak = togglePomoBreak(onBreak);
-  if(!onBreak){
+  if (!onBreak) {
     hideBreakMessage();
   }
 }
@@ -236,6 +264,12 @@ export function updatePots () {
 export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
+  console.log(isAutoStartEnabled());
+  console.log(onBreak)
+  if (!isAutoStartEnabled() || !onBreak) {
+    Storage.incrInterruptions();
+    updateStats();
+  }
 
   if (startStopButton) {
     startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
@@ -248,9 +282,9 @@ export function resetTimer () {
     displayTime(Constants.WORK_LENGTH);
     timerTypeIndicator(Constants.WORK_LENGTH);
   }
-
-  Storage.incrInterruptions();
-  updateStats();
+  if (!onBreak) {
+    hideBreakMessage();
+  }
   return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
@@ -258,20 +292,25 @@ export function resetTimer () {
  * Checks if the reset button has been pressed before and resets automatically if so
  */
 export function resetPrompt () {
-  if (!firstReset) {
+  if (!firstEndSession && isAutoStartEnabled() && onBreak) {
     resetTimer();
     return;
   }
+  if (!firstReset && (!isAutoStartEnabled() || !onBreak)) {
+    resetTimer();
+    return;
+  }
+  
   startStopButton.style.display = 'none';
+  if (isAutoStartEnabled() && onBreak) {
+    document.getElementById('prompt-text').innerHTML = 'End this pomo session? <br> This will not count as an interruption.';
+  } else {
+    document.getElementById('prompt-text').innerHTML = 'This will count as an interruption.<br> Are you sure?';
+  }
   document.getElementById('prompt').style.display = 'flex';
   yesButton.disabled = false;
   noButton.disabled = false;
-  yesButton.addEventListener('click', () => {
-    resetConfirm(true);
-  });
-  noButton.addEventListener('click', () => {
-    resetConfirm(false);
-  });
+
 }
 
 /**
@@ -290,10 +329,17 @@ export function hidePrompt () {
  */
 export function resetConfirm (isConfirm) {
   hidePrompt();
+  console.log("reset")
+  if (isConfirm && isAutoStartEnabled() && onBreak) {
+    firstEndSession = false;
+  }
+  if (isConfirm && (!isAutoStartEnabled() || !onBreak)) {
+    firstReset = false;
+  }
   if (isConfirm) {
     resetTimer();
   }
-  firstReset = false;
+
 }
 
 /**
@@ -353,16 +399,19 @@ export function timerTypeIndicator (type) {
 }
 
 function showBreakMessage(){
-  
-  for (let i = 0; i < breakMessages.length; i++) {
-    (function(index) {
-      setTimeout(function() { breakMessage.innerText = breakMessages[i]; }, index*10000);
-    })(i);
-    
-  }
   breakMessage.style.visibility = "visible";
+  breakContainer.style.display = "inline-block";
+
+  let i = 0;
+  breakInterval = setInterval(e => {
+    i = (i + breakMessages.length) % breakMessages.length;
+    breakMessage.innerText = breakMessages[i];
+    i++;
+  }, 10000);
 }
 
 function hideBreakMessage(){
   breakMessage.style.visibility = "hidden";
+  breakContainer.style.display = "none";
+  clearInterval(breakInterval);
 }

@@ -30,8 +30,11 @@ export function openSettingsPane () {
     Stats.closeStatsPane();
     Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
     Stats.timerBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
+    Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE);
+    Stats.breakBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
   } else { // add the slide open settings (css)
     Stats.timerBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
+    Stats.breakBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
   }
   settingsPane.classList.add(Constants.SLIDE_OPEN_SETTINGS);
 
@@ -46,11 +49,14 @@ export function openSettingsPane () {
  */
 export function closeSettingsPane () {
   Stats.timerBlock.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
 
   Stats.timerBlock.classList.remove(Constants.SLIDE_ACROSS_RIGHT);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_ACROSS_RIGHT);
 
   Stats.timerBlock.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
+  Stats.breakBlock.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
 
   settingsPaneIsOpen = false;
@@ -75,9 +81,11 @@ export function toggleButtons () {
  */
 export function removeAll () {
   Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE);
   Stats.statsPane.classList.remove(Constants.SLIDE_CLOSE);
 
   Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }
 /*

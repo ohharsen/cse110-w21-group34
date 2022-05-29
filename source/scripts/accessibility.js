@@ -104,7 +104,6 @@ export function isKeystrokeEnabled () {
  */
  export function toggleAutoStart () {
   autostartMode = !autostartMode;
-  console.log(autostartMode);
 }
 
 /**
@@ -112,6 +111,5 @@ export function isKeystrokeEnabled () {
  * @returns {Boolean} true when auto start mode is on, false if off
  */
 export function isAutoStartEnabled () {
-  console.log(autostartMode);
   return autostartMode;
 }

@@ -5,6 +5,7 @@ import { displayGraph } from './util/graph.js';
 
 /* Elements */
 export const timerBlock = document.getElementsByClassName('center-container')[0];
+export const breakBlock = document.getElementsByClassName('break-message')[0];
 export const counterBlock = document.getElementsByClassName('counters-container')[0];
 export const statsPane = document.getElementById('stats-container');
 export const statsOpenButton = document.getElementById('stats-open-button');
@@ -52,8 +53,10 @@ export function openStatsPane () {
     Settings.closeSettingsPane();
 
     timerBlock.classList.add(Constants.SLIDE_ACROSS_LEFT);
+    breakBlock.classList.add(Constants.SLIDE_ACROSS_LEFT);
   } else {
     timerBlock.classList.add(Constants.SLIDE_OPEN);
+    breakBlock.classList.add(Constants.SLIDE_OPEN);
   }
   statsPane.classList.add(Constants.SLIDE_OPEN);
   statsPaneIsOpen = true;
@@ -66,11 +69,14 @@ export function openStatsPane () {
  */
 export function closeStatsPane () {
   timerBlock.classList.remove(Constants.SLIDE_OPEN);
+  breakBlock.classList.remove(Constants.SLIDE_OPEN);
   statsPane.classList.remove(Constants.SLIDE_OPEN);
 
   timerBlock.classList.remove(Constants.SLIDE_ACROSS_LEFT);
+  breakBlock.classList.remove(Constants.SLIDE_ACROSS_LEFT);
 
   timerBlock.classList.add(Constants.SLIDE_CLOSE);
+  breakBlock.classList.add(Constants.SLIDE_CLOSE);
   statsPane.classList.add(Constants.SLIDE_CLOSE);
 
   statsPaneIsOpen = false;

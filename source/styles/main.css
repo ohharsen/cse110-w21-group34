@@ -104,11 +104,37 @@ aside {
 }
 
 #break-message{
-    color: white;
+    color: var(--black);
+    background: var(--white-a1);
+    padding: 16px;
+    border-radius: 21px;
     font-size: 3em;
+    visibility: hidden;
+    font-family: Roboto, sans-serif;
+}
+
+#break-container {
+    margin-top: -50px;
     display: inline-block;
     position: relative;
-    visibility: hidden;
+    animation: break-animation 1s infinite;
+}
+
+@keyframes break-animation {
+    0%,100% {
+        transform: translateY(0)
+      }
+      50% {
+        transform: translateY(10px)
+      }
+}
+
+@media only screen and (max-width: 400px) {
+    #break-message {
+        font-size: 2em;
+        max-width: 200px;
+        text-align: center;
+    }
 }
 
 /* Animations for settings and stats */
