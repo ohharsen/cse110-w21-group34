@@ -1,0 +1,129 @@
+body, html {
+    height: 100%;
+    background: #110101;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+  }
+  .slideshow {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .slideshow .slider {
+    width: 100vw;
+    height: 100vw;
+    z-index: 2;
+  }
+  .slideshow .slider * {
+    outline: none;
+  }
+  .slideshow .slider .item {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    border: none;
+  }
+  .slideshow .slider .item .text {
+    display: none;
+  }
+  .slideshow .slider .item img {
+    min-width: 101%;
+    min-height: 101%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .slideshow .slick-dots {
+    position: fixed;
+    z-index: 100;
+    width: 40px;
+    height: auto;
+    bottom: auto;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    left: auto;
+    color: #fff;
+    display: block;
+  }
+  .slideshow .slick-dots li {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .slideshow .slick-dots li button {
+    position: relative;
+    width: 20px;
+    height: 15px;
+    text-align: center;
+  }
+  .slideshow .slick-dots li button:before {
+    content: '';
+    background: #fff;
+    color: #fff;
+    height: 2px;
+    width: 20px;
+    border-radius: 0;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: auto;
+    transform: translateY(-50%);
+    transition: all 0.3s ease-in-out;
+    opacity: 0.6;
+  }
+  .slideshow .slick-dots li.slick-active button:before {
+    width: 40px;
+    opacity: 1;
+  }
+  .slideshow.slideshow-right {
+    left: 0;
+    z-index: 1;
+    width: 50vw;
+    pointer-events: none;
+  }
+  .slideshow.slideshow-right .slider {
+    left: 0;
+    position: absolute;
+  }
+  .slideshow-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    font-size: 80px;
+    width: 100vw;
+    text-align: center;
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 100;
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    line-height: 0.8;
+  }
+  @media (max-width: 767px) {
+    .slideshow-text {
+      font-size: 40px;
+    }
+  }
+  .the-most {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 50vw;
+    max-width: 200px;
+    padding: 10px;
+  }
+  .the-most img {
+    max-width: 100%;
+  }
+  
