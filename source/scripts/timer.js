@@ -209,9 +209,11 @@ function stopTimer () {
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
   if (isAutoStartEnabled() && !onBreak) {
-    startStopButton.innerHTML = Constants.RESET_BTN_TXT;
+    startStopButton.innerHTML = Constants.END_BTN_TXT;
   } else if (!isAutoStartEnabled()) {
     startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+  } else if (isAutoStartEnabled && onBreak) {
+    startStopButton.innerHTML = Constants.RESET_BTN_TXT;
   }
 
   if (!onBreak) {
