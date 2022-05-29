@@ -83,6 +83,7 @@ main {
 #pomobear-header-container {
     position: absolute;
     display: flex;
+    justify-content: space-between;
     margin: auto;
     left: 20%;
 }
@@ -92,6 +93,7 @@ main {
     font-weight: bolder;
     color: var(--white);
     font-family: Roboto, sans-serif;
+    margin-right: 20px;
 }
 
 img {
@@ -128,7 +130,6 @@ aside {
 .info-button {
     width: 40px;
     height: 40px;
-    left: 30px;
     background: var(--white-a1);
     border-radius: 15px;
     border: 0;
