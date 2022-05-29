@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 /* Color constants and size constants */
+
 :root {
     --black: #000000;
     --black-a1: rgba(0, 0, 0, 0.7);
@@ -23,7 +24,7 @@
     --orange-dark-grad-1: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%);
     --green: #34DBB3;
     --dark-green: #0D927A;
-    --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
+    --green-grad: linear-gradient(180deg, #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
     --bacgkround-source: url('../images/background.png');
@@ -41,15 +42,17 @@
     --orange-dark-grad: linear-gradient(180deg, #AA2500 0%, #575757 100%);
     --orange-dark-grad-1: linear-gradient(180deg, #575757 0%, #AA2500 100%);
     --green: #006646;
-    --green-grad: linear-gradient(180deg,  #575757 0%, #00644e 100%);
-    --green-grad-1: linear-gradient(180deg,  #00644e 0%, #575757 100%);
+    --green-grad: linear-gradient(180deg, #575757 0%, #00644e 100%);
+    --green-grad-1: linear-gradient(180deg, #00644e 0%, #575757 100%);
     --bacgkround-source: url("../images/background_hi_contrast.png");
     --counter-color: black;
 }
 
+
 /* Positioning, background, size for page */
+
 html {
-    background: var(--bacgkround-source) no-repeat center center fixed; 
+    background: var(--bacgkround-source) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -77,21 +80,27 @@ main {
     flex-direction: column;
 }
 
-#pomobear-header {
+#pomobear-header-container {
     position: absolute;
+    display: flex;
+    margin: auto;
     left: 20%;
+}
+
+#pomobear-header {
     font-size: 50px;
     font-weight: bolder;
     color: var(--white);
     font-family: Roboto, sans-serif;
 }
 
-
 img {
     user-select: none;
 }
 
+
 /* Style for buttons */
+
 button {
     border: 0;
 }
@@ -112,21 +121,64 @@ aside {
     overflow: auto;
 }
 
+.info-button:active {
+    opacity: 100%;
+}
+
+.info-button {
+    width: 40px;
+    height: 40px;
+    left: 30px;
+    background: var(--white-a1);
+    border-radius: 15px;
+    border: 0;
+    margin: auto;
+}
+
+.info-button:hover:enabled {
+    background: var(--white-a2);
+}
+
+.info-button:active {
+    opacity: 100%;
+}
+
+#info-open-button {
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+
 /* Animations for settings and stats */
+
 @keyframes slide-right-out {
-    to { right: 0 }
+    to {
+        right: 0
+    }
 }
 
 @keyframes slide-right-in {
-    from { right: 0 }
+    from {
+        right: 0
+    }
 }
 
 @keyframes slide-center-out {
-    from { transform: translate(0, 0) }
-    to { transform: translate(-15vw, 0) }
+    from {
+        transform: translate(0, 0)
+    }
+    to {
+        transform: translate(-15vw, 0)
+    }
 }
 
 @keyframes slide-center-in {
-    from { transform: translate(-15vw, 0) }
-    to { transform: translate(0, 0) }
+    from {
+        transform: translate(-15vw, 0)
+    }
+    to {
+        transform: translate(0, 0)
+    }
 }

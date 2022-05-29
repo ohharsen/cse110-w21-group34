@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script src="https://cdn.lr-in-prod.com/LogRocket.min.js" crossorigin="anonymous"></script>
-    <script>window.LogRocket && window.LogRocket.init('umcvob/texascodeem');</script>
+    <script>
+        window.LogRocket && window.LogRocket.init('umcvob/texascodeem');
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title name="tab-title">Pomodoro by Texas Codem</title>
@@ -26,7 +29,20 @@
     <div id="animation-overlay">
         <img id="confetti-img" src="./images/confetti.gif" alt="Confetti gif" draggable="false">
     </div>
-    <h1 id="pomobear-header">Pomobear</h1>
+    <div id="pomobear-header-container">
+        <h1 id="pomobear-header">Pomobear</h1>
+        <button id="info-open-button" class="info-button" type="button" aria-label="Open Info" onClick="location.href='tutorial_page_2.html'">
+        <img
+            width="30px"
+            height="30px"
+            src="./images/info.svg"
+            alt="Info icon"
+            draggable="false"
+        >
+    </button>
+
+    </div>
+
     <div class="pots-container">
         <img id="pot1" src="images/honey-pot-gray.svg" alt="First task complete indicator pot" draggable="false">
         <img id="pot2" src="images/honey-pot-gray.svg" alt="Second task complete indicator pot" draggable="false">
@@ -140,11 +156,9 @@
                 </header>
                 <div class="stats-flex">
                     <p id="tutorial-text">
-                        Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>" to end early.
-                        The text headers and ring color will indicate the
+                        Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>" to end early. The text headers and ring color will indicate the
                         <span id="work-text">work</span> and
-                        <span id="break-text">break</span> stages of a cycle.
-                        Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
+                        <span id="break-text">break</span> stages of a cycle. Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
                     </p>
                 </div>
             </div>
@@ -265,6 +279,6 @@
     <script src="./scripts/stats.js" type="module"></script>
     <script src="./scripts/accessibility.js" type="module"></script>
     <script src="./scripts/settings.js" type="module"></script>
- </body>
+</body>
 
 </html>
