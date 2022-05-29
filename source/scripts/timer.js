@@ -30,7 +30,7 @@ const shortBreakIndicator = document.getElementById('short-break-indicator');
 
 const breakMessage = document.getElementById('break-message');
 const breakContainer = document.getElementById('break-container');
-const breakMessages = ["Stand up!", "Relax your mind", "Rest!", "Breathe", "Take a break!"]
+const breakMessages = ["Stand up!", "Relax your mind", "Rest!", "Breathe", "Take a break!"] // array we cycle through to display new break messages
 
 const timeWorker = (window.Worker && !window.Cypress) ? new Worker('./scripts/timeWorker.js') : null;
 
@@ -44,8 +44,8 @@ let pomoState = Constants.timerOptions.STOPPED;
 let onBreak = false;
 let legacyInterval;
 let breakInterval; // so we can display a new message every 10 seconds
-let firstReset = true; // Is rest being clicked for the first time
-let firstEndSession = true;
+let firstReset = true; // Is reset being clicked for the first time
+let firstEndSession = true; // Is end session being clicked for the first time
 hideBreakMessage(); // hideBreakMessage at very beginning
 
 /* Event listeners */
@@ -173,6 +173,7 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     timerAudio.currentTime = 0;
   }
   if (startStopButton) {
+    // displaying the appropriate text in the start stop button
     if(!isAutoStartEnabled()){
       startStopButton.innerHTML =  Constants.RESET_BTN_TXT;
     } else if (isAutoStartEnabled() && onBreak) {
@@ -208,6 +209,8 @@ function stopTimer () {
   // Mutes timer color
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
+
+  // displaying the appropriate text in the start stop button
   if (isAutoStartEnabled() && !onBreak) {
     startStopButton.innerHTML = Constants.END_BTN_TXT;
   } else if (!isAutoStartEnabled()) {
@@ -231,6 +234,8 @@ function stopTimer () {
     Storage.incrPomoCount();
     increaseTaskPomo();
     updateStats();
+
+    // automatically starts next timer if autostart is enabled
     if(isAutoStartEnabled()){
       showBreakMessage();
       setTimeout(startResetController, 1000);
@@ -247,6 +252,8 @@ function stopTimer () {
   updatePots();
   toggleTaskButtonDisabled(false);
   onBreak = togglePomoBreak(onBreak);
+
+  // hides the break message if you are not on break
   if (!onBreak) {
     hideBreakMessage();
   }
@@ -272,8 +279,8 @@ export function updatePots () {
 export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
-  console.log(isAutoStartEnabled());
-  console.log(onBreak)
+
+  //only increments interruptions if not ending the session
   if (!isAutoStartEnabled() || !onBreak) {
     Storage.incrInterruptions();
     updateStats();
@@ -298,6 +305,7 @@ export function resetTimer () {
 
 /*
  * Checks if the reset button has been pressed before and resets automatically if so
+ * Also checks if end session button has been clicked before and resets automatically if so
  */
 export function resetPrompt () {
   if (!firstEndSession && isAutoStartEnabled() && onBreak) {
@@ -337,7 +345,6 @@ export function hidePrompt () {
  */
 export function resetConfirm (isConfirm) {
   hidePrompt();
-  console.log("reset")
   if (isConfirm && isAutoStartEnabled() && onBreak) {
     firstEndSession = false;
   }
@@ -406,6 +413,10 @@ export function timerTypeIndicator (type) {
   }
 }
 
+/**
+ * Displays the break message when you are on a break
+ * Switches break message every 10 seconds
+ */
 function showBreakMessage(){
   breakMessage.style.visibility = "visible";
   breakContainer.style.display = "inline-block";
@@ -418,6 +429,9 @@ function showBreakMessage(){
   }, 10000);
 }
 
+/**
+ * Hides the break message when you are no longer on a break
+ */
 function hideBreakMessage(){
   breakMessage.style.visibility = "hidden";
   breakContainer.style.display = "none";
