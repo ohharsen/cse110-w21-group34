@@ -352,7 +352,6 @@ export function resetConfirm (isConfirm) {
   if (isConfirm) {
     resetTimer();
   }
-
 }
 
 /**
@@ -415,7 +414,7 @@ export function timerTypeIndicator (type) {
  * Displays the break message when you are on a break
  * Switches break message every 10 seconds
  */
-function showBreakMessage() {
+function showBreakMessage () {
   breakMessage.style.visibility = 'visible';
   breakContainer.style.display = 'inline-block';
 
@@ -430,7 +429,7 @@ function showBreakMessage() {
 /**
  * Hides the break message when you are no longer on a break
  */
-function hideBreakMessage() {
+function hideBreakMessage () {
   breakMessage.style.visibility = 'hidden';
   breakContainer.style.display = 'none';
   clearInterval(breakInterval);
