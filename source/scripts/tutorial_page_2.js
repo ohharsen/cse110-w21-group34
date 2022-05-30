@@ -4,7 +4,7 @@ const items = document.querySelectorAll('.item'),
   headerItems = document.querySelectorAll('.item-header'),
   descriptionItems = document.querySelectorAll('.item-description'),
   activeDelay = .76,
-  interval = 5000;
+  interval = 6000;
 
 let current = 0;
 

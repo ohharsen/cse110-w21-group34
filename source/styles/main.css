@@ -132,7 +132,10 @@ aside {
     background: var(--white-a1);
     border-radius: 15px;
     border: 0;
-    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .info-button:hover:enabled {
