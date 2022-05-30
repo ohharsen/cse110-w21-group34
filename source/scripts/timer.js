@@ -30,7 +30,7 @@ const shortBreakIndicator = document.getElementById('short-break-indicator');
 
 const breakMessage = document.getElementById('break-message');
 const breakContainer = document.getElementById('break-container');
-const breakMessages = ["Stand up!", "Relax your mind", "Rest!", "Breathe", "Take a break!"] // array we cycle through to display new break messages
+const breakMessages = ['Stand up!', 'Relax your mind', 'Rest!', 'Breathe', 'Take a break!']; // array we cycle through to display new break messages
 
 const timeWorker = (window.Worker && !window.Cypress) ? new Worker('./scripts/timeWorker.js') : null;
 
@@ -99,7 +99,7 @@ export function beginCountdown (duration) {
   statsButton.style.opacity = (onBreak) ? 1 : 0.2;
   timerRing.setAttribute('stroke', timerRingColor);
   timerRing.setAttribute('stroke-dasharray', `${(timeFraction(duration, pomoState) * DASH_STROKE_VAL)} ${DASH_STROKE_VAL}`);
-  
+
   if (timeWorker) {
     timeWorker.onmessage = (e) => {
       if (pomoState === Constants.timerOptions.STOPPED) return;
@@ -159,27 +159,27 @@ export function togglePomoBreak (onBreak) {
  * @returns {Array} An array containing the pomoState and the pomoCount
  */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
-  if(!onBreak){
+  if (!onBreak) {
     toggleTaskButtonDisabled(true);
     hideBreakMessage();
   }
 
-  if(onBreak && !isAutoStartEnabled()){
+  if (onBreak && !isAutoStartEnabled()) {
     showBreakMessage();
   }
-  
+
   if (!timerAudio.paused) {
     timerAudio.pause();
     timerAudio.currentTime = 0;
   }
   if (startStopButton) {
     // displaying the appropriate text in the start stop button
-    if(!isAutoStartEnabled()){
-      startStopButton.innerHTML =  Constants.RESET_BTN_TXT;
+    if (!isAutoStartEnabled()) {
+      startStopButton.innerHTML = Constants.RESET_BTN_TXT;
     } else if (isAutoStartEnabled() && onBreak) {
       startStopButton.innerHTML = Constants.END_BTN_TXT;
     } else if (isAutoStartEnabled() && !onBreak) {
-      startStopButton.innerHTML =  Constants.RESET_BTN_TXT;
+      startStopButton.innerHTML = Constants.RESET_BTN_TXT;
     }
     if (!localOnBreak) {
       pomoState = Constants.timerOptions.POMO;
@@ -236,11 +236,10 @@ function stopTimer () {
     updateStats();
 
     // automatically starts next timer if autostart is enabled
-    if(isAutoStartEnabled()){
+    if (isAutoStartEnabled()) {
       showBreakMessage();
       setTimeout(startResetController, 1000);
     }
-    
   } else {
     // Displays the next cycle without beggining it
     displayTime(Constants.WORK_LENGTH);
@@ -280,7 +279,7 @@ export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
 
-  //only increments interruptions if not ending the session
+  // only increments interruptions if not ending the session
   if (!isAutoStartEnabled() || !onBreak) {
     Storage.incrInterruptions();
     updateStats();
@@ -316,7 +315,7 @@ export function resetPrompt () {
     resetTimer();
     return;
   }
-  
+
   startStopButton.style.display = 'none';
   if (isAutoStartEnabled() && onBreak) {
     document.getElementById('prompt-text').innerHTML = 'End this pomo session? <br> This will not count as an interruption.';
@@ -326,7 +325,6 @@ export function resetPrompt () {
   document.getElementById('prompt').style.display = 'flex';
   yesButton.disabled = false;
   noButton.disabled = false;
-
 }
 
 /**
@@ -417,9 +415,9 @@ export function timerTypeIndicator (type) {
  * Displays the break message when you are on a break
  * Switches break message every 10 seconds
  */
-function showBreakMessage(){
-  breakMessage.style.visibility = "visible";
-  breakContainer.style.display = "inline-block";
+function showBreakMessage() {
+  breakMessage.style.visibility = 'visible';
+  breakContainer.style.display = 'inline-block';
 
   let i = 0;
   breakInterval = setInterval(e => {
@@ -432,8 +430,8 @@ function showBreakMessage(){
 /**
  * Hides the break message when you are no longer on a break
  */
-function hideBreakMessage(){
-  breakMessage.style.visibility = "hidden";
-  breakContainer.style.display = "none";
+function hideBreakMessage() {
+  breakMessage.style.visibility = 'hidden';
+  breakContainer.style.display = 'none';
   clearInterval(breakInterval);
 }

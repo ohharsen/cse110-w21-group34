@@ -102,7 +102,7 @@ export function isKeystrokeEnabled () {
 /**
  * Toggles the autostart for the timer whenever the user toggles the setting switch
  */
- export function toggleAutoStart () {
+export function toggleAutoStart () {
   autostartMode = !autostartMode;
 }
 
