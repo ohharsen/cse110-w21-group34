@@ -2,52 +2,53 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-  
-  html, body {
+}
+
+html,
+body {
     width: 100%;
     height: 100vh;
-    overflow: hidden; 
+    overflow: hidden;
     background: rgb(141, 187, 40);
     font-family: 'Fira Mono', monospace;
     -webkit-font-smoothing: antialiased;
     font-size: 20px;
     color: #ffffff;
-  }
-  
-  .content-width {
+}
+
+.content-width {
     width: 86%;
     height: 100vh;
     margin: 0 auto;
-  }
-  
-  .slideshow {
+}
+
+.slideshow {
     position: relative;
     width: 100%;
     height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-  }
-  
-  .slideshow-items {
+}
+
+.slideshow-items {
     position: relative;
     width: 100%;
     height: 300px;
-  }
-  
-  .item {
+}
+
+.item {
     position: absolute;
     width: 100%;
     height: auto;
-  }
-  
-  .item-image-container {
+}
+
+.item-image-container {
     position: relative;
     width: 42%;
-  }
-  
-  .item-image-container::before {
+}
+
+.item-image-container::before {
     content: '';
     position: absolute;
     top: -1px;
@@ -56,9 +57,9 @@
     height: 101%;
     opacity: 0;
     z-index: 1;
-  }
-  
-  .item-image {
+}
+
+.item-image {
     position: relative;
     width: 630px;
     height: 472.5px;
@@ -67,89 +68,112 @@
     /* transition: property name | duration | timing-function | delay  */
     transition: opacity .3s ease-out .45s;
     border-radius: 8px;
-  }
-  
-  .item.active .item-image {
+}
+
+.item.active .item-image {
     opacity: 1;
-  }
-  
-  .item.active .item-image-container::before {
+}
+
+.item.active .item-image-container::before {
     opacity: .8;
-  }
-  
-  .item-description {
+}
+
+.item-description {
     position: absolute;
     top: 70px;
     margin-left: 660px;
     width: 30%;
     padding-right: 4%;
     line-height: 1.8;
-  }
-  
-  /* Staggered Vertical Items ------------------------------------------------------*/
-  .item-header {
+}
+
+/* Staggered Vertical Items ------------------------------------------------------*/
+.item-header {
     position: auto;
     top: 20px;
     left: -1.8%;
     z-index: 100;
-  }
-  
-  .item-header .vertical-part {
+}
+
+.item-header .vertical-part {
     margin: 0 -4px;
     font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: auto;
     font-size: 50px;
-    color: #da9413;
-  }
-  
-  .vertical-part {
+    color: #da5c13;
+}
+
+.vertical-part {
     overflow: hidden;
     display: inline-block;
-  }
-  
-  .vertical-part b {
+}
+
+.vertical-part b {
     display: inline-block;
     transform: translateY(100%);
-  }
-  
-  .item-header .vertical-part b {
+}
+
+.item-header .vertical-part b {
     transition: .5s;
-  }
-  
-  .item-description .vertical-part b {
+}
+
+.item-description .vertical-part b {
     transition: .21s;
-  }
-  
-  .item.active .item-header .vertical-part b {
+}
+
+.item.active .item-header .vertical-part b {
     transform: translateY(0);
-  }
-  
-  .item.active .item-description .vertical-part b {
+}
+
+.item.active .item-description .vertical-part b {
     transform: translateY(0);
-  }
-  
-  /* Controls ----------------------------------------------------------------------*/
-  .controls {
+}
+
+/* Controls ----------------------------------------------------------------------*/
+.controls {
     position: relative;
     text-align: left;
     z-index: 1000;
-    top: 500px;
+    top: 520px;
     left: 660px;
-  }
-  
-  .controls ul {
+}
+
+.controls ul {
     list-style: none;
-  }
-  
-  .controls ul li {
+}
+
+.controls ul li {
     display: inline-block;
     width: 10px;
     height: 10px;
     margin: 3px;
-    background:rgb(255, 255, 255);
+    background: rgb(255, 255, 255);
     cursor: pointer;
-  }
-  
-  .controls ul li.active {
-    background:#da9413;
-  }
+}
+
+.controls ul li.active {
+    background: #da5c13;
+}
+
+#go-back-button {
+    position: absolute;
+    width: 630px;
+    height: 80px;
+    border-radius: 28px;
+    font-family: Roboto, sans-serif;
+    color: white;
+    font-size: 30px;
+    top: 550px;
+}
+
+.pomodoro-button {
+    background: #da5c13;
+}
+
+.pomodoro-button:hover {
+    background: #f50d05;
+}
+
+button {
+    border: 0;
+}
