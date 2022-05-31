@@ -1,6 +1,6 @@
 .site-navigation {
   display: block;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: sans-serif;
   font-size: 16px;
   font-weight: bold;
   margin: 40px;
@@ -32,7 +32,7 @@
 }
 
 .site-navigation li:hover {
-  @include transition(background, 0.2s);
+  /*@include transition(background, 0.2s);*/
   background: #dfd352;
   cursor: pointer;
 }
