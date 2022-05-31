@@ -247,6 +247,20 @@
     animation: slide-across-left 0.5s ease-out forwards;
 }
 
+.break-message.slide-open-settings {
+    animation: slide-center-out-settings 0.5s ease-out forwards;
+}
+.break-message.slide-close-settings {
+    animation: slide-center-in-settings 0.5s ease-out forwards;
+}
+.break-message.slide-across-right {
+    animation: slide-across-right 0.5s ease-out forwards;
+}
+.break-message.slide-across-left {
+    animation: slide-across-left 0.5s ease-out forwards;
+}
+
+
 /* Animations for settings and stats */
 @keyframes slide-left-out {
     to { left: 0 }

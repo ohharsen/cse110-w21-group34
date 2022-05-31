@@ -89,7 +89,7 @@ export function incrPomoCount () {
 
   // Update week history
   const today = new Date();
-  const dayIdx = (today.getDay() - 1) % Constants.LENGTH_OF_WEEK;
+  const dayIdx = ((today.getDay() - 1) + Constants.LENGTH_OF_WEEK) % Constants.LENGTH_OF_WEEK;
   const weekHistory = getWeekHistory();
   weekHistory[dayIdx]++;
   setWeekHistory(weekHistory);

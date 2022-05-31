@@ -1,6 +1,6 @@
 import * as Stats from './stats.js';
 import * as Constants from './constants.js';
-import { toggleAccessibility, toggleKeystroke } from './accessibility.js';
+import { toggleAccessibility, toggleKeystroke, toggleAutoStart } from './accessibility.js';
 
 /* Settings Pane and Buttons */
 // might be good to move all these to Constants.js
@@ -9,11 +9,13 @@ export const settingsOpenButton = document.getElementById('settings-open-button'
 export const settingsCloseButton = document.getElementById('settings-close-button');
 export const settingsColorButton = document.getElementById('colors-switch');
 export const settingsKeysButton = document.getElementById('keystroke-switch');
+export const settingsAutoStartButton = document.getElementById('autostart-switch');
 
 settingsOpenButton.onclick = openSettingsPane;
 settingsCloseButton.onclick = closeSettingsPane;
 settingsColorButton.onclick = toggleAccessibility;
 settingsKeysButton.onclick = toggleKeystroke;
+settingsAutoStartButton.onclick = toggleAutoStart;
 
 export let settingsPaneIsOpen = false;
 
@@ -28,8 +30,11 @@ export function openSettingsPane () {
     Stats.closeStatsPane();
     Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
     Stats.timerBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
+    Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE);
+    Stats.breakBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
   } else { // add the slide open settings (css)
     Stats.timerBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
+    Stats.breakBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
   }
   settingsPane.classList.add(Constants.SLIDE_OPEN_SETTINGS);
 
@@ -44,11 +49,14 @@ export function openSettingsPane () {
  */
 export function closeSettingsPane () {
   Stats.timerBlock.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
 
   Stats.timerBlock.classList.remove(Constants.SLIDE_ACROSS_RIGHT);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_ACROSS_RIGHT);
 
   Stats.timerBlock.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
+  Stats.breakBlock.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
 
   settingsPaneIsOpen = false;
@@ -64,6 +72,7 @@ export function toggleButtons () {
   settingsCloseButton.disabled = !settingsPaneIsOpen;
   settingsColorButton.disabled = !settingsPaneIsOpen;
   settingsKeysButton.disabled = !settingsPaneIsOpen;
+  settingsAutoStartButton.disabled = !settingsPaneIsOpen;
 }
 
 /* istanbul ignore next */
@@ -72,9 +81,11 @@ export function toggleButtons () {
  */
 export function removeAll () {
   Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE);
   Stats.statsPane.classList.remove(Constants.SLIDE_CLOSE);
 
   Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }
 /*

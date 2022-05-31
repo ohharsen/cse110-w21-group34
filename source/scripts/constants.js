@@ -3,6 +3,7 @@ export const START_STOP_ID = 'start-stop-button';
 export const TASK_BTN_ID = 'task';
 export const TASK_POMO_COUNTER = 'task-pomo-counter';
 export const CENTER_CONTAINER = 'center-container';
+export const BREAK_CONTAINER = 'break-container';
 export const LENGTH_OF_WEEK = 7;
 export const POMO_CYCLE_LENGTH = 4;
 export const WORK_LENGTH = 1500; // # of seconds in a work pomo (orig. 1500)
@@ -21,6 +22,7 @@ export const SLIDE_CLOSE_SETTINGS = 'slide-close-settings';
 
 /* Text */
 export const RESET_BTN_TXT = 'Reset';
+export const END_BTN_TXT = 'End Session';
 export const BEGIN_BTN_TXT = 'Begin';
 
 export const HOST_ADDRESS = 'http://127.0.0.1:5500/';
