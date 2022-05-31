@@ -23,7 +23,6 @@
 }
 
 .center-container.slide-close {
-
     animation: slide-center-in 0.5s ease-out forwards;
 }
 .break-message.slide-open {
@@ -31,7 +30,6 @@
 }
 
 .break-message.slide-close {
-
     animation: slide-center-in 0.5s ease-out forwards;
 }
 

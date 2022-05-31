@@ -3,7 +3,7 @@ const backgroundOneOption = document.getElementById('background_1');
 const backgroundTwoOption = document.getElementById('background_2');
 const backgroundThreeOption = document.getElementById('background_3');
 
-const backgroundOneURL = "url('../images/background.png')";
+const backgroundOneURL = "url('../images/background.svg')";
 const backgroundTwoURL = "url('../images/background2.png')";
 const backgroundThreeURL = "url('../images/background3.png')";
 
@@ -60,3 +60,4 @@ function backgroundThreeClicked () {
   disableDropdown();
   document.documentElement.style.backgroundImage = backgroundThreeURL;
 }
+
