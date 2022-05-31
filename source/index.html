@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./styles/timer.css">
     <link rel="stylesheet" href="./styles/stats.css">
     <link rel="stylesheet" href="./styles/confetti.css">
+    <link rel="stylesheet" href="./styles/switchBackground.css">
     <!--endbuild-->
     <link rel="icon" type="image/png" href="./favicon.ico">
     <script defer src="./scripts/timeWorker.js"></script>
@@ -25,6 +26,14 @@
     <div id="animation-overlay">
         <img id="confetti-img" src="./images/confetti.gif" alt="Confetti gif" draggable="false">
     </div>
+    <h1 id="pomobear-header">Pomobear</h1>
+    <div class="pots-container">
+        <img id="pot1" src="images/honey-pot-gray.svg" alt="First task complete indicator pot" draggable="false">
+        <img id="pot2" src="images/honey-pot-gray.svg" alt="Second task complete indicator pot" draggable="false">
+        <img id="pot3" src="images/honey-pot-gray.svg" alt="Third task complete indicator pot" draggable="false">
+        <img id="pot4" src="images/honey-pot-gray.svg" alt="Fourth task complete indicator pot" draggable="false">
+    </div>
+
     <main>
         <div class="center-container">
             <div class="pomo-indicator-container">
@@ -37,12 +46,6 @@
                 <div class="pomo-indicator" id="long-break-indicator">Long Break</div>
             </div>
             <div class="timer-container">
-                <div class="pots-container">
-                    <img id="pot1" src="images/honey-pot-gray.svg" alt="First task complete indicator pot" draggable="false">
-                    <img id="pot2" src="images/honey-pot-gray.svg" alt="Second task complete indicator pot" draggable="false">
-                    <img id="pot3" src="images/honey-pot-gray.svg" alt="Third task complete indicator pot" draggable="false">
-                    <img id="pot4" src="images/honey-pot-gray.svg" alt="Fourth task complete indicator pot" draggable="false">
-                </div>
                 <div class="timer" id="clockTimer">
                     <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <style>
@@ -91,24 +94,24 @@
                     Pomos
                 </button>
         </div>
-        <button id="settings-open-button" class="settings-button" type="button" aria-label="Open settings">
-                <img
-                    width="60"
-                    height="60"
-                    src="./images/settings.png"
-                    alt="Settings icon"
-                    draggable="false"
-                >
-            </button>
         <button id="stats-open-button" class="stats-button" type="button" aria-label="Open statistics">
-                <img
-                    width="60"
-                    height="60"
-                    src="./images/test.png"
-                    alt="Statistics icon"
-                    draggable="false"
-                >
-            </button>
+            <img
+                width="25px"
+                height="25px"
+                src="./images/test.png"
+                alt="Statistics icon"
+                draggable="false"
+            >
+        </button>
+        <button id="settings-open-button" class="settings-button" type="button" aria-label="Open settings">
+            <img
+                width="30px"
+                height="30px"
+                src="./images/settings.png"
+                alt="Settings icon"
+                draggable="false"
+            >
+        </button>
         <audio id="timer-sound" src="./sounds/quite-impressed-565.mp3"></audio>
     </main>
     <!-- Left-side info pane. -->
@@ -175,6 +178,19 @@
                                     <span class="slider round"></span>
                                 </label>
                         </div>
+                    </li>
+                    <li>
+                        <nav class="site-navigation">
+                            <ul>
+                                <li id="backgroundDropDown"><a href="#">Change Background</a>
+                                    <ul id="backgrounds">
+                                        <li id="background_1"><a href="#">Original</a></li>
+                                        <li id="background_2"><a href="#">Desert</a></li>
+                                        <li id="background_3"><a href="#">Lake</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
                     </li>
                 </ul>
             </div>
