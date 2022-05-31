@@ -11,16 +11,16 @@ let current = 0;
 const slider = {
   init: () => {
     controls.forEach(control => control.addEventListener('click', (e) => { slider.clickedControl(e) }));
-    document.querySelector('.right').addEventListener("click", slider.nextSlide);
-    document.querySelector('.left').addEventListener("click", slider.previousSlide);
+    document.querySelector('.right').addEventListener('click', slider.nextSlide);
+    document.querySelector('.left').addEventListener('click', slider.previousSlide);
     controls[current].classList.add('active');
     items[current].classList.add('active');
   },
   changeText: () => {
     if(current === items.length - 1){
-      document.getElementById('go-back-button').innerHTML = "Time to focus!";
+      document.getElementById('go-back-button').innerHTML = 'Time to focus!';
     }else{
-      document.getElementById('go-back-button').innerHTML = "Back to homepage";
+      document.getElementById('go-back-button').innerHTML = 'Back to homepage';
     }
   },
   nextSlide: () => { // Increment current slide and add active class
