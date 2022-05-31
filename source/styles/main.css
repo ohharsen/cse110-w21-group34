@@ -92,9 +92,7 @@ main {
     font-size: 50px;
     font-weight: bolder;
     color: var(--white);
-    font-family: Roboto, sans-serif;
 }
-
 
 img {
     user-select: none;
@@ -128,7 +126,6 @@ aside {
     border-radius: 21px;
     font-size: 3em;
     visibility: hidden;
-    font-family: Roboto, sans-serif;
 }
 
 #break-container {
