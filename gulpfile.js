@@ -66,7 +66,7 @@ function jsMainTask() {
     .pipe(dest('build/scripts'));
 }
 
-// Copy and minify the main part of the JS
+// Copy and minify the log rocket part of the JS
 function jsLogRocketTask() {
   return src(logRocketPath)
     .pipe(terser())
