@@ -1,7 +1,7 @@
 import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
 import * as Settings from './settings.js';
-import { drawGraph } from './util/graph.js';
+import { displayGraph } from './util/graph.js';
 
 /* Elements */
 export const timerBlock = document.getElementsByClassName('center-container')[0];
@@ -20,8 +20,6 @@ const todayPomoElem = document.getElementById('today-pomodoros');
 const todayTasksElem = document.getElementById('today-tasks');
 const todayInterruptElem = document.getElementById('today-interruptions');
 
-const graphCanvas = document.getElementById('weekly-graph');
-
 const MINUTES = 60;
 const NUM_DECIMALS = 2;
 
@@ -39,7 +37,7 @@ export function updateStats () {
   Storage.updateStorage();
   displayTodayStats();
   displayTotalStats();
-  drawGraph(graphCanvas, Storage.getWeekHistory());
+  displayGraph(Storage.getWeekHistory());
 }
 
 /* istanbul ignore next */
@@ -103,11 +101,17 @@ export function displayTotalStats () {
   const bestPomoCount = Storage.getCounter(Storage.BEST_DAILY_POMO_ID);
   const totalTaskCount = Storage.getCounter(Storage.TOTAL_TASK_ID);
 
-  totalPomoElem.textContent = totalPomoCount;
-  totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(NUM_DECIMALS);
-  bestPomoElem.textContent = bestPomoCount;
-  bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / MINUTES)).toFixed(NUM_DECIMALS);
-  totalTasksElem.textContent = totalTaskCount;
+  //totalPomoElem.textContent = totalPomoCount;
+  //totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(NUM_DECIMALS);
+  //bestPomoElem.textContent = bestPomoCount;
+  //bestTimeElem.textContent = (bestPomoCount * (Constants.WORK_LENGTH / MINUTES)).toFixed(NUM_DECIMALS);
+  //totalTasksElem.textContent = totalTaskCount;
+
+  document.getElementById('total-pomodoros').innerHTML = totalPomoCount;
+  document.getElementById('total-interruptions').innerHTML = (totalInterruptCount / (totalPomoCount || 1)).toFixed(NUM_DECIMALS);
+  document.getElementById('total-best-pomo').innerHTML = bestPomoCount;
+  document.getElementById('total-best-time').innerHTML = (bestPomoCount * (Constants.WORK_LENGTH / MINUTES)).toFixed(NUM_DECIMALS);
+  document.getElementById('total-tasks').innerHTML = totalTaskCount;
 }
 
 /* istanbul ignore next */
@@ -126,7 +130,11 @@ export function displayTodayStats () {
   const todayTaskCount = Storage.getCounter(Storage.TODAY_TASK_ID);
 
   // calculating daily stats with extracted data and displaying to UI
-  todayPomoElem.textContent = todayPomoCount;
-  todayInterruptElem.textContent = todayInterruptCount;
-  todayTasksElem.textContent = todayTaskCount;
+  //todayPomoElem.textContent = todayPomoCount;
+  //todayInterruptElem.textContent = todayInterruptCount;
+  //todayTasksElem.textContent = todayTaskCount;
+
+  document.getElementById("today-pomodoros").innerHTML = todayPomoCount
+  document.getElementById("today-tasks").innerHTML = todayInterruptCount
+  document.getElementById("today-interruptions").innerHTML = todayTaskCount
 }

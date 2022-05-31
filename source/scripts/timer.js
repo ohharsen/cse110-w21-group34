@@ -2,6 +2,7 @@ import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
+import { lang } from './util/language.js';
 
 /* Constants */
 const STOP_TIMER_COLOR = 'var(--grey)';
@@ -20,6 +21,8 @@ const countdownText = document.getElementById('countdownText');
 const yesButton = document.getElementById('reset-yes-button');
 const noButton = document.getElementById('reset-no-button');
 const timerAudio = document.getElementById('timer-sound');
+const settingsButton = document.getElementById('settings-open-button');
+const statsButton = document.getElementById('stats-open-button');
 
 const workIndicator = document.getElementById('work-indicator');
 const longBreakIndicator = document.getElementById('long-break-indicator');
@@ -77,6 +80,10 @@ export function beginCountdown (duration) {
   duration--;
   displayTime(duration);
   const timerRingColor = (onBreak) ? BREAK_TIMER_COLOR : WORK_TIMER_COLOR;
+  settingsButton.disabled = !(onBreak);
+  statsButton.disabled = !(onBreak);
+  settingsButton.style.opacity = (onBreak) ? 1 : 0.2;
+  statsButton.style.opacity = (onBreak) ? 1 : 0.2;
   timerRing.setAttribute('stroke', timerRingColor);
   timerRing.setAttribute('stroke-dasharray', `${(timeFraction(duration, pomoState) * DASH_STROKE_VAL)} ${DASH_STROKE_VAL}`);
 
@@ -146,7 +153,8 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     timerAudio.currentTime = 0;
   }
   if (startStopButton) {
-    startStopButton.innerHTML = Constants.RESET_BTN_TXT;
+    startStopButton.innerHTML = lang.reset;
+    //startStopButton.innerHTML = Constants.RESET_BTN_TXT;
 
     if (!localOnBreak) {
       pomoState = Constants.timerOptions.POMO;
@@ -176,7 +184,8 @@ function stopTimer () {
   // Mutes timer color
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
-  startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+  startStopButton.innerHTML = lang.begin;
+  //startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
   if (!onBreak) {
     pomoCount++;
     // Dispalys the next cycle without beginning it
@@ -224,7 +233,8 @@ export function resetTimer () {
   toggleTaskButtonDisabled(true);
 
   if (startStopButton) {
-    startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+    startStopButton.innerHTML = lang.begin;
+    //startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
     if (timeWorker) timeWorker.postMessage({ start: false });
     if (legacyInterval) clearInterval(legacyInterval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
@@ -237,7 +247,8 @@ export function resetTimer () {
 
   Storage.incrInterruptions();
   updateStats();
-  return [pomoState, Constants.BEGIN_BTN_TXT];
+  return [pomoState, lang.begin];
+  //return [pomoState, Constants.BEGIN_BTN_TXT];
 }
 
 /*
@@ -294,6 +305,13 @@ export function displayTime (time) {
   minutes = minutes < BASE_10 ? '0' + minutes : minutes;
   seconds = seconds < BASE_10 ? '0' + seconds : seconds;
   countdownText.textContent = minutes + ':' + seconds;
+
+  if (onBreak) {
+    window.document.title = 'Break: ' + countdownText.textContent;
+  } else {
+    window.document.title = 'Work: ' + countdownText.textContent;
+  }
+
   return countdownText.textContent;
 }
 

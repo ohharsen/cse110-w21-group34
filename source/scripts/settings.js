@@ -3,6 +3,7 @@ import * as Constants from './constants.js';
 import { toggleAccessibility, toggleKeystroke } from './accessibility.js';
 
 /* Settings Pane and Buttons */
+// might be good to move all these to Constants.js
 export const settingsPane = document.getElementById('settings-container');
 export const settingsOpenButton = document.getElementById('settings-open-button');
 export const settingsCloseButton = document.getElementById('settings-close-button');
@@ -22,13 +23,12 @@ export let settingsPaneIsOpen = false;
  */
 export function openSettingsPane () {
   removeAll();
-
+  // closing the status pane and open the settings
   if (Stats.statsPane.classList.contains(Constants.SLIDE_OPEN)) {
     Stats.closeStatsPane();
-
     Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
     Stats.timerBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
-  } else {
+  } else { // add the slide open settings (css)
     Stats.timerBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
   }
   settingsPane.classList.add(Constants.SLIDE_OPEN_SETTINGS);
@@ -40,6 +40,7 @@ export function openSettingsPane () {
 /* istanbul ignore next */
 /**
  * Closes the settings pane and allows stats pane to reopen
+ * removes unnecessary css animations
  */
 export function closeSettingsPane () {
   Stats.timerBlock.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
@@ -76,3 +77,18 @@ export function removeAll () {
   Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }
+/*
+* initial load
+* sets height of settings/stats tab
+*/
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+/* istanbul ignore next */
+/**
+ * on window resize trigger new height
+ */
+window.addEventListener('resize', () => {
+  vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
