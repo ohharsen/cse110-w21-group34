@@ -11,8 +11,17 @@ let current = 0;
 const slider = {
   init: () => {
     controls.forEach(control => control.addEventListener('click', (e) => { slider.clickedControl(e) }));
+    document.querySelector('.right').addEventListener("click", slider.nextSlide);
+    document.querySelector('.left').addEventListener("click", slider.previousSlide);
     controls[current].classList.add('active');
     items[current].classList.add('active');
+  },
+  changeText: () => {
+    if(current === items.length - 1){
+      document.getElementById('go-back-button').innerHTML = "Time to focus!";
+    }else{
+      document.getElementById('go-back-button').innerHTML = "Back to homepage";
+    }
   },
   nextSlide: () => { // Increment current slide and add active class
     slider.reset();
@@ -20,6 +29,17 @@ const slider = {
     current++;
     controls[current].classList.add('active');
     items[current].classList.add('active');
+    slider.changeText();
+    slider.transitionDelay(headerItems);
+    slider.transitionDelay(descriptionItems);
+  },
+  previousSlide: () => { // Increment current slide and add active class
+    slider.reset();
+    if (current === 0) current = items.length; // Check if current slide is first in array
+    current--;
+    controls[current].classList.add('active');
+    items[current].classList.add('active');
+    slider.changeText();
     slider.transitionDelay(headerItems);
     slider.transitionDelay(descriptionItems);
   },
@@ -37,6 +57,7 @@ const slider = {
       }
     })
     current = dataIndex; // Update current slide
+    slider.changeText();
     slider.transitionDelay(headerItems);
     slider.transitionDelay(descriptionItems);
     intervalF = setInterval(slider.nextSlide, interval); // Fire that bad boi back up
@@ -65,6 +86,7 @@ const slider = {
     })
   },
 }
+
 
 let intervalF = setInterval(slider.nextSlide, interval);
 slider.init();

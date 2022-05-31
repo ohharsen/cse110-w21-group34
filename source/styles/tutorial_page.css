@@ -177,3 +177,30 @@ body {
 button {
     border: 0;
 }
+
+.arrow {
+    border: solid black;
+    border-width: 0 13px 13px 0;
+    display: inline-block;
+    padding: 13px;
+    position: absolute;
+    top: 270px;
+    opacity: 0.3;
+    background: transparent;
+    z-index: 10000;
+}
+.arrow:hover {
+    opacity: 0.7;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    left: 570px;
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    left: 20px;
+}
