@@ -1,4 +1,4 @@
-const background_1_path = "url(\"http://127.0.0.1:5500/images/background.png\")"
+const background_1_path = "url(\"http://127.0.0.1:5500/images/background.svg\")"
 const background_2_path = "url(\"http://127.0.0.1:5500/images/background2.png\")"
 const background_3_path = "url(\"http://127.0.0.1:5500/images/background3.png\")"
 
