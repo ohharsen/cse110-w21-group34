@@ -23,7 +23,13 @@
 }
 
 .center-container.slide-close {
+    animation: slide-center-in 0.5s ease-out forwards;
+}
+.break-message.slide-open {
+    animation: slide-center-out 0.5s ease-out forwards;
+}
 
+.break-message.slide-close {
     animation: slide-center-in 0.5s ease-out forwards;
 }
 
@@ -66,13 +72,13 @@
   
 /** Organization of text and positioning. **/
 #countdownText {
-    font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: opacity 250ms linear;
+    font-family: sans-serif;
 }
 
 .hover-text {
@@ -89,7 +95,6 @@
     width: 55%;
     height: 80px;
     border-radius: 28px;
-    font-family: Roboto, sans-serif;
     color: white;
     font-size: 30px;
 }
@@ -107,7 +112,6 @@
     width: 55%;
     height: 80px;
     border-radius: 28px;
-    font-family: Roboto, sans-serif;
     color: white;
     font-size: 16px;
     outline: 0;
@@ -138,7 +142,6 @@
 }
 
 #prompt-text {
-    font-family: Roboto, sans-serif;
     text-align: center;
     margin: 0 0 5px 0;
     transform: translate(0, -50%);
@@ -184,7 +187,6 @@
     width: fit-content;
     padding-left: 20px;
     padding-right: 20px;
-    font-family: Roboto, sans-serif;
     color: var(--counter-color);
     font-size: var(--button-text-size);
     align-self: center;
@@ -223,7 +225,6 @@
 }
 
 .pomo-indicator-container {
-    font-family: Roboto, sans-serif;
     font-size: 18px;
     color: var(--counter-color);
     display: flex;

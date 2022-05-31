@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+/* roboto-regular - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/roboto-v30-latin-regular.woff2") format("woff2");
+    font-display: swap;
+}
 
 /* Color constants and size constants */
 
@@ -27,7 +34,7 @@
     --green-grad: linear-gradient(180deg, #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
-    --background-source: url('../images/background.png');
+    --background-source: url("../images/background.svg");
     --counter-color: white;
 }
 
@@ -67,6 +74,7 @@ body {
     min-height: 100vh;
     height: 100%;
     margin: 0;
+    font-family: "Roboto", sans-serif;
 }
 
 main {
@@ -83,18 +91,10 @@ main {
 
 #pomobear-header-container {
     position: absolute;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    left: 20%;
-}
-
-#pomobear-header {
+    left: 5%;
     font-size: 50px;
     font-weight: bolder;
     color: var(--white);
-    font-family: Roboto, sans-serif;
-    margin-right: 0;
 }
 
 img {
@@ -124,35 +124,39 @@ aside {
     overflow: auto;
 }
 
-.info-button:active {
-    opacity: 100%;
+#break-message{
+    color: var(--black);
+    background: var(--white-a1);
+    padding: 16px;
+    border-radius: 21px;
+    font-size: 3em;
+    visibility: hidden;
 }
 
-.info-button {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border-radius: 15px;
-    border: 0;
-    margin-top: 53px;
-    margin-bottom: auto;
+#break-container {
+    margin-top: -20px;
+    margin-bottom: -165px;
+    display: inline-block;
+    position: relative;
+    animation: break-animation 1s infinite;
 }
 
-.info-button:hover:enabled {
-    background: var(--white-a2);
+@keyframes break-animation {
+    0%,100% {
+        transform: translateY(0)
+      }
+      50% {
+        transform: translateY(10px)
+      }
 }
 
-.info-button:active {
-    opacity: 100%;
+@media only screen and (max-width: 400px) {
+    #break-message {
+        font-size: 2em;
+        max-width: 200px;
+        text-align: center;
+    }
 }
-
-#info-open-button {
-    align-items: center;
-    align-content: center;
-    justify-items: center;
-    justify-content: center;
-}
-
 
 /* Animations for settings and stats */
 
