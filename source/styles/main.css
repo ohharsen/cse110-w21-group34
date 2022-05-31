@@ -93,7 +93,7 @@ main {
     font-weight: bolder;
     color: var(--white);
     font-family: Roboto, sans-serif;
-    margin-right: 20px;
+    margin-right: 0;
 }
 
 img {
@@ -130,13 +130,11 @@ aside {
 .info-button {
     width: 40px;
     height: 40px;
-    background: var(--white-a1);
+    background: transparent;
     border-radius: 15px;
     border: 0;
-    margin-top: auto;
+    margin-top: 53px;
     margin-bottom: auto;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
 .info-button:hover:enabled {

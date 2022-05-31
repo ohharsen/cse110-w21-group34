@@ -9,11 +9,11 @@ body {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: rgb(141, 187, 40);
+    background: rgb(255, 255, 255);
     font-family: 'Fira Mono', monospace;
     -webkit-font-smoothing: antialiased;
     font-size: 20px;
-    color: #ffffff;
+    color: #da5c13;
 }
 
 .content-width {
@@ -147,7 +147,7 @@ body {
     width: 10px;
     height: 10px;
     margin: 3px;
-    background: rgb(255, 255, 255);
+    background: #10e048;
     cursor: pointer;
 }
 
