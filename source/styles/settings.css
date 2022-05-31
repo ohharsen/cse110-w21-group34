@@ -91,17 +91,6 @@
     margin-bottom: 5px;
 }
 
-.settings-button {
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    width: 80px;
-    height: 80px;
-    background: var(--white-a1);
-    border-radius: 15px;
-    outline: 0;
-}
-
 #explanation-text {
     line-height: 200%;
 }
@@ -113,17 +102,17 @@
 /* All Settings button positioning, size, color, etc */
 .settings-button {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 80px;
-    height: 80px;
+    bottom: 20px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
     background: var(--white-a1);
     border-radius: 15px;
     border: 0;
 }
 
-.settings-button:hover {
-    opacity: 90%;
+.settings-button:hover:enabled {
+    background: var(--white-a2);
 }
 
 .settings-button:active {
@@ -226,10 +215,15 @@
     }
 
     .settings-button {
-        top: 12px;
+        bottom: 10px;
         right: 12px;
-        width: 80px;
-        height: 80px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .settings-button img {
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -252,6 +246,20 @@
 .center-container.slide-across-left {
     animation: slide-across-left 0.5s ease-out forwards;
 }
+
+.break-message.slide-open-settings {
+    animation: slide-center-out-settings 0.5s ease-out forwards;
+}
+.break-message.slide-close-settings {
+    animation: slide-center-in-settings 0.5s ease-out forwards;
+}
+.break-message.slide-across-right {
+    animation: slide-across-right 0.5s ease-out forwards;
+}
+.break-message.slide-across-left {
+    animation: slide-across-left 0.5s ease-out forwards;
+}
+
 
 /* Animations for settings and stats */
 @keyframes slide-left-out {

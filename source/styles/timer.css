@@ -1,7 +1,8 @@
 /* Container for countdown box, session indicators, and number of pomos */
 .center-container {
-    width: 25%;
-    min-width: 300px;
+    padding-top: 175px;
+    width: 35%;
+    min-width: 500px;
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -25,13 +26,21 @@
 
     animation: slide-center-in 0.5s ease-out forwards;
 }
+.break-message.slide-open {
+    animation: slide-center-out 0.5s ease-out forwards;
+}
+
+.break-message.slide-close {
+
+    animation: slide-center-in 0.5s ease-out forwards;
+}
 
 /* Box containing the countdown, pomojars, and begin button */
 .timer-container {
     box-sizing: border-box;
     padding: 16px;
     background: var(--white-a1);
-    height: 80%;
+    height: 100%;
     width: 100%;
     display: flex;
     border-radius: 21px;
@@ -85,12 +94,12 @@
 
 /* Start button positioning, sizing, color */
 #start-stop-button {
-    width: 40%;
-    height: 60px;
-    border-radius: 32px;
+    width: 55%;
+    height: 80px;
+    border-radius: 28px;
     font-family: Roboto, sans-serif;
     color: white;
-    font-size: var(--button-text-size);
+    font-size: 30px;
 }
 
 #start-stop-button:focus {
@@ -103,9 +112,9 @@
 
 /* Prompt buttons for resetting timer */
 .prompt-button{
-    width: 40%;
-    height: 60px;
-    border-radius: 32px;
+    width: 55%;
+    height: 80px;
+    border-radius: 28px;
     font-family: Roboto, sans-serif;
     color: white;
     font-size: 16px;
@@ -178,12 +187,16 @@
 /* Positioning, size, and color for task button */
 .task-button {
     background: var(--orange);
-    border-radius: 22px;
-    height: 50px;
+    border-radius: 10px;
+    min-height: 35px;
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
     font-family: Roboto, sans-serif;
     color: var(--counter-color);
     font-size: var(--button-text-size);
-    margin-top: 5px;
+    align-self: center;
+    margin-top: 10px;
 }
 
 .task-button:hover {
@@ -200,10 +213,11 @@
     background:rgba(255, 255, 255, 0.2);
 }
 
-/* positioning for pomo pots/jars */
+/* positioning for pomo pots */
 .pots-container {
-    width: 100%;
-    padding-bottom: 16px;
+    position: fixed;
+    top: 55px;
+    right: 105px;
     display: flex;
     align-items: flex-end;
     justify-items: flex-end;
@@ -244,4 +258,20 @@
 
 .highlight {
     opacity: 1;
+}
+
+@media only screen and (max-width: 480px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pots-container {
+        position: relative;
+        top: 100px;
+    }
+
+    .center-container {
+        padding-top: 110px;
+    }
 }

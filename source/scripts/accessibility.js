@@ -12,6 +12,7 @@ const root = document.documentElement;
 
 let accessibleMode = false;
 let keystrokeMode = true;
+let autostartMode = false;
 
 document.onkeydown = keyControls;
 
@@ -96,4 +97,19 @@ export function toggleKeystroke () {
  */
 export function isKeystrokeEnabled () {
   return keystrokeMode;
+}
+
+/**
+ * Toggles the autostart for the timer whenever the user toggles the setting switch
+ */
+export function toggleAutoStart () {
+  autostartMode = !autostartMode;
+}
+
+/**
+ * Getter method for auto start mode
+ * @returns {Boolean} true when auto start mode is on, false if off
+ */
+export function isAutoStartEnabled () {
+  return autostartMode;
 }

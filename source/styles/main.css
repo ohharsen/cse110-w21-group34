@@ -26,7 +26,7 @@
     --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
-    --bacgkround-source: url('../images/background.png');
+    --background-source: url('../images/background.png');
     --counter-color: white;
 }
 
@@ -44,13 +44,13 @@
     --green-grad: linear-gradient(180deg,  #575757 0%, #00644e 100%);
     --green-grad-1: linear-gradient(180deg,  #00644e 0%, #575757 100%);
     --button-text-size: 22px;
-    --bacgkround-source: url("../images/background_hi_contrast.png");
+    --background-source: url("../images/background_hi_contrast.png");
     --counter-color: black;
 }
 
 /* Positioning, background, size for page */
 html {
-    background: var(--bacgkround-source) no-repeat center center fixed; 
+    background: var(--background-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -74,9 +74,19 @@ main {
     align-items: center;
     align-content: center;
     justify-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
 }
+
+#pomobear-header {
+    position: absolute;
+    left: 5%;
+    font-size: 50px;
+    font-weight: bolder;
+    color: var(--white);
+    font-family: Roboto, sans-serif;
+}
+
 
 img {
     user-select: none;
@@ -103,6 +113,41 @@ aside {
     overflow: auto;
 }
 
+#break-message{
+    color: var(--black);
+    background: var(--white-a1);
+    padding: 16px;
+    border-radius: 21px;
+    font-size: 3em;
+    visibility: hidden;
+    font-family: Roboto, sans-serif;
+}
+
+#break-container {
+    margin-top: -20px;
+    margin-bottom: -165px;
+    display: inline-block;
+    position: relative;
+    animation: break-animation 1s infinite;
+}
+
+@keyframes break-animation {
+    0%,100% {
+        transform: translateY(0)
+      }
+      50% {
+        transform: translateY(10px)
+      }
+}
+
+@media only screen and (max-width: 400px) {
+    #break-message {
+        font-size: 2em;
+        max-width: 200px;
+        text-align: center;
+    }
+}
+
 /* Animations for settings and stats */
 @keyframes slide-right-out {
     to { right: 0 }
@@ -121,4 +166,3 @@ aside {
     from { transform: translate(-15vw, 0) }
     to { transform: translate(0, 0) }
 }
-
