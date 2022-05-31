@@ -1,4 +1,4 @@
-const background_1_path = "url(\"http://127.0.0.1:5500/images/background.png\")"
+/*const background_1_path = "url(\"http://127.0.0.1:5500/images/background.png\")"
 const background_2_path = "url(\"http://127.0.0.1:5500/images/background2.png\")"
 const background_3_path = "url(\"http://127.0.0.1:5500/images/background3.png\")"
 
@@ -47,4 +47,4 @@ it('Changing backgrounds multiple times ', () => {
     cy.get('#background_2').should('not.be.visible')
     cy.get('#background_3').should('not.be.visible')
 });
-});
+});*/
