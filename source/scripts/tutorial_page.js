@@ -10,7 +10,7 @@ let current = 0;
 
 const slider = {
   init: () => {
-    controls.forEach(control => control.addEventListener('click', (e) => { slider.clickedControl(e) }));
+    controls.forEach(control => control.addEventListener('click', (e) => { slider.clickedControl(e); }));
     document.querySelector('.right').addEventListener('click', slider.nextSlide);
     document.querySelector('.left').addEventListener('click', slider.previousSlide);
     controls[current].classList.add('active');
@@ -84,9 +84,8 @@ const slider = {
         }
       });
     });
-  },
-}
-
+  }
+};
 
 let intervalF = setInterval(slider.nextSlide, interval);
 slider.init();
