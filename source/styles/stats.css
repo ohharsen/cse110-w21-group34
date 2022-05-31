@@ -97,32 +97,29 @@
     font-weight: bolder;
 }
 
-/* All stats button positioning, color, and active */
 .stats-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
     background: var(--white-a1);
     border-radius: 15px;
     border: 0;
 }
 
-.stats-button:hover {
-    opacity: 90%;
+/* All stats button positioning, color, and active */
+@media only screen and (min-width: 769px) {
+    .stats-button {
+        position: fixed;
+        top: 50px;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.stats-button:hover:enabled {
+    background: var(--white-a2);
 }
 
 .stats-button:active {
     opacity: 100%;
-}
-
-#stats-open-button {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-items: center;
-    justify-content: center;
 }
 
 #stats-close-button {
@@ -165,7 +162,7 @@
 }
 
 /* Responsive design for smaller screens for stats container */
-@media only screen and (max-width: 814px) {
+@media only screen and (max-width: 768px) {
     #stats-container {
         height: 100vh; /* fallback */
         height: calc(var(--vh, 1vh) * 100 - 36px); 
@@ -193,6 +190,9 @@
     }
 
     .stats-button {
+        position: fixed;
+        bottom: 20px;
+        left: 30px;
         width: 80px;
         height: 80px;
     }
@@ -219,10 +219,16 @@
     }
 
     .stats-button {
-        top: 12px;
-        right: 12px;
-        width: 80px;
-        height: 80px;
+        position: fixed;
+        bottom: 10px;
+        left: 12px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .stats-button img {
+        width: 30px;
+        height: 30px;
     }
 }
 

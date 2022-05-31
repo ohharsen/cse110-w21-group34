@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script src="https://cdn.lr-in-prod.com/LogRocket.min.js" crossorigin="anonymous"></script>
-    <script>window.LogRocket && window.LogRocket.init('umcvob/texascodeem');</script>
+    <script>
+        window.LogRocket && window.LogRocket.init('umcvob/texascodeem');
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title name="tab-title">Pomodoro by Texas Codem</title>
@@ -26,6 +29,14 @@
     <div id="animation-overlay">
         <img id="confetti-img" src="./images/confetti.gif" alt="Confetti gif" draggable="false">
     </div>
+    <h1 id="pomobear-header">Pomobear</h1>
+    <div class="pots-container">
+        <img id="pot1" src="images/honey-pot-gray.svg" alt="First task complete indicator pot" draggable="false">
+        <img id="pot2" src="images/honey-pot-gray.svg" alt="Second task complete indicator pot" draggable="false">
+        <img id="pot3" src="images/honey-pot-gray.svg" alt="Third task complete indicator pot" draggable="false">
+        <img id="pot4" src="images/honey-pot-gray.svg" alt="Fourth task complete indicator pot" draggable="false">
+    </div>
+
     <main>
         <div class="center-container">
             <div class="pomo-indicator-container">
@@ -38,12 +49,6 @@
                 <div class="pomo-indicator" id="long-break-indicator">Long Break</div>
             </div>
             <div class="timer-container">
-                <div class="pots-container">
-                    <img id="pot1" src="images/honey-pot-gray.svg" alt="First task complete indicator pot" draggable="false">
-                    <img id="pot2" src="images/honey-pot-gray.svg" alt="Second task complete indicator pot" draggable="false">
-                    <img id="pot3" src="images/honey-pot-gray.svg" alt="Third task complete indicator pot" draggable="false">
-                    <img id="pot4" src="images/honey-pot-gray.svg" alt="Fourth task complete indicator pot" draggable="false">
-                </div>
                 <div class="timer" id="clockTimer">
                     <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <g class="timer_circle_container">
@@ -89,24 +94,24 @@
                     Pomos
                 </button>
         </div>
-        <button id="settings-open-button" class="settings-button" type="button" aria-label="Open settings">
-                <img id="settings-img"
-                    width="60px"
-                    height="60px"
-                    src="./images/settings.png"
-                    alt="Settings icon"
-                    draggable="false"
-                >
-            </button>
         <button id="stats-open-button" class="stats-button" type="button" aria-label="Open statistics">
-                <img id="stats-img"
-                    width="60px"
-                    height="60px"
-                    src="./images/test.png"
-                    alt="Statistics icon"
-                    draggable="false"
-                >
-            </button>
+            <img
+                width="25px"
+                height="25px"
+                src="./images/test.png"
+                alt="Statistics icon"
+                draggable="false"
+            >
+        </button>
+        <button id="settings-open-button" class="settings-button" type="button" aria-label="Open settings">
+            <img
+                width="30px"
+                height="30px"
+                src="./images/settings.png"
+                alt="Settings icon"
+                draggable="false"
+            >
+        </button>
         <audio id="timer-sound" src="./sounds/quite-impressed-565.mp3"></audio>
     </main>
     <!-- Left-side info pane. -->
@@ -138,11 +143,9 @@
                 </header>
                 <div class="stats-flex">
                     <p id="tutorial-text">
-                        Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>" to end early.
-                        The text headers and ring color will indicate the
+                        Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>" to end early. The text headers and ring color will indicate the
                         <span id="work-text">work</span> and
-                        <span id="break-text">break</span> stages of a cycle.
-                        Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
+                        <span id="break-text">break</span> stages of a cycle. Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
                     </p>
                 </div>
             </div>
@@ -183,11 +186,11 @@
                 <div class="dropdown">
                     <button id="dropdown" class="dropbtn">Language</button>
                     <div class="dropdown-content">
-                      <a id="dropdown-en">English</a>
-                      <a id="dropdown-ko">Korean</a>
-                      <a href="#">tbd</a>
+                        <a id="dropdown-en">English</a>
+                        <a id="dropdown-ko">Korean</a>
+                        <a href="#">tbd</a>
                     </div>
-                  </div>
+                </div>
             </div>
         </section>
     </aside>
@@ -277,6 +280,6 @@
     <script src="./scripts/accessibility.js" type="module"></script>
     <script src="./scripts/settings.js" type="module"></script>
     <script src="./scripts/util/language.js" type="module"></script>
- </body>
+</body>
 
 </html>
