@@ -1,10 +1,10 @@
 // Master DOManipulator v2 ------------------------------------------------------------
 const items = document.querySelectorAll('.item');
-const  controls = document.querySelectorAll('.control');
-const  headerItems = document.querySelectorAll('.item-header');
-const  descriptionItems = document.querySelectorAll('.item-description');
-const  activeDelay = 0.76;
-const  interval = 100000;
+const controls = document.querySelectorAll('.control');
+const headerItems = document.querySelectorAll('.item-header');
+const descriptionItems = document.querySelectorAll('.item-description');
+const activeDelay = 0.76;
+const interval = 100000;
 
 let current = 0;
 
@@ -48,7 +48,7 @@ const slider = {
     clearInterval(intervalF);
 
     const control = e.target;
-    const  dataIndex = Number(control.dataset.index);
+    const dataIndex = Number(control.dataset.index);
 
     control.classList.add('active');
     items.forEach((item, index) => {
