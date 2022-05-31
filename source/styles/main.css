@@ -74,9 +74,19 @@ main {
     align-items: center;
     align-content: center;
     justify-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
 }
+
+#pomobear-header {
+    position: absolute;
+    left: 20%;
+    font-size: 50px;
+    font-weight: bolder;
+    color: var(--white);
+    font-family: Roboto, sans-serif;
+}
+
 
 img {
     user-select: none;
@@ -121,4 +131,3 @@ aside {
     from { transform: translate(-15vw, 0) }
     to { transform: translate(0, 0) }
 }
-
