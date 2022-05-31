@@ -1,10 +1,10 @@
 // Master DOManipulator v2 ------------------------------------------------------------
-const items = document.querySelectorAll('.item'),
-  controls = document.querySelectorAll('.control'),
-  headerItems = document.querySelectorAll('.item-header'),
-  descriptionItems = document.querySelectorAll('.item-description'),
-  activeDelay = .76,
-  interval = 100000;
+const items = document.querySelectorAll('.item');
+const  controls = document.querySelectorAll('.control');
+const  headerItems = document.querySelectorAll('.item-header');
+const  descriptionItems = document.querySelectorAll('.item-description');
+const  activeDelay = 0.76;
+const  interval = 100000;
 
 let current = 0;
 
@@ -47,15 +47,15 @@ const slider = {
     slider.reset();
     clearInterval(intervalF);
 
-    const control = e.target,
-      dataIndex = Number(control.dataset.index);
+    const control = e.target;
+    const  dataIndex = Number(control.dataset.index);
 
     control.classList.add('active');
     items.forEach((item, index) => {
       if (index === dataIndex) { // Add active class to corresponding slide
         item.classList.add('active');
       }
-    })
+    });
     current = dataIndex; // Update current slide
     slider.changeText();
     slider.transitionDelay(headerItems);
@@ -71,10 +71,10 @@ const slider = {
 
     items.forEach(item => {
       const children = item.childNodes; // .vertical-part(s)
-      let count = 1,
-        delay;
+      let count = 1;
+      let delay;
 
-      item.classList.value === 'item-header' ? seconds = .015 : seconds = .007;
+      item.classList.value === 'item-header' ? seconds = 0.015 : seconds = 0.007;
 
       children.forEach(child => { // iterate through .vertical-part(s) and style b element
         if (child.classList) {
@@ -82,8 +82,8 @@ const slider = {
           child.firstElementChild.style.transitionDelay = `${delay}s`; // b element
           count++;
         }
-      })
-    })
+      });
+    });
   },
 }
 
