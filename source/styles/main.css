@@ -82,7 +82,7 @@ main {
     align-items: center;
     align-content: center;
     justify-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: column;
 }
 

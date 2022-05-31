@@ -20,6 +20,7 @@ const SLIDE_CLOSE_SETTINGS = 'slide-close-settings';
 
 /* Text */
 const RESET_BTN_TXT = 'Reset';
+const END_BTN_TXT = 'End Session';
 const BEGIN_BTN_TXT = 'Begin';
 
 /**
@@ -137,7 +138,7 @@ function incrPomoCount () {
 
   // Update week history
   const today = new Date();
-  const dayIdx = (today.getDay() - 1) % LENGTH_OF_WEEK;
+  const dayIdx = ((today.getDay() - 1) + LENGTH_OF_WEEK) % LENGTH_OF_WEEK;
   const weekHistory = getWeekHistory();
   weekHistory[dayIdx]++;
   setWeekHistory(weekHistory);
@@ -218,6 +219,7 @@ const root = document.documentElement;
 
 let accessibleMode = false;
 let keystrokeMode = true;
+let autostartMode = false;
 
 document.onkeydown = keyControls;
 
@@ -294,6 +296,21 @@ function toggleKeystroke () {
   document.onkeydown = (keystrokeMode) ? keyControls : undefined;
 }
 
+/**
+ * Toggles the autostart for the timer whenever the user toggles the setting switch
+ */
+function toggleAutoStart () {
+  autostartMode = !autostartMode;
+}
+
+/**
+ * Getter method for auto start mode
+ * @returns {Boolean} true when auto start mode is on, false if off
+ */
+function isAutoStartEnabled () {
+  return autostartMode;
+}
+
 /* Settings Pane and Buttons */
 // might be good to move all these to Constants.js
 const settingsPane = document.getElementById('settings-container');
@@ -301,11 +318,30 @@ const settingsOpenButton = document.getElementById('settings-open-button');
 const settingsCloseButton = document.getElementById('settings-close-button');
 const settingsColorButton = document.getElementById('colors-switch');
 const settingsKeysButton = document.getElementById('keystroke-switch');
+const settingsAutoStartButton = document.getElementById('autostart-switch');
+
+// Dropdown options for various backgrounds
+const backgroundOneOption = document.getElementById('background_1');
+const backgroundTwoOption = document.getElementById('background_2');
+const backgroundThreeOption = document.getElementById('background_3');
+
+const backgroundOneURL = "url('../images/background.svg')";
+const backgroundTwoURL = "url('../images/background2.png')";
+const backgroundThreeURL = "url('../images/background3.png')";
+
+const backgroundDropDown = document.getElementById('backgroundDropDown');
+
+backgroundOneOption.onclick = backgroundOneClicked;
+backgroundTwoOption.onclick = backgroundTwoClicked;
+backgroundThreeOption.onclick = backgroundThreeClicked;
+
+backgroundDropDown.onmouseover = enableDropdown;
 
 settingsOpenButton.onclick = openSettingsPane;
 settingsCloseButton.onclick = closeSettingsPane;
 settingsColorButton.onclick = toggleAccessibility;
 settingsKeysButton.onclick = toggleKeystroke;
+settingsAutoStartButton.onclick = toggleAutoStart;
 
 let settingsPaneIsOpen = false;
 
@@ -320,8 +356,11 @@ function openSettingsPane () {
     closeStatsPane();
     timerBlock.classList.remove(SLIDE_CLOSE);
     timerBlock.classList.add(SLIDE_ACROSS_RIGHT);
+    breakBlock.classList.remove(SLIDE_CLOSE);
+    breakBlock.classList.add(SLIDE_ACROSS_RIGHT);
   } else { // add the slide open settings (css)
     timerBlock.classList.add(SLIDE_OPEN_SETTINGS);
+    breakBlock.classList.add(SLIDE_OPEN_SETTINGS);
   }
   settingsPane.classList.add(SLIDE_OPEN_SETTINGS);
 
@@ -336,11 +375,14 @@ function openSettingsPane () {
  */
 function closeSettingsPane () {
   timerBlock.classList.remove(SLIDE_OPEN_SETTINGS);
+  breakBlock.classList.remove(SLIDE_OPEN_SETTINGS);
   settingsPane.classList.remove(SLIDE_OPEN_SETTINGS);
 
   timerBlock.classList.remove(SLIDE_ACROSS_RIGHT);
+  breakBlock.classList.remove(SLIDE_ACROSS_RIGHT);
 
   timerBlock.classList.add(SLIDE_CLOSE_SETTINGS);
+  breakBlock.classList.add(SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.add(SLIDE_CLOSE_SETTINGS);
 
   settingsPaneIsOpen = false;
@@ -356,6 +398,7 @@ function toggleButtons$1 () {
   settingsCloseButton.disabled = !settingsPaneIsOpen;
   settingsColorButton.disabled = !settingsPaneIsOpen;
   settingsKeysButton.disabled = !settingsPaneIsOpen;
+  settingsAutoStartButton.disabled = !settingsPaneIsOpen;
 }
 
 /* istanbul ignore next */
@@ -364,9 +407,11 @@ function toggleButtons$1 () {
  */
 function removeAll () {
   timerBlock.classList.remove(SLIDE_CLOSE);
+  breakBlock.classList.remove(SLIDE_CLOSE);
   statsPane.classList.remove(SLIDE_CLOSE);
 
   timerBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
+  breakBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.remove(SLIDE_CLOSE_SETTINGS);
 }
 /*
@@ -384,6 +429,52 @@ window.addEventListener('resize', () => {
   vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
+
+/* istanbul ignore next */
+/**
+ * Disables the background dropdown options from being displayed
+ */
+ function disableDropdown () {
+  document.getElementById('backgrounds').style.display = 'none';
+}
+
+/* istanbul ignore next */
+/**
+ * Enables the background dropdown options to be displayed
+ */
+function enableDropdown () {
+  document.getElementById('backgrounds').style.display = '';
+}
+
+/* istanbul ignore next */
+/**
+ * Triggered when background 1 is selected
+ * Changes background to background 1 then disables dropdown options
+ */
+function backgroundOneClicked () {
+  disableDropdown();
+  document.documentElement.style.backgroundImage = backgroundOneURL;
+}
+
+/* istanbul ignore next */
+/**
+ * Triggered when background 2 is selected
+ * Changes background to background 2 then disables dropdown options
+ */
+function backgroundTwoClicked () {
+  disableDropdown();
+  document.documentElement.style.backgroundImage = backgroundTwoURL;
+}
+
+/* istanbul ignore next */
+/**
+ * Triggered when background 3 is selected
+ * Changes background to background 3 then disables dropdown options
+ */
+function backgroundThreeClicked () {
+  disableDropdown();
+  document.documentElement.style.backgroundImage = backgroundThreeURL;
+}
 
 /* global zingchart */
 
@@ -501,6 +592,7 @@ function displayGraph (data = ZEROS) {
 
 /* Elements */
 const timerBlock = document.getElementsByClassName('center-container')[0];
+const breakBlock = document.getElementsByClassName('break-message')[0];
 document.getElementsByClassName('counters-container')[0];
 const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
@@ -548,8 +640,10 @@ function openStatsPane () {
     closeSettingsPane();
 
     timerBlock.classList.add(SLIDE_ACROSS_LEFT);
+    breakBlock.classList.add(SLIDE_ACROSS_LEFT);
   } else {
     timerBlock.classList.add(SLIDE_OPEN);
+    breakBlock.classList.add(SLIDE_OPEN);
   }
   statsPane.classList.add(SLIDE_OPEN);
   statsPaneIsOpen = true;
@@ -562,11 +656,14 @@ function openStatsPane () {
  */
 function closeStatsPane () {
   timerBlock.classList.remove(SLIDE_OPEN);
+  breakBlock.classList.remove(SLIDE_OPEN);
   statsPane.classList.remove(SLIDE_OPEN);
 
   timerBlock.classList.remove(SLIDE_ACROSS_LEFT);
+  breakBlock.classList.remove(SLIDE_ACROSS_LEFT);
 
   timerBlock.classList.add(SLIDE_CLOSE);
+  breakBlock.classList.add(SLIDE_CLOSE);
   statsPane.classList.add(SLIDE_CLOSE);
 
   statsPaneIsOpen = false;
@@ -688,10 +785,16 @@ const countdownText = document.getElementById('countdownText');
 const yesButton = document.getElementById('reset-yes-button');
 const noButton = document.getElementById('reset-no-button');
 const timerAudio = document.getElementById('timer-sound');
+const settingsButton = document.getElementById('settings-open-button');
+const statsButton = document.getElementById('stats-open-button');
 
 const workIndicator = document.getElementById('work-indicator');
 const longBreakIndicator = document.getElementById('long-break-indicator');
 const shortBreakIndicator = document.getElementById('short-break-indicator');
+
+const breakMessage = document.getElementById('break-message');
+const breakContainer = document.getElementById('break-container');
+const breakMessages = ['Stand up!', 'Relax your mind', 'Rest!', 'Breathe', 'Take a break!']; // array we cycle through to display new break messages
 
 const timeWorker = (window.Worker && !window.Cypress) ? new Worker('./scripts/timeWorker.js') : null;
 
@@ -704,14 +807,16 @@ let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = timerOptions.STOPPED;
 let onBreak = false;
 let legacyInterval;
-let firstReset = true; // Is rest being clicked for the first time
+let breakInterval; // so we can display a new message every 10 seconds
+let firstReset = true; // Is reset being clicked for the first time
+let firstEndSession = true; // Is end session being clicked for the first time
+hideBreakMessage(); // hideBreakMessage at very beginning
 
 /* Event listeners */
 if (startStopButton) {
   startStopButton.classList.toggle(BREAK_BUTTON);
   startStopButton.addEventListener('click', startResetController);
 }
-
 // Toggles countdown text on click
 if (countdownText) {
   countdownText.addEventListener('click', () => {
@@ -724,6 +829,13 @@ if (countdownText) {
     }
   });
 }
+
+yesButton.addEventListener('click', () => {
+  resetConfirm(true);
+});
+noButton.addEventListener('click', () => {
+  resetConfirm(false);
+});
 
 /**
  * Callback for events that trigger the start or stop of timer
@@ -745,6 +857,10 @@ function beginCountdown (duration) {
   duration--;
   displayTime(duration);
   const timerRingColor = (onBreak) ? BREAK_TIMER_COLOR : WORK_TIMER_COLOR;
+  settingsButton.disabled = !(onBreak);
+  statsButton.disabled = !(onBreak);
+  settingsButton.style.opacity = (onBreak) ? 1 : 0.2;
+  statsButton.style.opacity = (onBreak) ? 1 : 0.2;
   timerRing.setAttribute('stroke', timerRingColor);
   timerRing.setAttribute('stroke-dasharray', `${(timeFraction(duration, pomoState) * DASH_STROKE_VAL)} ${DASH_STROKE_VAL}`);
 
@@ -807,15 +923,28 @@ function togglePomoBreak (onBreak) {
  * @returns {Array} An array containing the pomoState and the pomoCount
  */
 function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
-  toggleTaskButtonDisabled(true);
+  if (!onBreak) {
+    toggleTaskButtonDisabled(true);
+    hideBreakMessage();
+  }
+
+  if (onBreak && !isAutoStartEnabled()) {
+    showBreakMessage();
+  }
 
   if (!timerAudio.paused) {
     timerAudio.pause();
     timerAudio.currentTime = 0;
   }
   if (startStopButton) {
-    startStopButton.innerHTML = RESET_BTN_TXT;
-
+    // displaying the appropriate text in the start stop button
+    if (!isAutoStartEnabled()) {
+      startStopButton.innerHTML = RESET_BTN_TXT;
+    } else if (isAutoStartEnabled() && onBreak) {
+      startStopButton.innerHTML = END_BTN_TXT;
+    } else if (isAutoStartEnabled() && !onBreak) {
+      startStopButton.innerHTML = RESET_BTN_TXT;
+    }
     if (!localOnBreak) {
       pomoState = timerOptions.POMO;
       beginCountdown(WORK_LENGTH);
@@ -844,7 +973,16 @@ function stopTimer () {
   // Mutes timer color
   timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
-  startStopButton.innerHTML = BEGIN_BTN_TXT;
+
+  // displaying the appropriate text in the start stop button
+  if (isAutoStartEnabled() && !onBreak) {
+    startStopButton.innerHTML = END_BTN_TXT;
+  } else if (!isAutoStartEnabled()) {
+    startStopButton.innerHTML = BEGIN_BTN_TXT;
+  } else if (isAutoStartEnabled && onBreak) {
+    startStopButton.innerHTML = RESET_BTN_TXT;
+  }
+
   if (!onBreak) {
     pomoCount++;
     // Dispalys the next cycle without beginning it
@@ -860,14 +998,28 @@ function stopTimer () {
     incrPomoCount();
     increaseTaskPomo();
     updateStats();
+
+    // automatically starts next timer if autostart is enabled
+    if (isAutoStartEnabled()) {
+      showBreakMessage();
+      setTimeout(startResetController, 1000);
+    }
   } else {
     // Displays the next cycle without beggining it
     displayTime(WORK_LENGTH);
     timerTypeIndicator(timerOptions.POMO);
+    if (isAutoStartEnabled()) {
+      setTimeout(startResetController, 1000);
+    }
   }
   updatePots();
   toggleTaskButtonDisabled(false);
   onBreak = togglePomoBreak(onBreak);
+
+  // hides the break message if you are not on break
+  if (!onBreak) {
+    hideBreakMessage();
+  }
 }
 
 /**
@@ -891,6 +1043,12 @@ function resetTimer () {
   pomoState = timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
 
+  // only increments interruptions if not ending the session
+  if (!isAutoStartEnabled() || !onBreak) {
+    incrInterruptions();
+    updateStats();
+  }
+
   if (startStopButton) {
     startStopButton.innerHTML = BEGIN_BTN_TXT;
     if (timeWorker) timeWorker.postMessage({ start: false });
@@ -902,30 +1060,35 @@ function resetTimer () {
     displayTime(WORK_LENGTH);
     timerTypeIndicator(WORK_LENGTH);
   }
-
-  incrInterruptions();
-  updateStats();
+  if (!onBreak) {
+    hideBreakMessage();
+  }
   return [pomoState, BEGIN_BTN_TXT];
 }
 
 /*
  * Checks if the reset button has been pressed before and resets automatically if so
+ * Also checks if end session button has been clicked before and resets automatically if so
  */
 function resetPrompt () {
-  if (!firstReset) {
+  if (!firstEndSession && isAutoStartEnabled() && onBreak) {
     resetTimer();
     return;
   }
+  if (!firstReset && (!isAutoStartEnabled() || !onBreak)) {
+    resetTimer();
+    return;
+  }
+
   startStopButton.style.display = 'none';
+  if (isAutoStartEnabled() && onBreak) {
+    document.getElementById('prompt-text').innerHTML = 'End this pomo session? <br> This will not count as an interruption.';
+  } else {
+    document.getElementById('prompt-text').innerHTML = 'This will count as an interruption.<br> Are you sure?';
+  }
   document.getElementById('prompt').style.display = 'flex';
   yesButton.disabled = false;
   noButton.disabled = false;
-  yesButton.addEventListener('click', () => {
-    resetConfirm(true);
-  });
-  noButton.addEventListener('click', () => {
-    resetConfirm(false);
-  });
 }
 
 /**
@@ -944,10 +1107,15 @@ function hidePrompt () {
  */
 function resetConfirm (isConfirm) {
   hidePrompt();
+  if (isConfirm && isAutoStartEnabled() && onBreak) {
+    firstEndSession = false;
+  }
+  if (isConfirm && (!isAutoStartEnabled() || !onBreak)) {
+    firstReset = false;
+  }
   if (isConfirm) {
     resetTimer();
   }
-  firstReset = false;
 }
 
 /**
@@ -1004,6 +1172,31 @@ function timerTypeIndicator (type) {
   } else {
     workIndicator.classList.add(HIGHLIGHT);
   }
+}
+
+/**
+ * Displays the break message when you are on a break
+ * Switches break message every 10 seconds
+ */
+function showBreakMessage () {
+  breakMessage.style.visibility = 'visible';
+  breakContainer.style.display = 'inline-block';
+
+  let i = 0;
+  breakInterval = setInterval(e => {
+    i = (i + breakMessages.length) % breakMessages.length;
+    breakMessage.innerText = breakMessages[i];
+    i++;
+  }, 10000);
+}
+
+/**
+ * Hides the break message when you are no longer on a break
+ */
+function hideBreakMessage () {
+  breakMessage.style.visibility = 'hidden';
+  breakContainer.style.display = 'none';
+  clearInterval(breakInterval);
 }
 
 export { beginCountdown, displayTime, hidePrompt, resetConfirm, resetPrompt, resetTimer, setCountdownInterval, startResetController, startTimer, timeFraction, timerTypeIndicator, togglePomoBreak, updatePots };
