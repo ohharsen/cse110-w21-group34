@@ -26,7 +26,7 @@
     --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
-    --bacgkround-source: url('../images/background.png');
+    --background-source: url('../images/background.png');
     --counter-color: white;
 }
 
@@ -43,13 +43,14 @@
     --green: #006646;
     --green-grad: linear-gradient(180deg,  #575757 0%, #00644e 100%);
     --green-grad-1: linear-gradient(180deg,  #00644e 0%, #575757 100%);
-    --bacgkround-source: url("../images/background_hi_contrast.png");
+    --button-text-size: 22px;
+    --background-source: url("../images/background_hi_contrast.png");
     --counter-color: black;
 }
 
 /* Positioning, background, size for page */
 html {
-    background: var(--bacgkround-source) no-repeat center center fixed; 
+    background: var(--background-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
