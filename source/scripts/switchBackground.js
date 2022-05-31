@@ -60,4 +60,3 @@ function backgroundThreeClicked () {
   disableDropdown();
   document.documentElement.style.backgroundImage = backgroundThreeURL;
 }
-
