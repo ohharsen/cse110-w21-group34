@@ -17,9 +17,9 @@ const slider = {
     items[current].classList.add('active');
   },
   changeText: () => {
-    if(current === items.length - 1){
+    if (current === items.length - 1) {
       document.getElementById('go-back-button').innerHTML = 'Time to focus!';
-    }else{
+    } else {
       document.getElementById('go-back-button').innerHTML = 'Back to homepage';
     }
   },
@@ -51,7 +51,7 @@ const slider = {
       dataIndex = Number(control.dataset.index);
 
     control.classList.add('active');
-    items.forEach((item, index) => { 
+    items.forEach((item, index) => {
       if (index === dataIndex) { // Add active class to corresponding slide
         item.classList.add('active');
       }
@@ -68,12 +68,12 @@ const slider = {
   },
   transitionDelay: (items) => { // Set incrementing css transition-delay for .item-header & .item-description, .vertical-part, b elements
     let seconds;
-    
+
     items.forEach(item => {
       const children = item.childNodes; // .vertical-part(s)
       let count = 1,
         delay;
-      
+
       item.classList.value === 'item-header' ? seconds = .015 : seconds = .007;
 
       children.forEach(child => { // iterate through .vertical-part(s) and style b element
