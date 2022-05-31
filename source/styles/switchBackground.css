@@ -32,7 +32,7 @@
 }
 
 .site-navigation li:hover {
-  /*@include transition(background, 0.2s);*/
+  @include transition(background, 0.2s);
   background: #dfd352;
   cursor: pointer;
 }
