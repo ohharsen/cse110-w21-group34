@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+/* roboto-regular - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/roboto-v30-latin-regular.woff2") format("woff2");
+    font-display: swap;
+}
 
 /* Color constants and size constants */
 :root {
@@ -26,7 +33,7 @@
     --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
-    --background-source: url('../images/background.png');
+    --bacgkround-source: url("../images/background.svg");
     --counter-color: white;
 }
 
@@ -64,6 +71,7 @@ body {
     min-height: 100vh;
     height: 100%;
     margin: 0;
+    font-family: "Roboto", sans-serif;
 }
 
 main {

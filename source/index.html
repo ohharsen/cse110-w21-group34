@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.lr-in-prod.com/LogRocket.min.js" crossorigin="anonymous"></script>
-    <script>window.LogRocket && window.LogRocket.init('umcvob/texascodeem');</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title name="tab-title">Pomodoro by Texas Codem</title>
+    <title>Pomodoro by Texas Codem</title>
     <!--build:css-->
     <link rel="stylesheet" href="./styles/settings.css">
     <link rel="stylesheet" href="./styles/main.css">
@@ -15,14 +13,15 @@
     <link rel="stylesheet" href="./styles/switchBackground.css">
     <!--endbuild-->
     <link rel="icon" type="image/png" href="./favicon.ico">
+    <script defer src="./scripts/timeWorker.js"></script>
+    <!--build:js-->
     <script src="./scripts/timer.js" type="module"></script>
-
-    <!-- Roboto font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="./scripts/tasks.js" type="module"></script>
+    <script src="./scripts/stats.js" type="module"></script>
+    <script src="./scripts/accessibility.js" type="module"></script>
+    <script src="./scripts/settings.js" type="module"></script>
+    <!--endbuild-->
 </head>
-
 <body>
     <div id="animation-overlay">
         <img id="confetti-img" src="./images/confetti.gif" alt="Confetti gif" draggable="false">
@@ -52,6 +51,9 @@
             <div class="timer-container">
                 <div class="timer" id="clockTimer">
                     <svg class="timer_svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <style>
+                                @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+                            </style>
                             <g class="timer_circle_container">
                                 <!-- The container for grouping multiple svg elements -->
                                 <circle
@@ -73,7 +75,7 @@
                                 />
                             </g>
                             <text id="countdownText" x="26" y="50">25:00</text>
-                        </svg>
+                    </svg>
                 </div>
                 <button type="button" id="start-stop-button" class="pomodoro-button break-button">
                         Begin
@@ -119,9 +121,9 @@
     <aside id="settings-container" class="settings-container">
         <button id="settings-close-button" type="button" disabled>
                 <img
-                    width="15px"
-                    height="15px"
-                    src="./images/xbutton.png"
+                    width="15"
+                    height="15"
+                    src="./images/xbutton.svg"
                     alt="Close icon"
                     draggable="false"
                 >
@@ -214,9 +216,9 @@
     <aside id="stats-container" class="stats-container">
         <button id="stats-close-button" type="button" disabled>
                 <img
-                    width="15px"
-                    height="15px"
-                    src="./images/xbutton.png"
+                    width="15"
+                    height="15"
+                    src="./images/xbutton.svg"
                     alt="Close icon"
                     draggable="false"
                 >
@@ -290,12 +292,7 @@
             </div>
         </section>
     </aside>
-    <script src="./scripts/timeWorker.js"></script>
-    <script src="./scripts/tasks.js" type="module"></script>
-    <script src="./scripts/stats.js" type="module"></script>
-    <script src="./scripts/accessibility.js" type="module"></script>
-    <script src="./scripts/settings.js" type="module"></script>
-    <script src="./scripts/switchBackground.js" type="module"></script>
- </body>
-
+    <script src="./3rd_party/zingchart.min.js"></script>
+    <script src="./3rd_party/logRocketInit.js"></script>
+</body>
 </html>
