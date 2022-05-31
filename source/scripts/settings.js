@@ -125,7 +125,7 @@ window.addEventListener('resize', () => {
 /**
  * Disables the background dropdown options from being displayed
  */
- function disableDropdown () {
+function disableDropdown () {
   document.getElementById('backgrounds').style.display = 'none';
 }
 
