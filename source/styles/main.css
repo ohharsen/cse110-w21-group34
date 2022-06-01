@@ -143,7 +143,7 @@ aside {
     animation: break-animation 1s infinite;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
     #pomobear-header {
         display: none;
     }

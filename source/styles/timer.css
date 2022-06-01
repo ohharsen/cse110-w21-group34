@@ -274,6 +274,15 @@
         padding-top: 110px;
         height: 65%;
     }
+
+    #break-message {
+        font-size: 1.5em;
+    }
+
+    #break-container {
+        margin-top: -35px;
+        margin-bottom: -84px;
+    }
 }
 
 /* for pots container */

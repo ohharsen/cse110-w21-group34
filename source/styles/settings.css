@@ -167,7 +167,7 @@
 }
 
 /* Responsive design for smaller screens (settings) */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
     #settings-container {
         height: 100vh; /* fallback */
         height: calc(var(--vh, 1vh) * 100 - 36px);
