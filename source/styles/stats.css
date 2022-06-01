@@ -103,7 +103,7 @@
 }
 
 /* All stats button positioning, color, and active */
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 901px) {
     .stats-button {
         position: fixed;
         top: 45px;
