@@ -78,7 +78,6 @@
     align-items: center;
     justify-content: center;
     transition: opacity 250ms linear;
-    font-family: sans-serif;
 }
 
 .hover-text {
