@@ -106,10 +106,10 @@
 @media only screen and (min-width: 769px) {
     .stats-button {
         position: fixed;
-        top: 50px;
+        top: 45px;
         right: 30px;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -192,13 +192,22 @@
         position: fixed;
         bottom: 20px;
         left: 30px;
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
+
     }
 
     .stats-button img {
-        width: 60px;
-        height: 60px;
+        width: 30px;
+        height: 30px;
+    }
+
+}
+
+/* to move pots container more to the right */
+@media only screen and (max-width: 768px) and (min-width: 600px) {
+    .pots-container {
+        right: 5%;
     }
 }
 
@@ -215,19 +224,6 @@
     #stats-pane {
         padding: 12px 24px 12px 24px;
         min-height: calc(max(calc(75vw + 400px), 650px));
-    }
-
-    .stats-button {
-        position: fixed;
-        bottom: 10px;
-        left: 12px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .stats-button img {
-        width: 30px;
-        height: 30px;
     }
 }
 

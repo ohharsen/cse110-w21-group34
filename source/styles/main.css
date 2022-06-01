@@ -94,6 +94,13 @@ main {
     color: var(--white);
 }
 
+#pomo-logo {
+    position: absolute;
+    top: 37px;
+    left: 1%;
+    visibility: hidden;
+}
+
 img {
     user-select: none;
 }
@@ -136,6 +143,19 @@ aside {
     animation: break-animation 1s infinite;
 }
 
+@media only screen and (max-width: 768px) {
+    #pomobear-header {
+        display: none;
+    }
+
+    #pomo-logo {
+        top: 3%;
+        left: 5%;
+        visibility: visible;
+    }
+
+}
+
 @keyframes break-animation {
     0%,100% {
         transform: translateY(0)
@@ -143,14 +163,6 @@ aside {
       50% {
         transform: translateY(10px)
       }
-}
-
-@media only screen and (max-width: 400px) {
-    #break-message {
-        font-size: 2em;
-        max-width: 200px;
-        text-align: center;
-    }
 }
 
 /* Animations for settings and stats */
