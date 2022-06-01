@@ -43,9 +43,7 @@
         "gulp-concat": "^2.6.1",
         "gulp-html-replace": "^1.6.2",
         "gulp-htmlmin": "^5.0.1",
-        "gulp-imagemin": "^7.1.0",
         "gulp-postcss": "^9.0.1",
-        "gulp-sourcemaps": "^3.0.0",
         "gulp-terser": "^2.1.0",
         "html-validate": "^6.0.0",
         "http-server": "^0.12.3",
@@ -53,8 +51,7 @@
         "node": ">=12.22",
         "postcss": "^8.0.0",
         "postcss-cli": "^8.1.0",
-        "rollup": "^2.74.1",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+        "rollup": "^2.74.1"
     },
     "dependencies": {
         "@babel/core": "^7.12.17",
