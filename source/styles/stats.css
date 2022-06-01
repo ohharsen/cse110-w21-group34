@@ -205,7 +205,7 @@
 }
 
 /* to move pots container more to the right */
-@media only screen and (max-width: 900px) and (min-width: 600px) {
+@media only screen and (max-width: 900px) and (min-width: 702px) {
     .pots-container {
         right: 5%;
     }
