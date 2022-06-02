@@ -22,17 +22,17 @@ const backgroundThreeURL = "url('../images/background3.png')";
 
 const backgroundDropDown = document.getElementById('backgroundDropDown');
 
-backgroundOneOption.onclick = backgroundOneClicked;
-backgroundTwoOption.onclick = backgroundTwoClicked;
-backgroundThreeOption.onclick = backgroundThreeClicked;
+backgroundOneOption.addEventListener('click', backgroundOneClicked);
+backgroundTwoOption.addEventListener('click', backgroundTwoClicked);
+backgroundThreeOption.addEventListener('click', backgroundThreeClicked);
 
-backgroundDropDown.onmouseover = enableDropdown;
+backgroundDropDown.addEventListener('mouseover', enableDropdown);
 
-settingsOpenButton.onclick = openSettingsPane;
-settingsCloseButton.onclick = closeSettingsPane;
-settingsColorButton.onclick = toggleAccessibility;
-settingsKeysButton.onclick = toggleKeystroke;
-settingsAutoStartButton.onclick = toggleAutoStart;
+settingsOpenButton.addEventListener('click', openSettingsPane);
+settingsCloseButton.addEventListener('click', closeSettingsPane);
+settingsColorButton.addEventListener('click', toggleAccessibility);
+settingsKeysButton.addEventListener('click', toggleKeystroke);
+settingsAutoStartButton.addEventListener('click', toggleAutoStart);
 
 export let settingsPaneIsOpen = false;
 

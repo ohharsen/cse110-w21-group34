@@ -1,9 +1,8 @@
 .site-navigation {
   display: block;
-  font-family: sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
-  margin: 40px;
+  margin: 30px 0 30px 0;
 }
 
 .site-navigation ul {

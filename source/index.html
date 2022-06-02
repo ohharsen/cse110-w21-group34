@@ -144,6 +144,39 @@
             </button>
         <section id="settings-pane">
             <h1 id="settings-header">Settings</h1>
+            <div id="personalization-overview" class="stats-box">
+                <header>
+                    <h2 id="personalization-header">Personalization Options</h2>
+                </header>
+                <ul class="stats-flex">
+                    <li class="settings-row">
+                        <p id="settings-auto">Auto-Start Timer</p>
+                        <div>
+                            <label class="switch">
+                                    <input
+                                        id="autostart-switch"
+                                        type="checkbox"
+                                    >
+                                    <span class="slider round"></span>
+                                </label>
+                        </div>
+                    </li>
+                    <li class="settings-row">
+                        <p id="settings-backgrounds">Backgrounds</p>
+                        <nav class="site-navigation">
+                            <ul>
+                                <li id="backgroundDropDown"><a id="backgroundDropDownText" href="#">Change Background</a>
+                                    <ul id="backgrounds">
+                                        <li id="background_1"><a href="#">Original</a></li>
+                                        <li id="background_2"><a href="#">Desert</a></li>
+                                        <li id="background_3"><a href="#">Lake</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                </ul>
+            </div>
             <div id="accessibility-overview" class="stats-box">
                 <header>
                     <h2 id="accessibility-header">Accessibility Options</h2>
@@ -173,32 +206,7 @@
                         </div>
                     </li>
                     <li class="settings-row">
-                        <p id="settings-auto">Auto-Start Timer</p>
-                        <div>
-                            <label class="switch">
-                                    <input
-                                        id="autostart-switch"
-                                        type="checkbox"
-
-                                    >
-                                    <span class="slider round"></span>
-                                </label>
-                        </div>
-                    </li>
-                    <li>
-                        <nav class="site-navigation">
-                            <ul>
-                                <li id="backgroundDropDown"><a id="backgroundDropDownText" href="#">Change Background</a>
-                                    <ul id="backgrounds">
-                                        <li id="background_1"><a href="#">Original</a></li>
-                                        <li id="background_2"><a href="#">Desert</a></li>
-                                        <li id="background_3"><a href="#">Lake</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                    </li>
-                    <li>
+                        <p id="settings-languages">Languages</p>
                         <nav class="site-navigation">
                             <ul>
                                 <li id="languageDropDown"><a id="languageDropDownText" href="#">Change Language</a>

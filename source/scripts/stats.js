@@ -26,8 +26,8 @@ const NUM_DECIMALS = 2;
 
 export let statsPaneIsOpen = false;
 
-statsOpenButton.onclick = openStatsPane;
-statsCloseButton.onclick = closeStatsPane;
+statsOpenButton.addEventListener('click', openStatsPane); 
+statsCloseButton.addEventListener('click', closeStatsPane);
 
 /* istanbul ignore next */
 /**
