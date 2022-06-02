@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title name="tab-title">Pomodoro's tutorial page by Texas Codem</title>
 
-
     <link rel="stylesheet" href="./styles/tutorial_page.css">
 
     <link rel="icon" type="image/png" href="./favicon.ico">
@@ -25,7 +24,7 @@
             <div class="item">
               <!-- Staggered Header Elements -->
               <div class="item-header">
-                <span class="vertical-part"><b>What is a Pomodoro?</b></span>
+                <span class="vertical-part"><b id="tutorial-what-is">What is a Pomodoro?</b></span>
               </div>
               <div class="item-image-container">
                 <img class="item-image" src="images/The_Pomodoro_timer_in_Vivaldi_browser-980x551.png" />
@@ -33,14 +32,14 @@
               <!-- Staggered Description Elements -->
               <div class="item-description">
                 <span class="vertical-part">
-                  <b>The Pomodoro Cycle is a tool for encouraging productivity. Each cycle allocates 25 minutes of time to work followed by a 5 minute rest period. After your 4th pomo, you'll earn an extended 15 minute break!</b>
+                  <b id="tutorial-explanation">The Pomodoro Cycle is a tool for encouraging productivity. Each cycle allocates 25 minutes of time to work followed by a 5 minute rest period. After your 4th pomo, you'll earn an extended 15 minute break!</b>
                 </span>
               </div>
             </div>
             <div class="item">
                 <!-- Staggered Header Elements -->
                 <div class="item-header">
-                  <span class="vertical-part"><b>How to start?</b></span>
+                  <span class="vertical-part"><b id="tutorial-how-to">How to start?</b></span>
                 </div>
                 <div class="item-image-container">
                   <img class="item-image" src="images/main_page.png" />
@@ -48,14 +47,14 @@
                 <!-- Staggered Description Elements -->
                 <div class="item-description">
                   <span class="vertical-part">
-                    <b>You can start our timer by clicking the "Begin" button.</b>
+                    <b id="tutorial-begin">You can start our timer by clicking the "Begin" button.</b>
                   </span>
                 </div>
             </div>
             <div class="item">
                 <!-- Staggered Header Elements -->
                 <div class="item-header">
-                  <span class="vertical-part"><b>Start working efficiently!</b></span>
+                  <span class="vertical-part"><b id="tutorial-efficient">Start working efficiently!</b></span>
                 </div>
                 <div class="item-image-container">
                   <img class="item-image" src="images/main_page_between.png" />
@@ -63,17 +62,17 @@
                 <!-- Staggered Description Elements -->
                 <div class="item-description">
                   <span class="vertical-part">
-                    <b>Once you start the timer, the text headers and ring color will indicate the work and break stages of a cycle. </b>
+                    <b id="tutorial-efficient-1">Once you start the timer, the text headers and ring color will indicate the work and break stages of a cycle. </b>
                   </span>
                   <span class="vertical-part">
-                    <b>You can also reset the timer by clicking the "Reset" button.</b>
+                    <b id="tutorial-efficient-2">You can also reset the timer by clicking the "Reset" button.</b>
                   </span>
                 </div>
             </div>
             <div class="item">
                 <!-- Staggered Header Elements -->
                 <div class="item-header">
-                  <span class="vertical-part"><b>Take a break!</b></span>
+                  <span class="vertical-part"><b id="tutorial-break">Take a break!</b></span>
                 </div>
                 <div class="item-image-container">
                   <img class="item-image" src="images/main_page_break.png" />
@@ -81,17 +80,17 @@
                 <!-- Staggered Description Elements -->
                 <div class="item-description">
                   <span class="vertical-part">
-                    <b>After 25 minutes of work, you can enter a 5-minute break by clicking the "Begin" button. </b>
+                    <b id="tutorial-break-1">After 25 minutes of work, you can enter a 5-minute break by clicking the "Begin" button. </b>
                   </span>
                   <span class="vertical-part">
-                    <b>Relaxing in these five minutes will help you work more efficiently in the next cycle. </b>
+                    <b id="tutorial-break-2">Relaxing in these five minutes will help you work more efficiently in the next cycle. </b>
                   </span>
                 </div>
             </div>
             <div class="item">
                 <!-- Staggered Header Elements -->
                 <div class="item-header">
-                  <span class="vertical-part"><b>Settings</b></span>
+                  <span class="vertical-part"><b id="tutorial-settings">Settings</b></span>
                 </div>
                 <div class="item-image-container">
                   <img class="item-image" src="images/tutorial_setting.png" />
@@ -99,14 +98,14 @@
                 <!-- Staggered Description Elements -->
                 <div class="item-description">
                   <span class="vertical-part">
-                    <b>You can change the timer setting by clicking the "Settings" icon in the lower left corner. </b>
+                    <b id="tutorial-settings-1">You can change the timer setting by clicking the "Settings" icon in the lower left corner. </b>
                   </span>
                 </div>
             </div>
             <div class="item">
                 <!-- Staggered Header Elements -->
                 <div class="item-header">
-                  <span class="vertical-part"><b>User Statistics</b></span>
+                  <span class="vertical-part"><b id="tutorial-stats">User Statistics</b></span>
                 </div>
                 <div class="item-image-container">
                   <img class="item-image" src="images/tutorial_statistics.png" />
@@ -114,7 +113,7 @@
                 <!-- Staggered Description Elements -->
                 <div class="item-description">
                   <span class="vertical-part">
-                    <b>You can browse your performance by clicking the "Statistics" icon in the upper left corner. </b>
+                    <b id="tutorial-stats-1">You can browse your performance by clicking the "Statistics" icon in the upper left corner. </b>
                   </span>
                 </div>
             </div>
@@ -143,6 +142,7 @@
       
 
       <script src="./scripts/tutorial_page.js"></script>
+      <script src="./scripts/util/language_tutorial.js" type="module"></script>
 
 </body>
 

@@ -3,6 +3,7 @@ import * as Storage from './util/storage.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
 import { isAutoStartEnabled } from './accessibility.js';
+import { lang } from './util/language.js';
 
 /* Constants */
 const STOP_TIMER_COLOR = 'var(--grey)';
@@ -175,11 +176,11 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
   if (startStopButton) {
     // displaying the appropriate text in the start stop button
     if (!isAutoStartEnabled()) {
-      startStopButton.innerHTML = Constants.RESET_BTN_TXT;
+      startStopButton.innerHTML = lang.reset;
     } else if (isAutoStartEnabled() && onBreak) {
-      startStopButton.innerHTML = Constants.END_BTN_TXT;
+      startStopButton.innerHTML = lang.end;
     } else if (isAutoStartEnabled() && !onBreak) {
-      startStopButton.innerHTML = Constants.RESET_BTN_TXT;
+      startStopButton.innerHTML = lang.reset;
     }
     if (!localOnBreak) {
       pomoState = Constants.timerOptions.POMO;
@@ -212,11 +213,11 @@ function stopTimer () {
 
   // displaying the appropriate text in the start stop button
   if (isAutoStartEnabled() && !onBreak) {
-    startStopButton.innerHTML = Constants.END_BTN_TXT;
+    startStopButton.innerHTML = lang.end;
   } else if (!isAutoStartEnabled()) {
-    startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+    startStopButton.innerHTML = lang.begin;
   } else if (isAutoStartEnabled && onBreak) {
-    startStopButton.innerHTML = Constants.RESET_BTN_TXT;
+    startStopButton.innerHTML = lang.reset;
   }
 
   if (!onBreak) {
@@ -286,7 +287,7 @@ export function resetTimer () {
   }
 
   if (startStopButton) {
-    startStopButton.innerHTML = Constants.BEGIN_BTN_TXT;
+    startStopButton.innerHTML = lang.begin;
     if (timeWorker) timeWorker.postMessage({ start: false });
     if (legacyInterval) clearInterval(legacyInterval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
@@ -299,7 +300,7 @@ export function resetTimer () {
   if (!onBreak) {
     hideBreakMessage();
   }
-  return [pomoState, Constants.BEGIN_BTN_TXT];
+  return [pomoState, lang.begin];
 }
 
 /*
@@ -318,9 +319,9 @@ export function resetPrompt () {
 
   startStopButton.style.display = 'none';
   if (isAutoStartEnabled() && onBreak) {
-    document.getElementById('prompt-text').innerHTML = 'End this pomo session? <br> This will not count as an interruption.';
+    document.getElementById('prompt-text').innerHTML = lang.interruption2;
   } else {
-    document.getElementById('prompt-text').innerHTML = 'This will count as an interruption.<br> Are you sure?';
+    document.getElementById('prompt-text').innerHTML = lang.interruption;
   }
   document.getElementById('prompt').style.display = 'flex';
   yesButton.disabled = false;
@@ -420,8 +421,8 @@ function showBreakMessage () {
 
   let i = 0;
   breakInterval = setInterval(e => {
-    i = (i + breakMessages.length) % breakMessages.length;
-    breakMessage.innerText = breakMessages[i];
+    i = (i + lang.breakMessages.length) % lang.breakMessages.length;
+    breakMessage.innerText = lang.breakMessages[i];
     i++;
   }, 10000);
 }

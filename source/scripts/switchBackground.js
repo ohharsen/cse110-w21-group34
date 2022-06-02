@@ -28,7 +28,7 @@ function disableDropdown () {
  * Enables the background dropdown options to be displayed
  */
 function enableDropdown () {
-  document.getElementById('backgrounds').style.display = '';
+  document.getElementById("backgrounds").style.display = '';
 }
 
 /* istanbul ignore next */

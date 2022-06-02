@@ -22,6 +22,7 @@
     <script src="./scripts/accessibility.js" type="module"></script>
     <script src="./scripts/settings.js" type="module"></script>
     <script src="./scripts/switchBackground.js" type="module"></script>
+    <script src="./scripts/util/language.js" type="module"></script>
     <!--endbuild-->
 </head>
 <body>
@@ -142,14 +143,14 @@
                 >
             </button>
         <section id="settings-pane">
-            <h1>Settings</h1>
+            <h1 id="settings-header">Settings</h1>
             <div id="accessibility-overview" class="stats-box">
                 <header>
-                    <h2>Accessibility Options</h2>
+                    <h2 id="accessibility-header">Accessibility Options</h2>
                 </header>
                 <ul class="stats-flex">
                     <li class="settings-row">
-                        <p>Colorblindness</p>
+                        <p id="settings-color">Colorblindness</p>
                         <div>
                             <label class="switch">
                                     <input id="colors-switch" type="checkbox" disabled>
@@ -158,7 +159,7 @@
                         </div>
                     </li>
                     <li class="settings-row">
-                        <p>Keystroke Access</p>
+                        <p id="settings-keystroke">Keystroke Access</p>
                         <div>
                             <label class="switch">
                                     <input
@@ -172,7 +173,7 @@
                         </div>
                     </li>
                     <li class="settings-row">
-                        <p>Auto-Start Timer</p>
+                        <p id="settings-auto">Auto-Start Timer</p>
                         <div>
                             <label class="switch">
                                     <input
@@ -187,11 +188,25 @@
                     <li>
                         <nav class="site-navigation">
                             <ul>
-                                <li id="backgroundDropDown"><a href="#">Change Background</a>
+                                <li id="backgroundDropDown"><a id="backgroundDropDownText" href="#">Change Background</a>
                                     <ul id="backgrounds">
                                         <li id="background_1"><a href="#">Original</a></li>
                                         <li id="background_2"><a href="#">Desert</a></li>
                                         <li id="background_3"><a href="#">Lake</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                    <li>
+                        <nav class="site-navigation">
+                            <ul>
+                                <li id="languageDropDown"><a id="languageDropDownText" href="#">Change Language</a>
+                                    <ul id="languages">
+                                        <li id="languages_1"><a href="#">English</a></li>
+                                        <li id="languages_2"><a href="#">Korean</a></li>
+                                        <li id="languages_3"><a href="#">Spanish</a></li>
+                                        <li id="languages_4"><a href="#">Chinese</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -213,27 +228,27 @@
                 >
             </button>
         <section id="stats-pane">
-            <h1>User Statistics</h1>
+            <h1 id="stats-header">User Statistics</h1>
             <div id="stats-today" class="stats-box">
                 <header>
-                    <h2>Today</h2>
+                    <h2 id="stat-today-header">Today</h2>
                 </header>
                 <ul class="stats-flex">
                     <li class="stats-row">
-                        <p>Pomos cycles:</p>
-                        <p>
+                        <p id="stat-pomo-cycle">Pomos cycles:</p>
+                        <p id="stat-pomo-cycle-units">
                             <span id="today-pomodoros">____</span> po.
                         </p>
                     </li>
                     <li class="stats-row">
-                        <p>Interruptions:</p>
+                        <p id="stat-interruption">Interruptions:</p>
                         <p>
                             <span id="today-interruptions">____</span>
                         </p>
                     </li>
                     <li class="stats-row">
-                        <p>Total Tasks:</p>
-                        <p>
+                        <p id="stat-total-tasks">Total Tasks:</p>
+                        <p id="stat-total-tasks-units">
                             <span id="today-tasks">____</span> tasks
                         </p>
                     </li>
@@ -241,31 +256,31 @@
             </div>
             <div id="stats-totals" class="stats-box">
                 <header>
-                    <h2>Totals</h2>
+                    <h2 id="stat-total-header">Totals</h2>
                 </header>
                 <ul class="stats-flex">
                     <li class="stats-row">
-                        <p>Pomos cycles:</p>
-                        <p>
+                        <p id="stat-total-pomo-cycle">Pomos cycles:</p>
+                        <p id="stat-total-pomo-cycle-units">
                             <span id="total-pomodoros">____</span> po.
                         </p>
                     </li>
                     <li class="stats-row">
-                        <p>Avg. Interruptions:</p>
-                        <p>
+                        <p id="stat-avg-interruptions">Avg. Interruptions:</p>
+                        <p id="total-interruptions-unit">
                             <span id="total-interruptions">____</span> per po.
                         </p>
                     </li>
                     <li class="stats-row">
-                        <p>Best Day:</p>
-                        <p>
+                        <p id="stat-best-day">Best Day:</p>
+                        <p id="stat-best-day-units">
                             <span id="total-best-pomo">____</span> po. |
                             <span id="total-best-time">____</span> min.
                         </p>
                     </li>
                     <li class="stats-row">
-                        <p>Total Tasks:</p>
-                        <p>
+                        <p id="stat-total-tasks-total">Total Tasks:</p>
+                        <p id="stat-total-tasks-total-units">
                             <span id="total-tasks">____</span> tasks
                         </p>
                     </li>
@@ -273,7 +288,7 @@
             </div>
             <div id="stats-overview" class="stats-box">
                 <header>
-                    <h2>Weekly Overview</h2>
+                    <h2 id="stat-weekly-header">Weekly Overview</h2>
                 </header>
                 <div class="stats-flex">
                     <div id="graph" class="weekly-graph"></div>
