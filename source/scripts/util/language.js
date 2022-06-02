@@ -332,10 +332,10 @@ function setLanguageCn() {
   localStorage.setItem("language", "cn");
   populateLanguage();
 }
-dropdownEnglish.onclick = setLanguageEn;
-dropdownKorean.onclick = setLanguageKo;
-dropdownSpanish.onclick = setLanguageEs;
-dropdownChinese.onclick = setLanguageCn;
+dropdownEnglish.addEventListener('click', setLanguageEn);
+dropdownKorean.addEventListener('click', setLanguageKo);
+dropdownSpanish.addEventListener('click', setLanguageEs)
+dropdownChinese.addEventListener('click', setLanguageCn);
 
 /**
  * populates all the html elements with the correct strings (based on language)
