@@ -23,7 +23,7 @@ const TIMEWORKER_PATH = 'source/scripts/timeWorker.js';
 const BUILD_TIMEWORKER_PATH = 'build/scripts';
 
 const BUILD_ROOT_PATH = 'build';
-const BUILD_SOUND_PATH = 'build/pomo/sounds';
+const BUILD_SOUND_PATH = 'build/sounds';
 const BUILD_FONT_PATH = 'build/fonts';
 const BUILD_IMG_PATH = 'build/images';
 const BUILD_POMO_CSS_PATH = 'build/styles';
@@ -31,7 +31,7 @@ const BUILD_TUT_CSS_PATH = 'build/tutorial-styles';
 const BUILD_TUT_JS_PATH = 'build/tutorial-scripts';
 
 const FAVICON_PATH = 'source/*ico';
-const SOUND_PATH = 'source/pomo/sounds/*.mp3';
+const SOUND_PATH = 'source/sounds/*.mp3';
 const FONT_PATH = 'source/fonts/*';
 const IMG_PATH = 'source/images/*';
 const POMO_CSS_PATH = 'source/styles/*.css';
