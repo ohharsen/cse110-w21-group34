@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,15 +21,26 @@
     <script src="./scripts/stats.js" type="module"></script>
     <script src="./scripts/accessibility.js" type="module"></script>
     <script src="./scripts/settings.js" type="module"></script>
-    <script src="./scripts/switchBackground.js" type="module"></script>
     <!--endbuild-->
 </head>
 <body>
     <div id="animation-overlay">
         <img id="confetti-img" src="./images/confetti.gif" alt="Confetti gif" draggable="false">
     </div>
-    <h1 id="pomobear-header">Pomobear</h1>
+    <div id="pomobear-header-container">
+        <h1 id="pomobear-header">Pomobear</h1>
+        <button id="info-open-button" class="info-button" type="button" aria-label="Open Info" onclick="location.href='tutorial_page.html'">
+        <img
+            width="25px"
+            height="25px"
+            src="./images/info.svg"
+            alt="Info icon"
+            draggable="false"
+        >
+        </button>
+    </div>
     <img id="pomo-logo" src="./images/logo.svg" alt="Pomobear Logo" width="50">
+
     <div class="pots-container">
         <img id="pot1" src="images/honey-pot-gray.svg" alt="First task complete indicator pot" draggable="false">
         <img id="pot2" src="images/honey-pot-gray.svg" alt="Second task complete indicator pot" draggable="false">
@@ -131,30 +143,6 @@
             </button>
         <section id="settings-pane">
             <h1>Settings</h1>
-            <div id="information" class="settings-box">
-                <header>
-                    <h2>What is a Pomodoro?</h2>
-                </header>
-                <div class="stats-flex">
-                    <p id="explanation-text">
-                        The Pomodoro Cycle is a tool for encouraging productivity. Each cycle allocates 25 minutes of time to work followed by a 5 minute rest period. After your 4th pomo, you'll earn an extended 15 minute break!
-                    </p>
-                </div>
-            </div>
-            <div id="tutorial" class="settings-box">
-                <header>
-                    <h2>How does this app work?</h2>
-                </header>
-                <div class="stats-flex">
-                    <p id="tutorial-text">
-                        Select "<b>Begin</b>" to start a Pomodoro and "<b>Reset</b>" to end early.
-                        The text headers and ring color will indicate the
-                        <span id="work-text">work</span> and
-                        <span id="break-text">break</span> stages of a cycle.
-                        Select "<b>Complete Task</b>" when appropriate and "<b>Statistics</b>" to browse your performance.
-                    </p>
-                </div>
-            </div>
             <div id="accessibility-overview" class="stats-box">
                 <header>
                     <h2>Accessibility Options</h2>

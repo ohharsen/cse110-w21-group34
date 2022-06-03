@@ -4,13 +4,13 @@
     "description": "Package",
     "main": "index.js",
     "scripts": {
-        "lint": "./node_modules/.bin/eslint ./source/scripts --ext .js --ignore-path .eslintignore",
-        "lint-fix": "./node_modules/.bin/eslint ./source/scripts --fix --ext .js --ignore-path .eslintignore",
+        "lint": "./node_modules/.bin/eslint ./source/scripts ./source/tutorial-scripts --ext .js --ignore-path .eslintignore",
+        "lint-fix": "./node_modules/.bin/eslint ./source/scripts ./source/tutorial-scripts --fix --ext .js --ignore-path .eslintignore",
         "test": "jest",
         "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
         "cypress": "./node_modules/.bin/cypress run",
-        "validate-html": "html-validate source/index.html",
-        "validate-css": "csstree-validator source/styles",
+        "validate-html": "html-validate source/*.html",
+        "validate-css": "csstree-validator source",
         "bundle": "rollup --config",
         "build": "gulp"
     },
@@ -43,9 +43,7 @@
         "gulp-concat": "^2.6.1",
         "gulp-html-replace": "^1.6.2",
         "gulp-htmlmin": "^5.0.1",
-        "gulp-imagemin": "^7.1.0",
         "gulp-postcss": "^9.0.1",
-        "gulp-sourcemaps": "^3.0.0",
         "gulp-terser": "^2.1.0",
         "html-validate": "^6.0.0",
         "http-server": "^0.12.3",
@@ -53,8 +51,7 @@
         "node": ">=12.22",
         "postcss": "^8.0.0",
         "postcss-cli": "^8.1.0",
-        "rollup": "^2.74.1",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+        "rollup": "^2.74.1"
     },
     "dependencies": {
         "@babel/core": "^7.12.17",

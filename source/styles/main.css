@@ -8,6 +8,7 @@
 }
 
 /* Color constants and size constants */
+
 :root {
     --black: #000000;
     --black-a1: rgba(0, 0, 0, 0.7);
@@ -30,7 +31,7 @@
     --orange-dark-grad-1: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%);
     --green: #34DBB3;
     --dark-green: #0D927A;
-    --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
+    --green-grad: linear-gradient(180deg, #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
     --background-source: url("../images/background.svg");
@@ -55,7 +56,9 @@
     --counter-color: black;
 }
 
+
 /* Positioning, background, size for page */
+
 html {
     background: var(--background-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -86,10 +89,10 @@ main {
     flex-direction: column;
 }
 
-#pomobear-header {
+#pomobear-header-container {
     position: absolute;
     left: 5%;
-    font-size: 50px;
+    font-size: 2em;
     font-weight: bolder;
     color: var(--white);
 }
@@ -105,7 +108,9 @@ img {
     user-select: none;
 }
 
+
 /* Style for buttons */
+
 button {
     border: 0;
 }
@@ -124,6 +129,38 @@ button:focus-visible {
 
 aside {
     overflow: auto;
+}
+
+.info-button:active {
+    opacity: 100%;
+}
+
+.info-button {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border-radius: 15px;
+    border: 0;
+    margin-top: 53px;
+    margin-bottom: auto;
+    position: relative;
+    top: -130px;
+    left: 300px;
+}
+
+.info-button:hover:enabled {
+    background: var(--white-a2);
+}
+
+.info-button:active {
+    opacity: 100%;
+}
+
+#info-open-button {
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
 }
 
 #break-message{
@@ -166,12 +203,17 @@ aside {
 }
 
 /* Animations for settings and stats */
+
 @keyframes slide-right-out {
-    to { right: 0 }
+    to {
+        right: 0
+    }
 }
 
 @keyframes slide-right-in {
-    from { right: 0 }
+    from {
+        right: 0
+    }
 }
 
 @keyframes slide-center-out {
