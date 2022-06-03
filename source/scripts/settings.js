@@ -1,6 +1,8 @@
 import * as Stats from './stats.js';
 import * as Constants from './constants.js';
 import { toggleAccessibility, toggleKeystroke, toggleAutoStart } from './accessibility.js';
+import { background, changeBackground } from './switchBackground.js';
+import { languages, changeLanguage } from './util/language.js';
 
 /* Settings Pane and Buttons */
 // might be good to move all these to Constants.js
@@ -11,23 +13,6 @@ export const settingsColorButton = document.getElementById('colors-switch');
 export const settingsKeysButton = document.getElementById('keystroke-switch');
 export const settingsAutoStartButton = document.getElementById('autostart-switch');
 
-// Dropdown options for various backgrounds
-const backgroundOneOption = document.getElementById('background_1');
-const backgroundTwoOption = document.getElementById('background_2');
-const backgroundThreeOption = document.getElementById('background_3');
-
-const backgroundOneURL = "url('../images/background.svg')";
-const backgroundTwoURL = "url('../images/background2.png')";
-const backgroundThreeURL = "url('../images/background3.png')";
-
-const backgroundDropDown = document.getElementById('backgroundDropDown');
-
-backgroundOneOption.addEventListener('click', backgroundOneClicked);
-backgroundTwoOption.addEventListener('click', backgroundTwoClicked);
-backgroundThreeOption.addEventListener('click', backgroundThreeClicked);
-
-backgroundDropDown.addEventListener('mouseover', enableDropdown);
-
 settingsOpenButton.addEventListener('click', openSettingsPane);
 settingsCloseButton.addEventListener('click', closeSettingsPane);
 settingsColorButton.addEventListener('click', toggleAccessibility);
@@ -35,21 +20,6 @@ settingsKeysButton.addEventListener('click', toggleKeystroke);
 settingsAutoStartButton.addEventListener('click', toggleAutoStart);
 
 export let settingsPaneIsOpen = false;
-//sey background to previously used background
-let bg = localStorage.getItem("bg");
-switch (bg) {
-  case "original":
-    document.documentElement.style.backgroundImage = backgroundOneURL;
-    break;
-  case "desert":
-    document.documentElement.style.backgroundImage = backgroundTwoURL;
-    break;
-  case "lake":
-    document.documentElement.style.backgroundImage = backgroundThreeURL;
-    break;
-  default:
-    break;
-}
 
 /* istanbul ignore next */
 /**
@@ -120,6 +90,17 @@ export function removeAll () {
   Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }
+
+/**
+ * Changes the background
+ */
+background.addEventListener('change', changeBackground);
+
+/**
+ * Changes the Language
+ */
+languages.addEventListener('change', changeLanguage);
+
 /*
 * initial load
 * sets height of settings/stats tab
@@ -135,52 +116,3 @@ window.addEventListener('resize', () => {
   vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
-
-/* istanbul ignore next */
-/**
- * Disables the background dropdown options from being displayed
- */
-function disableDropdown () {
-  document.getElementById('backgrounds').style.display = 'none';
-}
-
-/* istanbul ignore next */
-/**
- * Enables the background dropdown options to be displayed
- */
-function enableDropdown () {
-  document.getElementById('backgrounds').style.display = '';
-}
-
-/* istanbul ignore next */
-/**
- * Triggered when background 1 is selected
- * Changes background to background 1 then disables dropdown options
- */
-function backgroundOneClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundOneURL;
-  localStorage.setItem("bg", "original");
-}
-
-/* istanbul ignore next */
-/**
- * Triggered when background 2 is selected
- * Changes background to background 2 then disables dropdown options
- */
-function backgroundTwoClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundTwoURL;
-  localStorage.setItem("bg", "desert");
-}
-
-/* istanbul ignore next */
-/**
- * Triggered when background 3 is selected
- * Changes background to background 3 then disables dropdown options
- */
-function backgroundThreeClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundThreeURL;
-  localStorage.setItem("bg", "lake");
-}

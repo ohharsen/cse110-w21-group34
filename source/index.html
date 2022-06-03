@@ -163,17 +163,14 @@
                     </li>
                     <li class="settings-row">
                         <p id="settings-backgrounds">Backgrounds</p>
-                        <nav class="site-navigation">
-                            <ul>
-                                <li id="backgroundDropDown"><a id="backgroundDropDownText" href="#">Change Background</a>
-                                    <ul id="backgrounds">
-                                        <li id="background_1"><a href="#">Original</a></li>
-                                        <li id="background_2"><a href="#">Desert</a></li>
-                                        <li id="background_3"><a href="#">Lake</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div>
+                            <label for="backgroud"></label>
+                            <select name="background" class="site-navigation" id="backgrounds">
+                                <option value="original" id="background_1">Original</option>
+                                <option value="desert" id="background_2">Desert</option>
+                                <option value="lake" id="background_3">Lake</option>
+                            </select>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -207,17 +204,14 @@
                     </li>
                     <li class="settings-row">
                         <p id="settings-languages">Languages</p>
-                        <nav class="site-navigation">
-                            <ul>
-                                <li id="languageDropDown"><a id="languageDropDownText" href="#">Change Language</a>
-                                    <ul id="languages">
-                                        <li id="languages_1"><a href="#">English</a></li>
-                                        <li id="languages_2"><a href="#">Korean</a></li>
-                                        <li id="languages_3"><a href="#">Spanish</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div>
+                            <label for="language"></label>
+                            <select name="language" class="site-navigation" id="languages">
+                                <option value="en_us" id="languages_1">Engish</option>
+                                <option value="ko" id="languages_2">Korean</option>
+                                <option value="es" id="languages_3">Spanish</option>
+                            </select>
+                        </div>
                     </li>
                 </ul>
             </div>
