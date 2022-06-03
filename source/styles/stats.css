@@ -6,15 +6,15 @@
     width: 400px;
     margin: 18px 18px 18px 18px;
     top: 0;
-    right: -418px;
+    left: -418px;
 }
 
 /* Stats container animations */
 #stats-container.slide-open {
-    animation: slide-right-out 0.5s ease-out forwards;
+    animation: slide-left-out 0.5s ease-out forwards;
 }
 #stats-container.slide-close {
-    animation: slide-right-in 0.5s ease-out forwards;
+    animation: slide-left-in 0.5s ease-out forwards;
 }
 
 /* Stats header (User Statistics) */
@@ -124,7 +124,7 @@
 #stats-close-button {
     position: absolute;
     top: 12px;
-    right: 12px;
+    left: 12px;
     width: 29px;
     height: 30px;
     background: var(--white-a1);
@@ -167,7 +167,7 @@
         height: calc(var(--vh, 1vh) * 100 - 36px); 
         width: calc(100vw - 36px);
         margin: 18px 18px 18px 18px;
-        right: calc(-100vw + -18px);
+        left: calc(-100vw + -18px);
     }
 
     .weekly-graph {

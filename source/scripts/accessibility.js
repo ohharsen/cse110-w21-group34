@@ -51,12 +51,12 @@ function keyControls (e) {
       e.preventDefault();
       (settingsPaneIsOpen) ? closeSettingsPane() : ((statsPaneIsOpen) ? closeStatsPane() : (() => {})());
       break;
-    case keys.LEFT_ARROW:
+    case keys.RIGHT_ARROW:
       e.preventDefault();
       removeAll();
       (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
       break;
-    case keys.RIGHT_ARROW:
+    case keys.LEFT_ARROW:
       e.preventDefault();
       removeAll();
       (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();

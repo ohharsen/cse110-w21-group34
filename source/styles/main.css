@@ -175,11 +175,11 @@ aside {
 }
 
 @keyframes slide-center-out {
-    from { transform: translate(0, 0) }
-    to { transform: translate(-15vw, 0) }
+    from { transform: translate(-15vw, 0) }
+    to { transform: translate(0, 0) }
 }
 
 @keyframes slide-center-in {
-    from { transform: translate(-15vw, 0) }
+    from { transform: translate(15vw, 0) }
     to { transform: translate(0, 0) }
 }

@@ -19,18 +19,18 @@
 
 /* Animations for settings button */
 .center-container.slide-open {
-    animation: slide-center-out 0.5s ease-out forwards;
+    animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 
 .center-container.slide-close {
-    animation: slide-center-in 0.5s ease-out forwards;
+    animation: slide-center-in-settings 0.5s ease-out forwards;
 }
 .break-message.slide-open {
-    animation: slide-center-out 0.5s ease-out forwards;
+    animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 
 .break-message.slide-close {
-    animation: slide-center-in 0.5s ease-out forwards;
+    animation: slide-center-in-settings 0.5s ease-out forwards;
 }
 
 /* Box containing the countdown, pomojars, and begin button */
