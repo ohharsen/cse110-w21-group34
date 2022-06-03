@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main, jun-1-CI/CD-Gulp-Explore ]
+    branches: [ main, jun-28-Waterfall-Optimize ]
   pull_request:
     branches: [ main ]
 
@@ -38,14 +38,17 @@ jobs:
       - name: Verify HTML
         run: npm run validate-html
 
-      # - name: Verify CSS
-      #   run: npm run validate-css
+      #- name: Verify CSS
+      #  run: npm run validate-css
 
       - name: Run linters
         run: npm run lint
      
       - name: Run Jest Tests
         run: npm run test
+      
+      - name: Bundle Javascript
+        run: npm run bundle
       
       - name: Build for deployment
         run: npm run build

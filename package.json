@@ -11,6 +11,7 @@
         "cypress": "./node_modules/.bin/cypress run",
         "validate-html": "html-validate source/index.html",
         "validate-css": "csstree-validator source/styles",
+        "bundle": "rollup --config",
         "build": "gulp"
     },
     "repository": {
@@ -52,6 +53,7 @@
         "node": ">=12.22",
         "postcss": "^8.0.0",
         "postcss-cli": "^8.1.0",
+        "rollup": "^2.74.1",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
     },
     "dependencies": {
