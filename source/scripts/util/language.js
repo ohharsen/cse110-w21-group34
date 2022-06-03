@@ -1,3 +1,5 @@
+import { changeLanguageAxis } from "./graph.js";
+
 const en_us = {
   pomobearHeader: 'Pomobear',
 
@@ -56,7 +58,11 @@ const en_us = {
   bestDayUnits:
     '<span id="total-best-pomo">____</span> po. |<span id="total-best-time">____</span> min.',
   totalTotalTasksUnits: '<span id="total-tasks">____</span> tasks',
-  weeklyHeader: 'Weekly Overview'
+  weeklyHeader: 'Weekly Overview',
+
+  weekDays: ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'],
+  day: 'Days',
+  pomosCompleted: 'Pomos Completed'
 };
 
 const ko = {
@@ -111,7 +117,11 @@ const ko = {
   bestDayUnits:
     '<span id="total-best-pomo">____</span> 뽀. |<span id="total-best-time">____</span> 분.',
   totalTotalTasksUnits: '<span id="total-tasks">____</span> 작업',
-  weeklyHeader: '주간 개요'
+  weeklyHeader: '주간 개요',
+
+  weekDays: ['일','월','화','수','목','금','토'],
+  day: '날',
+  pomosCompleted: '끝난 뽀모'
 };
 
 const es = {
@@ -173,7 +183,11 @@ const es = {
   bestDayUnits:
     '<span id = "total-best-pomo"> ____ </span> después. | <span id = "total-best-time"> ____ </span> min. ',
   totalTotalTasksUnits: '<span id = "total-tasks"> ____ </span> tareas',
-  weeklyHeader: 'Resumen semanal'
+  weeklyHeader: 'Resumen semanal',
+
+  weekDays: ['Lu','Ma','Mi','Ju','Vi','Sa','Do'],
+  day: 'día',
+  pomosCompleted: 'pomo completado'
 };
 
 /**
@@ -284,16 +298,19 @@ function setLanguageEn () {
   lang = en_us;
   localStorage.setItem('language', 'en_us');
   populateLanguage();
+  changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
 }
 function setLanguageKo () {
   lang = ko;
   localStorage.setItem('language', 'ko');
   populateLanguage();
+  changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
 }
 function setLanguageEs () {
   lang = es;
   localStorage.setItem('language', 'es');
   populateLanguage();
+  changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
 }
 
 export function changeLanguage () {

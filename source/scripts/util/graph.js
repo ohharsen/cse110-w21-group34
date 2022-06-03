@@ -3,9 +3,9 @@ import { isA11yEnabled } from '../accessibility.js';
 import { ZEROS } from './storage.js';
 
 /* Graph Constants */
-const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
-const X_LABEL = 'Days';
-const Y_LABEL = 'Pomos Completed';
+let X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
+let X_LABEL = 'Days';
+let Y_LABEL = 'Pomos Completed';
 const TEXT_FONT = 'Roboto';
 const TEXT_FONT_SIZE = '12px';
 const TEXT_FONT_SIZE_ACCESSIBILITY = '15px';
@@ -34,6 +34,12 @@ function findMax (data) {
     }
   }
   return max;
+}
+
+export function changeLanguageAxis(localeXLabels, localeXLabel, localeYLabel) {
+  X_LABELS = localeXLabels;
+  X_LABEL = localeXLabel;
+  Y_LABEL = localeYLabel;
 }
 
 // /* istanbul ignore next */
