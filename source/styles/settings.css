@@ -11,6 +11,7 @@
     margin: 18px 18px 18px 18px;
     top: 0;
     left: -418px;
+    z-index: 20;
 }
 
 /* First settings header (Settings) */
