@@ -35,6 +35,21 @@ settingsKeysButton.addEventListener('click', toggleKeystroke);
 settingsAutoStartButton.addEventListener('click', toggleAutoStart);
 
 export let settingsPaneIsOpen = false;
+//sey background to previously used background
+let bg = localStorage.getItem("bg");
+switch (bg) {
+  case "original":
+    document.documentElement.style.backgroundImage = backgroundOneURL;
+    break;
+  case "desert":
+    document.documentElement.style.backgroundImage = backgroundTwoURL;
+    break;
+  case "lake":
+    document.documentElement.style.backgroundImage = backgroundThreeURL;
+    break;
+  default:
+    break;
+}
 
 /* istanbul ignore next */
 /**
@@ -145,6 +160,7 @@ function enableDropdown () {
 function backgroundOneClicked () {
   disableDropdown();
   document.documentElement.style.backgroundImage = backgroundOneURL;
+  localStorage.setItem("bg", "original");
 }
 
 /* istanbul ignore next */
@@ -155,6 +171,7 @@ function backgroundOneClicked () {
 function backgroundTwoClicked () {
   disableDropdown();
   document.documentElement.style.backgroundImage = backgroundTwoURL;
+  localStorage.setItem("bg", "desert");
 }
 
 /* istanbul ignore next */
@@ -165,4 +182,5 @@ function backgroundTwoClicked () {
 function backgroundThreeClicked () {
   disableDropdown();
   document.documentElement.style.backgroundImage = backgroundThreeURL;
+  localStorage.setItem("bg", "lake");
 }

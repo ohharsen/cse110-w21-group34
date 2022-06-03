@@ -77,32 +77,6 @@ var es = {
     tutorialFocusMsg: "Hora de concentrarse!"
   };
 
-  var cn = {
-    tutorialWhatIs: "什么是番茄钟？",
-    tutorialExplanation:
-    '番茄周期是一种提高生产力的工具。每个周期分配 25 分钟的工作时间，然后是 5 分钟的休息时间。在你的第 4 个番茄钟之后，你将获得 15 分钟的延长休息时间！',
-    tutorialHowTo: "如何开始？",
-    tutorialBegin: '您可以通过单击“开始”按钮来启动我们的计时器。',
-    tutorialEfficient: "开始高效工作！",
-    tutorialEfficient1:
-    "启动计时器后，文本标题和环颜色将指示循环的工作和休息阶段。",
-    tutorialEfficient2:
-    '您也可以通过单击“重置”按钮来重置计时器。',
-    tutorialBreak: "休息一下！",
-    tutorialBreak1:
-    '工作 25 分钟后，您可以点击“开始”按钮进入 5 分钟的休息时间。',
-    tutorialBreak2:
-    "这五分钟的放松，会帮助你在下一个周期更有效率地工作。",
-    tutorialSettings: "设置",
-    tutorialSettings1:
-    '您可以通过单击左下角的“设置”图标来更改计时器设置。',
-    tutorialStats: "用户统计",
-    tutorialStats1:
-    '您可以点击左上角的“统计”图标浏览您的表现。',
-    tutorialBackBtn: "返回首页",
-    tutorialFocusMsg: "是时候集中注意力了!"
-  };
-
 export var lang = en_us;
 
 //tutorial
@@ -135,10 +109,6 @@ switch (storedLanguage) {
     break;
   case "es":
     lang = es;
-    populateLanguageTutorial();
-    break;
-  case "cn":
-    lang = cn;
     populateLanguageTutorial();
     break;
   default:

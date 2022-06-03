@@ -139,6 +139,7 @@ aside {
     position: relative;
     top: -212px;
     left: 464px;
+    z-index: 10;
 }
 
 .info-button:hover:enabled {

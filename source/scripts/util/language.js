@@ -30,6 +30,8 @@ var en_us = {
   settingsKeystroke: "Keystroke Access",
   settingsAuto: "Auto-Start Timer",
 
+  settingsBackgrounds: "Backgrounds",
+  settingsLanguage: "Languages",
   backgroundDropDown: "Change Background",
   background1: '<a href="#">Original</a>',
   background2: '<a href="#">Desert</a>',
@@ -85,6 +87,8 @@ var ko = {
   settingsKeystroke: "키 입력 옵션",
   settingsAuto: "타이머 자동 시작",
 
+  settingsBackgrounds: "배경",
+  settingsLanguage: "언어",
   backgroundDropDown: "배경 변경",
   background1: '<a href="#">기본</a>',
   background2: '<a href="#">사막</a>',
@@ -146,6 +150,8 @@ var es = {
   settingsKeystroke: "Acceso mediante pulsación de tecla",
   settingsAuto: "Temporizador de inicio automático",
 
+  settingsBackgrounds: "Fondo",
+  settingsLanguage: "Idioma",
   backgroundDropDown: "Cambiar fondo",
   background1: '<a href="#">Original</a>',
   background2: '<a href="#">Desierto</a>',
@@ -176,60 +182,6 @@ var es = {
   weeklyHeader: "Resumen semanal",
 };
 
-var cn = {
-  pomobearHeader: "番茄熊",
-
-  breakMsg: "休息一下！",
-  pomodoro: "番茄钟",
-  shortBreak: "短暂休息",
-  longBreak: "长时间休息",
-
-  begin: "开始",
-  reset: "重置",
-  end: "结束会话",
-  breakMessages: ["站起来！", "放松你的头脑", "休息！", "呼吸", "休息一下！"],
-
-  interruption: "这将被视为中断。<br> 你确定吗？",
-  interruption2: "结束本次会议？ <br> 这不会算作中断。",
-  yes: "是的",
-  no: "是的",
-  completion: '完成任务：<span id = "task-pomo-counter"> 0 </span> 帮助',
-
-  settingsHeader: "设置",
-  accessibilityHeader: "辅助功能选项",
-  settingsColor: "色盲",
-  settingsKeystroke: "按键访问",
-  settingsAuto: "自动启动定时器",
-
-  backgroundDropDown: "改变背景",
-  background1: '<a href="#">原创</a>',
-  background2: '<a href="#">沙漠</a>',
-  background3: '<a href="#">湖</a>',
-  languageDropDown: "更改语言",
-  dropdownEn: '<a href="#">英文</a>',
-  dropdownKo: '<a href="#">韩语</a>',
-  dropdownEs: '<a href="#">西班牙文</a>',
-  dropdownCn: '<a href="#">中文</a>',
-
-  statsHeader: "用户统计",
-  todayHeader: "今天",
-  pomoCycle: "帮助 循环:",
-  pomoCycleUnits: '<span id="today-pomodoros">____</span> 帮.',
-  todayInterruption: "中断:",
-  totalTasks: "总任务数:",
-  totalTasksUnits: '<span id="today-tasks">____</span> 任务',
-  todayTasks: "任务",
-  totalHeader: "总计",
-  totalPomoCycleUnits: '<span id="total-pomodoros">____</span> 帮.',
-  avgInterruptions: "平均中断次数:",
-  avgInterruptionsUnits: '帮 <span id="total-interruptions">____</span>',
-  bestDay: "最好的一天:",
-  bestDayUnits:
-    '<span id="total-best-pomo">____</span> 帮. |<span id="total-best-time">____</span> 分钟.',
-  totalTotalTasksUnits: '<span id="total-tasks">____</span> 任务',
-  weeklyHeader: "每周概览",
-};
-
 //title and break msg
 const pomoHeader = document.getElementById("pomobear-header");
 const breakMsg = document.getElementById("break-message");
@@ -250,15 +202,16 @@ const accessibilityHeader = document.getElementById("accessibility-header");
 const settingsColor = document.getElementById("settings-color");
 const settingsKeystroke = document.getElementById("settings-keystroke");
 const settingsAuto = document.getElementById("settings-auto");
+const settingsBackgrounds = document.getElementById("settings-backgrounds");
 const backgroundDropDown = document.getElementById("backgroundDropDownText");
 const dropdownOriginal = document.getElementById("background_1");
 const dropdownDesert = document.getElementById("background_2");
 const dropdownLake = document.getElementById("background_3");
+const settingsLanguage = document.getElementById("settings-languages");
 const languageDropDown = document.getElementById("languageDropDownText");
 const dropdownEnglish = document.getElementById("languages_1");
 const dropdownKorean = document.getElementById("languages_2");
 const dropdownSpanish = document.getElementById("languages_3");
-const dropdownChinese = document.getElementById("languages_4");
 //stat menu
 const statsHeader = document.getElementById("stats-header");
 const statTodayHeader = document.getElementById("stat-today-header");
@@ -301,10 +254,6 @@ switch (storedLanguage) {
     lang = es;
     populateLanguage();
     break;
-  case "cn":
-    lang = cn;
-    populateLanguage();
-    break;
   default:
     break;
 }
@@ -327,15 +276,9 @@ function setLanguageEs() {
   localStorage.setItem("language", "es");
   populateLanguage();
 }
-function setLanguageCn() {
-  lang = cn;
-  localStorage.setItem("language", "cn");
-  populateLanguage();
-}
 dropdownEnglish.addEventListener('click', setLanguageEn);
 dropdownKorean.addEventListener('click', setLanguageKo);
 dropdownSpanish.addEventListener('click', setLanguageEs)
-dropdownChinese.addEventListener('click', setLanguageCn);
 
 /**
  * populates all the html elements with the correct strings (based on language)
@@ -361,15 +304,16 @@ function populateLanguage() {
   settingsKeystroke.innerHTML = lang.settingsKeystroke;
   settingsAuto.innerHTML = lang.settingsAuto;
 
+  settingsBackgrounds.innerHTML = lang.settingsBackgrounds;
   backgroundDropDown.innerHTML = lang.backgroundDropDown;
   dropdownOriginal.innerHTML = lang.background1;
   dropdownDesert.innerHTML = lang.background2;
   dropdownLake.innerHTML = lang.background3;
+  settingsLanguage.innerHTML = lang.settingsLanguage;
   languageDropDown.innerHTML = lang.languageDropDown;
   dropdownEnglish.innerHTML = lang.dropdownEn;
   dropdownKorean.innerHTML = lang.dropdownKo;
   dropdownSpanish.innerHTML = lang.dropdownEs;
-  dropdownChinese.innerHTML = lang.dropdownCn;
 
   statsHeader.innerHTML = lang.statsHeader;
   statTodayHeader.innerHTML = lang.todayHeader;
