@@ -21,8 +21,8 @@ const countdownText = document.getElementById('countdownText');
 const yesButton = document.getElementById('reset-yes-button');
 const noButton = document.getElementById('reset-no-button');
 const timerAudio = document.getElementById('timer-sound');
-const settingsButton = document.getElementById('settings-open-button');
-const statsButton = document.getElementById('stats-open-button');
+export const settingsButton = document.getElementById('settings-open-button');
+export const statsButton = document.getElementById('stats-open-button');
 
 const workIndicator = document.getElementById('work-indicator');
 const longBreakIndicator = document.getElementById('long-break-indicator');
