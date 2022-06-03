@@ -221,6 +221,11 @@
         right: calc(-100vw + -8px);
     }
 
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
     #stats-pane {
         padding: 12px 24px 12px 24px;
         min-height: calc(max(calc(75vw + 400px), 650px));
