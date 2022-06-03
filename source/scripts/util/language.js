@@ -275,17 +275,20 @@ switch (storedLanguage) {
   case 'en_us':
     lang = en_us;
     populateLanguage();
+    changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
     languages.value = dropdownEnglish.value;
     break;
   case 'ko':
     lang = ko;
     populateLanguage();
     languages.value = dropdownKorean.value;
+    changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
     break;
   case 'es':
     lang = es;
     populateLanguage();
     languages.value = dropdownSpanish.value;
+    changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
     break;
   default:
     break;
