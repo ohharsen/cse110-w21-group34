@@ -202,6 +202,11 @@
         height: 30px;
     }
 
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
 }
 
 /* to move pots container more to the right */
