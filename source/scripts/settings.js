@@ -105,6 +105,14 @@ export function removeAll () {
   Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }
+
+/* instanbul ignore next */
+/**
+ * Shows if Settings pane is open or not
+ */
+ export function settingsPaneStatus () {
+  return settingsPaneIsOpen;
+}
 /*
 * initial load
 * sets height of settings/stats tab
