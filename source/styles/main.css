@@ -91,6 +91,7 @@ main {
 
 #pomobear-header-container {
     position: absolute;
+    display: flex;
     left: 5%;
     font-size: 50px;
     font-weight: bolder;
@@ -101,9 +102,7 @@ img {
     user-select: none;
 }
 
-
 /* Style for buttons */
-
 button {
     border: 0;
 }
@@ -124,6 +123,10 @@ aside {
     overflow: auto;
 }
 
+#pomobear-header-container img {
+    margin-top: 3px;
+}
+
 .info-button:active {
     opacity: 100%;
 }
@@ -133,13 +136,7 @@ aside {
     height: 40px;
     background: transparent;
     border-radius: 15px;
-    border: 0;
-    margin-top: 53px;
-    margin-bottom: auto;
-    position: relative;
-    top: -212px;
-    left: 464px;
-    z-index: 10;
+    margin-top: 93px;
 }
 
 .info-button:hover:enabled {
@@ -148,13 +145,6 @@ aside {
 
 .info-button:active {
     opacity: 100%;
-}
-
-#info-open-button {
-    align-items: center;
-    align-content: center;
-    justify-items: center;
-    justify-content: center;
 }
 
 #break-message{
