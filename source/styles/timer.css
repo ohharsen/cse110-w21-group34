@@ -294,7 +294,7 @@
 }
 
 /* for pots container */
-@media only screen and (min-height: 810px) and (max-width: 700px) {
+@media only screen and (min-height: 850px) and (max-width: 700px) {
     .pots-container {
         position: relative;
         top: 86vh;
