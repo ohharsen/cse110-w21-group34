@@ -181,6 +181,7 @@ aside {
     animation: break-animation 1s infinite;
 }
 
+/* Changes font size for pomobear title when screen gets smaller so break message does not interfere*/
 @media only screen and (max-width: 1100px) {
     #pomobear-header {
         font-size: 1.4em;
@@ -198,6 +199,7 @@ aside {
     }
 }
 
+/* Changes pomobear title to the logo when the screen gets smaller */
 @media only screen and (max-width: 900px) {
     #pomobear-header {
         display: none;
@@ -211,6 +213,7 @@ aside {
 
 }
 
+/* Places info button next to logo for appropriate screen sizes */
 @media only screen and (max-width: 900px) and (min-width: 700px) {
     .info-button {
         position: absolute;
@@ -220,6 +223,7 @@ aside {
     }
 }
 
+/* Animation for bouncing break message */
 @keyframes break-animation {
     0%,100% {
         transform: translateY(0)
