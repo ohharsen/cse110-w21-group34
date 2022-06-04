@@ -29,6 +29,7 @@ var en_us = {
   settingsColor: "Colorblindness",
   settingsKeystroke: "Keystroke Access",
   settingsAuto: "Auto-Start Timer",
+  settingsTab: "Tab Timer Visibilty",
 
   settingsBackgrounds: "Backgrounds",
   settingsLanguage: "Languages",
@@ -86,6 +87,7 @@ var ko = {
   settingsColor: "색맹 옵션",
   settingsKeystroke: "키 입력 옵션",
   settingsAuto: "타이머 자동 시작",
+  settingsTab: "탭 타이머 가시성",
 
   settingsBackgrounds: "배경",
   settingsLanguage: "언어",
@@ -149,6 +151,7 @@ var es = {
   settingsColor: "Daltonismo",
   settingsKeystroke: "Acceso mediante pulsación de tecla",
   settingsAuto: "Temporizador de inicio automático",
+  settingsTab: "Visibilidad del temporizador",
 
   settingsBackgrounds: "Fondo",
   settingsLanguage: "Idioma",
@@ -202,6 +205,7 @@ const accessibilityHeader = document.getElementById("accessibility-header");
 const settingsColor = document.getElementById("settings-color");
 const settingsKeystroke = document.getElementById("settings-keystroke");
 const settingsAuto = document.getElementById("settings-auto");
+const settingsTab = document.getElementById("settings-tab");
 const settingsBackgrounds = document.getElementById("settings-backgrounds");
 const backgroundDropDown = document.getElementById("backgroundDropDownText");
 const dropdownOriginal = document.getElementById("background_1");
@@ -303,6 +307,7 @@ function populateLanguage() {
   settingsColor.innerHTML = lang.settingsColor;
   settingsKeystroke.innerHTML = lang.settingsKeystroke;
   settingsAuto.innerHTML = lang.settingsAuto;
+  settingsTab.innerHTML = lang.settingsTab;
 
   settingsBackgrounds.innerHTML = lang.settingsBackgrounds;
   backgroundDropDown.innerHTML = lang.backgroundDropDown;

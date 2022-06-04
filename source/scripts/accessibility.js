@@ -15,6 +15,7 @@ document.onkeydown = keyControls;
 let accessibleMode = false;
 let keystrokeMode = true;
 let autostartMode = false;
+let tabMode = true;
 document.onkeydown = keyControls;
 //override defaults if we have previous saved settings
 if(localStorage.getItem("accessible") == "true"){
@@ -34,6 +35,12 @@ if(localStorage.getItem("auto") == "true"){
   document.getElementById("autostart-switch").checked = true;
 } else {
   document.getElementById("autostart-switch").checked = false;
+}
+if(localStorage.getItem("tab") == "false"){
+  toggleTab();
+  document.getElementById("tab-switch").checked = false;
+} else {
+  document.getElementById("tab-switch").checked = true;
 }
 
 /* All istanbul ignored code is tested in Cypress or uses Canvas */
@@ -133,6 +140,25 @@ export function toggleAutoStart () {
  * Getter method for auto start mode
  * @returns {Boolean} true when auto start mode is on, false if off
  */
-export function isAutoStartEnabled () {
+ export function isAutoStartEnabled () {
   return autostartMode;
+}
+
+/**
+ * Toggles the tab timer view for the timer whenever the user toggles the setting switch
+ */
+ export function toggleTab () {
+  tabMode = !tabMode;
+  tabMode ? localStorage.setItem("tab", "true") : localStorage.setItem("tab", "false");
+  if(!tabMode) {
+    window.document.title = "Pomodoro by Texas Codem";
+  }
+}
+
+/**
+ * Getter method for tab mode (controls whats visible as title of tab)
+ * @returns {Boolean} true when auto start mode is on, false if off
+ */
+ export function isTabEnabled () {
+  return tabMode;
 }
