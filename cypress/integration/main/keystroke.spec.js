@@ -31,15 +31,15 @@ describe('Pane Tests', ()=>{
         cy.visit(Constants.HOST_ADDRESS);
     });
 
-    it('Left Arrow Then Right Arrow toggles stats pane', () => {
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
+    it('Right Arrow Then Left Arrow toggles stats pane', () => {
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 
             return classList.includes(STATS_SLIDE_OPEN);
         });
 
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 
@@ -47,42 +47,19 @@ describe('Pane Tests', ()=>{
         });
     });
 
-    it('Right Arrow Then Left Arrow toggles settings pane', () => {
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
+    it('Left Arrow Then Right Arrow toggles settings pane', () => {
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 
             return classList.includes(SETTINGS_SLIDE_OPEN);
         });
 
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 
             return classList.includes(SETTINGS_SLIDE_CLOSE);
-        });
-    });
-
-    it('Left Arrow Then Double Right Arrow oppens settings pane', () => {
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
-        .get('.' + Constants.CENTER_CONTAINER)
-        .should('satisfy', ($el) => {
-            const classList = Array.from($el[0].classList); 
-            return classList.includes(STATS_SLIDE_OPEN);
-        });
-
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
-        .get('.' + Constants.CENTER_CONTAINER)
-        .should('satisfy', ($el) => {
-            const classList = Array.from($el[0].classList); 
-            return classList.includes(STATS_SLIDE_CLOSE);
-        });
-
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
-        .get('.' + Constants.CENTER_CONTAINER)
-        .should('satisfy', ($el) => {
-            const classList = Array.from($el[0].classList); 
-            return classList.includes(SETTINGS_SLIDE_OPEN);
         });
     });
 
@@ -91,17 +68,40 @@ describe('Pane Tests', ()=>{
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 
-            return classList.includes(SETTINGS_SLIDE_OPEN);
+            return classList.includes(STATS_SLIDE_OPEN);
         });
 
         cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 
-            return classList.includes(SETTINGS_SLIDE_CLOSE);
+            return classList.includes(STATS_SLIDE_CLOSE);
         });
 
         cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
+        .get('.' + Constants.CENTER_CONTAINER)
+        .should('satisfy', ($el) => {
+            const classList = Array.from($el[0].classList); 
+            return classList.includes(SETTINGS_SLIDE_OPEN);
+        });
+    });
+
+    it('Left Arrow Then Double Right Arrow oppens stats pane', () => {
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
+        .get('.' + Constants.CENTER_CONTAINER)
+        .should('satisfy', ($el) => {
+            const classList = Array.from($el[0].classList); 
+            return classList.includes(SETTINGS_SLIDE_OPEN);
+        });
+
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
+        .get('.' + Constants.CENTER_CONTAINER)
+        .should('satisfy', ($el) => {
+            const classList = Array.from($el[0].classList); 
+            return classList.includes(SETTINGS_SLIDE_CLOSE);
+        });
+
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 
@@ -110,7 +110,7 @@ describe('Pane Tests', ()=>{
     });
 
     it('Escape closes Stats Pane', () => {
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 
@@ -126,7 +126,7 @@ describe('Pane Tests', ()=>{
     });
 
     it('Escape closes Settings Pane', () => {
-        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.RIGHT_ARROW, force: true})
+        cy.document().trigger(Constants.events.KEYDOWN, {code: Constants.keys.LEFT_ARROW, force: true})
         .get('.' + Constants.CENTER_CONTAINER)
         .should('satisfy', ($el) => {
             const classList = Array.from($el[0].classList); 

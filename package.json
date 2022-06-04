@@ -8,6 +8,7 @@
         "lint-fix": "./node_modules/.bin/eslint ./source/scripts ./source/tutorial-scripts --fix --ext .js --ignore-path .eslintignore",
         "test": "jest",
         "host": "http-server ./source -c-1 -a 127.0.0.1 -p 5500",
+        "host-production": "http-server ./build -c-1 -a 127.0.0.1 -p 5500",
         "cypress": "./node_modules/.bin/cypress run",
         "validate-html": "html-validate source/*.html",
         "validate-css": "csstree-validator source",
