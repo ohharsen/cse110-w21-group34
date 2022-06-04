@@ -1,8 +1,11 @@
 import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
+import * as Settings from './settings.js';
+import * as Stats from './stats.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
-import { updateStats } from './stats.js';
 import { isAutoStartEnabled } from './accessibility.js';
+import { closeSettingsPane, settingsPaneIsOpen } from './settings.js';
+import { closeStatsPane, statsPaneIsOpen, updateStats } from './stats.js';
 
 /* Constants */
 const STOP_TIMER_COLOR = 'var(--grey)';
@@ -21,8 +24,8 @@ const countdownText = document.getElementById('countdownText');
 const yesButton = document.getElementById('reset-yes-button');
 const noButton = document.getElementById('reset-no-button');
 const timerAudio = document.getElementById('timer-sound');
-const settingsButton = document.getElementById('settings-open-button');
-const statsButton = document.getElementById('stats-open-button');
+export const settingsButton = document.getElementById('settings-open-button');
+export const statsButton = document.getElementById('stats-open-button');
 
 const workIndicator = document.getElementById('work-indicator');
 const longBreakIndicator = document.getElementById('long-break-indicator');
@@ -159,9 +162,27 @@ export function togglePomoBreak (onBreak) {
  * @returns {Array} An array containing the pomoState and the pomoCount
  */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
+  // if Settings page is open close
+  if (Settings.settingsPaneStatus()) {
+    Settings.closeSettingsPane();
+  }
+
+  // if Stats page is open close
+  if (Stats.statsPaneStatus()) {
+    Stats.closeStatsPane();
+  }
+
   if (!onBreak) {
     toggleTaskButtonDisabled(true);
     hideBreakMessage();
+
+    if (settingsPaneIsOpen) {
+      closeSettingsPane();
+    }
+
+    if (statsPaneIsOpen) {
+      closeStatsPane();
+    }
   }
 
   if (onBreak && !isAutoStartEnabled()) {
@@ -278,6 +299,12 @@ export function updatePots () {
 export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
+
+  // re-enables the timer
+  settingsButton.disabled = false;
+  statsButton.disabled = false;
+  settingsButton.style.opacity = 1;
+  statsButton.style.opacity = 1;
 
   // only increments interruptions if not ending the session
   if (!isAutoStartEnabled() || !onBreak) {

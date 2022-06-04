@@ -10,7 +10,7 @@
     justify-content: space-evenly;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
     .center-container {
         width: 80%;
         min-width: 120px;
@@ -19,18 +19,18 @@
 
 /* Animations for settings button */
 .center-container.slide-open {
-    animation: slide-center-out 0.5s ease-out forwards;
+    animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 
 .center-container.slide-close {
-    animation: slide-center-in 0.5s ease-out forwards;
+    animation: slide-center-in-settings 0.5s ease-out forwards;
 }
 .break-message.slide-open {
-    animation: slide-center-out 0.5s ease-out forwards;
+    animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 
 .break-message.slide-close {
-    animation: slide-center-in 0.5s ease-out forwards;
+    animation: slide-center-in-settings 0.5s ease-out forwards;
 }
 
 /* Box containing the countdown, pomojars, and begin button */
@@ -252,7 +252,7 @@
     opacity: 1;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 700px) {
     body {
         display: flex;
         flex-direction: column;
@@ -260,10 +260,45 @@
 
     .pots-container {
         position: relative;
-        top: 100px;
+        top: 91vh;
+        justify-content: center;
+        right: 0%;
+        
+    }
+
+    #pomobear-header {
+        display: none;
     }
 
     .center-container {
         padding-top: 110px;
+        height: 65%;
+    }
+
+    #break-message {
+        font-size: 1.5em;
+    }
+
+    #break-container {
+        margin-top: -35px;
+        margin-bottom: -84px;
+    }
+
+    .info-button {
+        position: fixed;
+        margin: 0px;
+        left: auto;
+        right: 20px;
+        top: 25px;
+    }
+}
+
+/* for pots container */
+@media only screen and (min-height: 850px) and (max-width: 700px) {
+    .pots-container {
+        position: relative;
+        top: 86vh;
+        justify-content: center;
+        right: 0%; 
     }
 }
