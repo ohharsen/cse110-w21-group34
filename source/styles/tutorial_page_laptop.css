@@ -82,7 +82,7 @@ body {
     position: absolute;
     top: 70px;
     margin-left: 660px;
-    width: 30%;
+    width: 35%;
     padding-right: 4%;
     line-height: 1.8;
 }
@@ -134,7 +134,7 @@ body {
     position: relative;
     text-align: left;
     z-index: 1000;
-    top: 520px;
+    top: 585px;
     left: 660px;
 }
 
