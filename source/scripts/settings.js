@@ -105,7 +105,7 @@ export function removeAll () {
   settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }
 
-/* instanbul ignore next */
+/* istanbul ignore next */
 /**
  * Shows if Settings pane is open or not
  */
