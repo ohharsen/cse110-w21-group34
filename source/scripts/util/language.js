@@ -269,7 +269,7 @@ const statWeeklyHeader = document.getElementById('stat-weekly-header');
 /**
  * variable that controls which language is displayed
  */
-export var lang = enUS;
+export let lang = enUS;
 
 /**
  * get stored language, if it exists populate page with appropriate language

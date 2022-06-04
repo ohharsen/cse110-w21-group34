@@ -76,7 +76,7 @@ const es = {
   tutorialFocusMsg: 'Hora de concentrarse!'
 };
 
-export var lang = enUS;
+export let lang = enUS;
 
 // tutorial
 const tutorialWhatIs = document.getElementById('tutorial-what-is');

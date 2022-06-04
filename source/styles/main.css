@@ -51,7 +51,7 @@
     --green-grad: linear-gradient(180deg,  #575757 0%, #00644e 100%);
     --green-grad-1: linear-gradient(180deg,  #00644e 0%, #575757 100%);
     --button-text-size: 22px;
-    /*--background-source: url("../images/background_hi_contrast.png");*/
+    --background-source: url("../images/background_hi_contrast.png");
     --counter-color: black;
 }
 
