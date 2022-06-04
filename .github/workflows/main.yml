@@ -8,6 +8,7 @@ on:
   push:
     branches: [ main, jun-28-Waterfall-Optimize ]
   pull_request:
+    types: [opened, synchronize, reopened, closed]
     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -72,7 +73,8 @@ jobs:
         with:
           name: php-app
           path: ./build
-  deploy:
+  deploy-production:
+    if: (github.event_name == 'pull_request' && github.event.action == 'closed')
     runs-on: ubuntu-latest
     needs: build
     environment:
@@ -92,3 +94,26 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3B58C52C0F154D2E80ECA91BE12791F5 }}
           package: .
+  deploy-staging: 
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'staging-1'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: php-app
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'pomodoro-team6'
+          slot-name: 'staging-1'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DF09305223C24179A24FDEF3729F8117 }}
+          package: .
+
