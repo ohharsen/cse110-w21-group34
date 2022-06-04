@@ -206,36 +206,6 @@
     background:rgba(255, 255, 255, 0.2);
 }
 
-/* positioning for pomo pots */
-.pots-container {
-    position: fixed;
-    top: 55px;
-    right: 105px;
-    display: flex;
-    align-items: flex-end;
-    justify-items: flex-end;
-    justify-content: flex-end;
-}
-
-.pots-container img {
-    margin-left: 4px;
-    height: 30px;
-    width: 30px;
-}
-
-.pomo-indicator-container {
-    font-size: 18px;
-    color: var(--counter-color);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    bottom: 13%;
-    width: 90%;
-    align-self: center;
-    margin-bottom: 5px;
-}
-
 @media (max-width: 1300px){
     .pomo-indicator-container {
         font-size: 0.99rem;
