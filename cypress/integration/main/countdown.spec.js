@@ -1,14 +1,9 @@
+import { unregisterSW } from '../../../source/sw.js';
+
 describe('Countdown Test', ()=>{
     beforeEach(() => {
         // unregisters service worker before e2e test
-        if (window.navigator && navigator.serviceWorker) {
-            navigator.serviceWorker.getRegistrations()
-                .then((registrations) => {
-                    registrations.forEach((registration) => {
-                        registration.unregister();
-                    });
-                });
-        }
+        unregisterSW();
         cy.visit('http://127.0.0.1:5500/');
     });
 
