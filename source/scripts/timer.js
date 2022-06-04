@@ -3,6 +3,8 @@ import * as Storage from './util/storage.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { updateStats } from './stats.js';
 import { isAutoStartEnabled } from './accessibility.js';
+import { closeSettingsPane, settingsPaneIsOpen } from './settings.js';
+import { closeStatsPane, statsPaneIsOpen } from './stats.js';
 
 /* Constants */
 const STOP_TIMER_COLOR = 'var(--grey)';
@@ -68,6 +70,10 @@ if (countdownText) {
 
 yesButton.addEventListener('click', () => {
   resetConfirm(true);
+  settingsButton.disabled = false;
+  statsButton.disabled = false;
+  settingsButton.style.opacity = 1;
+  statsButton.style.opacity = 1;
 });
 noButton.addEventListener('click', () => {
   resetConfirm(false);
@@ -162,6 +168,14 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
   if (!onBreak) {
     toggleTaskButtonDisabled(true);
     hideBreakMessage();
+
+    if(settingsPaneIsOpen) {
+      closeSettingsPane();
+    }
+
+    if(statsPaneIsOpen) {
+      closeStatsPane();
+    }
   }
 
   if (onBreak && !isAutoStartEnabled()) {
