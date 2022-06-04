@@ -70,10 +70,6 @@ if (countdownText) {
 
 yesButton.addEventListener('click', () => {
   resetConfirm(true);
-  settingsButton.disabled = false;
-  statsButton.disabled = false;
-  settingsButton.style.opacity = 1;
-  statsButton.style.opacity = 1;
 });
 noButton.addEventListener('click', () => {
   resetConfirm(false);
@@ -292,7 +288,10 @@ export function updatePots () {
 export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
-
+  settingsButton.disabled = false;
+  statsButton.disabled = false;
+  settingsButton.style.opacity = 1;
+  statsButton.style.opacity = 1;
   // only increments interruptions if not ending the session
   if (!isAutoStartEnabled() || !onBreak) {
     Storage.incrInterruptions();
