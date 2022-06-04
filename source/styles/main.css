@@ -91,7 +91,8 @@ main {
 
 #pomobear-header-container {
     position: absolute;
-    left: 5%;
+    left: 30px;
+    top: -20px;
     font-size: 2em;
     font-weight: bolder;
     color: var(--white);
@@ -145,7 +146,7 @@ aside {
     margin-bottom: auto;
     position: relative;
     top: -130px;
-    left: 300px;
+    left: 288px;
 }
 
 .info-button:hover:enabled {
@@ -186,11 +187,20 @@ aside {
     }
 
     #pomo-logo {
-        top: 3%;
-        left: 5%;
+        top: 20px;
+        left: 20px;
         visibility: visible;
     }
 
+}
+
+@media only screen and (max-width: 900px) and (min-width: 700px) {
+    .info-button {
+        position: absolute;
+        left: 40px;
+        top: 65px;
+        margin-top: 0px;
+    }
 }
 
 @keyframes break-animation {

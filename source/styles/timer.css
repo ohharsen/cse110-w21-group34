@@ -283,6 +283,14 @@
         margin-top: -35px;
         margin-bottom: -84px;
     }
+
+    .info-button {
+        position: fixed;
+        margin: 0px;
+        left: auto;
+        right: 20px;
+        top: 25px;
+    }
 }
 
 /* for pots container */
