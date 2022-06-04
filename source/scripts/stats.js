@@ -135,7 +135,7 @@ export function displayTodayStats () {
   todayTasksElem.textContent = todayTaskCount;
 }
 
-/* instanbul ignore next */
+/* istanbul ignore next */
 /**
  * Shows if Stats pane is open or not
  */
