@@ -109,7 +109,7 @@ export function removeAll () {
 /**
  * Shows if Settings pane is open or not
  */
- export function settingsPaneStatus () {
+export function settingsPaneStatus () {
   return settingsPaneIsOpen;
 }
 

@@ -139,6 +139,6 @@ export function displayTodayStats () {
 /**
  * Shows if Stats pane is open or not
  */
- export function statsPaneStatus () {
+export function statsPaneStatus () {
   return statsPaneIsOpen;
 }
