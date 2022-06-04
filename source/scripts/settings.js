@@ -1,6 +1,6 @@
 import * as Stats from './stats.js';
 import * as Constants from './constants.js';
-import { toggleAccessibility, toggleKeystroke, toggleAutoStart } from './accessibility.js';
+import { toggleAccessibility, toggleKeystroke, toggleAutoStart, toggleTab } from './accessibility.js';
 import { background, changeBackground } from './switchBackground.js';
 import { languages, changeLanguage } from './util/language.js';
 
@@ -12,12 +12,14 @@ export const settingsCloseButton = document.getElementById('settings-close-butto
 export const settingsColorButton = document.getElementById('colors-switch');
 export const settingsKeysButton = document.getElementById('keystroke-switch');
 export const settingsAutoStartButton = document.getElementById('autostart-switch');
+export const settingsTabButton = document.getElementById('tab-switch');
 
 settingsOpenButton.addEventListener('click', openSettingsPane);
 settingsCloseButton.addEventListener('click', closeSettingsPane);
 settingsColorButton.addEventListener('click', toggleAccessibility);
 settingsKeysButton.addEventListener('click', toggleKeystroke);
 settingsAutoStartButton.addEventListener('click', toggleAutoStart);
+settingsTabButton.addEventListener('click', toggleTab);
 
 export let settingsPaneIsOpen = false;
 
@@ -75,6 +77,7 @@ export function toggleButtons () {
   settingsColorButton.disabled = !settingsPaneIsOpen;
   settingsKeysButton.disabled = !settingsPaneIsOpen;
   settingsAutoStartButton.disabled = !settingsPaneIsOpen;
+  settingsTabButton.disabled = !settingsPaneIsOpen;
 }
 
 /* istanbul ignore next */
