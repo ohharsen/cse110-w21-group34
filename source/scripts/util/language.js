@@ -1,4 +1,4 @@
-import { changeLanguageAxis } from "./graph.js";
+import { changeLanguageAxis } from './graph.js';
 
 const en_us = {
   pomobearHeader: 'Pomobear',
@@ -32,7 +32,7 @@ const en_us = {
   settingsColor: 'Colorblindness',
   settingsKeystroke: 'Keystroke Access',
   settingsAuto: 'Auto-Start Timer',
-  settingsTab:'Tab Timer Visibility',
+  settingsTab: 'Tab Timer Visibility',
 
   settingsBackgrounds: 'Backgrounds',
   settingsLanguage: 'Languages',
@@ -92,7 +92,7 @@ const ko = {
   settingsColor: '색맹 옵션',
   settingsKeystroke: '키 입력 옵션',
   settingsAuto: '타이머 자동 시작',
-  settingsTab:'탭 타이머 가시성',
+  settingsTab: '탭 타이머 가시성',
 
   settingsBackgrounds: '배경',
   settingsLanguage: '언어',
@@ -121,7 +121,7 @@ const ko = {
   totalTotalTasksUnits: '<span id="total-tasks">____</span> 작업',
   weeklyHeader: '주간 개요',
 
-  weekDays: ['일','월','화','수','목','금','토'],
+  weekDays: ['일', '월', '화', '수', '목', '금', '토'],
   day: '날',
   pomosCompleted: '끝난 뽀모'
 };
@@ -158,7 +158,7 @@ const es = {
   settingsColor: 'Daltonismo',
   settingsKeystroke: 'Acceso mediante pulsación de tecla',
   settingsAuto: 'Temporizador de inicio automático',
-  settingsTab:'Visibilidad del temporizador',
+  settingsTab: 'Visibilidad del temporizador',
 
   settingsBackgrounds: 'Fondo',
   settingsLanguage: 'Idioma',
@@ -188,7 +188,7 @@ const es = {
   totalTotalTasksUnits: '<span id = "total-tasks"> ____ </span> tareas',
   weeklyHeader: 'Resumen semanal',
 
-  weekDays: ['Lu','Ma','Mi','Ju','Vi','Sa','Do'],
+  weekDays: ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'],
   day: 'día',
   pomosCompleted: 'pomo completado'
 };
@@ -321,9 +321,9 @@ function setLanguageEs () {
 }
 
 export function changeLanguage () {
-  if (this.value == 'en_us') {
+  if (this.value === 'en_us') {
     setLanguageEn();
-  } else if (this.value == 'ko') {
+  } else if (this.value === 'ko') {
     setLanguageKo();
   } else {
     setLanguageEs();
@@ -382,3 +382,7 @@ function populateLanguage () {
   statTotalTasksTotal.innerHTML = lang.totalTasks;
   statWeeklyHeader.innerHTML = lang.weeklyHeader;
 }
+
+window.addEventListener('DOMContentLoaded', function () {
+  document.body.style.visibility = 'visible';
+});

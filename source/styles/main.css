@@ -8,7 +8,6 @@
 }
 
 /* Color constants and size constants */
-
 :root {
     --black: #000000;
     --black-a1: rgba(0, 0, 0, 0.7);
@@ -34,7 +33,7 @@
     --green-grad: linear-gradient(180deg, #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
-    --background-source: url("../images/background.svg");
+    /*--background-source: url("../images/background.svg");*/
     --counter-color: white;
 }
 
@@ -58,7 +57,6 @@
 
 
 /* Positioning, background, size for page */
-
 html {
     background: var(--background-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -75,6 +73,7 @@ body {
     height: 100%;
     margin: 0;
     font-family: "Roboto", sans-serif;
+    visibility: hidden;
 }
 
 main {

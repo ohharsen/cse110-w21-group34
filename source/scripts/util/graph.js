@@ -36,7 +36,7 @@ function findMax (data) {
   return max;
 }
 
-export function changeLanguageAxis(localeXLabels, localeXLabel, localeYLabel) {
+export function changeLanguageAxis (localeXLabels, localeXLabel, localeYLabel) {
   X_LABELS = localeXLabels;
   X_LABEL = localeXLabel;
   Y_LABEL = localeYLabel;

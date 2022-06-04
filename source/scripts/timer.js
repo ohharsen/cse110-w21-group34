@@ -1,53 +1,46 @@
-import * as Constants from "./constants.js";
-import * as Storage from "./util/storage.js";
-import { increaseTaskPomo, toggleTaskButtonDisabled } from "./tasks.js";
-import { updateStats } from "./stats.js";
-import { isAutoStartEnabled, isTabEnabled } from "./accessibility.js";
-import { lang } from "./util/language.js";
+import * as Constants from './constants.js';
+import * as Storage from './util/storage.js';
+import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
+import { updateStats } from './stats.js';
+import { isAutoStartEnabled, isTabEnabled } from './accessibility.js';
+import { lang } from './util/language.js';
 
 /* Constants */
-const STOP_TIMER_COLOR = "var(--grey)";
-const WORK_TIMER_COLOR = "var(--red)";
-const BREAK_TIMER_COLOR = "var(--green)";
-const COLORED_POT_SOURCE = "images/honey-pot-color.svg";
-const GRAY_POT_SOURCE = "images/honey-pot-gray.svg";
+const STOP_TIMER_COLOR = 'var(--grey)';
+const WORK_TIMER_COLOR = 'var(--red)';
+const BREAK_TIMER_COLOR = 'var(--green)';
+const COLORED_POT_SOURCE = 'images/honey-pot-color.svg';
+const GRAY_POT_SOURCE = 'images/honey-pot-gray.svg';
 const DASH_STROKE_VAL = 220;
 const MINUTES = 60;
 const BASE_10 = 10;
 const FINAL_POMO = 4;
 
 const startStopButton = document.getElementById(Constants.START_STOP_ID);
-const timerRing = document.getElementById("base-timer-path-remaining");
-const countdownText = document.getElementById("countdownText");
-const yesButton = document.getElementById("reset-yes-button");
-const noButton = document.getElementById("reset-no-button");
-const timerAudio = document.getElementById("timer-sound");
-const settingsButton = document.getElementById("settings-open-button");
-const statsButton = document.getElementById("stats-open-button");
+const timerRing = document.getElementById('base-timer-path-remaining');
+const countdownText = document.getElementById('countdownText');
+const yesButton = document.getElementById('reset-yes-button');
+const noButton = document.getElementById('reset-no-button');
+const timerAudio = document.getElementById('timer-sound');
+const settingsButton = document.getElementById('settings-open-button');
+const statsButton = document.getElementById('stats-open-button');
 
-const workIndicator = document.getElementById("work-indicator");
-const longBreakIndicator = document.getElementById("long-break-indicator");
-const shortBreakIndicator = document.getElementById("short-break-indicator");
+const workIndicator = document.getElementById('work-indicator');
+const longBreakIndicator = document.getElementById('long-break-indicator');
+const shortBreakIndicator = document.getElementById('short-break-indicator');
 
-const breakMessage = document.getElementById("break-message");
-const breakContainer = document.getElementById("break-container");
-const breakMessages = [
-  "Stand up!",
-  "Relax your mind",
-  "Rest!",
-  "Breathe",
-  "Take a break!",
-]; // array we cycle through to display new break messages
+const breakMessage = document.getElementById('break-message');
+const breakContainer = document.getElementById('break-container');
 
 const timeWorker =
   window.Worker && !window.Cypress
-    ? new Worker("./scripts/timeWorker.js")
+    ? new Worker('./scripts/timeWorker.js')
     : null;
 
 /* Class List */
-const HOVER_TEXT = "hover-text";
-const BREAK_BUTTON = "break-button";
-const HIGHLIGHT = "highlight";
+const HOVER_TEXT = 'hover-text';
+const BREAK_BUTTON = 'break-button';
+const HIGHLIGHT = 'highlight';
 
 let pomoCount = 0; // # of pomos covered so far (orig. 0)
 let pomoState = Constants.timerOptions.STOPPED;
@@ -61,11 +54,11 @@ hideBreakMessage(); // hideBreakMessage at very beginning
 /* Event listeners */
 if (startStopButton) {
   startStopButton.classList.toggle(BREAK_BUTTON);
-  startStopButton.addEventListener("click", startResetController);
+  startStopButton.addEventListener('click', startResetController);
 }
 // Toggles countdown text on click
 if (countdownText) {
-  countdownText.addEventListener("click", () => {
+  countdownText.addEventListener('click', () => {
     if (pomoState !== Constants.timerOptions.STOPPED) {
       if (countdownText.classList.contains(HOVER_TEXT)) {
         countdownText.classList.remove(HOVER_TEXT);
@@ -76,17 +69,17 @@ if (countdownText) {
   });
 }
 
-yesButton.addEventListener("click", () => {
+yesButton.addEventListener('click', () => {
   resetConfirm(true);
 });
-noButton.addEventListener("click", () => {
+noButton.addEventListener('click', () => {
   resetConfirm(false);
 });
 
 /**
  * Callback for events that trigger the start or stop of timer
  */
-export function startResetController() {
+export function startResetController () {
   if (pomoState === Constants.timerOptions.STOPPED) {
     startTimer();
   } else {
@@ -99,7 +92,7 @@ export function startResetController() {
  * Begins the timer countdown for a cycle
  * @param {Number} duration - The duration of the countdown
  */
-export function beginCountdown(duration) {
+export function beginCountdown (duration) {
   duration--;
   displayTime(duration);
   const timerRingColor = onBreak ? BREAK_TIMER_COLOR : WORK_TIMER_COLOR;
@@ -107,9 +100,9 @@ export function beginCountdown(duration) {
   statsButton.disabled = !onBreak;
   settingsButton.style.opacity = onBreak ? 1 : 0.2;
   statsButton.style.opacity = onBreak ? 1 : 0.2;
-  timerRing.setAttribute("stroke", timerRingColor);
+  timerRing.setAttribute('stroke', timerRingColor);
   timerRing.setAttribute(
-    "stroke-dasharray",
+    'stroke-dasharray',
     `${timeFraction(duration, pomoState) * DASH_STROKE_VAL} ${DASH_STROKE_VAL}`
   );
 
@@ -120,7 +113,7 @@ export function beginCountdown(duration) {
       const { timeLeft } = e.data;
       displayTime(timeLeft);
       timerRing.setAttribute(
-        "stroke-dasharray",
+        'stroke-dasharray',
         `${
           timeFraction(timeLeft, pomoState) * DASH_STROKE_VAL
         } ${DASH_STROKE_VAL}`
@@ -145,13 +138,13 @@ export function beginCountdown(duration) {
  * browsers that do not support web-workers
  * @param {Number} duration - The duration of the countdown
  */
-export function setCountdownInterval(duration) {
+export function setCountdownInterval (duration) {
   let timer = duration;
   legacyInterval = setInterval(() => {
     --timer;
     displayTime(timer);
     timerRing.setAttribute(
-      "stroke-dasharray",
+      'stroke-dasharray',
       `${timeFraction(timer, pomoState) * DASH_STROKE_VAL} ${DASH_STROKE_VAL}`
     );
     if (timer < 0) {
@@ -166,7 +159,7 @@ export function setCountdownInterval(duration) {
  * @param {Boolean} onBreak - Boolean to check if the timer is on break
  * @returns {Boolean} Negation of onBreak
  */
-export function togglePomoBreak(onBreak) {
+export function togglePomoBreak (onBreak) {
   if (startStopButton) {
     startStopButton.classList.toggle(BREAK_BUTTON);
   }
@@ -179,7 +172,7 @@ export function togglePomoBreak(onBreak) {
  * @param {Number} localPomoCount - Number storing which pomo the timer is ons
  * @returns {Array} An array containing the pomoState and the pomoCount
  */
-export function startTimer(localOnBreak = onBreak, localPomoCount = pomoCount) {
+export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   if (!onBreak) {
     toggleTaskButtonDisabled(true);
     hideBreakMessage();
@@ -224,11 +217,11 @@ export function startTimer(localOnBreak = onBreak, localPomoCount = pomoCount) {
 /**
  * Stops the timer and refreshes user interface
  */
-function stopTimer() {
+function stopTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   timerAudio.play();
   // Mutes timer color
-  timerRing.setAttribute("stroke", STOP_TIMER_COLOR);
+  timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
   countdownText.classList.remove(HOVER_TEXT);
 
   // displaying the appropriate text in the start stop button
@@ -282,13 +275,13 @@ function stopTimer() {
 /**
  * Updates pot icons to show number of pomos completed for the cycle
  */
-export function updatePots() {
+export function updatePots () {
   for (let i = 1; i < pomoCount + 1; i++) {
-    document.getElementById("pot" + i).src = COLORED_POT_SOURCE;
+    document.getElementById('pot' + i).src = COLORED_POT_SOURCE;
   }
 
   for (let i = pomoCount + 1; i <= Constants.POMO_CYCLE_LENGTH; i++) {
-    document.getElementById("pot" + i).src = GRAY_POT_SOURCE;
+    document.getElementById('pot' + i).src = GRAY_POT_SOURCE;
   }
 }
 
@@ -296,7 +289,7 @@ export function updatePots() {
  * Resets timer upon button click
  * @returns {Array} An array containing the stopped timer state and begin button text
  */
-export function resetTimer() {
+export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
 
@@ -312,9 +305,9 @@ export function resetTimer() {
     if (legacyInterval) clearInterval(legacyInterval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     countdownText.classList.remove(HOVER_TEXT);
-    timerRing.setAttribute("stroke", STOP_TIMER_COLOR);
+    timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
     timerRing.setAttribute(
-      "stroke-dasharray",
+      'stroke-dasharray',
       `${DASH_STROKE_VAL} ${DASH_STROKE_VAL}`
     );
     displayTime(Constants.WORK_LENGTH);
@@ -330,7 +323,7 @@ export function resetTimer() {
  * Checks if the reset button has been pressed before and resets automatically if so
  * Also checks if end session button has been clicked before and resets automatically if so
  */
-export function resetPrompt() {
+export function resetPrompt () {
   if (!firstEndSession && isAutoStartEnabled() && onBreak) {
     resetTimer();
     return;
@@ -340,13 +333,13 @@ export function resetPrompt() {
     return;
   }
 
-  startStopButton.style.display = "none";
+  startStopButton.style.display = 'none';
   if (isAutoStartEnabled() && onBreak) {
-    document.getElementById("prompt-text").innerHTML = lang.interruption2;
+    document.getElementById('prompt-text').innerHTML = lang.interruption2;
   } else {
-    document.getElementById("prompt-text").innerHTML = lang.interruption;
+    document.getElementById('prompt-text').innerHTML = lang.interruption;
   }
-  document.getElementById("prompt").style.display = "flex";
+  document.getElementById('prompt').style.display = 'flex';
   yesButton.disabled = false;
   noButton.disabled = false;
 }
@@ -354,9 +347,9 @@ export function resetPrompt() {
 /**
  * Hides reset prompt whenever prompt is answered or timer ends
  */
-export function hidePrompt() {
-  startStopButton.style.display = "";
-  document.getElementById("prompt").style.display = "none";
+export function hidePrompt () {
+  startStopButton.style.display = '';
+  document.getElementById('prompt').style.display = 'none';
   yesButton.disabled = true;
   noButton.disabled = true;
 }
@@ -365,7 +358,7 @@ export function hidePrompt() {
  * Resets the timer if confirmation is received
  * @param {Boolean} isConfirm - True to reset timer, False otherwise
  */
-export function resetConfirm(isConfirm) {
+export function resetConfirm (isConfirm) {
   hidePrompt();
   if (isConfirm && isAutoStartEnabled() && onBreak) {
     firstEndSession = false;
@@ -383,22 +376,22 @@ export function resetConfirm(isConfirm) {
  * @param {Number} time - The time to be displayed
  * @returns {String} text displayed in the countdown
  */
-export function displayTime(time) {
+export function displayTime (time) {
   let minutes, seconds;
   minutes = parseInt(time / MINUTES, BASE_10);
   seconds = parseInt(time % MINUTES, BASE_10);
-  minutes = minutes < BASE_10 ? "0" + minutes : minutes;
-  seconds = seconds < BASE_10 ? "0" + seconds : seconds;
-  countdownText.textContent = minutes + ":" + seconds;
-  
+  minutes = minutes < BASE_10 ? '0' + minutes : minutes;
+  seconds = seconds < BASE_10 ? '0' + seconds : seconds;
+  countdownText.textContent = minutes + ':' + seconds;
+
   if (isTabEnabled()) {
     if (onBreak) {
-      window.document.title = "Break: " + countdownText.textContent;
+      window.document.title = 'Break: ' + countdownText.textContent;
     } else {
-      window.document.title = "Work: " + countdownText.textContent;
+      window.document.title = 'Work: ' + countdownText.textContent;
     }
   } else {
-    window.document.title = "Pomodoro by Texas Codem";
+    window.document.title = 'Pomodoro by Texas Codem';
   }
 
   return countdownText.textContent;
@@ -410,7 +403,7 @@ export function displayTime(time) {
  * @param {String} pomoState The current state of the pomodoro
  * @returns {Number} amount of time remaining
  */
-export function timeFraction(timer, pomoState) {
+export function timeFraction (timer, pomoState) {
   if (pomoState === Constants.timerOptions.POMO) {
     return timer / Constants.WORK_LENGTH;
   } else if (pomoState === Constants.timerOptions.LONG) {
@@ -425,7 +418,7 @@ export function timeFraction(timer, pomoState) {
  * Displays the textual indicator of the current timer type
  * @param {String} type - Timer enum type indicating work, long break, or short break
  */
-export function timerTypeIndicator(type) {
+export function timerTypeIndicator (type) {
   workIndicator.classList.remove(HIGHLIGHT);
   longBreakIndicator.classList.remove(HIGHLIGHT);
   shortBreakIndicator.classList.remove(HIGHLIGHT);
@@ -442,9 +435,9 @@ export function timerTypeIndicator(type) {
  * Displays the break message when you are on a break
  * Switches break message every 10 seconds
  */
-function showBreakMessage() {
-  breakMessage.style.visibility = "visible";
-  breakContainer.style.display = "inline-block";
+function showBreakMessage () {
+  breakMessage.style.visibility = 'visible';
+  breakContainer.style.display = 'inline-block';
 
   let i = 0;
   breakInterval = setInterval((e) => {
@@ -457,8 +450,8 @@ function showBreakMessage() {
 /**
  * Hides the break message when you are no longer on a break
  */
-function hideBreakMessage() {
-  breakMessage.style.visibility = "hidden";
-  breakContainer.style.display = "none";
+function hideBreakMessage () {
+  breakMessage.style.visibility = 'hidden';
+  breakContainer.style.display = 'none';
   clearInterval(breakInterval);
 }
