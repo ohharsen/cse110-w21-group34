@@ -52,14 +52,14 @@ function keyControls (e) {
       (settingsPaneIsOpen) ? closeSettingsPane() : ((statsPaneIsOpen) ? closeStatsPane() : (() => {})());
       break;
     case keys.RIGHT_ARROW:
-      if(!statsButton.disabled) {
+      if (!statsButton.disabled) {
         e.preventDefault();
         removeAll();
         (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
       }
       break;
     case keys.LEFT_ARROW:
-      if(!settingsButton.disabled) {
+      if (!settingsButton.disabled) {
         e.preventDefault();
         removeAll();
         (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();

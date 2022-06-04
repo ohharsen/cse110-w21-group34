@@ -1,10 +1,9 @@
 import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
-import { updateStats } from './stats.js';
 import { isAutoStartEnabled } from './accessibility.js';
 import { closeSettingsPane, settingsPaneIsOpen } from './settings.js';
-import { closeStatsPane, statsPaneIsOpen } from './stats.js';
+import { closeStatsPane, statsPaneIsOpen, updateStats } from './stats.js';
 
 /* Constants */
 const STOP_TIMER_COLOR = 'var(--grey)';
@@ -165,11 +164,11 @@ export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) 
     toggleTaskButtonDisabled(true);
     hideBreakMessage();
 
-    if(settingsPaneIsOpen) {
+    if (settingsPaneIsOpen) {
       closeSettingsPane();
     }
 
-    if(statsPaneIsOpen) {
+    if (statsPaneIsOpen) {
       closeStatsPane();
     }
   }
