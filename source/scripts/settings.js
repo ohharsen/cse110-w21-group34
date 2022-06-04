@@ -105,6 +105,14 @@ export function removeAll () {
   settingsPane.classList.remove(Constants.SLIDE_CLOSE_SETTINGS);
 }
 
+/* istanbul ignore next */
+/**
+ * Shows if Settings pane is open or not
+ */
+export function settingsPaneStatus () {
+  return settingsPaneIsOpen;
+}
+
 /*
 * initial load
 * sets height of settings/stats tab

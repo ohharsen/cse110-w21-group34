@@ -1,5 +1,7 @@
 import * as Constants from './constants.js';
 import * as Storage from './util/storage.js';
+import * as Settings from './settings.js';
+import * as Stats from './stats.js';
 import { increaseTaskPomo, toggleTaskButtonDisabled } from './tasks.js';
 import { isAutoStartEnabled } from './accessibility.js';
 import { closeSettingsPane, settingsPaneIsOpen } from './settings.js';
@@ -160,6 +162,16 @@ export function togglePomoBreak (onBreak) {
  * @returns {Array} An array containing the pomoState and the pomoCount
  */
 export function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
+  // if Settings page is open close
+  if (Settings.settingsPaneStatus()) {
+    Settings.closeSettingsPane();
+  }
+
+  // if Stats page is open close
+  if (Stats.statsPaneStatus()) {
+    Stats.closeStatsPane();
+  }
+
   if (!onBreak) {
     toggleTaskButtonDisabled(true);
     hideBreakMessage();
@@ -287,10 +299,13 @@ export function updatePots () {
 export function resetTimer () {
   pomoState = Constants.timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
+
+  // re-enables the timer
   settingsButton.disabled = false;
   statsButton.disabled = false;
   settingsButton.style.opacity = 1;
   statsButton.style.opacity = 1;
+
   // only increments interruptions if not ending the session
   if (!isAutoStartEnabled() || !onBreak) {
     Storage.incrInterruptions();
