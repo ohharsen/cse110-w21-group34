@@ -1,6 +1,6 @@
 import { changeLanguageAxis } from './graph.js';
 
-const en_us = {
+const enUS = {
   pomobearHeader: 'Pomobear',
 
   breakMsg: 'Take a break!',
@@ -269,15 +269,15 @@ const statWeeklyHeader = document.getElementById('stat-weekly-header');
 /**
  * variable that controls which language is displayed
  */
-export var lang = en_us;
+export var lang = enUS;
 
 /**
  * get stored language, if it exists populate page with appropriate language
  */
 const storedLanguage = localStorage.getItem('language');
 switch (storedLanguage) {
-  case 'en_us':
-    lang = en_us;
+  case 'enUS':
+    lang = enUS;
     populateLanguage();
     changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
     languages.value = dropdownEnglish.value;
@@ -302,8 +302,8 @@ switch (storedLanguage) {
  * functions that control what language to swap to
  */
 function setLanguageEn () {
-  lang = en_us;
-  localStorage.setItem('language', 'en_us');
+  lang = enUS;
+  localStorage.setItem('language', 'enUS');
   populateLanguage();
   changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
 }
@@ -321,7 +321,7 @@ function setLanguageEs () {
 }
 
 export function changeLanguage () {
-  if (this.value === 'en_us') {
+  if (this.value === 'enUS') {
     setLanguageEn();
   } else if (this.value === 'ko') {
     setLanguageKo();

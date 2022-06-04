@@ -1,4 +1,4 @@
-const en_us = {
+const enUS = {
   tutorialWhatIs: 'What is a Pomodoro?',
   tutorialExplanation:
     "The Pomodoro Cycle is a tool for encouraging productivity. Each cycle allocates 25 minutes of time to work followed by a 5 minute rest period. After your 4th pomo, you'll earn an extended 15 minute break!",
@@ -76,7 +76,7 @@ const es = {
   tutorialFocusMsg: 'Hora de concentrarse!'
 };
 
-export var lang = en_us;
+export var lang = enUS;
 
 // tutorial
 const tutorialWhatIs = document.getElementById('tutorial-what-is');
@@ -98,8 +98,8 @@ const tutorialBackBtn = document.getElementById('go-back-button');
 // get stored language, if it exists populate page with appropriate language
 const storedLanguage = localStorage.getItem('language');
 switch (storedLanguage) {
-  case 'en_us':
-    lang = en_us;
+  case 'enUS':
+    lang = enUS;
     populateLanguageTutorial();
     break;
   case 'ko':
