@@ -10,7 +10,8 @@
     width: 400px;
     margin: 18px 18px 18px 18px;
     top: 0;
-    right: -418px;
+    left: -418px;
+    z-index: 20;
 }
 
 /* dropdown windows */
@@ -109,8 +110,8 @@
     position: fixed;
     bottom: 20px;
     right: 30px;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: var(--white-a1);
     border-radius: 15px;
     border: 0;
@@ -135,7 +136,7 @@
 #settings-close-button {
     position: absolute;
     top: 12px;
-    right: 12px;
+    left: 12px;
     width: 29px;
     height: 30px;
     background: var(--white-a1);
@@ -175,14 +176,14 @@
     color: #34DBB3;
 }
 
-/* Responsive design for smaller screens (settings) */
-@media only screen and (max-width: 900px) {
+/* Responsive design for smaller screens */
+@media only screen and (max-width: 814px) {
     #settings-container {
         height: 100vh; /* fallback */
         height: calc(var(--vh, 1vh) * 100 - 36px);
         width: calc(100vw - 36px);
         margin: 18px 18px 18px 18px;
-        right: calc(-100vw + -18px);
+        left: calc(-100vw + -18px);
     }
 
     #settings-container h2 {
@@ -195,17 +196,14 @@
     }
 
     .settings-button {
-        bottom: 20px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
+        width: 80px;
+        height: 80px;
     }
 
     .settings-button img {
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
     }
-
 }
 
 /* The switch - the box around the slider */
@@ -280,34 +278,46 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* Responsive design for mobile settings*/
+/* Responsive design for mobile */
 @media only screen and (max-width: 480px) {
     #settings-container {
         height: 100vh; /* fallback */
         height: calc(var(--vh, 1vh) * 100 - 16px);
         width: calc(100vw - 16px);
         margin: 8px 8px 8px 8px;
-        right: calc(-100vw + -8px);
+        left: calc(-100vw + -8px);
     }
 
     #settings-pane {
         padding: 12px 24px 12px 24px;
     }
 
+    .settings-button {
+        bottom: 10px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .settings-button img {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 #settings-container.slide-open-settings {
-    animation: slide-right-out 0.5s ease-out forwards;
+    animation: slide-left-out 0.5s ease-out forwards;
 }
+
 #settings-container.slide-close-settings {
-    animation: slide-right-in 0.5s ease-out forwards;
+    animation: slide-left-in 0.5s ease-out forwards;
 }
 
 .center-container.slide-open-settings {
-    animation: slide-across-left 0.5s ease-out forwards;
+    animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 .center-container.slide-close-settings {
-    animation: slide-across-right 0.5s ease-out forwards;
+    animation: slide-center-in-settings 0.5s ease-out forwards;
 }
 .center-container.slide-across-right {
     animation: slide-across-right 0.5s ease-out forwards;
@@ -317,10 +327,10 @@ input:checked + .slider:before {
 }
 
 .break-message.slide-open-settings {
-    animation: slide-across-left 0.5s ease-out forwards;
+    animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 .break-message.slide-close-settings {
-    animation: slide-across-right 0.5s ease-out forwards;
+    animation: slide-center-in-settings 0.5s ease-out forwards;
 }
 .break-message.slide-across-right {
     animation: slide-across-right 0.5s ease-out forwards;
@@ -351,10 +361,10 @@ input:checked + .slider:before {
 
 @keyframes slide-across-right {
     from { transform: translate(-15vw, 0) }
-    to { transform: translate(0, 0) }
+    to { transform: translate(15vw, 0) }
 }
 
 @keyframes slide-across-left {
-    from { transform: translate(0, 0) }
+    from { transform: translate(15vw, 0) }
     to { transform: translate(-15vw, 0) }
 }
