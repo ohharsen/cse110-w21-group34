@@ -1,5 +1,5 @@
 import { keys, TASK_BTN_ID } from './constants.js';
-import { startResetController } from './timer.js';
+import { startResetController, settingsButton, statsButton } from './timer.js';
 import { openStatsPane, closeStatsPane, statsPaneIsOpen } from './stats.js';
 import { openSettingsPane, closeSettingsPane, settingsPaneIsOpen, removeAll } from './settings.js';
 
@@ -79,15 +79,19 @@ function keyControls (e) {
       e.preventDefault();
       (settingsPaneIsOpen) ? closeSettingsPane() : ((statsPaneIsOpen) ? closeStatsPane() : (() => {})());
       break;
-    case keys.LEFT_ARROW:
-      e.preventDefault();
-      removeAll();
-      (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
-      break;
     case keys.RIGHT_ARROW:
-      e.preventDefault();
-      removeAll();
-      (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();
+      if (!statsButton.disabled) {
+        e.preventDefault();
+        removeAll();
+        (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
+      }
+      break;
+    case keys.LEFT_ARROW:
+      if (!settingsButton.disabled) {
+        e.preventDefault();
+        removeAll();
+        (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();
+      }
       break;
     case keys.SPACE:
       if (!(document.activeElement instanceof HTMLInputElement)) {

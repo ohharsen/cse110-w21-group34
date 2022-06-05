@@ -33,9 +33,9 @@ export function openSettingsPane () {
   if (Stats.statsPane.classList.contains(Constants.SLIDE_OPEN)) {
     Stats.closeStatsPane();
     Stats.timerBlock.classList.remove(Constants.SLIDE_CLOSE);
-    Stats.timerBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
+    Stats.timerBlock.classList.add(Constants.SLIDE_ACROSS_LEFT);
     Stats.breakBlock.classList.remove(Constants.SLIDE_CLOSE);
-    Stats.breakBlock.classList.add(Constants.SLIDE_ACROSS_RIGHT);
+    Stats.breakBlock.classList.add(Constants.SLIDE_ACROSS_LEFT);
   } else { // add the slide open settings (css)
     Stats.timerBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
     Stats.breakBlock.classList.add(Constants.SLIDE_OPEN_SETTINGS);
@@ -56,8 +56,8 @@ export function closeSettingsPane () {
   Stats.breakBlock.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
   settingsPane.classList.remove(Constants.SLIDE_OPEN_SETTINGS);
 
-  Stats.timerBlock.classList.remove(Constants.SLIDE_ACROSS_RIGHT);
-  Stats.breakBlock.classList.remove(Constants.SLIDE_ACROSS_RIGHT);
+  Stats.timerBlock.classList.remove(Constants.SLIDE_ACROSS_LEFT);
+  Stats.breakBlock.classList.remove(Constants.SLIDE_ACROSS_LEFT);
 
   Stats.timerBlock.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
   Stats.breakBlock.classList.add(Constants.SLIDE_CLOSE_SETTINGS);
@@ -103,6 +103,13 @@ background.addEventListener('change', changeBackground);
  * Changes the Language
  */
 languages.addEventListener('change', changeLanguage);
+/* istanbul ignore next */
+/**
+ * Shows if Settings pane is open or not
+ */
+export function settingsPaneStatus () {
+  return settingsPaneIsOpen;
+}
 
 /*
 * initial load

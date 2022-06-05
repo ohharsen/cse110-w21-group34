@@ -92,9 +92,16 @@ main {
     position: absolute;
     display: flex;
     left: 5%;
-    font-size: 50px;
+    font-size: 2em;
     font-weight: bolder;
     color: var(--white);
+}
+
+#pomo-logo {
+    position: absolute;
+    top: 37px;
+    left: 1%;
+    visibility: hidden;
 }
 
 img {
@@ -135,7 +142,8 @@ aside {
     height: 40px;
     background: transparent;
     border-radius: 15px;
-    margin-top: 93px;
+    margin-top: 53px;
+    
 }
 
 .info-button:hover:enabled {
@@ -163,6 +171,49 @@ aside {
     animation: break-animation 1s infinite;
 }
 
+/* Changes font size for pomobear title when screen gets smaller so break message does not interfere*/
+@media only screen and (max-width: 1100px) {
+    #pomobear-header {
+        font-size: 1.4em;
+    }
+
+    #pomobear-header-container {
+        top: 0px;
+    }
+
+    .info-button {
+        position: relative;
+        left: 200px;
+        top: -60px;
+        margin-top: 0px;
+    }
+}
+
+/* Changes pomobear title to the logo when the screen gets smaller */
+@media only screen and (max-width: 900px) {
+    #pomobear-header {
+        display: none;
+    }
+
+    #pomo-logo {
+        top: 20px;
+        left: 20px;
+        visibility: visible;
+    }
+
+}
+
+/* Places info button next to logo for appropriate screen sizes */
+@media only screen and (max-width: 900px) and (min-width: 700px) {
+    .info-button {
+        position: absolute;
+        left: 40px;
+        top: 45px;
+        margin-top: 0px;
+    }
+}
+
+/* Animation for bouncing break message */
 @keyframes break-animation {
     0%,100% {
         transform: translateY(0)
@@ -170,14 +221,6 @@ aside {
       50% {
         transform: translateY(10px)
       }
-}
-
-@media only screen and (max-width: 400px) {
-    #break-message {
-        font-size: 2em;
-        max-width: 200px;
-        text-align: center;
-    }
 }
 
 /* Animations for settings and stats */
@@ -195,19 +238,11 @@ aside {
 }
 
 @keyframes slide-center-out {
-    from {
-        transform: translate(0, 0)
-    }
-    to {
-        transform: translate(-15vw, 0)
-    }
+    from { transform: translate(-15vw, 0) }
+    to { transform: translate(0, 0) }
 }
 
 @keyframes slide-center-in {
-    from {
-        transform: translate(-15vw, 0)
-    }
-    to {
-        transform: translate(0, 0)
-    }
+    from { transform: translate(15vw, 0) }
+    to { transform: translate(0, 0) }
 }

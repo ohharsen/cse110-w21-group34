@@ -13,15 +13,9 @@ const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
 // many js files have their own list of consts, should think of grouping them all here or come up with consistent rule to distribute them
 const SLIDE_OPEN = 'slide-open';
 const SLIDE_CLOSE = 'slide-close';
-const SLIDE_ACROSS_RIGHT = 'slide-across-right';
 const SLIDE_ACROSS_LEFT = 'slide-across-left';
 const SLIDE_OPEN_SETTINGS = 'slide-open-settings';
 const SLIDE_CLOSE_SETTINGS = 'slide-close-settings';
-
-/* Text */
-const RESET_BTN_TXT = 'Reset';
-const END_BTN_TXT = 'End Session';
-const BEGIN_BTN_TXT = 'Begin';
 
 /**
  * Enumerated keydown event possible keys
@@ -217,11 +211,38 @@ const RESET_NO_ID = 'reset-no-button';
 const ACCESSIBLE_CLASS = 'accessible';
 const root = document.documentElement;
 
+document.onkeydown = keyControls;
+// set default settings
 let accessibleMode = false;
 let keystrokeMode = true;
 let autostartMode = false;
-
+let tabMode = true;
 document.onkeydown = keyControls;
+// override defaults if we have previous saved settings
+if (localStorage.getItem('accessible') === 'true') {
+  toggleAccessibility();
+  document.getElementById('colors-switch').checked = true;
+} else {
+  document.getElementById('colors-switch').checked = false;
+}
+if (localStorage.getItem('keystroke') === 'false') {
+  toggleKeystroke();
+  document.getElementById('keystroke-switch').checked = false;
+} else {
+  document.getElementById('keystroke-switch').checked = true;
+}
+if (localStorage.getItem('auto') === 'true') {
+  toggleAutoStart();
+  document.getElementById('autostart-switch').checked = true;
+} else {
+  document.getElementById('autostart-switch').checked = false;
+}
+if (localStorage.getItem('tab') === 'false') {
+  toggleTab();
+  document.getElementById('tab-switch').checked = false;
+} else {
+  document.getElementById('tab-switch').checked = true;
+}
 
 /* All istanbul ignored code is tested in Cypress or uses Canvas */
 
@@ -237,6 +258,7 @@ function toggleAccessibility () {
     root.classList.remove(ACCESSIBLE_CLASS);
   }
   accessibleMode = !accessibleMode;
+  accessibleMode ? localStorage.setItem('accessible', 'true') : localStorage.setItem('accessible', 'false');
 }
 
 /**
@@ -258,15 +280,19 @@ function keyControls (e) {
       e.preventDefault();
       (settingsPaneIsOpen) ? closeSettingsPane() : ((statsPaneIsOpen) ? closeStatsPane() : (() => {})());
       break;
-    case keys.LEFT_ARROW:
-      e.preventDefault();
-      removeAll();
-      (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
-      break;
     case keys.RIGHT_ARROW:
-      e.preventDefault();
-      removeAll();
-      (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();
+      if (!statsButton.disabled) {
+        e.preventDefault();
+        removeAll();
+        (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
+      }
+      break;
+    case keys.LEFT_ARROW:
+      if (!settingsButton.disabled) {
+        e.preventDefault();
+        removeAll();
+        (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();
+      }
       break;
     case keys.SPACE:
       if (!(document.activeElement instanceof HTMLInputElement)) {
@@ -293,6 +319,7 @@ function keyControls (e) {
  */
 function toggleKeystroke () {
   keystrokeMode = !keystrokeMode;
+  keystrokeMode ? localStorage.setItem('keystroke', 'true') : localStorage.setItem('keystroke', 'false');
   document.onkeydown = (keystrokeMode) ? keyControls : undefined;
 }
 
@@ -301,6 +328,7 @@ function toggleKeystroke () {
  */
 function toggleAutoStart () {
   autostartMode = !autostartMode;
+  autostartMode ? localStorage.setItem('auto', 'true') : localStorage.setItem('auto', 'false');
 }
 
 /**
@@ -311,177 +339,31 @@ function isAutoStartEnabled () {
   return autostartMode;
 }
 
-/* Settings Pane and Buttons */
-// might be good to move all these to Constants.js
-const settingsPane = document.getElementById('settings-container');
-const settingsOpenButton = document.getElementById('settings-open-button');
-const settingsCloseButton = document.getElementById('settings-close-button');
-const settingsColorButton = document.getElementById('colors-switch');
-const settingsKeysButton = document.getElementById('keystroke-switch');
-const settingsAutoStartButton = document.getElementById('autostart-switch');
-
-// Dropdown options for various backgrounds
-const backgroundOneOption = document.getElementById('background_1');
-const backgroundTwoOption = document.getElementById('background_2');
-const backgroundThreeOption = document.getElementById('background_3');
-
-const backgroundOneURL = "url('../images/background.svg')";
-const backgroundTwoURL = "url('../images/background2.png')";
-const backgroundThreeURL = "url('../images/background3.png')";
-
-const backgroundDropDown = document.getElementById('backgroundDropDown');
-
-backgroundOneOption.onclick = backgroundOneClicked;
-backgroundTwoOption.onclick = backgroundTwoClicked;
-backgroundThreeOption.onclick = backgroundThreeClicked;
-
-backgroundDropDown.onmouseover = enableDropdown;
-
-settingsOpenButton.onclick = openSettingsPane;
-settingsCloseButton.onclick = closeSettingsPane;
-settingsColorButton.onclick = toggleAccessibility;
-settingsKeysButton.onclick = toggleKeystroke;
-settingsAutoStartButton.onclick = toggleAutoStart;
-
-let settingsPaneIsOpen = false;
-
-/* istanbul ignore next */
 /**
- * Opens the settings pane and closes the stats pane
+ * Toggles the tab timer view for the timer whenever the user toggles the setting switch
  */
-function openSettingsPane () {
-  removeAll();
-  // closing the status pane and open the settings
-  if (statsPane.classList.contains(SLIDE_OPEN)) {
-    closeStatsPane();
-    timerBlock.classList.remove(SLIDE_CLOSE);
-    timerBlock.classList.add(SLIDE_ACROSS_RIGHT);
-    breakBlock.classList.remove(SLIDE_CLOSE);
-    breakBlock.classList.add(SLIDE_ACROSS_RIGHT);
-  } else { // add the slide open settings (css)
-    timerBlock.classList.add(SLIDE_OPEN_SETTINGS);
-    breakBlock.classList.add(SLIDE_OPEN_SETTINGS);
+function toggleTab () {
+  tabMode = !tabMode;
+  tabMode ? localStorage.setItem('tab', 'true') : localStorage.setItem('tab', 'false');
+  if (!tabMode) {
+    window.document.title = 'Pomodoro by Texas Codem';
   }
-  settingsPane.classList.add(SLIDE_OPEN_SETTINGS);
-
-  settingsPaneIsOpen = true;
-  toggleButtons$1();
 }
 
-/* istanbul ignore next */
 /**
- * Closes the settings pane and allows stats pane to reopen
- * removes unnecessary css animations
+ * Getter method for tab mode (controls whats visible as title of tab)
+ * @returns {Boolean} true when auto start mode is on, false if off
  */
-function closeSettingsPane () {
-  timerBlock.classList.remove(SLIDE_OPEN_SETTINGS);
-  breakBlock.classList.remove(SLIDE_OPEN_SETTINGS);
-  settingsPane.classList.remove(SLIDE_OPEN_SETTINGS);
-
-  timerBlock.classList.remove(SLIDE_ACROSS_RIGHT);
-  breakBlock.classList.remove(SLIDE_ACROSS_RIGHT);
-
-  timerBlock.classList.add(SLIDE_CLOSE_SETTINGS);
-  breakBlock.classList.add(SLIDE_CLOSE_SETTINGS);
-  settingsPane.classList.add(SLIDE_CLOSE_SETTINGS);
-
-  settingsPaneIsOpen = false;
-  toggleButtons$1();
-}
-
-/* instanbul ignore next */
-/**
- * Toggles the respective settings pane buttons based on the current state
- */
-function toggleButtons$1 () {
-  settingsOpenButton.disabled = settingsPaneIsOpen;
-  settingsCloseButton.disabled = !settingsPaneIsOpen;
-  settingsColorButton.disabled = !settingsPaneIsOpen;
-  settingsKeysButton.disabled = !settingsPaneIsOpen;
-  settingsAutoStartButton.disabled = !settingsPaneIsOpen;
-}
-
-/* istanbul ignore next */
-/**
- * Removes existing animation classes from stats and settings panes
- */
-function removeAll () {
-  timerBlock.classList.remove(SLIDE_CLOSE);
-  breakBlock.classList.remove(SLIDE_CLOSE);
-  statsPane.classList.remove(SLIDE_CLOSE);
-
-  timerBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
-  breakBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
-  settingsPane.classList.remove(SLIDE_CLOSE_SETTINGS);
-}
-/*
-* initial load
-* sets height of settings/stats tab
-*/
-let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-/* istanbul ignore next */
-/**
- * on window resize trigger new height
- */
-window.addEventListener('resize', () => {
-  vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-});
-
-/* istanbul ignore next */
-/**
- * Disables the background dropdown options from being displayed
- */
- function disableDropdown () {
-  document.getElementById('backgrounds').style.display = 'none';
-}
-
-/* istanbul ignore next */
-/**
- * Enables the background dropdown options to be displayed
- */
-function enableDropdown () {
-  document.getElementById('backgrounds').style.display = '';
-}
-
-/* istanbul ignore next */
-/**
- * Triggered when background 1 is selected
- * Changes background to background 1 then disables dropdown options
- */
-function backgroundOneClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundOneURL;
-}
-
-/* istanbul ignore next */
-/**
- * Triggered when background 2 is selected
- * Changes background to background 2 then disables dropdown options
- */
-function backgroundTwoClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundTwoURL;
-}
-
-/* istanbul ignore next */
-/**
- * Triggered when background 3 is selected
- * Changes background to background 3 then disables dropdown options
- */
-function backgroundThreeClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundThreeURL;
+function isTabEnabled () {
+  return tabMode;
 }
 
 /* global zingchart */
 
 /* Graph Constants */
-const X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
-const X_LABEL = 'Days';
-const Y_LABEL = 'Pomos Completed';
+let X_LABELS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
+let X_LABEL = 'Days';
+let Y_LABEL = 'Pomos Completed';
 const TEXT_FONT = 'Roboto';
 const TEXT_FONT_SIZE = '12px';
 const TEXT_FONT_SIZE_ACCESSIBILITY = '15px';
@@ -510,6 +392,12 @@ function findMax (data) {
     }
   }
   return max;
+}
+
+function changeLanguageAxis (localeXLabels, localeXLabel, localeYLabel) {
+  X_LABELS = localeXLabels;
+  X_LABEL = localeXLabel;
+  Y_LABEL = localeYLabel;
 }
 
 // /* istanbul ignore next */
@@ -598,23 +486,13 @@ const statsPane = document.getElementById('stats-container');
 const statsOpenButton = document.getElementById('stats-open-button');
 const statsCloseButton = document.getElementById('stats-close-button');
 
-const totalPomoElem = document.getElementById('total-pomodoros');
-const totalInterruptElem = document.getElementById('total-interruptions');
-const bestPomoElem = document.getElementById('total-best-pomo');
-const bestTimeElem = document.getElementById('total-best-time');
-const totalTasksElem = document.getElementById('total-tasks');
-
-const todayPomoElem = document.getElementById('today-pomodoros');
-const todayTasksElem = document.getElementById('today-tasks');
-const todayInterruptElem = document.getElementById('today-interruptions');
-
 const MINUTES$1 = 60;
 const NUM_DECIMALS = 2;
 
 let statsPaneIsOpen = false;
 
-statsOpenButton.onclick = openStatsPane;
-statsCloseButton.onclick = closeStatsPane;
+statsOpenButton.addEventListener('click', openStatsPane);
+statsCloseButton.addEventListener('click', closeStatsPane);
 
 /* istanbul ignore next */
 /**
@@ -647,7 +525,7 @@ function openStatsPane () {
   }
   statsPane.classList.add(SLIDE_OPEN);
   statsPaneIsOpen = true;
-  toggleButtons();
+  toggleButtons$1();
 }
 
 /* istanbul ignore next */
@@ -667,14 +545,14 @@ function closeStatsPane () {
   statsPane.classList.add(SLIDE_CLOSE);
 
   statsPaneIsOpen = false;
-  toggleButtons();
+  toggleButtons$1();
 }
 
 /* istanbul ignore next */
 /**
  * Toggles the respective stats pane buttons based on the current state
  */
-function toggleButtons () {
+function toggleButtons$1 () {
   statsOpenButton.disabled = statsPaneIsOpen;
   statsCloseButton.disabled = !statsPaneIsOpen;
 }
@@ -694,11 +572,11 @@ function displayTotalStats () {
   const bestPomoCount = getCounter(BEST_DAILY_POMO_ID);
   const totalTaskCount = getCounter(TOTAL_TASK_ID);
 
-  totalPomoElem.textContent = totalPomoCount;
-  totalInterruptElem.textContent = (totalInterruptCount / (totalPomoCount || 1)).toFixed(NUM_DECIMALS);
-  bestPomoElem.textContent = bestPomoCount;
-  bestTimeElem.textContent = (bestPomoCount * (WORK_LENGTH / MINUTES$1)).toFixed(NUM_DECIMALS);
-  totalTasksElem.textContent = totalTaskCount;
+  document.getElementById('total-pomodoros').innerHTML = totalPomoCount;
+  document.getElementById('total-interruptions').innerHTML = (totalInterruptCount / (totalPomoCount || 1)).toFixed(NUM_DECIMALS);
+  document.getElementById('total-best-pomo').innerHTML = bestPomoCount;
+  document.getElementById('total-best-time').innerHTML = (bestPomoCount * (WORK_LENGTH / MINUTES$1)).toFixed(NUM_DECIMALS);
+  document.getElementById('total-tasks').innerHTML = totalTaskCount;
 }
 
 /* istanbul ignore next */
@@ -716,11 +594,567 @@ function displayTodayStats () {
   const todayInterruptCount = getCounter(TODAY_INTERRUPTION);
   const todayTaskCount = getCounter(TODAY_TASK_ID);
 
-  // calculating daily stats with extracted data and displaying to UI
-  todayPomoElem.textContent = todayPomoCount;
-  todayInterruptElem.textContent = todayInterruptCount;
-  todayTasksElem.textContent = todayTaskCount;
+  document.getElementById('today-pomodoros').innerHTML = todayPomoCount;
+  document.getElementById('today-tasks').innerHTML = todayInterruptCount;
+  document.getElementById('today-interruptions').innerHTML = todayTaskCount;
 }
+
+/* istanbul ignore next */
+/**
+ * Shows if Stats pane is open or not
+ */
+function statsPaneStatus () {
+  return statsPaneIsOpen;
+}
+
+/**
+ * Dropdown options for various backgrounds
+ */
+const background = document.getElementById('backgrounds');
+const backgroundOneOption = document.getElementById('background_1');
+const backgroundTwoOption = document.getElementById('background_2');
+const backgroundThreeOption = document.getElementById('background_3');
+const backgroundOneURL = "url('./images/background.svg')";
+const backgroundTwoURL = "url('./images/background2.svg')";
+const backgroundThreeURL = "url('./images/background3.svg')";
+
+// Changes the background image
+function changeBackground () {
+  if (this.value === 'original') {
+    document.documentElement.style.backgroundImage = backgroundOneURL;
+    localStorage.setItem('bg', 'original');
+  } else if (this.value === 'desert') {
+    document.documentElement.style.backgroundImage = backgroundTwoURL;
+    localStorage.setItem('bg', 'desert');
+  } else {
+    document.documentElement.style.backgroundImage = backgroundThreeURL;
+    localStorage.setItem('bg', 'lake');
+  }
+}
+
+const bg = localStorage.getItem('bg');
+switch (bg) {
+  case 'original':
+    background.value = backgroundOneOption.value;
+    break;
+  case 'desert':
+    background.value = backgroundTwoOption.value;
+    break;
+  case 'lake':
+    background.value = backgroundThreeOption.value;
+    break;
+  default:
+    background.value = backgroundOneOption.value;
+    break;
+}
+
+const enUS = {
+  pomobearHeader: 'Pomobear',
+
+  breakMsg: 'Take a break!',
+  pomodoro: 'Pomodoro',
+  shortBreak: 'Short Break',
+  longBreak: 'Long Break',
+
+  begin: 'Begin',
+  reset: 'Reset',
+  end: 'End Session',
+  breakMessages: [
+    'Stand up!',
+    'Relax your mind',
+    'Rest!',
+    'Breathe',
+    'Take a break!'
+  ],
+
+  interruption: 'This will count as an interruption.<br> Are you sure?',
+  interruption2:
+    'End this pomo session? <br> This will not count as an interruption.',
+  yes: 'Yes',
+  no: 'No',
+  completion: 'Complete Task: <span id="task-pomo-counter">0</span> Pomos',
+
+  settingsHeader: 'Settings',
+  personalizationHeader: 'Personalization Options',
+  accessibilityHeader: 'Accessibility Options',
+  settingsColor: 'Colorblindness',
+  settingsKeystroke: 'Keystroke Access',
+  settingsAuto: 'Auto-Start Timer',
+  settingsTab: 'Tab Timer Visibility',
+
+  settingsBackgrounds: 'Backgrounds',
+  settingsLanguage: 'Languages',
+  background1: 'Original',
+  background2: 'Desert',
+  background3: 'Lake',
+  dropdownEn: 'English',
+  dropdownKo: 'Korean',
+  dropdownEs: 'Spanish',
+
+  statsHeader: 'User Statistics',
+  todayHeader: 'Today',
+  pomoCycle: 'Pomos cycles:',
+  pomoCycleUnits: '<span id="today-pomodoros">____</span> po.',
+  todayInterruption: 'Interruptions:',
+  totalTasks: 'Total Tasks:',
+  totalTasksUnits: '<span id="today-tasks">____</span> tasks',
+  todayTasks: 'tasks',
+  totalHeader: 'Totals',
+  totalPomoCycleUnits: '<span id="total-pomodoros">____</span> po.',
+  avgInterruptions: 'Avg. Interruptions:',
+  avgInterruptionsUnits: '<span id="total-interruptions">____</span> per po.',
+  bestDay: 'Best Day:',
+  bestDayUnits:
+    '<span id="total-best-pomo">____</span> po. |<span id="total-best-time">____</span> min.',
+  totalTotalTasksUnits: '<span id="total-tasks">____</span> tasks',
+  weeklyHeader: 'Weekly Overview',
+
+  weekDays: ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'],
+  day: 'Days',
+  pomosCompleted: 'Pomos Completed'
+};
+
+const ko = {
+  pomobearHeader: '뽀모곰',
+
+  breakMsg: '휴식을 취하세요!',
+  pomodoro: '뽀모도로',
+  shortBreak: '짧은 휴식',
+  longBreak: '긴 휴식',
+
+  begin: '시작',
+  reset: '재설정',
+  end: '마무리',
+  breakMessages: ['일어서!', '차분하자!', '휴식!', '들숨 날숨', '화이팅!'],
+
+  interruption: '이것은 잠시 중단으로 간주됩니다.<br> 계속하시겠습니까?',
+  interruption2:
+    '이 세션을 종료하시겠습니까? <br> 이것은 중단으로 간주되지 않습니다.',
+  yes: '예',
+  no: '아니요',
+  completion: '작업 완료: <span id="task-pomo-counter">0</span> 뽀모스',
+
+  settingsHeader: '설정',
+  personalizationHeader: '개인화 옵션',
+  accessibilityHeader: '접근성 옵션',
+  settingsColor: '색맹 옵션',
+  settingsKeystroke: '키 입력 옵션',
+  settingsAuto: '타이머 자동 시작',
+  settingsTab: '탭 타이머 가시성',
+
+  settingsBackgrounds: '배경',
+  settingsLanguage: '언어',
+  background1: '기본',
+  background2: '사막',
+  background3: '호수',
+  dropdownEn: '영어',
+  dropdownKo: '한국어',
+  dropdownEs: '스페인어',
+
+  statsHeader: '사용자 통계',
+  todayHeader: '오늘',
+  pomoCycle: '뽀모스 주기:',
+  pomoCycleUnits: '<span id="today-pomodoros">____</span> 뽀.',
+  todayInterruption: '잠시 중단 횟수:',
+  totalTasks: '총 작업 횟수:',
+  totalTasksUnits: '<span id="today-tasks">____</span> 작업',
+  todayTasks: '작업 횟수',
+  totalHeader: '합계',
+  totalPomoCycleUnits: '<span id="total-pomodoros">____</span> 뽀.',
+  avgInterruptions: '평균 잠시 중단 횟수:',
+  avgInterruptionsUnits: '뽀당 <span id="total-interruptions">____</span>',
+  bestDay: '최고의 날:',
+  bestDayUnits:
+    '<span id="total-best-pomo">____</span> 뽀. |<span id="total-best-time">____</span> 분.',
+  totalTotalTasksUnits: '<span id="total-tasks">____</span> 작업',
+  weeklyHeader: '주간 개요',
+
+  weekDays: ['일', '월', '화', '수', '목', '금', '토'],
+  day: '날',
+  pomosCompleted: '끝난 뽀모'
+};
+
+const es = {
+  pomobearHeader: 'Oso pomodoro',
+
+  breakMsg: '¡Tómate un descanso!',
+  pomodoro: 'Pomodoro',
+  shortBreak: 'Corto Descanso',
+  longBreak: 'Descanso largo',
+
+  begin: 'Comenzar',
+  reset: 'Reiniciar',
+  end: 'Finalizar sesión',
+  breakMessages: [
+    '¡Ponerse de pie!',
+    'Relaja tu mente',
+    '¡Descansar!',
+    'Respirar',
+    '¡Tomar un descanso!'
+  ],
+
+  interruption: 'Esto contará como una interrupción. <br> ¿Estás seguro?',
+  interruption2:
+    '¿Finalizar esta sesión? <br> Esto no contará como una interrupción.',
+  yes: 'Sí',
+  no: 'No',
+  completion: 'Tarea completa: <span id = "task-pomo-counter"> 0 </span> Pomos',
+
+  settingsHeader: 'Configuración',
+  personalizationHeader: 'Opciones de personalización',
+  accessibilityHeader: 'Opciones de accesibilidad',
+  settingsColor: 'Daltonismo',
+  settingsKeystroke: 'Acceso mediante pulsación de tecla',
+  settingsAuto: 'Temporizador de inicio automático',
+  settingsTab: 'Visibilidad del temporizador',
+
+  settingsBackgrounds: 'Fondo',
+  settingsLanguage: 'Idioma',
+  background1: 'Original',
+  background2: 'Desierto',
+  background3: 'Lago',
+  dropdownEn: 'Inglés',
+  dropdownKo: 'Coreano',
+  dropdownEs: 'Español',
+
+  statsHeader: 'Estadísticas de usuario',
+  todayHeader: 'Hoy',
+  pomoCycle: 'Pomos ciclos:',
+  pomoCycleUnits: '<span id = "today-pomodoros"> ____ </span> po.',
+  todayInterruption: 'Interrupciones:',
+  totalTasks: 'Total de tareas:',
+  totalTasksUnits: '<span id = "today-tasks"> ____ </span> tareas',
+  todayTasks: 'Tareas',
+  totalHeader: 'Totales',
+  totalPomoCycleUnits: '<span id = "total-pomodoros"> ____ </span> po.',
+  avgInterruptions: 'Promedio de interrupciones:',
+  avgInterruptionsUnits:
+    '<span id = "total-interruptions"> ____ </span> por po.',
+  bestDay: 'Mejor día:',
+  bestDayUnits:
+    '<span id = "total-best-pomo"> ____ </span> después. | <span id = "total-best-time"> ____ </span> min. ',
+  totalTotalTasksUnits: '<span id = "total-tasks"> ____ </span> tareas',
+  weeklyHeader: 'Resumen semanal',
+
+  weekDays: ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'],
+  day: 'día',
+  pomosCompleted: 'pomo completado'
+};
+
+/**
+ * title and break msg
+ */
+const pomoHeader = document.getElementById('pomobear-header');
+const breakMsg = document.getElementById('break-message');
+
+/**
+ * text on top of timer
+ */
+const workIndicator$1 = document.getElementById('work-indicator');
+const shortBreakIndicator$1 = document.getElementById('short-break-indicator');
+const longBreakIndicator$1 = document.getElementById('long-break-indicator');
+
+/**
+ * text on interrupt
+ */
+const startStopButton$1 = document.getElementById('start-stop-button');
+const promptText = document.getElementById('prompt-text');
+const resetYes = document.getElementById('reset-yes-button');
+const resetNo = document.getElementById('reset-no-button');
+
+/**
+ * text on completion
+ */
+const taskBtn = document.getElementById('task');
+
+/**
+ * settings menu
+ */
+const settingsHeader = document.getElementById('settings-header');
+const personalizationHeader = document.getElementById('personalization-header');
+const accessibilityHeader = document.getElementById('accessibility-header');
+const settingsColor = document.getElementById('settings-color');
+const settingsKeystroke = document.getElementById('settings-keystroke');
+const settingsAuto = document.getElementById('settings-auto');
+const settingsTab = document.getElementById('settings-tab');
+const settingsBackgrounds = document.getElementById('settings-backgrounds');
+const dropdownOriginal = document.getElementById('background_1');
+const dropdownDesert = document.getElementById('background_2');
+const dropdownLake = document.getElementById('background_3');
+const settingsLanguage = document.getElementById('settings-languages');
+const languages = document.getElementById('languages');
+const dropdownEnglish = document.getElementById('languages_1');
+const dropdownKorean = document.getElementById('languages_2');
+const dropdownSpanish = document.getElementById('languages_3');
+
+/**
+ * stat menu
+ */
+const statsHeader = document.getElementById('stats-header');
+const statTodayHeader = document.getElementById('stat-today-header');
+const statPomoCycle = document.getElementById('stat-pomo-cycle');
+const statPomoCycleUnits = document.getElementById('stat-pomo-cycle-units');
+const statInterruption = document.getElementById('stat-interruption');
+const statTotalTasks = document.getElementById('stat-total-tasks');
+const statTotalTasksUnits = document.getElementById('stat-total-tasks-units');
+const statTotalHeader = document.getElementById('stat-total-header');
+const statTotalPomoCycleUnits = document.getElementById(
+  'stat-total-pomo-cycle-units'
+);
+const statTotalPomoCycle = document.getElementById('stat-total-pomo-cycle');
+const statAvgInterruption = document.getElementById('stat-avg-interruptions');
+const statAvgInterruptionUnits = document.getElementById(
+  'total-interruptions-unit'
+);
+const statBestDay = document.getElementById('stat-best-day');
+const statBestDayUnits = document.getElementById('stat-best-day-units');
+const statTotalTasksTotalUnits = document.getElementById(
+  'stat-total-tasks-total-units'
+);
+const statTotalTasksTotal = document.getElementById('stat-total-tasks-total');
+const statWeeklyHeader = document.getElementById('stat-weekly-header');
+
+/**
+ * variable that controls which language is displayed
+ */
+let lang = enUS;
+
+/**
+ * get stored language, if it exists populate page with appropriate language
+ */
+const storedLanguage = localStorage.getItem('language');
+switch (storedLanguage) {
+  case 'enUS':
+    lang = enUS;
+    populateLanguage();
+    changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
+    languages.value = dropdownEnglish.value;
+    break;
+  case 'ko':
+    lang = ko;
+    populateLanguage();
+    languages.value = dropdownKorean.value;
+    changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
+    break;
+  case 'es':
+    lang = es;
+    populateLanguage();
+    languages.value = dropdownSpanish.value;
+    changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
+    break;
+}
+
+/**
+ * functions that control what language to swap to
+ */
+function setLanguageEn () {
+  lang = enUS;
+  localStorage.setItem('language', 'enUS');
+  populateLanguage();
+  changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
+}
+function setLanguageKo () {
+  lang = ko;
+  localStorage.setItem('language', 'ko');
+  populateLanguage();
+  changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
+}
+function setLanguageEs () {
+  lang = es;
+  localStorage.setItem('language', 'es');
+  populateLanguage();
+  changeLanguageAxis(lang.weekDays, lang.day, lang.pomosCompleted);
+}
+
+function changeLanguage () {
+  if (this.value === 'enUS') {
+    setLanguageEn();
+  } else if (this.value === 'ko') {
+    setLanguageKo();
+  } else {
+    setLanguageEs();
+  }
+}
+/**
+ * populates all the html elements with the correct strings (based on language)
+ */
+function populateLanguage () {
+  pomoHeader.innerHTML = lang.pomobearHeader;
+  breakMsg.innerHTML = lang.breakMsg;
+
+  workIndicator$1.innerHTML = lang.pomodoro;
+  shortBreakIndicator$1.innerHTML = lang.shortBreak;
+  longBreakIndicator$1.innerHTML = lang.longBreak;
+
+  startStopButton$1.innerHTML = lang.begin;
+  promptText.innerHTML = lang.interruption;
+  resetYes.innerHTML = lang.yes;
+  resetNo.innerHTML = lang.no;
+
+  taskBtn.innerHTML = lang.completion;
+
+  settingsHeader.innerHTML = lang.settingsHeader;
+  personalizationHeader.innerHTML = lang.personalizationHeader;
+  accessibilityHeader.innerHTML = lang.accessibilityHeader;
+  settingsColor.innerHTML = lang.settingsColor;
+  settingsKeystroke.innerHTML = lang.settingsKeystroke;
+  settingsAuto.innerHTML = lang.settingsAuto;
+  settingsTab.innerHTML = lang.settingsTab;
+
+  settingsBackgrounds.innerHTML = lang.settingsBackgrounds;
+  dropdownOriginal.innerHTML = lang.background1;
+  dropdownDesert.innerHTML = lang.background2;
+  dropdownLake.innerHTML = lang.background3;
+  settingsLanguage.innerHTML = lang.settingsLanguage;
+  dropdownEnglish.innerHTML = lang.dropdownEn;
+  dropdownKorean.innerHTML = lang.dropdownKo;
+  dropdownSpanish.innerHTML = lang.dropdownEs;
+
+  statsHeader.innerHTML = lang.statsHeader;
+  statTodayHeader.innerHTML = lang.todayHeader;
+  statPomoCycle.innerHTML = lang.pomoCycle;
+  statPomoCycleUnits.innerHTML = lang.pomoCycleUnits;
+  statInterruption.innerHTML = lang.todayInterruption;
+  statTotalTasks.innerHTML = lang.totalTasks;
+  statTotalTasksUnits.innerHTML = lang.totalTasksUnits;
+  statTotalHeader.innerHTML = lang.totalHeader;
+  statTotalPomoCycleUnits.innerHTML = lang.totalPomoCycleUnits;
+  statTotalPomoCycle.innerHTML = lang.pomoCycle;
+  statAvgInterruption.innerHTML = lang.avgInterruptions;
+  statAvgInterruptionUnits.innerHTML = lang.avgInterruptionsUnits;
+  statBestDay.innerHTML = lang.bestDay;
+  statBestDayUnits.innerHTML = lang.bestDayUnits;
+  statTotalTasksTotalUnits.innerHTML = lang.totalTotalTasksUnits;
+  statTotalTasksTotal.innerHTML = lang.totalTasks;
+  statWeeklyHeader.innerHTML = lang.weeklyHeader;
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  document.body.style.visibility = 'visible';
+});
+
+/* Settings Pane and Buttons */
+// might be good to move all these to Constants.js
+const settingsPane = document.getElementById('settings-container');
+const settingsOpenButton = document.getElementById('settings-open-button');
+const settingsCloseButton = document.getElementById('settings-close-button');
+const settingsColorButton = document.getElementById('colors-switch');
+const settingsKeysButton = document.getElementById('keystroke-switch');
+const settingsAutoStartButton = document.getElementById('autostart-switch');
+const settingsTabButton = document.getElementById('tab-switch');
+
+settingsOpenButton.addEventListener('click', openSettingsPane);
+settingsCloseButton.addEventListener('click', closeSettingsPane);
+settingsColorButton.addEventListener('click', toggleAccessibility);
+settingsKeysButton.addEventListener('click', toggleKeystroke);
+settingsAutoStartButton.addEventListener('click', toggleAutoStart);
+settingsTabButton.addEventListener('click', toggleTab);
+
+let settingsPaneIsOpen = false;
+
+/* istanbul ignore next */
+/**
+ * Opens the settings pane and closes the stats pane
+ */
+function openSettingsPane () {
+  removeAll();
+  // closing the status pane and open the settings
+  if (statsPane.classList.contains(SLIDE_OPEN)) {
+    closeStatsPane();
+    timerBlock.classList.remove(SLIDE_CLOSE);
+    timerBlock.classList.add(SLIDE_ACROSS_LEFT);
+    breakBlock.classList.remove(SLIDE_CLOSE);
+    breakBlock.classList.add(SLIDE_ACROSS_LEFT);
+  } else { // add the slide open settings (css)
+    timerBlock.classList.add(SLIDE_OPEN_SETTINGS);
+    breakBlock.classList.add(SLIDE_OPEN_SETTINGS);
+  }
+  settingsPane.classList.add(SLIDE_OPEN_SETTINGS);
+
+  settingsPaneIsOpen = true;
+  toggleButtons();
+}
+
+/* istanbul ignore next */
+/**
+ * Closes the settings pane and allows stats pane to reopen
+ * removes unnecessary css animations
+ */
+function closeSettingsPane () {
+  timerBlock.classList.remove(SLIDE_OPEN_SETTINGS);
+  breakBlock.classList.remove(SLIDE_OPEN_SETTINGS);
+  settingsPane.classList.remove(SLIDE_OPEN_SETTINGS);
+
+  timerBlock.classList.remove(SLIDE_ACROSS_LEFT);
+  breakBlock.classList.remove(SLIDE_ACROSS_LEFT);
+
+  timerBlock.classList.add(SLIDE_CLOSE_SETTINGS);
+  breakBlock.classList.add(SLIDE_CLOSE_SETTINGS);
+  settingsPane.classList.add(SLIDE_CLOSE_SETTINGS);
+
+  settingsPaneIsOpen = false;
+  toggleButtons();
+}
+
+/* instanbul ignore next */
+/**
+ * Toggles the respective settings pane buttons based on the current state
+ */
+function toggleButtons () {
+  settingsOpenButton.disabled = settingsPaneIsOpen;
+  settingsCloseButton.disabled = !settingsPaneIsOpen;
+  settingsColorButton.disabled = !settingsPaneIsOpen;
+  settingsKeysButton.disabled = !settingsPaneIsOpen;
+  settingsAutoStartButton.disabled = !settingsPaneIsOpen;
+  settingsTabButton.disabled = !settingsPaneIsOpen;
+}
+
+/* istanbul ignore next */
+/**
+ * Removes existing animation classes from stats and settings panes
+ */
+function removeAll () {
+  timerBlock.classList.remove(SLIDE_CLOSE);
+  breakBlock.classList.remove(SLIDE_CLOSE);
+  statsPane.classList.remove(SLIDE_CLOSE);
+
+  timerBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
+  breakBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
+  settingsPane.classList.remove(SLIDE_CLOSE_SETTINGS);
+}
+
+/**
+ * Changes the background
+ */
+background.addEventListener('change', changeBackground);
+
+/**
+ * Changes the Language
+ */
+languages.addEventListener('change', changeLanguage);
+/* istanbul ignore next */
+/**
+ * Shows if Settings pane is open or not
+ */
+function settingsPaneStatus () {
+  return settingsPaneIsOpen;
+}
+
+/*
+* initial load
+* sets height of settings/stats tab
+*/
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+/* istanbul ignore next */
+/**
+ * on window resize trigger new height
+ */
+window.addEventListener('resize', () => {
+  vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
 
 const taskButton = document.getElementById(TASK_BTN_ID);
 
@@ -794,9 +1228,11 @@ const shortBreakIndicator = document.getElementById('short-break-indicator');
 
 const breakMessage = document.getElementById('break-message');
 const breakContainer = document.getElementById('break-container');
-const breakMessages = ['Stand up!', 'Relax your mind', 'Rest!', 'Breathe', 'Take a break!']; // array we cycle through to display new break messages
 
-const timeWorker = (window.Worker && !window.Cypress) ? new Worker('./scripts/timeWorker.js') : null;
+const timeWorker =
+  window.Worker && !window.Cypress
+    ? new Worker('./scripts/timeWorker.js')
+    : null;
 
 /* Class List */
 const HOVER_TEXT = 'hover-text';
@@ -856,13 +1292,16 @@ function startResetController () {
 function beginCountdown (duration) {
   duration--;
   displayTime(duration);
-  const timerRingColor = (onBreak) ? BREAK_TIMER_COLOR : WORK_TIMER_COLOR;
-  settingsButton.disabled = !(onBreak);
-  statsButton.disabled = !(onBreak);
-  settingsButton.style.opacity = (onBreak) ? 1 : 0.2;
-  statsButton.style.opacity = (onBreak) ? 1 : 0.2;
+  const timerRingColor = onBreak ? BREAK_TIMER_COLOR : WORK_TIMER_COLOR;
+  settingsButton.disabled = !onBreak;
+  statsButton.disabled = !onBreak;
+  settingsButton.style.opacity = onBreak ? 1 : 0.2;
+  statsButton.style.opacity = onBreak ? 1 : 0.2;
   timerRing.setAttribute('stroke', timerRingColor);
-  timerRing.setAttribute('stroke-dasharray', `${(timeFraction(duration, pomoState) * DASH_STROKE_VAL)} ${DASH_STROKE_VAL}`);
+  timerRing.setAttribute(
+    'stroke-dasharray',
+    `${timeFraction(duration, pomoState) * DASH_STROKE_VAL} ${DASH_STROKE_VAL}`
+  );
 
   if (timeWorker) {
     timeWorker.onmessage = (e) => {
@@ -870,7 +1309,12 @@ function beginCountdown (duration) {
 
       const { timeLeft } = e.data;
       displayTime(timeLeft);
-      timerRing.setAttribute('stroke-dasharray', `${(timeFraction(timeLeft, pomoState) * DASH_STROKE_VAL)} ${DASH_STROKE_VAL}`);
+      timerRing.setAttribute(
+        'stroke-dasharray',
+        `${
+          timeFraction(timeLeft, pomoState) * DASH_STROKE_VAL
+        } ${DASH_STROKE_VAL}`
+      );
       if (timeLeft < 0) {
         stopTimer();
         hidePrompt();
@@ -896,7 +1340,10 @@ function setCountdownInterval (duration) {
   legacyInterval = setInterval(() => {
     --timer;
     displayTime(timer);
-    timerRing.setAttribute('stroke-dasharray', `${(timeFraction(timer, pomoState) * DASH_STROKE_VAL)} ${DASH_STROKE_VAL}`);
+    timerRing.setAttribute(
+      'stroke-dasharray',
+      `${timeFraction(timer, pomoState) * DASH_STROKE_VAL} ${DASH_STROKE_VAL}`
+    );
     if (timer < 0) {
       clearInterval(legacyInterval);
       stopTimer();
@@ -905,10 +1352,10 @@ function setCountdownInterval (duration) {
 }
 
 /**
-   * Toggles break styling in start-stop-button
-   * @param {Boolean} onBreak - Boolean to check if the timer is on break
-   * @returns {Boolean} Negation of onBreak
-   */
+ * Toggles break styling in start-stop-button
+ * @param {Boolean} onBreak - Boolean to check if the timer is on break
+ * @returns {Boolean} Negation of onBreak
+ */
 function togglePomoBreak (onBreak) {
   if (startStopButton) {
     startStopButton.classList.toggle(BREAK_BUTTON);
@@ -923,9 +1370,27 @@ function togglePomoBreak (onBreak) {
  * @returns {Array} An array containing the pomoState and the pomoCount
  */
 function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
+  // if Settings page is open close
+  if (settingsPaneStatus()) {
+    closeSettingsPane();
+  }
+
+  // if Stats page is open close
+  if (statsPaneStatus()) {
+    closeStatsPane();
+  }
+
   if (!onBreak) {
     toggleTaskButtonDisabled(true);
     hideBreakMessage();
+
+    if (settingsPaneIsOpen) {
+      closeSettingsPane();
+    }
+
+    if (statsPaneIsOpen) {
+      closeStatsPane();
+    }
   }
 
   if (onBreak && !isAutoStartEnabled()) {
@@ -939,11 +1404,11 @@ function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
   if (startStopButton) {
     // displaying the appropriate text in the start stop button
     if (!isAutoStartEnabled()) {
-      startStopButton.innerHTML = RESET_BTN_TXT;
+      startStopButton.innerHTML = lang.reset;
     } else if (isAutoStartEnabled() && onBreak) {
-      startStopButton.innerHTML = END_BTN_TXT;
+      startStopButton.innerHTML = lang.end;
     } else if (isAutoStartEnabled() && !onBreak) {
-      startStopButton.innerHTML = RESET_BTN_TXT;
+      startStopButton.innerHTML = lang.reset;
     }
     if (!localOnBreak) {
       pomoState = timerOptions.POMO;
@@ -976,11 +1441,11 @@ function stopTimer () {
 
   // displaying the appropriate text in the start stop button
   if (isAutoStartEnabled() && !onBreak) {
-    startStopButton.innerHTML = END_BTN_TXT;
+    startStopButton.innerHTML = lang.end;
   } else if (!isAutoStartEnabled()) {
-    startStopButton.innerHTML = BEGIN_BTN_TXT;
+    startStopButton.innerHTML = lang.begin;
   } else if (isAutoStartEnabled && onBreak) {
-    startStopButton.innerHTML = RESET_BTN_TXT;
+    startStopButton.innerHTML = lang.reset;
   }
 
   if (!onBreak) {
@@ -1036,12 +1501,18 @@ function updatePots () {
 }
 
 /**
-   * Resets timer upon button click
-   * @returns {Array} An array containing the stopped timer state and begin button text
-   */
+ * Resets timer upon button click
+ * @returns {Array} An array containing the stopped timer state and begin button text
+ */
 function resetTimer () {
   pomoState = timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
+
+  // re-enables the timer
+  settingsButton.disabled = false;
+  statsButton.disabled = false;
+  settingsButton.style.opacity = 1;
+  statsButton.style.opacity = 1;
 
   // only increments interruptions if not ending the session
   if (!isAutoStartEnabled() || !onBreak) {
@@ -1050,20 +1521,23 @@ function resetTimer () {
   }
 
   if (startStopButton) {
-    startStopButton.innerHTML = BEGIN_BTN_TXT;
+    startStopButton.innerHTML = lang.begin;
     if (timeWorker) timeWorker.postMessage({ start: false });
     if (legacyInterval) clearInterval(legacyInterval);
     if (onBreak) onBreak = togglePomoBreak(onBreak);
     countdownText.classList.remove(HOVER_TEXT);
     timerRing.setAttribute('stroke', STOP_TIMER_COLOR);
-    timerRing.setAttribute('stroke-dasharray', `${DASH_STROKE_VAL} ${DASH_STROKE_VAL}`);
+    timerRing.setAttribute(
+      'stroke-dasharray',
+      `${DASH_STROKE_VAL} ${DASH_STROKE_VAL}`
+    );
     displayTime(WORK_LENGTH);
     timerTypeIndicator(WORK_LENGTH);
   }
   if (!onBreak) {
     hideBreakMessage();
   }
-  return [pomoState, BEGIN_BTN_TXT];
+  return [pomoState, lang.begin];
 }
 
 /*
@@ -1082,9 +1556,9 @@ function resetPrompt () {
 
   startStopButton.style.display = 'none';
   if (isAutoStartEnabled() && onBreak) {
-    document.getElementById('prompt-text').innerHTML = 'End this pomo session? <br> This will not count as an interruption.';
+    document.getElementById('prompt-text').innerHTML = lang.interruption2;
   } else {
-    document.getElementById('prompt-text').innerHTML = 'This will count as an interruption.<br> Are you sure?';
+    document.getElementById('prompt-text').innerHTML = lang.interruption;
   }
   document.getElementById('prompt').style.display = 'flex';
   yesButton.disabled = false;
@@ -1131,10 +1605,14 @@ function displayTime (time) {
   seconds = seconds < BASE_10 ? '0' + seconds : seconds;
   countdownText.textContent = minutes + ':' + seconds;
 
-  if (onBreak) {
-    window.document.title = 'Break: ' + countdownText.textContent;
+  if (isTabEnabled()) {
+    if (onBreak) {
+      window.document.title = 'Break: ' + countdownText.textContent;
+    } else {
+      window.document.title = 'Work: ' + countdownText.textContent;
+    }
   } else {
-    window.document.title = 'Work: ' + countdownText.textContent;
+    window.document.title = 'Pomodoro by Texas Codem';
   }
 
   return countdownText.textContent;
@@ -1183,9 +1661,9 @@ function showBreakMessage () {
   breakContainer.style.display = 'inline-block';
 
   let i = 0;
-  breakInterval = setInterval(e => {
-    i = (i + breakMessages.length) % breakMessages.length;
-    breakMessage.innerText = breakMessages[i];
+  breakInterval = setInterval((e) => {
+    i = (i + lang.breakMessages.length) % lang.breakMessages.length;
+    breakMessage.innerText = lang.breakMessages[i];
     i++;
   }, 10000);
 }
@@ -1199,4 +1677,4 @@ function hideBreakMessage () {
   clearInterval(breakInterval);
 }
 
-export { beginCountdown, displayTime, hidePrompt, resetConfirm, resetPrompt, resetTimer, setCountdownInterval, startResetController, startTimer, timeFraction, timerTypeIndicator, togglePomoBreak, updatePots };
+export { beginCountdown, displayTime, hidePrompt, resetConfirm, resetPrompt, resetTimer, setCountdownInterval, settingsButton, startResetController, startTimer, statsButton, timeFraction, timerTypeIndicator, togglePomoBreak, updatePots };

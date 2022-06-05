@@ -6,16 +6,15 @@
     width: 400px;
     margin: 18px 18px 18px 18px;
     top: 0;
-    right: -418px;
-    z-index: 20;
+    left: -418px;
 }
 
 /* Stats container animations */
 #stats-container.slide-open {
-    animation: slide-right-out 0.5s ease-out forwards;
+    animation: slide-left-out 0.5s ease-out forwards;
 }
 #stats-container.slide-close {
-    animation: slide-right-in 0.5s ease-out forwards;
+    animation: slide-left-in 0.5s ease-out forwards;
 }
 
 /* Stats header (User Statistics) */
@@ -104,13 +103,13 @@
 }
 
 /* All stats button positioning, color, and active */
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 901px) {
     .stats-button {
         position: fixed;
-        top: 50px;
+        top: 45px;
         right: 30px;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -125,7 +124,7 @@
 #stats-close-button {
     position: absolute;
     top: 12px;
-    right: 12px;
+    left: 12px;
     width: 29px;
     height: 30px;
     background: var(--white-a1);
@@ -162,13 +161,13 @@
 }
 
 /* Responsive design for smaller screens for stats container */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
     #stats-container {
         height: 100vh; /* fallback */
         height: calc(var(--vh, 1vh) * 100 - 36px); 
         width: calc(100vw - 36px);
         margin: 18px 18px 18px 18px;
-        right: calc(-100vw + -18px);
+        left: calc(-100vw + -18px);
     }
 
     .weekly-graph {
@@ -193,13 +192,27 @@
         position: fixed;
         bottom: 20px;
         left: 30px;
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
+
     }
 
     .stats-button img {
-        width: 60px;
-        height: 60px;
+        width: 30px;
+        height: 30px;
+    }
+
+    html, body {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+}
+
+/* to move pots container more to the right */
+@media only screen and (max-width: 900px) and (min-width: 702px) {
+    .pots-container {
+        right: 5%;
     }
 }
 
@@ -213,23 +226,16 @@
         right: calc(-100vw + -8px);
     }
 
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
     #stats-pane {
         padding: 12px 24px 12px 24px;
         min-height: calc(max(calc(75vw + 400px), 650px));
     }
 
-    .stats-button {
-        position: fixed;
-        bottom: 10px;
-        left: 12px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .stats-button img {
-        width: 30px;
-        height: 30px;
-    }
 }
 
 figure {
