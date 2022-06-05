@@ -30,6 +30,7 @@ const BUILD_POMO_CSS_PATH = 'build/styles';
 const BUILD_TUT_CSS_PATH = 'build/tutorial-styles';
 const BUILD_TUT_JS_PATH = 'build/tutorial-scripts';
 
+
 const FAVICON_PATH = 'source/*ico';
 const SOUND_PATH = 'source/sounds/*.mp3';
 const FONT_PATH = 'source/fonts/*';
@@ -39,11 +40,23 @@ const TUT_CSS_PATH = 'source/tutorial-styles/*.css';
 const TUT_JS_PATH =  'source/tutorial-scripts/*.js';
 const POMO_HTML_PATH = 'source/index.html';
 const TUT_HTML_PATH = 'source/tutorial_page.html';
+const SW_JS_PATH = 'source/sw.js';
+const MANIFEST_PATH = 'source/manifest.json';
 
 // Clear the build directory
 function reset() {
   return src(BUILD_ROOT_PATH, {read: false})
   .pipe(clean());
+}
+
+// Copy the favicon
+function copyServiceWorker() {
+  return src(SW_JS_PATH).pipe(dest(BUILD_ROOT_PATH));
+}
+
+// Copy the favicon
+function copyManifest() {
+  return src(MANIFEST_PATH).pipe(dest(BUILD_ROOT_PATH));
 }
 
 // Copy the favicon
@@ -138,6 +151,8 @@ function minifyTutHTML() {
 
 // Export the tasks into gulp so we can run them
 exports.reset = reset;
+exports.copyServiceWorker = copyServiceWorker;
+exports.copyManifest = copyManifest;
 exports.copyfavi = copyfavi;
 exports.copySounds = copySounds;
 exports.copyFonts = copyFonts;
@@ -154,6 +169,8 @@ exports.minifyTutHTML = minifyTutHTML;
 exports.default = series(
                         reset, 
                         parallel(
+                          copyServiceWorker,
+                          copyManifest,
                           copyfavi, 
                           copySounds, 
                           copyFonts, 
