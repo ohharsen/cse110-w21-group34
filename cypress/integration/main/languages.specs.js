@@ -2,7 +2,6 @@ describe("Changing Language Tests", () => {
     beforeEach(() => {
       cy.visit("http://127.0.0.1:5500/");
       cy.get("#settings-open-button").click();
-      localStorage.clear();
     });
   //languages
   it("Clicking first language", () => {
