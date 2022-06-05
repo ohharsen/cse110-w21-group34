@@ -214,8 +214,7 @@ aside {
 
     .info-button {
         position: relative;
-        left: 200px;
-        top: -60px;
+        top: 30px;
         margin-top: 0px;
     }
 }
