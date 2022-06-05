@@ -142,12 +142,8 @@ aside {
     height: 40px;
     background: transparent;
     border-radius: 15px;
-    border: 0;
     margin-top: 53px;
-    margin-bottom: auto;
-    position: relative;
-    top: -130px;
-    left: 288px;
+    
 }
 
 .info-button:hover:enabled {
