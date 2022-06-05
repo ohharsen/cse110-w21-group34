@@ -242,7 +242,14 @@
     }
 
     #break-container {
-        margin-top: -10px;
-        margin-bottom: -84px;
+        margin-top: 40px;
+        margin-bottom: -135px;
+    }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 700px){
+    #break-container {
+        margin-top: 10px;
+        margin-bottom: -95px;
     }
 }
