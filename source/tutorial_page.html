@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title name="tab-title">Pomodoro's tutorial page by Texas Codem</title>
 
-  <link rel="stylesheet" media="screen and (min-width: 950px)" href="./styles/tutorial_page_laptop.css">
+  <link rel="stylesheet" media="screen and (min-width: 950px)" href="./tutorial-styles/tutorial_page_laptop.css">
   <link rel="stylesheet" media="screen and (min-width: 700px)and (max-width: 950px)"
-    href="./styles/tutorial_page_tablet.css">
-  <link rel="stylesheet" media="screen and (max-width: 700px)" href="./styles/tutorial_page_mobile.css">
+    href="./tutorial-styles/tutorial_page_tablet.css">
+  <link rel="stylesheet" media="screen and (max-width: 700px)" href="./tutorial-styles/tutorial_page_mobile.css">
 
   <link rel="icon" type="image/png" href="./favicon.ico">
 
@@ -59,7 +59,7 @@
             <span class="vertical-part"><b>Start working efficiently!</b></span>
           </div>
           <div class="item-image-container">
-            <img class="item-image" src="images/main_page_between.png" alt="main_page_between_tutorial"/>
+            <img class="item-image" src="images/main_page_between.png" alt="main_page_between_tutorial">
           </div>
           <!-- Staggered Description Elements -->
           <div class="item-description">
@@ -78,7 +78,7 @@
             <span class="vertical-part"><b>Take a break!</b></span>
           </div>
           <div class="item-image-container">
-            <img class="item-image" src="images/main_page_break.png" alt="main_page_break_tutorial"/>
+            <img class="item-image" src="images/main_page_break.png" alt="main_page_break_tutorial">
           </div>
           <!-- Staggered Description Elements -->
           <div class="item-description">
@@ -96,7 +96,7 @@
             <span class="vertical-part"><b>Settings</b></span>
           </div>
           <div class="item-image-container">
-            <img class="item-image" src="images/tutorial_setting.png" alt="setting_tutorial"/>
+            <img class="item-image" src="images/tutorial_setting.png" alt="setting_tutorial">
           </div>
           <!-- Staggered Description Elements -->
           <div class="item-description">
@@ -111,7 +111,7 @@
             <span class="vertical-part"><b>Personalization Options</b></span>
           </div>
           <div class="item-image-container">
-            <img class="item-image" src="images/tutorial_setting_person.png" alt="personalization_tutorial"/>
+            <img class="item-image" src="images/tutorial_setting_person.png" alt="personalization_tutorial">
           </div>
           <!-- Staggered Description Elements -->
           <div class="item-description">
@@ -130,7 +130,7 @@
             <span class="vertical-part"><b>Accessiblity Options</b></span>
           </div>
           <div class="item-image-container">
-            <img class="item-image" src="images/tutorial_setting_access.png" alt="accessibility_tutorial"/>
+            <img class="item-image" src="images/tutorial_setting_access.png" alt="accessibility_tutorial">
           </div>
           <!-- Staggered Description Elements -->
           <div class="item-description">
@@ -160,7 +160,7 @@
             <span class="vertical-part"><b>User Statistics</b></span>
           </div>
           <div class="item-image-container">
-            <img class="item-image" src="images/tutorial_statistics.png" alt="stats_tutorial"/>
+            <img class="item-image" src="images/tutorial_statistics.png" alt="stats_tutorial">
           </div>
           <!-- Staggered Description Elements -->
           <div class="item-description">
@@ -182,11 +182,11 @@
           </ul>
         </div>
         <div>
-          <button type="button" class="arrow right"></button>
-          <button type="button" class="arrow left"></button>
+          <button type="button" class="arrow right" aria-label="next page"></button>
+          <button type="button" class="arrow left" aria-label="previous page"></button>
         </div>
         <div>
-          <button type="button" id="go-back-button" class="pomodoro-button" onClick="location.href='index.html'">
+          <button type="button" id="go-back-button" class="pomodoro-button" onclick="location.href='index.html'">
             Back to homepage
           </button>
         </div>
