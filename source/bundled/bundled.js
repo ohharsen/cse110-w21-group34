@@ -595,8 +595,9 @@ function displayTodayStats () {
   const todayTaskCount = getCounter(TODAY_TASK_ID);
 
   document.getElementById('today-pomodoros').innerHTML = todayPomoCount;
-  document.getElementById('today-tasks').innerHTML = todayInterruptCount;
-  document.getElementById('today-interruptions').innerHTML = todayTaskCount;
+  document.getElementById('today-tasks').innerHTML = todayTaskCount;
+  document.getElementById('today-interruptions').innerHTML = todayInterruptCount;
+  
 }
 
 /* istanbul ignore next */
@@ -883,9 +884,9 @@ const dropdownDesert = document.getElementById('background_2');
 const dropdownLake = document.getElementById('background_3');
 const settingsLanguage = document.getElementById('settings-languages');
 const languages = document.getElementById('languages');
-const dropdownEnglish = document.getElementById('languages_1');
-const dropdownKorean = document.getElementById('languages_2');
-const dropdownSpanish = document.getElementById('languages_3');
+const dropdownEnglish = document.getElementById('english');
+const dropdownKorean = document.getElementById('korean');
+const dropdownSpanish = document.getElementById('spanish');
 
 /**
  * stat menu
