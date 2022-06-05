@@ -1,4 +1,5 @@
 {
     "screenshotOnRunFailure": true,
+    "chromeWebSecurity": false,
     "video": true
 }
