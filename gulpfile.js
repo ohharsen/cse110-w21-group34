@@ -42,19 +42,30 @@ const POMO_HTML_PATH = 'source/index.html';
 const TUT_HTML_PATH = 'source/tutorial_page.html';
 const SW_JS_PATH = 'source/sw.js';
 const MANIFEST_PATH = 'source/manifest.json';
-
+const SET_BG_JS_PATH = 'source/scripts/setBackground.js';
+const INDEX_JS_PATH = 'source/scripts/index.js'
 // Clear the build directory
 function reset() {
   return src(BUILD_ROOT_PATH, {read: false})
   .pipe(clean());
 }
 
-// Copy the favicon
+// Copy the setbackground
+function copySetBG() {
+  return src(SET_BG_JS_PATH).pipe(dest(BUILD_BUNDLED_PATH));
+}
+
+// Copy the index.js
+function copyIndexJS() {
+  return src(INDEX_JS_PATH).pipe(dest(BUILD_BUNDLED_PATH));
+}
+
+// Copy the serviceworker
 function copyServiceWorker() {
   return src(SW_JS_PATH).pipe(dest(BUILD_ROOT_PATH));
 }
 
-// Copy the favicon
+// Copy the manifest
 function copyManifest() {
   return src(MANIFEST_PATH).pipe(dest(BUILD_ROOT_PATH));
 }
@@ -151,6 +162,8 @@ function minifyTutHTML() {
 
 // Export the tasks into gulp so we can run them
 exports.reset = reset;
+exports.copySetBG = copySetBG;
+exports.copyIndexJS = copyIndexJS;
 exports.copyServiceWorker = copyServiceWorker;
 exports.copyManifest = copyManifest;
 exports.copyfavi = copyfavi;
@@ -169,6 +182,8 @@ exports.minifyTutHTML = minifyTutHTML;
 exports.default = series(
                         reset, 
                         parallel(
+                          copySetBG,
+                          copyIndexJS,
                           copyServiceWorker,
                           copyManifest,
                           copyfavi, 
