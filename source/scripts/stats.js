@@ -123,3 +123,11 @@ export function displayTodayStats () {
   document.getElementById('today-tasks').innerHTML = todayInterruptCount;
   document.getElementById('today-interruptions').innerHTML = todayTaskCount;
 }
+
+/* istanbul ignore next */
+/**
+ * Shows if Stats pane is open or not
+ */
+export function statsPaneStatus () {
+  return statsPaneIsOpen;
+}
