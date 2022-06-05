@@ -120,6 +120,7 @@ export function displayTodayStats () {
   const todayTaskCount = Storage.getCounter(Storage.TODAY_TASK_ID);
 
   document.getElementById('today-pomodoros').innerHTML = todayPomoCount;
-  document.getElementById('today-tasks').innerHTML = todayInterruptCount;
-  document.getElementById('today-interruptions').innerHTML = todayTaskCount;
+  document.getElementById('today-tasks').innerHTML = todayTaskCount;
+  document.getElementById('today-interruptions').innerHTML = todayInterruptCount;
+  
 }
