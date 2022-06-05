@@ -171,11 +171,11 @@
     }
 
     .weekly-graph {
-        width: calc(100vw - 100px);
+        width: calc(90vw - 100px);
     }
 
     #stats-overview {
-        min-height: calc(75vw - 100px);
+        min-height: calc(65vw - 100px);
     }
 
     #stats-container h2 {
