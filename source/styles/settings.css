@@ -10,8 +10,7 @@
     width: 400px;
     margin: 18px 18px 18px 18px;
     top: 0;
-    left: -418px;
-    z-index: 20;
+    right: -418px;
 }
 
 /* dropdown windows */
@@ -306,18 +305,18 @@ input:checked + .slider:before {
 }
 
 #settings-container.slide-open-settings {
-    animation: slide-left-out 0.5s ease-out forwards;
+    animation: slide-right-out 0.5s ease-out forwards;
 }
 
 #settings-container.slide-close-settings {
-    animation: slide-left-in 0.5s ease-out forwards;
+    animation: slide-right-in 0.5s ease-out forwards;
 }
 
 .center-container.slide-open-settings {
-    animation: slide-center-out-settings 0.5s ease-out forwards;
+    animation: slide-across-left 0.5s ease-out forwards;
 }
 .center-container.slide-close-settings {
-    animation: slide-center-in-settings 0.5s ease-out forwards;
+    animation: slide-across-right 0.5s ease-out forwards;
 }
 .center-container.slide-across-right {
     animation: slide-across-right 0.5s ease-out forwards;
@@ -327,10 +326,10 @@ input:checked + .slider:before {
 }
 
 .break-message.slide-open-settings {
-    animation: slide-center-out-settings 0.5s ease-out forwards;
+    animation: slide-across-left 0.5s ease-out forwards;
 }
 .break-message.slide-close-settings {
-    animation: slide-center-in-settings 0.5s ease-out forwards;
+    animation: slide-across-right 0.5s ease-out forwards;
 }
 .break-message.slide-across-right {
     animation: slide-across-right 0.5s ease-out forwards;
@@ -338,7 +337,6 @@ input:checked + .slider:before {
 .break-message.slide-across-left {
     animation: slide-across-left 0.5s ease-out forwards;
 }
-
 
 /* Animations for settings and stats */
 @keyframes slide-left-out {
