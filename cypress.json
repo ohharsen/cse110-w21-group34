@@ -1,4 +1,4 @@
 {
     "screenshotOnRunFailure": true,
-    "video": false
+    "video": true
 }
