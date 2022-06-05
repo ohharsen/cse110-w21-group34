@@ -134,3 +134,11 @@ export function displayTodayStats () {
   todayInterruptElem.textContent = todayInterruptCount;
   todayTasksElem.textContent = todayTaskCount;
 }
+
+/* istanbul ignore next */
+/**
+ * Shows if Stats pane is open or not
+ */
+export function statsPaneStatus () {
+  return statsPaneIsOpen;
+}
