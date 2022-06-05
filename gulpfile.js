@@ -112,7 +112,7 @@ function minifyTimeWorker() {
 function minifyPomoCSS() {
   return src(POMO_CSS_PATH)
     .pipe(concat('main.css'))
-    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(postcss([cssnano()]))
     .pipe(dest(BUILD_POMO_CSS_PATH));
 }
 
