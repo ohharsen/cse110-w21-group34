@@ -7,7 +7,6 @@ const postcss = require('gulp-postcss');
 const clean = require('gulp-clean');
 const htmlmin = require('gulp-htmlmin');
 const cssnano = require('cssnano');
-const autoprefixer = require('autoprefixer');
 
 // Used for running gulp/defining srcs and dests
 const { src, parallel, dest, series } = require('gulp');
@@ -121,7 +120,7 @@ function minifyPomoCSS() {
 function minifyTutCSS() {
   return src(TUT_CSS_PATH)
     .pipe(concat('tutorial_page.css'))
-    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(postcss([cssnano()]))
     .pipe(dest(BUILD_TUT_CSS_PATH));  
 }
 

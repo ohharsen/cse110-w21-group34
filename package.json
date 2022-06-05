@@ -26,7 +26,6 @@
     },
     "homepage": "https://github.com/4R53N/cse110-w21-group34#readme",
     "devDependencies": {
-        "autoprefixer": "^9.8.6",
         "babel-eslint": "^10.1.0",
         "browserify": "^17.0.0",
         "coveralls": "^3.1.0",
