@@ -122,7 +122,6 @@ export function displayTodayStats () {
   document.getElementById('today-pomodoros').innerHTML = todayPomoCount;
   document.getElementById('today-tasks').innerHTML = todayTaskCount;
   document.getElementById('today-interruptions').innerHTML = todayInterruptCount;
-  
 }
 
 /* istanbul ignore next */
