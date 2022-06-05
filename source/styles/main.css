@@ -245,7 +245,7 @@ aside {
 }
 
 /* Places info button next to logo for appropriate screen sizes */
-@media only screen and (max-width: 900px) and (min-width: 700px) {
+@media only screen and (max-width: 900px) {
     .info-button {
         position: absolute;
         left: 40px;

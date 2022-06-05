@@ -228,20 +228,12 @@
         flex-direction: column;
     }
 
-    .pots-container {
-        position: relative;
-        top: 91vh;
-        justify-content: center;
-        right: 0%;
-        
-    }
-
     #pomobear-header {
         display: none;
     }
 
     .center-container {
-        padding-top: 110px;
+        padding-top: 130px;
         height: 65%;
     }
 
@@ -250,25 +242,7 @@
     }
 
     #break-container {
-        margin-top: -35px;
+        margin-top: -10px;
         margin-bottom: -84px;
-    }
-
-    .info-button {
-        position: fixed;
-        margin: 0px;
-        left: auto;
-        right: 20px;
-        top: 25px;
-    }
-}
-
-/* for pots container */
-@media only screen and (min-height: 850px) and (max-width: 700px) {
-    .pots-container {
-        position: relative;
-        top: 86vh;
-        justify-content: center;
-        right: 0%; 
     }
 }
