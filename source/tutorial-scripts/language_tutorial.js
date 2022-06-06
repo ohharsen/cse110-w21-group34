@@ -26,7 +26,7 @@ const enUS = {
   tutorialSpaceBar: 'Space Bar: Begin/Reset',
   tutorialLeft: 'Left Arrow: Settings',
   tutorialRight: 'Right Arrow: Statistics',
-  tutorialLangs: 'Languages: In addition to English, we also support Spanish, Chinese and Korean.',   
+  tutorialLangs: 'Languages: In addition to English, we also support Spanish, Chinese and Korean.',
   tutorialStats: 'User Statistics',
   tutorialStats1:
     'You can browse your performance by clicking the "Statistics" icon in the upper left corner.',
@@ -62,7 +62,7 @@ const ko = {
   tutorialSpaceBar: '스페이스바: 시작/재설정',
   tutorialLeft: '왼쪽 화살표: 설정',
   tutorialRight: '오른쪽 화살표: 통계',
-  tutorialLangs: '언어: 영어 외에 스페인어, 중국어 및 한국어도 지원합니다.',   
+  tutorialLangs: '언어: 영어 외에 스페인어, 중국어 및 한국어도 지원합니다.',
   tutorialStats: '사용자 통계',
   tutorialStats1:
     '왼쪽 상단 모서리에 있는 "통계" 아이콘을 클릭하여 실적을 검색할 수 있습니다.',
@@ -98,7 +98,7 @@ const es = {
   tutorialSpaceBar: 'Barra espaciadora: Comenzar/Reiniciar',
   tutorialLeft: 'Flecha izquierda: Configuración',
   tutorialRight: 'Flecha derecha: Estadísticas',
-  tutorialLangs: 'Idiomas: además del inglés, también admitimos español, chino y coreano.', 
+  tutorialLangs: 'Idiomas: además del inglés, también admitimos español, chino y coreano.',
   tutorialStats: 'Estadísticas de usuario',
   tutorialStats1:
     'Puede consultar su rendimiento haciendo clic en el icono "Estadísticas" en la esquina superior izquierda.',
@@ -121,9 +121,9 @@ const tutorialBreak1 = document.getElementById('tutorial-break-1');
 const tutorialBreak2 = document.getElementById('tutorial-break-2');
 const tutorialSettings = document.getElementById('tutorial-settings');
 const tutorialSettings1 = document.getElementById('tutorial-settings-1');
-const tutorialPersonalization  = document.getElementById('personalization-header');
+const tutorialPersonalization = document.getElementById('personalization-header');
 const tutorialPersonalization1 = document.getElementById('personalization-sub');
-const tutorialPersonalization2 = document.getElementById('personalization-info'); 
+const tutorialPersonalization2 = document.getElementById('personalization-info');
 const tutorialAccessibility = document.getElementById('accessibility-header');
 const tutorialColorblind = document.getElementById('colorblind');
 const tutorialKeystroke = document.getElementById('keystroke');
@@ -172,7 +172,7 @@ function populateLanguageTutorial () {
   tutorialBreak2.innerHTML = lang.tutorialBreak2;
   tutorialSettings.innerHTML = lang.tutorialSettings;
   tutorialSettings1.innerHTML = lang.tutorialSettings1;
-  tutorialPersonalization.innerHTML  = lang.tutorialPersonalization;
+  tutorialPersonalization.innerHTML = lang.tutorialPersonalization;
   tutorialPersonalization1.innerHTML = lang.tutorialPersonalization1;
   tutorialPersonalization2.innerHTML = lang.tutorialPersonalization2;
   tutorialAccessibility.innerHTML = lang.tutorialAccessibility;
