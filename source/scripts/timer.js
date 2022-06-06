@@ -33,7 +33,7 @@ const shortBreakIndicator = document.getElementById('short-break-indicator');
 
 const breakMessage = document.getElementById('break-message');
 const breakContainer = document.getElementById('break-container');
-const breakMessages = ['Stand up!', 'Relax your mind', 'Rest!', 'Breathe', 'Take a break!']; // array we cycle through to display new break messages
+const breakMessages = ['Stand up!', 'Relax!', 'Rest!', 'Breathe', 'Take a break!']; // array we cycle through to display new break messages
 
 const timeWorker = (window.Worker && !window.Cypress) ? new Worker('./scripts/timeWorker.js') : null;
 

@@ -206,36 +206,6 @@
     background:rgba(255, 255, 255, 0.2);
 }
 
-/* positioning for pomo pots */
-.pots-container {
-    position: fixed;
-    top: 55px;
-    right: 105px;
-    display: flex;
-    align-items: flex-end;
-    justify-items: flex-end;
-    justify-content: flex-end;
-}
-
-.pots-container img {
-    margin-left: 4px;
-    height: 30px;
-    width: 30px;
-}
-
-.pomo-indicator-container {
-    font-size: 18px;
-    color: var(--counter-color);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    bottom: 13%;
-    width: 90%;
-    align-self: center;
-    margin-bottom: 5px;
-}
-
 @media (max-width: 1300px){
     .pomo-indicator-container {
         font-size: 0.99rem;
@@ -258,20 +228,12 @@
         flex-direction: column;
     }
 
-    .pots-container {
-        position: relative;
-        top: 91vh;
-        justify-content: center;
-        right: 0%;
-        
-    }
-
     #pomobear-header {
         display: none;
     }
 
     .center-container {
-        padding-top: 110px;
+        padding-top: 130px;
         height: 65%;
     }
 
@@ -280,25 +242,14 @@
     }
 
     #break-container {
-        margin-top: -35px;
-        margin-bottom: -84px;
-    }
-
-    .info-button {
-        position: fixed;
-        margin: 0px;
-        left: auto;
-        right: 20px;
-        top: 25px;
+        margin-top: 40px;
+        margin-bottom: -135px;
     }
 }
 
-/* for pots container */
-@media only screen and (min-height: 850px) and (max-width: 700px) {
-    .pots-container {
-        position: relative;
-        top: 86vh;
-        justify-content: center;
-        right: 0%; 
+@media only screen and (min-width: 450px) and (max-width: 700px){
+    #break-container {
+        margin-top: 10px;
+        margin-bottom: -95px;
     }
 }
