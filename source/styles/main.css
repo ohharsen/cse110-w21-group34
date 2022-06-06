@@ -268,8 +268,8 @@ aside {
 @media only screen and (max-width: 900px) {
     .info-button {
         position: absolute;
-        left: 40px;
-        top: 45px;
+        left: -35px;
+        top: 70px;
         margin-top: 0px;
     }
 }
