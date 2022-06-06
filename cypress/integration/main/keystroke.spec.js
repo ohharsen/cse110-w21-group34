@@ -1,4 +1,5 @@
 import * as Constants from '../../../source/scripts/constants';
+import { unregisterSW } from '../../../source/sw.js';
 
 const TASK_COUNT_VALID_ENTER = '0';
 const TASK_COUNT_INVALID_ENTER = '1';
@@ -9,6 +10,8 @@ const SETTINGS_SLIDE_CLOSE = 'slide-close-settings';
 
 describe('Timer Keys Test', ()=>{
     beforeEach(() => {
+        // unregisters service worker before e2e test
+        unregisterSW();
         cy.visit('http://127.0.0.1:5500/');
     });
 
@@ -28,6 +31,8 @@ describe('Timer Keys Test', ()=>{
 
 describe('Pane Tests', ()=>{
     beforeEach(() => {
+        // unregisters service worker before e2e test
+        unregisterSW();
         cy.visit(Constants.HOST_ADDRESS);
     });
 
@@ -145,6 +150,8 @@ describe('Pane Tests', ()=>{
 describe('Enter Complete Task Tests', () => {
 
     beforeEach(() => {
+        // unregisters service worker before e2e test
+        unregisterSW();
         cy.visit('http://127.0.0.1:5500/');
     });
 
