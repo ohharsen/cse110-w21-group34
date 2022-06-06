@@ -17,6 +17,16 @@ const enUS = {
   tutorialSettings: 'Settings',
   tutorialSettings1:
     'You can change the timer setting by clicking the "Settings" icon in the lower left corner.',
+  tutorialPersonalization: 'Personalization Options',
+  tutorialPersonalization1: 'You can personalize the timer in the way you want.',
+  tutorialPersonalization2: 'You can choose to let the timer start automatically at the start of each session, or start it manually. In addition, you can change the background according to your preference.',
+  tutorialAccessibility: 'Accessibility Options',
+  tutorialColorblind: 'Colorblindness: Provides color-blind-friendly colors.',
+  tutorialKeystroke: 'Keystroke Acccess',
+  tutorialSpaceBar: 'Space Bar: Begin/Reset',
+  tutorialLeft: 'Left Arrow: Settings',
+  tutorialRight: 'Right Arrow: Statistics',
+  tutorialLangs: 'Languages: In addition to English, we also support Spanish, Chinese and Korean.',   
   tutorialStats: 'User Statistics',
   tutorialStats1:
     'You can browse your performance by clicking the "Statistics" icon in the upper left corner.',
@@ -43,6 +53,16 @@ const ko = {
   tutorialSettings: '설정',
   tutorialSettings1:
     '왼쪽 하단 모서리에 있는 "설정" 아이콘을 클릭하여 타이머 설정을 변경할 수 있습니다.',
+  tutorialPersonalization: '개인화 옵션',
+  tutorialPersonalization1: '원하는 방식으로 타이머를 개인화할 수 있습니다..',
+  tutorialPersonalization2: '각 세션이 시작될 때 타이머가 자동으로 시작되도록 선택하거나 수동으로 시작할 수 있습니다. 또한 원하는 대로 배경을 변경할 수 있습니다.',
+  tutorialAccessibility: '접근성 옵션',
+  tutorialColorblind: '색맹: 색맹 친화적인 색상을 제공합니다.',
+  tutorialKeystroke: '키 입력 액세스',
+  tutorialSpaceBar: '스페이스바: 시작/재설정',
+  tutorialLeft: '왼쪽 화살표: 설정',
+  tutorialRight: '오른쪽 화살표: 통계',
+  tutorialLangs: '언어: 영어 외에 스페인어, 중국어 및 한국어도 지원합니다.',   
   tutorialStats: '사용자 통계',
   tutorialStats1:
     '왼쪽 상단 모서리에 있는 "통계" 아이콘을 클릭하여 실적을 검색할 수 있습니다.',
@@ -69,6 +89,16 @@ const es = {
   tutorialSettings: 'Configuraciones',
   tutorialSettings1:
     'Puedes cambiar la configuración del temporizador haciendo clic en el ícono "Configuración" en la esquina inferior izquierda.',
+  tutorialPersonalization: 'Opciones de personalización',
+  tutorialPersonalization1: 'Puede personalizar el temporizador de la forma que desee.',
+  tutorialPersonalization2: 'Puede optar por dejar que el temporizador se inicie automáticamente al comienzo de cada sesión o iniciarlo manualmente. Además, puedes cambiar el fondo según tus preferencias.',
+  tutorialAccessibility: 'Opciones de accesibilidad',
+  tutorialColorblind: 'Daltonismo: proporciona colores amigables para los daltónicos.',
+  tutorialKeystroke: 'Acceso por pulsación de tecla',
+  tutorialSpaceBar: 'Barra espaciadora: Comenzar/Reiniciar',
+  tutorialLeft: 'Flecha izquierda: Configuración',
+  tutorialRight: 'Flecha derecha: Estadísticas',
+  tutorialLangs: 'Idiomas: además del inglés, también admitimos español, chino y coreano.', 
   tutorialStats: 'Estadísticas de usuario',
   tutorialStats1:
     'Puede consultar su rendimiento haciendo clic en el icono "Estadísticas" en la esquina superior izquierda.',
@@ -91,6 +121,16 @@ const tutorialBreak1 = document.getElementById('tutorial-break-1');
 const tutorialBreak2 = document.getElementById('tutorial-break-2');
 const tutorialSettings = document.getElementById('tutorial-settings');
 const tutorialSettings1 = document.getElementById('tutorial-settings-1');
+const tutorialPersonalization  = document.getElementById('personalization-header');
+const tutorialPersonalization1 = document.getElementById('personalization-sub');
+const tutorialPersonalization2 = document.getElementById('personalization-info'); 
+const tutorialAccessibility = document.getElementById('accessibility-header');
+const tutorialColorblind = document.getElementById('colorblind');
+const tutorialKeystroke = document.getElementById('keystroke');
+const tutorialSpaceBar = document.getElementById('space-bar');
+const tutorialLeft = document.getElementById('left-arrow');
+const tutorialRight = document.getElementById('right-arrow');
+const tutorialLangs = document.getElementById('languages');
 const tutorialStats = document.getElementById('tutorial-stats');
 const tutorialStats1 = document.getElementById('tutorial-stats-1');
 const tutorialBackBtn = document.getElementById('go-back-button');
@@ -132,6 +172,16 @@ function populateLanguageTutorial () {
   tutorialBreak2.innerHTML = lang.tutorialBreak2;
   tutorialSettings.innerHTML = lang.tutorialSettings;
   tutorialSettings1.innerHTML = lang.tutorialSettings1;
+  tutorialPersonalization.innerHTML  = lang.tutorialPersonalization;
+  tutorialPersonalization1.innerHTML = lang.tutorialPersonalization1;
+  tutorialPersonalization2.innerHTML = lang.tutorialPersonalization2;
+  tutorialAccessibility.innerHTML = lang.tutorialAccessibility;
+  tutorialColorblind.innerHTML = lang.tutorialColorblind;
+  tutorialKeystroke.innerHTML = lang.tutorialKeystroke;
+  tutorialSpaceBar.innerHTML = lang.tutorialSpaceBar;
+  tutorialLeft.innerHTML = lang.tutorialLeft;
+  tutorialRight.innerHTML = lang.tutorialRight;
+  tutorialLangs.innerHTML = lang.tutorialLangs;
   tutorialStats.innerHTML = lang.tutorialStats;
   tutorialStats1.innerHTML = lang.tutorialStats1;
   tutorialBackBtn.innerHTML = lang.tutorialBackBtn;
