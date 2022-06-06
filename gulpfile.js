@@ -153,7 +153,6 @@ function minifyPomoHTML() {
 
 function minifyTutHTML() {
     return src(TUT_HTML_PATH)
-        .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(dest(BUILD_ROOT_PATH));
 }
 
