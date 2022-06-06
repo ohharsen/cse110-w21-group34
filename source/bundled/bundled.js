@@ -13,7 +13,6 @@ const LONG_BREAK = 900; // # of seconds in a long break (orig. 900)
 // many js files have their own list of consts, should think of grouping them all here or come up with consistent rule to distribute them
 const SLIDE_OPEN = 'slide-open';
 const SLIDE_CLOSE = 'slide-close';
-const SLIDE_ACROSS_RIGHT = 'slide-across-right';
 const SLIDE_ACROSS_LEFT = 'slide-across-left';
 const SLIDE_OPEN_SETTINGS = 'slide-open-settings';
 const SLIDE_CLOSE_SETTINGS = 'slide-close-settings';
@@ -258,15 +257,19 @@ function keyControls (e) {
       e.preventDefault();
       (settingsPaneIsOpen) ? closeSettingsPane() : ((statsPaneIsOpen) ? closeStatsPane() : (() => {})());
       break;
-    case keys.LEFT_ARROW:
-      e.preventDefault();
-      removeAll();
-      (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
-      break;
     case keys.RIGHT_ARROW:
-      e.preventDefault();
-      removeAll();
-      (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();
+      if (!statsButton.disabled) {
+        e.preventDefault();
+        removeAll();
+        (settingsPaneIsOpen) ? closeSettingsPane() : openStatsPane();
+      }
+      break;
+    case keys.LEFT_ARROW:
+      if (!settingsButton.disabled) {
+        e.preventDefault();
+        removeAll();
+        (statsPaneIsOpen) ? closeStatsPane() : openSettingsPane();
+      }
       break;
     case keys.SPACE:
       if (!(document.activeElement instanceof HTMLInputElement)) {
@@ -309,148 +312,6 @@ function toggleAutoStart () {
  */
 function isAutoStartEnabled () {
   return autostartMode;
-}
-
-/* Settings Pane and Buttons */
-// might be good to move all these to Constants.js
-const settingsPane = document.getElementById('settings-container');
-const settingsOpenButton = document.getElementById('settings-open-button');
-const settingsCloseButton = document.getElementById('settings-close-button');
-const settingsColorButton = document.getElementById('colors-switch');
-const settingsKeysButton = document.getElementById('keystroke-switch');
-const settingsAutoStartButton = document.getElementById('autostart-switch');
-
-const backgroundOneOption = document.getElementById('background_1');
-const backgroundTwoOption = document.getElementById('background_2');
-const backgroundThreeOption = document.getElementById('background_3');
-
-const backgroundOneURL = "url('./images/background.svg')";
-const backgroundTwoURL = "url('./images/background2.png')";
-const backgroundThreeURL = "url('./images/background3.png')";
-
-const backgroundDropDown = document.getElementById('backgroundDropDown');
-
-backgroundOneOption.onclick = backgroundOneClicked;
-backgroundTwoOption.onclick = backgroundTwoClicked;
-backgroundThreeOption.onclick = backgroundThreeClicked;
-
-backgroundDropDown.onmouseover = enableDropdown;
-
-settingsOpenButton.onclick = openSettingsPane;
-settingsCloseButton.onclick = closeSettingsPane;
-settingsColorButton.onclick = toggleAccessibility;
-settingsKeysButton.onclick = toggleKeystroke;
-settingsAutoStartButton.onclick = toggleAutoStart;
-
-let settingsPaneIsOpen = false;
-
-/* istanbul ignore next */
-/**
- * Opens the settings pane and closes the stats pane
- */
-function openSettingsPane () {
-  removeAll();
-  // closing the status pane and open the settings
-  if (statsPane.classList.contains(SLIDE_OPEN)) {
-    closeStatsPane();
-    timerBlock.classList.remove(SLIDE_CLOSE);
-    timerBlock.classList.add(SLIDE_ACROSS_RIGHT);
-    breakBlock.classList.remove(SLIDE_CLOSE);
-    breakBlock.classList.add(SLIDE_ACROSS_RIGHT);
-  } else { // add the slide open settings (css)
-    timerBlock.classList.add(SLIDE_OPEN_SETTINGS);
-    breakBlock.classList.add(SLIDE_OPEN_SETTINGS);
-  }
-  settingsPane.classList.add(SLIDE_OPEN_SETTINGS);
-
-  settingsPaneIsOpen = true;
-  toggleButtons$1();
-}
-
-/* istanbul ignore next */
-/**
- * Closes the settings pane and allows stats pane to reopen
- * removes unnecessary css animations
- */
-function closeSettingsPane () {
-  timerBlock.classList.remove(SLIDE_OPEN_SETTINGS);
-  breakBlock.classList.remove(SLIDE_OPEN_SETTINGS);
-  settingsPane.classList.remove(SLIDE_OPEN_SETTINGS);
-
-  timerBlock.classList.remove(SLIDE_ACROSS_RIGHT);
-  breakBlock.classList.remove(SLIDE_ACROSS_RIGHT);
-
-  timerBlock.classList.add(SLIDE_CLOSE_SETTINGS);
-  breakBlock.classList.add(SLIDE_CLOSE_SETTINGS);
-  settingsPane.classList.add(SLIDE_CLOSE_SETTINGS);
-
-  settingsPaneIsOpen = false;
-  toggleButtons$1();
-}
-
-/* instanbul ignore next */
-/**
- * Toggles the respective settings pane buttons based on the current state
- */
-function toggleButtons$1 () {
-  settingsOpenButton.disabled = settingsPaneIsOpen;
-  settingsCloseButton.disabled = !settingsPaneIsOpen;
-  settingsColorButton.disabled = !settingsPaneIsOpen;
-  settingsKeysButton.disabled = !settingsPaneIsOpen;
-  settingsAutoStartButton.disabled = !settingsPaneIsOpen;
-}
-
-/* istanbul ignore next */
-/**
- * Removes existing animation classes from stats and settings panes
- */
-function removeAll () {
-  timerBlock.classList.remove(SLIDE_CLOSE);
-  breakBlock.classList.remove(SLIDE_CLOSE);
-  statsPane.classList.remove(SLIDE_CLOSE);
-
-  timerBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
-  breakBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
-  settingsPane.classList.remove(SLIDE_CLOSE_SETTINGS);
-}
-
-/*
-* initial load
-* sets height of settings/stats tab
-*/
-let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-/* istanbul ignore next */
-/**
- * on window resize trigger new height
- */
-window.addEventListener('resize', () => {
-  vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-});
-
-function disableDropdown () {
-  document.getElementById('backgrounds').style.display = 'none';
-}
-
-function enableDropdown () {
-  document.getElementById('backgrounds').style.display = '';
-}
-
-function backgroundOneClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundOneURL;
-}
-
-function backgroundTwoClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundTwoURL;
-}
-
-function backgroundThreeClicked () {
-  disableDropdown();
-  document.documentElement.style.backgroundImage = backgroundThreeURL;
 }
 
 /* global zingchart */
@@ -624,7 +485,7 @@ function openStatsPane () {
   }
   statsPane.classList.add(SLIDE_OPEN);
   statsPaneIsOpen = true;
-  toggleButtons();
+  toggleButtons$1();
 }
 
 /* istanbul ignore next */
@@ -644,14 +505,14 @@ function closeStatsPane () {
   statsPane.classList.add(SLIDE_CLOSE);
 
   statsPaneIsOpen = false;
-  toggleButtons();
+  toggleButtons$1();
 }
 
 /* istanbul ignore next */
 /**
  * Toggles the respective stats pane buttons based on the current state
  */
-function toggleButtons () {
+function toggleButtons$1 () {
   statsOpenButton.disabled = statsPaneIsOpen;
   statsCloseButton.disabled = !statsPaneIsOpen;
 }
@@ -697,6 +558,164 @@ function displayTodayStats () {
   todayPomoElem.textContent = todayPomoCount;
   todayInterruptElem.textContent = todayInterruptCount;
   todayTasksElem.textContent = todayTaskCount;
+}
+
+/* istanbul ignore next */
+/**
+ * Shows if Stats pane is open or not
+ */
+function statsPaneStatus () {
+  return statsPaneIsOpen;
+}
+
+/* Settings Pane and Buttons */
+// might be good to move all these to Constants.js
+const settingsPane = document.getElementById('settings-container');
+const settingsOpenButton = document.getElementById('settings-open-button');
+const settingsCloseButton = document.getElementById('settings-close-button');
+const settingsColorButton = document.getElementById('colors-switch');
+const settingsKeysButton = document.getElementById('keystroke-switch');
+const settingsAutoStartButton = document.getElementById('autostart-switch');
+
+const backgroundOneOption = document.getElementById('background_1');
+const backgroundTwoOption = document.getElementById('background_2');
+const backgroundThreeOption = document.getElementById('background_3');
+
+const backgroundOneURL = "url('./images/background.svg')";
+const backgroundTwoURL = "url('./images/background2.png')";
+const backgroundThreeURL = "url('./images/background3.png')";
+
+const backgroundDropDown = document.getElementById('backgroundDropDown');
+
+backgroundOneOption.onclick = backgroundOneClicked;
+backgroundTwoOption.onclick = backgroundTwoClicked;
+backgroundThreeOption.onclick = backgroundThreeClicked;
+
+backgroundDropDown.onmouseover = enableDropdown;
+
+settingsOpenButton.onclick = openSettingsPane;
+settingsCloseButton.onclick = closeSettingsPane;
+settingsColorButton.onclick = toggleAccessibility;
+settingsKeysButton.onclick = toggleKeystroke;
+settingsAutoStartButton.onclick = toggleAutoStart;
+
+let settingsPaneIsOpen = false;
+
+/* istanbul ignore next */
+/**
+ * Opens the settings pane and closes the stats pane
+ */
+function openSettingsPane () {
+  removeAll();
+  // closing the status pane and open the settings
+  if (statsPane.classList.contains(SLIDE_OPEN)) {
+    closeStatsPane();
+    timerBlock.classList.remove(SLIDE_CLOSE);
+    timerBlock.classList.add(SLIDE_ACROSS_LEFT);
+    breakBlock.classList.remove(SLIDE_CLOSE);
+    breakBlock.classList.add(SLIDE_ACROSS_LEFT);
+  } else { // add the slide open settings (css)
+    timerBlock.classList.add(SLIDE_OPEN_SETTINGS);
+    breakBlock.classList.add(SLIDE_OPEN_SETTINGS);
+  }
+  settingsPane.classList.add(SLIDE_OPEN_SETTINGS);
+
+  settingsPaneIsOpen = true;
+  toggleButtons();
+}
+
+/* istanbul ignore next */
+/**
+ * Closes the settings pane and allows stats pane to reopen
+ * removes unnecessary css animations
+ */
+function closeSettingsPane () {
+  timerBlock.classList.remove(SLIDE_OPEN_SETTINGS);
+  breakBlock.classList.remove(SLIDE_OPEN_SETTINGS);
+  settingsPane.classList.remove(SLIDE_OPEN_SETTINGS);
+
+  timerBlock.classList.remove(SLIDE_ACROSS_LEFT);
+  breakBlock.classList.remove(SLIDE_ACROSS_LEFT);
+
+  timerBlock.classList.add(SLIDE_CLOSE_SETTINGS);
+  breakBlock.classList.add(SLIDE_CLOSE_SETTINGS);
+  settingsPane.classList.add(SLIDE_CLOSE_SETTINGS);
+
+  settingsPaneIsOpen = false;
+  toggleButtons();
+}
+
+/* instanbul ignore next */
+/**
+ * Toggles the respective settings pane buttons based on the current state
+ */
+function toggleButtons () {
+  settingsOpenButton.disabled = settingsPaneIsOpen;
+  settingsCloseButton.disabled = !settingsPaneIsOpen;
+  settingsColorButton.disabled = !settingsPaneIsOpen;
+  settingsKeysButton.disabled = !settingsPaneIsOpen;
+  settingsAutoStartButton.disabled = !settingsPaneIsOpen;
+}
+
+/* istanbul ignore next */
+/**
+ * Removes existing animation classes from stats and settings panes
+ */
+function removeAll () {
+  timerBlock.classList.remove(SLIDE_CLOSE);
+  breakBlock.classList.remove(SLIDE_CLOSE);
+  statsPane.classList.remove(SLIDE_CLOSE);
+
+  timerBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
+  breakBlock.classList.remove(SLIDE_CLOSE_SETTINGS);
+  settingsPane.classList.remove(SLIDE_CLOSE_SETTINGS);
+}
+
+/* istanbul ignore next */
+/**
+ * Shows if Settings pane is open or not
+ */
+function settingsPaneStatus () {
+  return settingsPaneIsOpen;
+}
+
+/*
+* initial load
+* sets height of settings/stats tab
+*/
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+/* istanbul ignore next */
+/**
+ * on window resize trigger new height
+ */
+window.addEventListener('resize', () => {
+  vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
+function disableDropdown () {
+  document.getElementById('backgrounds').style.display = 'none';
+}
+
+function enableDropdown () {
+  document.getElementById('backgrounds').style.display = '';
+}
+
+function backgroundOneClicked () {
+  disableDropdown();
+  document.documentElement.style.backgroundImage = backgroundOneURL;
+}
+
+function backgroundTwoClicked () {
+  disableDropdown();
+  document.documentElement.style.backgroundImage = backgroundTwoURL;
+}
+
+function backgroundThreeClicked () {
+  disableDropdown();
+  document.documentElement.style.backgroundImage = backgroundThreeURL;
 }
 
 const taskButton = document.getElementById(TASK_BTN_ID);
@@ -900,9 +919,27 @@ function togglePomoBreak (onBreak) {
  * @returns {Array} An array containing the pomoState and the pomoCount
  */
 function startTimer (localOnBreak = onBreak, localPomoCount = pomoCount) {
+  // if Settings page is open close
+  if (settingsPaneStatus()) {
+    closeSettingsPane();
+  }
+
+  // if Stats page is open close
+  if (statsPaneStatus()) {
+    closeStatsPane();
+  }
+
   if (!onBreak) {
     toggleTaskButtonDisabled(true);
     hideBreakMessage();
+
+    if (settingsPaneIsOpen) {
+      closeSettingsPane();
+    }
+
+    if (statsPaneIsOpen) {
+      closeStatsPane();
+    }
   }
 
   if (onBreak && !isAutoStartEnabled()) {
@@ -1019,6 +1056,12 @@ function updatePots () {
 function resetTimer () {
   pomoState = timerOptions.STOPPED;
   toggleTaskButtonDisabled(true);
+
+  // re-enables the timer
+  settingsButton.disabled = false;
+  statsButton.disabled = false;
+  settingsButton.style.opacity = 1;
+  statsButton.style.opacity = 1;
 
   // only increments interruptions if not ending the session
   if (!isAutoStartEnabled() || !onBreak) {
@@ -1176,4 +1219,4 @@ function hideBreakMessage () {
   clearInterval(breakInterval);
 }
 
-export { beginCountdown, displayTime, hidePrompt, resetConfirm, resetPrompt, resetTimer, setCountdownInterval, startResetController, startTimer, timeFraction, timerTypeIndicator, togglePomoBreak, updatePots };
+export { beginCountdown, displayTime, hidePrompt, resetConfirm, resetPrompt, resetTimer, setCountdownInterval, settingsButton, startResetController, startTimer, statsButton, timeFraction, timerTypeIndicator, togglePomoBreak, updatePots };
