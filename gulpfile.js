@@ -36,126 +36,125 @@ const FONT_PATH = 'source/fonts/*';
 const IMG_PATH = 'source/images/*';
 const POMO_CSS_PATH = 'source/styles/*.css';
 const TUT_CSS_PATH = 'source/tutorial-styles/*.css';
-const TUT_JS_PATH =  'source/tutorial-scripts/*.js';
+const TUT_JS_PATH = 'source/tutorial-scripts/*.js';
 const POMO_HTML_PATH = 'source/index.html';
 const TUT_HTML_PATH = 'source/tutorial_page.html';
 const SW_JS_PATH = 'source/sw.js';
 const MANIFEST_PATH = 'source/manifest.json';
 const SET_BG_JS_PATH = 'source/scripts/setBackground.js';
 const INDEX_JS_PATH = 'source/scripts/index.js'
-// Clear the build directory
+    // Clear the build directory
 function reset() {
-  return src(BUILD_ROOT_PATH, {read: false})
-  .pipe(clean());
+    return src(BUILD_ROOT_PATH, { read: false })
+        .pipe(clean());
 }
 
 // Copy the setbackground
 function copySetBG() {
-  return src(SET_BG_JS_PATH).pipe(dest(BUILD_BUNDLED_PATH));
+    return src(SET_BG_JS_PATH).pipe(dest(BUILD_BUNDLED_PATH));
 }
 
 // Copy the index.js
 function copyIndexJS() {
-  return src(INDEX_JS_PATH).pipe(dest(BUILD_BUNDLED_PATH));
+    return src(INDEX_JS_PATH).pipe(dest(BUILD_BUNDLED_PATH));
 }
 
 // Copy the serviceworker
 function copyServiceWorker() {
-  return src(SW_JS_PATH).pipe(dest(BUILD_ROOT_PATH));
+    return src(SW_JS_PATH).pipe(dest(BUILD_ROOT_PATH));
 }
 
 // Copy the manifest
 function copyManifest() {
-  return src(MANIFEST_PATH).pipe(dest(BUILD_ROOT_PATH));
+    return src(MANIFEST_PATH).pipe(dest(BUILD_ROOT_PATH));
 }
 
 // Copy the favicon
 function copyfavi() {
-  return src(FAVICON_PATH).pipe(dest(BUILD_ROOT_PATH));
+    return src(FAVICON_PATH).pipe(dest(BUILD_ROOT_PATH));
 }
 
 // Copy the sounds
 function copySounds() {
-  return src(SOUND_PATH).pipe(dest(BUILD_SOUND_PATH));
+    return src(SOUND_PATH).pipe(dest(BUILD_SOUND_PATH));
 }
 
 // Copy the fonts
 function copyFonts() {
-  return src(FONT_PATH).pipe(dest(BUILD_FONT_PATH));
+    return src(FONT_PATH).pipe(dest(BUILD_FONT_PATH));
 }
 
 // Copy and minify the pomo images
 function copyImg() {
-  return src(IMG_PATH).pipe(dest(BUILD_IMG_PATH));
+    return src(IMG_PATH).pipe(dest(BUILD_IMG_PATH));
 }
 
 // Copy zing
 function copyZing() {
-  return src(ZING_CHART_PATH).pipe(dest(BUILD_ZING_CHART_PATH));
+    return src(ZING_CHART_PATH).pipe(dest(BUILD_ZING_CHART_PATH));
 }
 
 // Copy and minify the log rocket part of the JS
 function minifyLogRocket() {
-  return src(LOG_ROCKET_PATH)
-    .pipe(terser())
-    .pipe(dest(BUILD_LOG_ROCKET_PATH));
+    return src(LOG_ROCKET_PATH)
+        .pipe(terser())
+        .pipe(dest(BUILD_LOG_ROCKET_PATH));
 }
 
 // Copy and minify the timeworker
 function minifyTimeWorker() {
-  return src(TIMEWORKER_PATH)
-    .pipe(terser())
-    .pipe(dest(BUILD_TIMEWORKER_PATH));
+    return src(TIMEWORKER_PATH)
+        .pipe(terser())
+        .pipe(dest(BUILD_TIMEWORKER_PATH));
 }
 
 // Copy and minify the pomo css
 function minifyPomoCSS() {
-  return src(POMO_CSS_PATH)
-    .pipe(concat('main.css'))
-    .pipe(postcss([cssnano()]))
-    .pipe(dest(BUILD_POMO_CSS_PATH));
+    return src(POMO_CSS_PATH)
+        .pipe(concat('main.css'))
+        .pipe(postcss([cssnano()]))
+        .pipe(dest(BUILD_POMO_CSS_PATH));
 }
 
 // Copy and minify the tutorial css
 function minifyTutCSS() {
-  return src(TUT_CSS_PATH)
-    .pipe(concat('tutorial_page.css'))
-    .pipe(postcss([cssnano()]))
-    .pipe(dest(BUILD_TUT_CSS_PATH));  
+    return src(TUT_CSS_PATH)
+        .pipe(postcss([cssnano()]))
+        .pipe(dest(BUILD_TUT_CSS_PATH));
 }
 
 // Copy and minify the pomo part of the JS
 function minifyPomoJS() {
-  return src(BUNDLED_PATH)
-    .pipe(terser())
-    .pipe(dest(BUILD_BUNDLED_PATH));
+    return src(BUNDLED_PATH)
+        .pipe(terser())
+        .pipe(dest(BUILD_BUNDLED_PATH));
 }
 
 // Copy and minify the tutorial part of the JS
 function minifyTutJS() {
-  return src(TUT_JS_PATH)
-    .pipe(terser())
-    .pipe(dest(BUILD_TUT_JS_PATH));
+    return src(TUT_JS_PATH)
+        .pipe(terser())
+        .pipe(dest(BUILD_TUT_JS_PATH));
 }
 
 // Copy and minify the HTML
 function minifyPomoHTML() {
-  return src(POMO_HTML_PATH)
-    .pipe(htmlreplace({
-      'css': './styles/main.css',
-      'js': {
-        'src': null,
-        'tpl': '<script src=./scripts/bundled.js type="module"></script>'
-      }
-    }))
-    .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(dest(BUILD_ROOT_PATH));
+    return src(POMO_HTML_PATH)
+        .pipe(htmlreplace({
+            'css': './styles/main.css',
+            'js': {
+                'src': null,
+                'tpl': '<script src=./scripts/bundled.js type="module"></script>'
+            }
+        }))
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(dest(BUILD_ROOT_PATH));
 }
 
 function minifyTutHTML() {
-  return src(TUT_HTML_PATH)
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(dest(BUILD_ROOT_PATH));
+    return src(TUT_HTML_PATH)
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(dest(BUILD_ROOT_PATH));
 }
 
 
@@ -179,23 +178,23 @@ exports.minifyTutJS = minifyTutJS;
 exports.minifyPomoHTML = minifyPomoHTML;
 exports.minifyTutHTML = minifyTutHTML;
 exports.default = series(
-                        reset, 
-                        parallel(
-                          copySetBG,
-                          copyIndexJS,
-                          copyServiceWorker,
-                          copyManifest,
-                          copyfavi, 
-                          copySounds, 
-                          copyFonts, 
-                          copyImg,
-                          copyZing, 
-                          minifyLogRocket,
-                          minifyTimeWorker,
-                          minifyPomoCSS,
-                          minifyTutCSS,
-                          minifyPomoJS,
-                          minifyTutJS,
-                          minifyPomoHTML,
-                          minifyTutHTML
-                          ));
+    reset,
+    parallel(
+        copySetBG,
+        copyIndexJS,
+        copyServiceWorker,
+        copyManifest,
+        copyfavi,
+        copySounds,
+        copyFonts,
+        copyImg,
+        copyZing,
+        minifyLogRocket,
+        minifyTimeWorker,
+        minifyPomoCSS,
+        minifyTutCSS,
+        minifyPomoJS,
+        minifyTutJS,
+        minifyPomoHTML,
+        minifyTutHTML
+    ));

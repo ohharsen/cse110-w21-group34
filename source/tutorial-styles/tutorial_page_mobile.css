@@ -8,11 +8,11 @@ html,
 body {
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    overflow: scroll;
     background: rgb(255, 255, 255);
     font-family: 'Fira Mono', monospace;
     -webkit-font-smoothing: antialiased;
-    font-size: 20px;
+    font-size: 5vw;
     color: #da5c13;
 }
 
@@ -61,8 +61,8 @@ body {
 
 .item-image {
     position: relative;
-    width: 630px;
-    height: 472.5px;
+    width: 87vw;
+    height: 68vw;
     opacity: 0;
     display: block;
     transition: opacity .3s ease-out .45s;
@@ -78,12 +78,10 @@ body {
 }
 
 .item-description {
-    position: absolute;
-    top: 70px;
-    margin-left: 660px;
-    width: 30%;
+    top: 700px;
     padding-right: 4%;
     line-height: 1.8;
+    margin-top: 30vw;
 }
 
 .item-header {
@@ -97,7 +95,7 @@ body {
     margin: 0 -4px;
     font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: auto;
-    font-size: 50px;
+    font-size: 7vw;
     color: #da5c13;
 }
 
@@ -128,11 +126,10 @@ body {
 }
 
 .controls {
-    position: relative;
+    position: absolute;
     text-align: left;
-    z-index: 1000;
-    top: 520px;
-    left: 660px;
+    margin-top: 100vw;
+    margin-left: 13vw;
 }
 
 .controls ul {
@@ -141,11 +138,12 @@ body {
 
 .controls ul li {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 3px;
+    width: 3vw;
+    height: 3vw;
+    margin: 1vw;
     background: #10e048;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .controls ul li.active {
@@ -154,13 +152,13 @@ body {
 
 #go-back-button {
     position: absolute;
-    width: 630px;
-    height: 80px;
-    border-radius: 28px;
+    width: 87vw;
+    height: 15vw;
+    border-radius: 5vw;
     font-family: Roboto, sans-serif;
     color: white;
-    font-size: 30px;
-    top: 550px;
+    font-size: 6vw;
+    top: 82vw;
 }
 
 .pomodoro-button {
@@ -177,11 +175,11 @@ button {
 
 .arrow {
     border: solid black;
-    border-width: 0 13px 13px 0;
+    border-width: 0 3vw 3vw 0;
     display: inline-block;
-    padding: 13px;
+    padding: 3vw;
     position: absolute;
-    top: 270px;
+    top: 40vw;
     opacity: 0.3;
     background: transparent;
     z-index: 10000;
@@ -193,11 +191,11 @@ button {
 .right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
-    left: 570px;
+    left: 75vw;
 }
 
 .left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
-    left: 20px;
+    left: 3vw;
 }
