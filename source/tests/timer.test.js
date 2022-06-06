@@ -1,3 +1,4 @@
+import { isAutoStartEnabled, toggleAutoStart } from '../scripts/accessibility';
 import * as Constants from '../scripts/constants';
 import {
     togglePomoBreak,
@@ -6,6 +7,7 @@ import {
     displayTime,
     timeFraction,
     timerTypeIndicator,
+    onBreak
 } from '../scripts/timer';
 import * as Storage from '../scripts/util/storage';
 
@@ -49,6 +51,13 @@ test('Check multiple timer resets increments interruptions', () => {
         };
         resetTimer();
     }
+    expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(targetInterruptions);
+});
+
+test('Check if interruptions are not incremented when user ends session', () => {
+    toggleAutoStart(); //set autostart to true
+    togglePomoBreak(); //set onBreak to true
+    const targetInterruptions = 0;
     expect(Storage.getCounter(Storage.TODAY_INTERRUPTION)).toBe(targetInterruptions);
 });
 

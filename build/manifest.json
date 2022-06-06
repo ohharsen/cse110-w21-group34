@@ -1,0 +1,22 @@
+{
+    "name" : "Team 6 Pomodoro Timer",
+    "start_url" : ".",
+    "background_color" : "white",
+    "theme_color" : "white",
+    "description" : "A timer that utilizes the Pomodoro Technique",
+    "display" : "standalone",
+    "icons" : [
+        {
+            "src" : "images/icon192.png",
+            "sizes" : "192x192",
+            "type" : "image/png",
+            "purpose" : "any maskable"
+        },
+        {
+            "src" : "images/icon512.png",
+            "sizes" : "512x512",
+            "type" : "image/png",
+            "purpose" : "any maskable"
+        }
+    ]
+}

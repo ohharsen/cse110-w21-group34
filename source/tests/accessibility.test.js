@@ -1,4 +1,4 @@
-import { isA11yEnabled, isKeystrokeEnabled, toggleAccessibility, toggleKeystroke } from '../scripts/accessibility';
+import { isA11yEnabled, isAutoStartEnabled, isKeystrokeEnabled, toggleAccessibility, toggleAutoStart, toggleKeystroke } from '../scripts/accessibility';
 
 describe('Color Accessibility', () => {
     test('Checks if toggling on color accessibility adds style class to DOM', () => {
@@ -19,10 +19,26 @@ describe('Color Accessibility', () => {
         expect(isA11yEnabled()).toBe(false);
     });
 
+    test('Checks if autostart getter when autostart mode is off returns false', () => {
+        expect(isAutoStartEnabled()).toBe(false);
+    });
+
+    test('Checks if autostart getter when autostart mode is on returns true', () => {
+        toggleAutoStart();
+        expect(isAutoStartEnabled()).toBe(true);
+    });
+
     test('Checks if keystroke/shortcut mode is toggled', () => {
         const prev = isKeystrokeEnabled();
         toggleKeystroke();
         const next = isKeystrokeEnabled();
+        expect(next).not.toBe(prev);
+    });
+
+    test('Checks if autostart mode is toggled', () => {
+        const prev = isAutoStartEnabled();
+        toggleAutoStart();
+        const next = isAutoStartEnabled();
         expect(next).not.toBe(prev);
     });
 });

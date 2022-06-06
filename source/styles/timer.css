@@ -1,6 +1,8 @@
+/* Container for countdown box, session indicators, and number of pomos */
 .center-container {
-    width: 25%;
-    min-width: 300px;
+    padding-top: 175px;
+    width: 35%;
+    min-width: 500px;
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -8,27 +10,35 @@
     justify-content: space-evenly;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
     .center-container {
         width: 80%;
         min-width: 120px;
     }
 }
 
+/* Animations for settings button */
 .center-container.slide-open {
-    animation: slide-center-out 0.5s ease-out forwards;
+    animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 
 .center-container.slide-close {
-
-    animation: slide-center-in 0.5s ease-out forwards;
+    animation: slide-center-in-settings 0.5s ease-out forwards;
+}
+.break-message.slide-open {
+    animation: slide-center-out-settings 0.5s ease-out forwards;
 }
 
+.break-message.slide-close {
+    animation: slide-center-in-settings 0.5s ease-out forwards;
+}
+
+/* Box containing the countdown, pomojars, and begin button */
 .timer-container {
     box-sizing: border-box;
     padding: 16px;
     background: var(--white-a1);
-    height: 80%;
+    height: 100%;
     width: 100%;
     display: flex;
     border-radius: 21px;
@@ -50,7 +60,7 @@
     background-color: white;
 }
 
-/*The SVG path that displays the timer's progress */
+/* The SVG path that displays the timer's progress */
 .timer_path_elapsed {
     fill: none;
     transform: rotate(90deg) scale(1, -1) ;
@@ -60,9 +70,8 @@
     transition: stroke-dasharray 1s linear, stroke 0.25s linear;
 }
   
+/** Organization of text and positioning. **/
 #countdownText {
-    /** Organization of text and positioning. **/
-    font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-size: 20px;
     display: flex;
@@ -80,13 +89,13 @@
     opacity: 1.0;
 }
 
+/* Start button positioning, sizing, color */
 #start-stop-button {
-    width: 40%;
-    height: 60px;
-    border-radius: 32px;
-    font-family: Roboto;
+    width: 55%;
+    height: 80px;
+    border-radius: 28px;
     color: white;
-    font-size: var(--button-text-size);
+    font-size: 30px;
 }
 
 #start-stop-button:focus {
@@ -97,13 +106,13 @@
     background:rgba(233, 217, 217, 0.2);
 }
 
+/* Prompt buttons for resetting timer */
 .prompt-button{
-    width: 40%;
-    height: 60px;
-    border-radius: 32px;
-    font-family: Roboto;
+    width: 55%;
+    height: 80px;
+    border-radius: 28px;
     color: white;
-    font-size: 16;
+    font-size: 16px;
     outline: 0;
 }
 
@@ -121,6 +130,7 @@
     background: var(--dark-red);
 }
 
+/* Prompt positioning, size, and color for resetting timer */
 #prompt {
     display: none;
     justify-content: space-around;
@@ -131,7 +141,6 @@
 }
 
 #prompt-text {
-    font-family: Roboto;
     text-align: center;
     margin: 0 0 5px 0;
     transform: translate(0, -50%);
@@ -143,6 +152,7 @@
     transform: translate(0, -25%);
 }
 
+/* Start button color and hover */
 .pomodoro-button {
     background: var(--red);
 }
@@ -155,6 +165,7 @@
     background: var(--red);
 }
 
+/* Buttons for breaks */
 .break-button {
     background: var(--green);
 }
@@ -167,14 +178,18 @@
     background: var(--green); 
 }
 
+/* Positioning, size, and color for task button */
 .task-button {
     background: var(--orange);
-    border-radius: 22px;
-    height: 50px;
-    font-family: Roboto;
+    border-radius: 10px;
+    min-height: 35px;
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
     color: var(--counter-color);
     font-size: var(--button-text-size);
-    margin-top: 5px;
+    align-self: center;
+    margin-top: 10px;
 }
 
 .task-button:hover {
@@ -191,35 +206,6 @@
     background:rgba(255, 255, 255, 0.2);
 }
 
-.pots-container {
-    width: 100%;
-    padding-bottom: 16px;
-    display: flex;
-    align-items: flex-end;
-    justify-items: flex-end;
-    justify-content: flex-end;
-}
-
-.pots-container img {
-    margin-left: 4px;
-    height: 30px;
-    width: 30px;
-}
-
-.pomo-indicator-container {
-    font-family: "Roboto";
-    font-size: 18px;
-    color: var(--counter-color);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    bottom: 13%;
-    width: 90%;
-    align-self: center;
-    margin-bottom: 5px;
-}
-
 @media (max-width: 1300px){
     .pomo-indicator-container {
         font-size: 0.99rem;
@@ -228,10 +214,42 @@
 
 .pomo-indicator {
     text-align: center;
-    padding: 5px 5px 0px 5px;
+    padding: 5px 5px 0 5px;
     opacity: 0.6;
 }
 
 .highlight {
     opacity: 1;
+}
+
+@media only screen and (max-width: 700px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #pomobear-header {
+        display: none;
+    }
+
+    .center-container {
+        padding-top: 130px;
+        height: 65%;
+    }
+
+    #break-message {
+        font-size: 1.5em;
+    }
+
+    #break-container {
+        margin-top: 40px;
+        margin-bottom: -135px;
+    }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 700px){
+    #break-container {
+        margin-top: 10px;
+        margin-bottom: -95px;
+    }
 }

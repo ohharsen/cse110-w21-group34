@@ -1,5 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+/* roboto-regular - latin */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/roboto-v30-latin-regular.woff2") format("woff2");
+    font-display: swap;
+}
 
+/* Color constants and size constants */
 :root {
     --black: #000000;
     --black-a1: rgba(0, 0, 0, 0.7);
@@ -22,10 +30,10 @@
     --orange-dark-grad-1: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E95D31 100%);
     --green: #34DBB3;
     --dark-green: #0D927A;
-    --green-grad: linear-gradient(180deg,  #ffffff00 0%, #0D927A 100%);
+    --green-grad: linear-gradient(180deg, #ffffff00 0%, #0D927A 100%);
     --green-grad-1: linear-gradient(180deg, #0D927A 0%, rgba(255, 255, 255, 0) 100%);
     --button-text-size: 18px;
-    --bacgkround-source: url('../images/background.png');
+    --background-source: url("../images/background.svg");
     --counter-color: white;
 }
 
@@ -43,12 +51,14 @@
     --green-grad: linear-gradient(180deg,  #575757 0%, #00644e 100%);
     --green-grad-1: linear-gradient(180deg,  #00644e 0%, #575757 100%);
     --button-text-size: 22px;
-    --bacgkround-source: url("../images/background_hi_contrast.png");
+    --background-source: url("../images/background_hi_contrast.png");
     --counter-color: black;
 }
 
+
+/* Positioning, background, size for page */
 html {
-    background: var(--bacgkround-source) no-repeat center center fixed; 
+    background: var(--background-source) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -62,6 +72,8 @@ body {
     min-height: 100vh;
     height: 100%;
     margin: 0;
+    font-family: "Roboto", sans-serif;
+    visibility: hidden;
 }
 
 main {
@@ -72,14 +84,32 @@ main {
     align-items: center;
     align-content: center;
     justify-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+}
+
+#pomobear-header-container {
+    position: absolute;
+    display: flex;
+    left: 30px;	
+    top: -20px;
+    font-size: 2em;
+    font-weight: bolder;
+    color: var(--white);
+}
+
+#pomo-logo {
+    position: absolute;
+    top: 37px;
+    left: 1%;
+    visibility: hidden;
 }
 
 img {
     user-select: none;
 }
 
+/* Style for buttons */
 button {
     border: 0;
 }
@@ -100,21 +130,180 @@ aside {
     overflow: auto;
 }
 
+#pomobear-header-container img {
+    margin: 2px 0 0 0;
+}
+
+.info-button:active {
+    opacity: 100%;
+}
+
+.info-button {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border-radius: 15px;
+    margin-top: 53px;
+    margin-left: 3px;
+}
+
+.info-button:hover:enabled {
+    background: var(--white-a2);
+}
+
+.info-button:active {
+    opacity: 100%;
+}
+
+#break-message{
+    color: var(--black);
+    background: var(--white-a1);
+    padding: 16px;
+    border-radius: 21px;
+    font-size: 3em;
+    visibility: hidden;
+}
+
+/* positioning for pomo pots */	
+.pots-container {	
+    position: fixed;	
+    top: 55px;	
+    right: 105px;	
+    display: flex;	
+    align-items: flex-end;	
+    justify-items: flex-end;	
+    justify-content: flex-end;	
+}
+
+.pots-container img {	
+    margin-left: 4px;	
+    height: 30px;	
+    width: 30px;	
+}
+
+.pomo-indicator-container {	
+    font-size: 18px;	
+    color: var(--counter-color);	
+    display: flex;	
+    flex-direction: row;	
+    justify-content: space-between;	
+    align-items: center;	
+    bottom: 13%;	
+    width: 90%;	
+    align-self: center;	
+    margin-bottom: 5px;	
+}
+
+#break-container {
+    margin-top: -20px;
+    margin-bottom: -165px;
+    display: inline-block;
+    position: relative;
+    animation: break-animation 1s infinite;
+}
+
+/* positioning for pomo pots */
+.pots-container {
+    position: fixed;
+    top: 55px;
+    right: 105px;
+    display: flex;
+    align-items: flex-end;
+    justify-items: flex-end;
+    justify-content: flex-end;
+}
+
+.pots-container img {
+    margin-left: 4px;
+    height: 30px;
+    width: 30px;
+}
+
+.pomo-indicator-container {
+    font-size: 18px;
+    color: var(--counter-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 13%;
+    width: 90%;
+    align-self: center;
+    margin-bottom: 5px;
+}
+
+
+/* Changes font size for pomobear title when screen gets smaller so break message does not interfere*/
+@media only screen and (max-width: 1100px) {
+    #pomobear-header {
+        font-size: 1.4em;
+    }
+
+    #pomobear-header-container {
+        top: 0px;
+    }
+
+    .info-button {
+        position: relative;
+        top: 30px;
+        margin-top: 0px;
+    }
+}
+
+/* Changes pomobear title to the logo when the screen gets smaller */
+@media only screen and (max-width: 900px) {
+    #pomobear-header {
+        display: none;
+    }
+
+    #pomo-logo {
+        top: 20px;
+        left: 20px;
+        visibility: visible;
+    }
+
+}
+
+/* Places info button next to logo for appropriate screen sizes */
+@media only screen and (max-width: 900px) {
+    .info-button {
+        position: absolute;
+        left: -35px;
+        top: 70px;
+        margin-top: 0px;
+    }
+}
+
+/* Animation for bouncing break message */
+@keyframes break-animation {
+    0%,100% {
+        transform: translateY(0)
+      }
+      50% {
+        transform: translateY(10px)
+      }
+}
+
+/* Animations for settings and stats */
+
 @keyframes slide-right-out {
-    to { right: 0 }
+    to {
+        right: 0
+    }
 }
 
 @keyframes slide-right-in {
-    from { right: 0 }
+    from {
+        right: 0
+    }
 }
 
 @keyframes slide-center-out {
-    from { transform: translate(0, 0) }
-    to { transform: translate(-15vw, 0) }
-}
-
-@keyframes slide-center-in {
     from { transform: translate(-15vw, 0) }
     to { transform: translate(0, 0) }
 }
 
+@keyframes slide-center-in {
+    from { transform: translate(15vw, 0) }
+    to { transform: translate(0, 0) }
+}

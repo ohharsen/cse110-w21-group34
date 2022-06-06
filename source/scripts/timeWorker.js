@@ -1,3 +1,4 @@
+// intervalID: The identifier of the timer(count down action) you want to cancel
 let timerInterval;
 
 // Listen for start/stop requests
@@ -22,7 +23,7 @@ onmessage = (e) => {
 function startTimer (duration) {
   let timeLeft = duration;
   timerInterval = setInterval(() => {
-    timeLeft--;
+    timeLeft--;// decrement timeLeft by 1
     postMessage({ timeLeft: timeLeft });
     if (timeLeft < 0) clearInterval(timerInterval);
   }, 1000);
