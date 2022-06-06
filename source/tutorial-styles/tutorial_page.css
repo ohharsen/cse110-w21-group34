@@ -87,7 +87,7 @@ body {
 }
 
 .item-header {
-    position: auto;
+    position: static;
     top: 20px;
     left: -1.8%;
     z-index: 100;
